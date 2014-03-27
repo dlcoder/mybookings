@@ -1,6 +1,16 @@
 !!!
 %html
   = render 'head'
-  %body
+  %body{ class: body_classes }
     = render 'navbar'
-    = yield
+
+    = yield :jumbotron
+
+    .container
+
+      - unless notice.nil?
+        .alert.alert-info= notice
+      - unless alert.nil?
+        .alert.alert-warning= alert
+
+      = yield

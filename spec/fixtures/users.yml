@@ -1,0 +1,3 @@
+user:
+  email: user@mybookings.com
+  encrypted_password: $2a$10$GiT8aeGdVfQnu54L6bQ.x.fSOsLLxfTwDWhK8rx1D2znOG7wzcrbS # 12345678

@@ -1,6 +1,16 @@
 en:
-  app_name: My Bookings
+  app_name: 'Institutional Bookings'
 
   application:
+    homepage:
+      promo_message: 'Welcome to the Institutional booking system.'
+      sign_in: 'Sign in'
+      sign_up: 'Sign up'
     navbar:
-      toggle_navigation: Toggle navigation
+      sign_out: 'Sign out'
+      toggle_navigation: 'Toggle navigation'
+      you_are_logged_in_as: 'You are logged in as %{email}'
+
+  bookings:
+    index:
+      my_bookings: 'My bookings'

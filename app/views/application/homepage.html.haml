@@ -1,0 +1,8 @@
+= content_for :jumbotron do
+  .jumbotron
+    .container
+      %h1= t('app_name')
+      %p= t('.promo_message')
+      %p
+        = link_to t('.sign_in'), new_user_session_path, class: 'btn btn-primary btn-lg'
+        = link_to t('.sign_up'), new_user_registration_path, class: 'btn btn-link btn-lg'
