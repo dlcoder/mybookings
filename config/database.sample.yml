@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: mybookings_development
+  username: mybookings
+  password:
+  host: localhost
+
+test:
+  <<: *default
+  database: mybookings_test
+  username: mybookings
+  password:
+  host: localhost
+
+production:
+  <<: *development
