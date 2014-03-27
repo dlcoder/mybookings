@@ -1,2 +1,6 @@
 en:
   app_name: My Bookings
+
+  application:
+    navbar:
+      toggle_navigation: Toggle navigation
