@@ -6,6 +6,7 @@ en:
       promo_message: 'Welcome to the Institutional booking system.'
       sign_in: 'Sign in'
       sign_up: 'Sign up'
+      title: 'Homepage'
     navbar:
       sign_out: 'Sign out'
       toggle_navigation: 'Toggle navigation'
