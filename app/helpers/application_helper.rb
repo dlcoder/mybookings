@@ -13,8 +13,4 @@ module ApplicationHelper
     content_for :page_title, title
   end
 
-  def body_classes
-    'homepage' if current_page?(root_url)
-  end
-
 end

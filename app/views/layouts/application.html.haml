@@ -1,7 +1,7 @@
 !!!
 %html
   = render 'head'
-  %body{ class: body_classes }
+  %body{ class: (yield(:body_classes) if content_for :body_classes) }
     = render 'navbar'
 
     = yield :jumbotron
