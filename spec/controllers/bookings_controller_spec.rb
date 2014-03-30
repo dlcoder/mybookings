@@ -16,8 +16,16 @@ describe BookingsController do
 
     describe 'on GET to index' do
       before { get :index }
+
       it { expect(assigns[:current_user]).to eq(user) }
       it { expect(page).to render_template(:index) }
+    end
+
+    describe 'on GET to new' do
+      before { get :new }
+
+      it { expect(assigns[:booking]).to be_a(Booking) }
+      it { expect(page).to render_template(:new) }
     end
   end
 

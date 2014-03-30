@@ -1,7 +1,9 @@
 class BookingsController < BaseController
 
-  def index
-    @current_user = current_user
+  def index; end
+
+  def new
+    @booking = Booking.new
   end
 
 end

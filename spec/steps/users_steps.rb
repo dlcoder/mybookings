@@ -4,6 +4,10 @@ step 'I visit the homepage' do
   visit root_path
 end
 
+step 'I go to the sign in page' do
+  click_link 'Sign in'
+end
+
 step 'I go to the sign up page' do
   click_link 'Sign up'
 end
@@ -24,24 +28,8 @@ step 'I can see my bookings page' do
   expect(page).to have_content('My bookings')
 end
 
-step 'I can sign out' do
-  click_link 'Sign out'
-end
-
-step 'I can see that I have signed out' do
-  expect(page).to have_content('Signed out successfully.')
-end
-
-step 'I can see the homepage' do
-  expect(page).to have_selector('body.homepage')
-end
-
 step 'a registered user' do
   @user = users(:user)
-end
-
-step 'I go to the sign in page' do
-  click_link 'Sign in'
 end
 
 step 'I can sign in' do
@@ -53,4 +41,16 @@ end
 step 'I can see that I have signed in' do
   expect(page).to have_content('Signed in successfully.')
   expect(page).to have_content("You are logged in as #{ @user.email }")
+end
+
+step 'I go to sign out' do
+  click_link 'Sign out'
+end
+
+step 'I can see that I have signed out' do
+  expect(page).to have_content('Signed out successfully.')
+end
+
+step 'I can see the homepage' do
+  expect(page).to have_selector('body.homepage')
 end

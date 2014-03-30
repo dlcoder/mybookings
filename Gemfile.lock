@@ -38,6 +38,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
+    bootstrap3-datetimepicker-rails (3.0.0)
+      momentjs-rails (~> 2.5.0)
     builder (3.2.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -87,6 +89,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (5.3.1)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.9.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -141,6 +145,9 @@ GEM
       sprockets-rails (~> 2.0.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
+    simple_form (3.0.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -179,6 +186,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.1)
+  bootstrap3-datetimepicker-rails (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -187,12 +195,14 @@ DEPENDENCIES
   jquery-rails
   launchy
   minitest
+  momentjs-rails (~> 2.5.0)
   pg
   rails (= 4.1.0.rc2)
   rails_12factor
   rspec-rails
   sass-rails (~> 4.0.2)
   shoulda-matchers
+  simple_form
   turbolinks
   turnip
   uglifier (>= 1.3.0)
