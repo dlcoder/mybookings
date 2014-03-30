@@ -1,2 +1,2 @@
 $ ->
-  $('.datetimepicker').datetimepicker()
+  $('input.datetimepicker').datetimepicker()

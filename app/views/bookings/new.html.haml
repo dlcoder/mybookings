@@ -2,18 +2,6 @@
 
 = simple_form_for @booking, html: { class: 'form-vertical' } do |f|
   = f.input :resource
-
-  / TODO: code a helper for datetimer inputs
-  = f.label :start_date
-  = f.input :start_date, wrapper: :append, label: false do
-    = f.input :start_date, as: :string, label: false, input_html: { class: 'datetimepicker', value: Time.now.strftime( t('.datetime_format') ) }
-    = content_tag :span, 'asdf', class: 'input-group-addon' do
-      = content_tag :span, '', class: 'glyphicon glyphicon-calendar'
-
-  = f.label :end_date
-  = f.input :end_date, wrapper: :append, label: false do
-    = f.input :end_date, as: :string, label: false, input_html: { class: 'datetimepicker', value: Time.now.strftime( t('.datetime_format') ) }
-    = content_tag :span, 'asdf', class: 'input-group-addon' do
-      = content_tag :span, '', class: 'glyphicon glyphicon-calendar'
-
+  = f.input :start_date, as: :datetimepicker
+  = f.input :end_date, as: :datetimepicker
   = f.submit t('.create_booking'), class: 'btn btn-primary'

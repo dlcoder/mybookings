@@ -1,5 +1,6 @@
 en:
   app_name: 'Institutional Bookings'
+  datetime_format: '%m/%d/%Y %l:%M %p'
 
   application:
     homepage:
@@ -18,5 +19,4 @@ en:
       title: 'My bookings'
     new:
       create_booking: 'Create booking'
-      datetime_format: '%m/%d/%Y %l:%M %p'
       title: 'New booking'
