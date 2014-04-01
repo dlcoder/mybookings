@@ -3,6 +3,7 @@ Feature: Bookings management
   As a user
   I want to be able to manage my bookings
 
+  @javascript
   Scenario: Book a resource
     Given a signed in user
     When I go to the bookings page

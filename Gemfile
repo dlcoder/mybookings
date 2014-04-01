@@ -31,6 +31,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'turnip'
   gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :production do

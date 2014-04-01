@@ -1,12 +1,5 @@
 class BookingsController < BaseController
 
-  # TODO: Review, http://pivotallabs.com/rails-4-testing-strong-parameters/
-  class BookingParams
-    def self.build params
-      params.require(:booking).permit!
-    end
-  end
-
   def index; end
 
   def new
@@ -15,12 +8,14 @@ class BookingsController < BaseController
   end
 
   def create
-    booking_params = params.require(:booking).permit!
-    @booking = Booking.new(booking_params)
-    @booking.resource = Resource.find(booking_params[:resource])
+    return redirect_to bookings_path if CreatesBooking.from_booking_params(booking_params)
+    render 'new'
+  end
 
-    return render 'new' unless @booking.save!
-    return redirect_to bookings_path
+  private
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date, :resource_id)
   end
 
 end
