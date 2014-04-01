@@ -11,6 +11,7 @@ describe BookingsController do
 
   context 'when the user is logged in' do
     let(:user) { users(:user) }
+    let(:resources) { [] }
 
     before { sign_in(user) }
 
@@ -22,8 +23,6 @@ describe BookingsController do
     end
 
     describe 'on GET to new' do
-      let(:resources) { [] }
-
       before do
         allow(Resource).to receive(:all).and_return(resources)
 
@@ -37,25 +36,33 @@ describe BookingsController do
 
     describe 'on POST to create' do
       let(:booking_params) { { "start_date" => '' } }
+      let(:booking) { Booking.new }
+
+      before do
+        expect(CreatesBooking).to receive(:from_booking_params).with(booking_params).and_return(booking)
+      end
 
       context 'when the booking is not valid' do
         before do
-          expect(CreatesBooking).to receive(:from_booking_params).with(booking_params).and_return(false)
+          allow(booking).to receive(:valid?).and_return(false)
+          allow(Resource).to receive(:all).and_return(resources)
 
           post :create, booking: booking_params
         end
 
-        # it { expect(assigns[:booking]).to be_a(Booking) }
+        it { expect(assigns[:resources]).to eq(resources) }
+        it { expect(assigns[:booking]).to be_a(Booking) }
         it { expect(page).to render_template(:new) }
       end
 
       context 'when the booking is valid' do
         before do
-          expect(CreatesBooking).to receive(:from_booking_params).with(booking_params).and_return(true)
+          allow(booking).to receive(:valid?).and_return(true)
 
           post :create, booking: booking_params
         end
 
+        it { expect(assigns[:booking]).to be_a(Booking) }
         it { expect(page).to redirect_to(bookings_path) }
       end
     end

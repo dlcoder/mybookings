@@ -17,3 +17,9 @@ step 'I can book a resource' do
 
   click_button 'Create booking'
 end
+
+# step 'I can see that the booking has been created' do
+#   within '.my_bookings_list' do
+#     expect(page).to have_content('PCV1')
+#   end
+# end

@@ -3,12 +3,15 @@ class BookingsController < BaseController
   def index; end
 
   def new
-    @resources = Resource.all
+    load_resources
     @booking = Booking.new
   end
 
   def create
-    return redirect_to bookings_path if CreatesBooking.from_booking_params(booking_params)
+    puts booking_params
+    @booking = CreatesBooking.from_booking_params(booking_params)
+    return redirect_to bookings_path if @booking.valid?
+    load_resources
     render 'new'
   end
 
@@ -16,6 +19,10 @@ class BookingsController < BaseController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :resource_id)
+  end
+
+  def load_resources
+    @resources = Resource.all
   end
 
 end
