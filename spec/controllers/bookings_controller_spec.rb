@@ -30,39 +30,40 @@ describe BookingsController do
       end
 
       it { expect(assigns[:resources]).to eq(resources) }
-      it { expect(assigns[:booking_form]).to be_a(BookingForm) }
+      it { expect(assigns[:booking]).to be_a(Booking) }
       it { expect(page).to render_template(:new) }
     end
 
     describe 'on POST to create' do
-      let(:booking_form_params) { { "start_date" => '' } }
-      let(:booking_form) { BookingForm.new }
+      let(:booking_params) { { "start_date" => '' } }
+      let(:booking) { Booking.new }
 
       before do
-        allow(BookingForm).to receive(:new).with(booking_form_params).and_return(booking_form)
+        allow(Booking).to receive(:create).with(booking_params).and_return(booking)
       end
 
-      context 'when the booking form is valid' do
+      context 'when the booking params is valid' do
         before do
-          allow(booking_form).to receive(:valid?).and_return(true)
-          allow(CreatesBooking).to receive(:from_booking_form).with(booking_form)
+          expect(booking).to receive(:valid?).and_return(true)
 
-          post :create, booking_form: booking_form_params
+          post :create, booking: booking_params
         end
 
         it { expect(page).to redirect_to(bookings_path) }
       end
 
-      context 'when the booking form is not valid' do
+      context 'when the booking params is not valid' do
+        let(:resources) { [] }
+
         before do
-          allow(booking_form).to receive(:valid?).and_return(false)
+          expect(booking).to receive(:valid?).and_return(false)
           allow(Resource).to receive(:all).and_return(resources)
 
-          post :create, booking_form: booking_form_params
+          post :create, booking: booking_params
         end
 
         it { expect(assigns[:resources]).to eq(resources) }
-        it { expect(assigns[:booking_form]).to be_a(BookingForm) }
+        it { expect(assigns[:booking]).to be_a(Booking) }
         it { expect(page).to render_template(:new) }
       end
     end
