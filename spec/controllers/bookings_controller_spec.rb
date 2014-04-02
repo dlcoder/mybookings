@@ -30,40 +30,40 @@ describe BookingsController do
       end
 
       it { expect(assigns[:resources]).to eq(resources) }
-      it { expect(assigns[:booking]).to be_a(Booking) }
+      it { expect(assigns[:booking_form]).to be_a(BookingForm) }
       it { expect(page).to render_template(:new) }
     end
 
     describe 'on POST to create' do
-      let(:booking_params) { { "start_date" => '' } }
-      let(:booking) { Booking.new }
+      let(:booking_form_params) { { "start_date" => '' } }
+      let(:booking_form) { BookingForm.new }
 
       before do
-        expect(CreatesBooking).to receive(:from_booking_params).with(booking_params).and_return(booking)
+        allow(BookingForm).to receive(:new).with(booking_form_params).and_return(booking_form)
       end
 
-      context 'when the booking is not valid' do
+      context 'when the booking form is valid' do
         before do
-          allow(booking).to receive(:valid?).and_return(false)
+          allow(booking_form).to receive(:valid?).and_return(true)
+          allow(CreatesBooking).to receive(:from_booking_form).with(booking_form)
+
+          post :create, booking_form: booking_form_params
+        end
+
+        it { expect(page).to redirect_to(bookings_path) }
+      end
+
+      context 'when the booking form is not valid' do
+        before do
+          allow(booking_form).to receive(:valid?).and_return(false)
           allow(Resource).to receive(:all).and_return(resources)
 
-          post :create, booking: booking_params
+          post :create, booking_form: booking_form_params
         end
 
         it { expect(assigns[:resources]).to eq(resources) }
-        it { expect(assigns[:booking]).to be_a(Booking) }
+        it { expect(assigns[:booking_form]).to be_a(BookingForm) }
         it { expect(page).to render_template(:new) }
-      end
-
-      context 'when the booking is valid' do
-        before do
-          allow(booking).to receive(:valid?).and_return(true)
-
-          post :create, booking: booking_params
-        end
-
-        it { expect(assigns[:booking]).to be_a(Booking) }
-        it { expect(page).to redirect_to(bookings_path) }
       end
     end
   end

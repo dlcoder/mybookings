@@ -1,7 +1,7 @@
 = title
 
-= simple_form_for @booking, html: { class: 'form-vertical' } do |f|
-  = f.input :resource_id, as: :select, collection: @resources, include_blank: true
+= simple_form_for @booking_form, url: bookings_path, html: { class: 'form-vertical' } do |f|
+  = f.input :resource_id, as: :select, collection: @resources, include_blank: true, label: t('.resource')
   = f.input :start_date, as: :datetimepicker
   = f.input :end_date, as: :datetimepicker
   = f.submit t('.create_booking'), class: 'btn btn-primary'

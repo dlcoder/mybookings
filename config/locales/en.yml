@@ -1,6 +1,5 @@
 en:
   app_name: 'Institutional Bookings'
-  datetime_format: '%m/%d/%Y %l:%M %p'
 
   application:
     homepage:

@@ -4,21 +4,24 @@ class BookingsController < BaseController
 
   def new
     load_resources
-    @booking = Booking.new
+    @booking_form = BookingForm.new
   end
 
   def create
-    puts booking_params
-    @booking = CreatesBooking.from_booking_params(booking_params)
-    return redirect_to bookings_path if @booking.valid?
-    load_resources
-    render 'new'
+    @booking_form = BookingForm.new booking_form_params
+    if @booking_form.valid? then
+      CreatesBooking.from_booking_form @booking_form
+      return redirect_to bookings_path
+    else
+      load_resources
+      render 'new'
+    end
   end
 
   private
 
-  def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :resource_id)
+  def booking_form_params
+    params.require(:booking_form).permit(:start_date, :end_date, :resource_id)
   end
 
   def load_resources
