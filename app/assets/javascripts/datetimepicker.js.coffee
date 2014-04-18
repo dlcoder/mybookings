@@ -1,4 +1,4 @@
 $ ->
   $('input.datetimepicker').datetimepicker({
-    format: 'DD-MM-YYYY HH:MM',
+    format: 'DD-MM-YYYY HH:mm',
   })

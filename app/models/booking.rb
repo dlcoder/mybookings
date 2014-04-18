@@ -5,6 +5,19 @@ class Booking < ActiveRecord::Base
   validates :resource, :start_date, :end_date, presence: true
   validate :resource_exists
 
+  def self.for_user user
+    where(user_id: user.id)
+  end
+
+  def self.create_for_user user, params
+    booking = Booking.new(params)
+    booking.user = user
+
+    booking.save
+
+    booking
+  end
+
   private
 
   def resource_exists

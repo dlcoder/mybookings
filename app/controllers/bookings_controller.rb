@@ -1,6 +1,8 @@
 class BookingsController < BaseController
 
-  def index; end
+  def index
+    load_current_user_bookings
+  end
 
   def new
     load_resources
@@ -8,7 +10,7 @@ class BookingsController < BaseController
   end
 
   def create
-    @booking = Booking.create(booking_params)
+    @booking = Booking.create_for_user(current_user, booking_params)
     return redirect_to bookings_path if @booking.valid?
     load_resources
     render 'new'
@@ -22,6 +24,10 @@ class BookingsController < BaseController
 
   def load_resources
     @resources = Resource.all
+  end
+
+  def load_current_user_bookings
+    @bookings = Booking.for_user current_user
   end
 
 end

@@ -12,13 +12,19 @@ describe BookingsController do
   context 'when the user is logged in' do
     let(:user) { users(:user) }
     let(:resources) { [] }
+    let(:bookings) { [] }
 
     before { sign_in(user) }
 
     describe 'on GET to index' do
-      before { get :index }
+      before do
+        allow(Booking).to receive(:for_user).and_return(bookings)
+
+        get :index
+      end
 
       it { expect(assigns[:current_user]).to eq(user) }
+      it { expect(assigns[:bookings]).to eq(bookings) }
       it { expect(page).to render_template(:index) }
     end
 
@@ -39,7 +45,7 @@ describe BookingsController do
       let(:booking) { Booking.new }
 
       before do
-        allow(Booking).to receive(:create).with(booking_params).and_return(booking)
+        allow(Booking).to receive(:create_for_user).with(user, booking_params).and_return(booking)
       end
 
       context 'when the booking params is valid' do
