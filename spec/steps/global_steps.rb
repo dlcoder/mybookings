@@ -10,3 +10,8 @@ step 'a signed in user' do
 
   click_button 'Sign in'
 end
+
+step 'an existing booking' do
+  step 'I go to the bookings page'
+  step 'I can book a resource'
+end

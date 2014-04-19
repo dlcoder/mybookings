@@ -3,21 +3,22 @@ Feature: Bookings management
   As a user
   I want to be able to manage my bookings
 
-  @javascript
   Scenario: Book a resource
     Given a signed in user
     When I go to the bookings page
-    Then I can book a resource
+    Then I can see that I have no bookings
+    And I can book a resource
     And I can see that the booking has been created
 
   Scenario: Check my bookings
-    Given an existing booking
+    Given a signed in user
+    And an existing booking
     When I go to the bookings page
-    Then I can see the booking summary
+    Then I can see my bookings summary
 
   Scenario: Cancel a booking
     Given a signed in user
     And an existing booking
     When I go to the bookings page
-    Then I can cancel the booking
-    And I can see that the booking has been removed
+    And I cancel the booking
+    Then I can see that the booking does not exists

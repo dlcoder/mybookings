@@ -73,6 +73,20 @@ describe BookingsController do
         it { expect(page).to render_template(:new) }
       end
     end
+
+    describe 'on DELETE to destroy' do
+      let(:booking_id) { '1' }
+      let(:booking) { Booking.new }
+
+      before do
+        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+        allow(booking).to receive(:destroy)
+
+        delete :destroy, id: booking_id
+      end
+
+      it { expect(page).to redirect_to(bookings_path) }
+    end
   end
 
 end

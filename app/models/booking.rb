@@ -5,6 +5,8 @@ class Booking < ActiveRecord::Base
   validates :resource, :start_date, :end_date, presence: true
   validate :resource_exists
 
+  delegate :name, to: :resource, prefix: true
+
   def self.for_user user
     where(user_id: user.id)
   end

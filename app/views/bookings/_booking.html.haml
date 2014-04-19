@@ -1,4 +1,6 @@
-%p
-  = booking.resource.name
-  = booking.start_date
-  = booking.end_date
+%tr{ class: "booking-#{booking.id}" }
+  %td= booking.resource_name
+  %td= booking.start_date
+  %td= booking.end_date
+  %td
+    = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'

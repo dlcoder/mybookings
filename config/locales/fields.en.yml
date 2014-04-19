@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    attributes:
+      booking:
+        start_date: Start date
+        end_date: End date
+      resource:
+        name: Resource name

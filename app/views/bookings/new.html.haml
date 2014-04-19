@@ -4,4 +4,4 @@
   = f.input :resource_id, as: :select, collection: @resources, include_blank: true
   = f.input :start_date, as: :datetimepicker
   = f.input :end_date, as: :datetimepicker
-  = f.submit t('.create_booking'), class: 'btn btn-primary'
+  = f.button :button, icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
