@@ -12,8 +12,10 @@ step 'I can book a resource' do
   click_link 'Book a resource'
 
   select 'PCV1', from: 'Resource'
-  fill_in 'booking_start_date', with: '30-03-2014 9:00'
-  fill_in 'booking_end_date', with: '30-03-2014 14:00'
+
+  now = Time.now
+  fill_in 'booking_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
 
   click_button 'Create booking'
 end
