@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # TODO: That makes that login with SAML crashes
+  # protect_from_forgery with: :exception
 
   def index
     return redirect_to bookings_path if user_signed_in?

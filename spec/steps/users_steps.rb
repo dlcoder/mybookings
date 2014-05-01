@@ -43,6 +43,14 @@ step 'I can see that I have signed in' do
   expect(page).to have_content("You are logged in as #{ @user.email }")
 end
 
+step 'I go to the sign in with SAML page' do
+  click_link 'Sign in with Saml'
+end
+
+step 'I can see that I have signed in with SAML' do
+  expect(page).to have_content('Successfully authenticated from SAML account.')
+end
+
 step 'I go to sign out' do
   click_link 'Sign out'
 end

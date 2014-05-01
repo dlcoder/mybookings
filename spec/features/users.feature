@@ -19,6 +19,21 @@ Feature: Users
     And I can see that I have signed in
     And I can see my bookings page
 
+  Scenario: Login with SAML as an unexisting user
+    When I visit the homepage
+    And I go to the sign in page
+    And I go to the sign in with SAML page
+    And I can see that I have signed in with SAML
+    And I can see my bookings page
+
+  Scenario: Login with SAML as an existing user
+    Given a registered user
+    When I visit the homepage
+    And I go to the sign in page
+    And I go to the sign in with SAML page
+    And I can see that I have signed in with SAML
+    And I can see my bookings page
+
   Scenario: Logout
     Given a signed in user
     When I go to sign out
