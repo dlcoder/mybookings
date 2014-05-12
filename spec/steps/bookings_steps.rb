@@ -4,10 +4,6 @@ step 'I go to the bookings page' do
   visit '/bookings'
 end
 
-step 'I can see that I have no bookings' do
-  expect(page).to have_content('You does not have any booking yet.')
-end
-
 step 'I can book a resource' do
   click_link 'Book a resource'
 
@@ -38,4 +34,24 @@ end
 
 step 'I can see that the booking does not exists' do
   expect(page).to_not have_content('PCV1')
+end
+
+step 'I click button to submit some feedback about expired booking' do
+  within 'table#bookings tbody tr:first-child' do
+    click_link 'Send feedback'
+  end
+end
+
+step 'I can send a feedback message' do
+  fill_in 'Feedback', with: 'The system was very slow.'
+
+  click_button 'Send feedback'
+end
+
+step 'I can see that the feedback have been submitted' do
+  expect(page).to have_content('Thanks. We have received your feedback.')
+
+  within 'table#bookings tbody tr:first-child' do
+    expect(page).to_not have_content('Send feedback')
+  end
 end

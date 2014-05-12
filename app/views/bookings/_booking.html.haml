@@ -1,6 +1,10 @@
-%tr{ class: "booking-#{booking.id}" }
+%tr{ class: booking_tr_class(booking) }
   %td= booking.resource_name
+  %td= booking.status
   %td= booking.start_date
   %td= booking.end_date
   %td
-    = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
+    - if booking.pending?
+      = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
+    - if booking.expired? && !booking.refed?
+      = link_to t('.send_feedback'), booking_edit_feedback_path(booking.id), class: 'btn btn-default btn-xs'

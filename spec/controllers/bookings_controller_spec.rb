@@ -87,6 +87,38 @@ describe BookingsController do
 
       it { expect(page).to redirect_to(bookings_path) }
     end
+
+    describe 'on GET to edit_feedback' do
+      let(:booking_id) { '1' }
+      let(:booking) { Booking.new }
+
+      before do
+        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+
+        get :edit_feedback, booking_id: booking_id
+      end
+
+      it { expect(page).to render_template(:edit_feedback) }
+    end
+
+    describe 'on PUT to set_feedback' do
+      let(:booking_id) { '1' }
+      let(:booking) { Booking.new }
+      let(:feedback) { '' }
+
+      before do
+        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+        allow(booking).to receive(:feedback=).with(feedback)
+        allow(booking).to receive(:save!)
+
+        put :set_feedback, booking_id: booking_id, booking: { feedback: feedback }
+      end
+
+      it 'saves feedback' do
+      end
+        
+      it { expect(page).to redirect_to(bookings_path) }
+    end
   end
 
 end

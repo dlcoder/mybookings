@@ -13,7 +13,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'simple_form'
 gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem 'bootstrap3-datetimepicker-rails', git: 'git@github.com:ChrisLusted/bootstrap3-datetimepicker-rails.git'
 gem 'omniauth-saml'
 
 group :development do

@@ -17,10 +17,19 @@ en:
   bookings:
     booking:
       cancel_booking: 'Cancel'
+      send_feedback: 'Send feedback'
+    edit_feedback:
+      send_feedback: Send feedback
+      title: Send feedback
     index:
+      feedback_received: 'Thanks. We have received your feedback.'
       new_booking: 'Book a resource'
       no_bookings: 'You does not have any booking yet.'
       title: 'My bookings'
     new:
       create_booking: 'Create booking'
       title: 'New booking'
+    statuses:
+      pending: 'Pending'
+      expired: 'Expired'
+      occurring: 'Occurring'

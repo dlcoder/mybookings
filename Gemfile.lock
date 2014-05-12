@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:ChrisLusted/bootstrap3-datetimepicker-rails.git
+  revision: 7544c5909cf92ec30db69e56ed6251c303e97e0f
+  specs:
+    bootstrap3-datetimepicker-rails (3.0.0)
+      momentjs-rails (~> 2.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,8 +44,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
-    bootstrap3-datetimepicker-rails (3.0.0)
-      momentjs-rails (~> 2.5.0)
     builder (3.2.2)
     canonix (0.1.1)
     capybara (2.2.1)
@@ -209,7 +214,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.1)
-  bootstrap3-datetimepicker-rails (~> 3.0.0)
+  bootstrap3-datetimepicker-rails!
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner

@@ -6,7 +6,6 @@ Feature: Bookings management
   Scenario: Book a resource
     Given a signed in user
     When I go to the bookings page
-    Then I can see that I have no bookings
     And I can book a resource
     And I can see that the booking has been created
 
@@ -22,3 +21,11 @@ Feature: Bookings management
     When I go to the bookings page
     And I cancel the booking
     Then I can see that the booking does not exists
+
+  Scenario: Send feedback about a expired booking
+    Given a signed in user
+    And an expired booking
+    When I go to the bookings page
+    And I click button to submit some feedback about expired booking
+    Then I can send a feedback message
+    And I can see that the feedback have been submitted

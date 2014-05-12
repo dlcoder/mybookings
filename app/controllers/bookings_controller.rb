@@ -1,4 +1,5 @@
 class BookingsController < BaseController
+  before_action :load_booking, only: [:destroy, :edit_feedback, :set_feedback]
 
   def index
     load_current_user_bookings
@@ -17,9 +18,17 @@ class BookingsController < BaseController
   end
 
   def destroy
-    booking = Booking.find(params[:id])
-    booking.destroy
+    @booking.destroy
     redirect_to bookings_path
+  end
+
+  def edit_feedback; end
+
+  def set_feedback
+    @booking.feedback = params[:booking][:feedback]
+    @booking.save!
+
+    redirect_to bookings_path, notice: I18n.t('bookings.index.feedback_received')
   end
 
   private
@@ -32,8 +41,13 @@ class BookingsController < BaseController
     @resources = Resource.all
   end
 
+  def load_booking
+    booking_id = params[:id] || params[:booking_id]
+
+    @booking = Booking.find(booking_id)
+  end
+
   def load_current_user_bookings
     @bookings = Booking.for_user current_user
   end
-
 end

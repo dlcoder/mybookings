@@ -35,7 +35,7 @@ module ApplicationHelper
     thead = content_tag :thead, content_tag(:tr, table_headers.join(" ").html_safe)
     tbody = content_tag :tbody, render(collection)
 
-    table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: table_id, class: 'table table-bordered table-striped')
+    table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: table_id, class: 'table table-bordered')
     table.html_safe
   end
 

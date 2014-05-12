@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  resources :bookings
+  resources :bookings do
+    get :edit_feedback
+    put :set_feedback
+  end
 
 end

@@ -1,0 +1,5 @@
+= title
+
+= simple_form_for @booking, url: booking_set_feedback_path, method: :put, html: { class: 'form-vertical' } do |f|
+  = f.input :feedback, as: :text
+  = f.button :button, icon_with_text('ok', t('.send_feedback')), class: 'btn btn-primary'

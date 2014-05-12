@@ -4,13 +4,13 @@ class Booking < ActiveRecord::Base
 
   validates :resource, :start_date, :end_date, presence: true
   validate :resource_exists
-  validate :date_in_the_future
+  validate :date_in_the_future, on: :create
   validate :date_range
 
   delegate :name, to: :resource, prefix: true
 
   def self.for_user user
-    where(user_id: user.id)
+    where(user_id: user.id).order(start_date: :desc)
   end
 
   def self.create_for_user user, params
@@ -20,6 +20,32 @@ class Booking < ActiveRecord::Base
     booking.save
 
     booking
+  end
+
+  def status
+    if self.pending?
+      I18n.t('bookings.statuses.pending')
+    elsif self.expired?
+      I18n.t('bookings.statuses.expired')
+    elsif self.occurring?
+      I18n.t('bookings.statuses.occurring')
+    end
+  end
+
+  def pending?
+    self.start_date.future?
+  end
+
+  def expired?
+    self.end_date.past?
+  end
+
+  def occurring?
+    self.start_date.past? && self.end_date.future?
+  end
+
+  def refed?
+    !self.feedback.nil?
   end
 
   private
