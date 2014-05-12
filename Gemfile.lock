@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:ChrisLusted/bootstrap3-datetimepicker-rails.git
+  remote: git://github.com/ChrisLusted/bootstrap3-datetimepicker-rails.git
   revision: 7544c5909cf92ec30db69e56ed6251c303e97e0f
   specs:
     bootstrap3-datetimepicker-rails (3.0.0)
