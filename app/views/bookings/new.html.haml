@@ -1,6 +1,8 @@
 = title
 
 = simple_form_for @booking, html: { class: 'form-vertical' } do |f|
+  = render_model_base_errors f.object
+
   = f.input :resource_id, as: :select, collection: @resources, include_blank: true
   = f.input :start_date, as: :datetimepicker
   = f.input :end_date, as: :datetimepicker

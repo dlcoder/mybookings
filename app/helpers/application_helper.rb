@@ -50,6 +50,34 @@ module ApplicationHelper
     "#{icon} #{text}".html_safe
   end
 
+  def render_flash_messages
+    flash_class = { 'notice' => 'alert-success', 'alert' => 'alert-danger' }
+
+    flash.map do |name, message|
+      next if message.blank?
+
+      content_tag :div, class: "alert alert-dismissable #{flash_class[name]}" do
+        dismiss_button = content_tag :button, type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-hidden' => 'true' do
+          '&times;'.html_safe
+        end
+
+        "#{dismiss_button} #{message}".html_safe
+      end
+    end.join('').html_safe
+  end
+
+  def render_model_base_errors object
+    if object.errors[:base].any?
+      object.errors[:base].map do |message|
+        next if message.blank?
+
+        content_tag :div, class: 'alert alert-danger' do
+          message.html_safe
+        end
+      end.join('').html_safe
+    end
+  end
+
   private
 
   def link_to_verb verb, text, path, title, options={}

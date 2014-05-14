@@ -11,10 +11,7 @@
 
     .container
 
-      - unless notice.nil?
-        .alert.alert-info= notice
-      - unless alert.nil?
-        .alert.alert-warning= alert
+      = render_flash_messages
 
       - if content_for :page_title
         .page-header
