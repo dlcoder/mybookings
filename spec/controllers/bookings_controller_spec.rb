@@ -13,17 +13,17 @@ describe BookingsController do
     let(:user) { users(:user) }
     let(:resources) { [] }
     let(:bookings) { [] }
+    let(:filtered_bookings) { double(by_start_date: bookings) }
 
     before { sign_in(user) }
 
     describe 'on GET to index' do
       before do
-        allow(Booking).to receive(:for_user).and_return(bookings)
+        allow_any_instance_of(BookingPolicy::Scope).to receive(:resolve).and_return(filtered_bookings)
 
         get :index
       end
 
-      it { expect(assigns[:current_user]).to eq(user) }
       it { expect(assigns[:bookings]).to eq(bookings) }
       it { expect(page).to render_template(:index) }
     end
@@ -76,7 +76,7 @@ describe BookingsController do
 
     describe 'on DELETE to destroy' do
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new }
+      let(:booking) { Booking.new(user: user) }
 
       before do
         allow(Booking).to receive(:find).with(booking_id).and_return(booking)
@@ -90,7 +90,7 @@ describe BookingsController do
 
     describe 'on GET to edit_feedback' do
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new }
+      let(:booking) { Booking.new(user: user) }
 
       before do
         allow(Booking).to receive(:find).with(booking_id).and_return(booking)
@@ -103,7 +103,7 @@ describe BookingsController do
 
     describe 'on PUT to set_feedback' do
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new }
+      let(:booking) { Booking.new(user: user) }
       let(:feedback) { '' }
 
       before do

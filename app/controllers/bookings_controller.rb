@@ -45,9 +45,10 @@ class BookingsController < BaseController
     booking_id = params[:id] || params[:booking_id]
 
     @booking = Booking.find(booking_id)
+    authorize @booking
   end
 
   def load_current_user_bookings
-    @bookings = Booking.for_user current_user
+    @bookings = policy_scope(Booking).by_start_date
   end
 end

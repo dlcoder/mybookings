@@ -2,6 +2,7 @@ en:
   actions: 'Actions'
   app_name: 'Institutional Bookings'
   delete_confirmation: 'Are you sure?'
+  not_authorized: 'Oops! This resource is not available for you.'
 
   application:
     homepage:

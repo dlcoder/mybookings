@@ -10,8 +10,8 @@ class Booking < ActiveRecord::Base
 
   delegate :name, to: :resource, prefix: true
 
-  def self.for_user user
-    where(user_id: user.id).order(start_date: :desc)
+  def self.by_start_date
+    order(start_date: :desc)
   end
 
   def self.create_for_user user, params
