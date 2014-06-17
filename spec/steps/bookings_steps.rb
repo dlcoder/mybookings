@@ -4,9 +4,15 @@ step 'I go to the bookings page' do
   visit '/bookings'
 end
 
-step 'I can book a resource' do
+step 'I go to the new booking page' do
   click_link 'Book a resource'
+end
 
+step 'I can not see a disabled resource for booking' do
+  expect(page).not_to have_content('Disabled resource')
+end
+
+step 'I can book an available resource' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now

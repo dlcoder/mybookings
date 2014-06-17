@@ -1,0 +1,11 @@
+= title
+
+= content_for :actions do
+  = link_to icon_with_text('plus', t('.new_resource')), new_admin_resource_path, class: 'btn btn-primary'
+
+- if @resources.any?
+  = table_for @resources, :resource_id, :resource_name, :pending_bookings
+
+- else
+  .lead
+    %p= t('.no_resources')

@@ -1,0 +1,5 @@
+%ul#admin-menu.nav.nav-pills.nav-stacked
+  %li{ class: "#{active_class_for('admin/resources')}" }
+    = link_to t('.resources'), admin_resources_path
+  %li{ class: "#{active_class_for('admin/users')}" }
+    = link_to t('.users'), '#'

@@ -21,7 +21,7 @@ end
 
 step 'I can see that I have signed up' do
   expect(page).to have_content('Welcome! You have signed up successfully.')
-  expect(page).to have_content('You are logged in as new_user@mybookings.com')
+  expect(page).to have_content('new_user@mybookings.com')
 end
 
 step 'I can see my bookings page' do
@@ -40,7 +40,7 @@ end
 
 step 'I can see that I have signed in' do
   expect(page).to have_content('Signed in successfully.')
-  expect(page).to have_content("You are logged in as #{ @user.email }")
+  expect(page).to have_content("#{ @user.email }")
 end
 
 step 'I go to the sign in with SAML page' do

@@ -1,0 +1,11 @@
+%tr{ class: resource_tr_class(resource) }
+  %td= resource.id
+  %td= resource.name
+  %td= resource.pending_bookings_count
+  %td
+    - if resource.disabled?
+      - enable_or_disable_text_link = icon_with_text('ok', t('.enable'))
+    - else
+      - enable_or_disable_text_link = icon_with_text('remove', t('.disable'))
+
+    = link_to enable_or_disable_text_link, admin_resource_switch_availability_path(resource.id), { class: 'btn btn-default btn-xs', method: :put }

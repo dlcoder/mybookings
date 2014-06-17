@@ -23,6 +23,10 @@ class Booking < ActiveRecord::Base
     booking
   end
 
+  def self.pending_by_resource resource
+    where('? = resource_id AND ? < end_date', resource, Time.now)
+  end
+
   def status
     if self.pending?
       I18n.t('bookings.statuses.pending')

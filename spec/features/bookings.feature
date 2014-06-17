@@ -6,7 +6,9 @@ Feature: Bookings management
   Scenario: Book a resource
     Given a signed in user
     When I go to the bookings page
-    And I can book a resource
+    And I go to the new booking page
+    And I can not see a disabled resource for booking
+    And I can book an available resource
     And I can see that the booking has been created
 
   Scenario: Check my bookings

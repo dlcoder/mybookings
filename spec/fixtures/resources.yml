@@ -3,3 +3,7 @@ PCV1:
 
 resource_for_expired_booking:
   name: Resource for expired booking
+
+disabled_resource:
+  name: Disabled resource
+  disabled: true
