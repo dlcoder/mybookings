@@ -16,6 +16,7 @@ gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', git: 'git://github.com/ChrisLusted/bootstrap3-datetimepicker-rails.git'
 gem 'omniauth-saml'
 gem 'pundit'
+gem 'role_model'
 
 group :development do
   gem 'better_errors'

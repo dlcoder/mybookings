@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   has_many :bookings
 
+  include RoleModel
+
+  roles :admin, :manager
+
   def self.find_saml_user_or_create(auth)
     where(email: auth['info']['email']).first_or_create do |user|
       user.provider = auth['provider']
