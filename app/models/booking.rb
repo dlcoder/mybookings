@@ -6,7 +6,7 @@ class Booking < ActiveRecord::Base
   validate :resource_exists
   validate :date_in_the_future, on: :create
   validate :date_range
-  validate :overlap, on: :create
+  validate :overlap, on: :create, unless: "resource.nil?"
 
   delegate :name, to: :resource, prefix: true
 
