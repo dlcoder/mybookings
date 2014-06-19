@@ -5,10 +5,6 @@ class Resource < ActiveRecord::Base
     where(disabled: false)
   end
 
-  def self.by_availability
-    order(disabled: :asc)
-  end
-
   def self.by_id
     order(id: :asc)
   end

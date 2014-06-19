@@ -2,14 +2,12 @@ class Admin::ResourcesController < Admin::BaseController
   before_action :load_resource, only: [:switch_availability]
 
   def index
-    @resources = Resource.all.by_availability.by_id
+    @resources = Resource.by_id
   end
-
-  def new; end
 
   def switch_availability
     @resource.switch_availability!
-    redirect_to admin_resources_path
+    return redirect_to admin_resources_path
   end
 
   private
