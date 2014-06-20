@@ -55,6 +55,41 @@ describe Admin::ResourcesController do
 
       it { expect(page).to redirect_to(admin_resources_path) }
     end
+
+    describe 'on GET to new' do
+      before { get :new }
+
+      it { expect(assigns[:resource]).to be_a(Resource) }
+      it { expect(page).to render_template(:new) }
+    end
+
+    describe 'on POST to create' do
+      let(:resource_params) { { 'name' => '' } }
+      let(:resource) { Resource.new(name: '') }
+
+      context 'when the resource params is not valid' do
+        before do
+          allow(Resource).to receive(:new).with(resource_params).and_return(resource)
+          allow(resource).to receive(:valid?).and_return(false)
+
+          post :create, resource: resource_params
+        end
+
+        it { expect(page).to render_template(:new) }
+      end
+
+      context 'when the resource params is valid' do
+        before do
+          allow(Resource).to receive(:new).with(resource_params).and_return(resource)
+          allow(resource).to receive(:valid?).and_return(true)
+          allow(resource).to receive(:save!)
+
+          post :create, resource: resource_params
+        end
+
+        it { expect(page).to redirect_to(admin_resources_path) }
+      end
+    end
   end
 
 end

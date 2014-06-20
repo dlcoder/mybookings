@@ -25,3 +25,11 @@ end
 step 'I can enable a resource' do
   first(:link, 'Enable').click
 end
+
+step 'I can add a new resource' do
+  click_link 'New resource'
+
+  fill_in 'Resource name', with: 'PCV5'
+
+  click_button 'Create resource'
+end

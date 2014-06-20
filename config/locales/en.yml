@@ -10,7 +10,11 @@ en:
       users: 'Users'
     resources:
       index:
+        new_resource: 'New resource'
         title: 'Resources'
+      new:
+        create_resource: 'Create resource'
+        title: 'New resource'
       resource:
         enable: 'Enable'
         disable: 'Disable for new bookings'

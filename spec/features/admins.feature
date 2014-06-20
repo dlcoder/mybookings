@@ -10,3 +10,4 @@ Feature: Admin
     And I can view a list of resources
     And I can disable a resource
     And I can enable a resource
+    And I can add a new resource

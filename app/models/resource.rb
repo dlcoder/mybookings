@@ -1,6 +1,8 @@
 class Resource < ActiveRecord::Base
   has_many :bookings
 
+  validates :name, presence: true
+
   def self.available
     where(disabled: false)
   end
