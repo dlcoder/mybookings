@@ -11,6 +11,7 @@ en:
     resources:
       index:
         new_resource: 'New resource'
+        no_resources: 'There is no resources yet.'
         title: 'Resources'
       new:
         create_resource: 'Create resource'
