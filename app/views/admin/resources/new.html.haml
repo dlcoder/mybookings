@@ -1,7 +1,8 @@
-=title
+= title
 
 = simple_form_for @resource, url: admin_resources_path, html: { class: 'form-vertical' } do |f|
   = render_model_base_errors f.object
 
+  = f.association :resource_type, as: :select
   = f.input :name
-  = f.button :button, icon_with_text('ok', t('.create_resource')), class: 'btn btn-primary'
+  = f.button icon_with_text('ok', t('.create_resource')), class: 'btn btn-primary'

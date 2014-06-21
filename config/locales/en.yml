@@ -3,10 +3,12 @@ en:
   app_name: 'Institutional Bookings'
   delete_confirmation: 'Are you sure?'
   not_authorized: 'Oops! This resource is not available for you.'
+  saving: 'Saving...'
 
   admin:
     admin_menu:
       resources: 'Resources'
+      resource_types: 'Resource types'
       users: 'Users'
     resources:
       index:
@@ -19,6 +21,14 @@ en:
       resource:
         enable: 'Enable'
         disable: 'Disable for new bookings'
+    resource_types:
+      index:
+        new_resource_type: 'New resource type'
+        no_resource_types: 'There is no resource types yet.'
+        title: 'Resource types'
+      new:
+        create_resource_type: 'Create resource type'
+        title: 'New resource type'
 
   application:
     homepage:

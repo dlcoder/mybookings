@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :resources do
       put :switch_availability
     end
+
+    resources :resource_types
   end
 
 end

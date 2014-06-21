@@ -29,7 +29,26 @@ end
 step 'I can add a new resource' do
   click_link 'New resource'
 
+  select 'Adobe Connect Meeting Room', from: 'Resource type'
   fill_in 'Resource name', with: 'PCV5'
 
   click_button 'Create resource'
+end
+
+step 'I click on Resource types menu item' do
+  within '#admin-menu' do
+    click_link 'Resource types'
+  end
+end
+
+step 'I can view a list of resource types' do
+  expect(page).to have_content 'Adobe Connect Meeting Rooms'
+end
+
+step 'I can add a new resource type' do
+  click_link 'New resource type'
+
+  fill_in 'Resource type name', with: 'Virtual PC'
+
+  click_button 'Create resource type'
 end

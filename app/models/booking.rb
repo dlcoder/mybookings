@@ -9,6 +9,7 @@ class Booking < ActiveRecord::Base
   validate :overlap, on: :create, unless: "resource.nil?"
 
   delegate :name, to: :resource, prefix: true
+  delegate :resource_type_name, to: :resource, prefix: true
 
   def self.by_start_date
     order(start_date: :desc)

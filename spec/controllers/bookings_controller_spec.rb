@@ -30,7 +30,7 @@ describe BookingsController do
 
     describe 'on GET to new' do
       before do
-        allow(Resource).to receive(:available).and_return(resources)
+        allow(Resource).to receive(:avalaible_by_type_name_and_name).and_return(resources)
 
         get :new
       end
@@ -63,7 +63,7 @@ describe BookingsController do
 
         before do
           expect(booking).to receive(:valid?).and_return(false)
-          allow(Resource).to receive(:available).and_return(resources)
+          allow(Resource).to receive(:avalaible_by_type_name_and_name).and_return(resources)
 
           post :create, booking: booking_params
         end

@@ -6,14 +6,14 @@ class BookingsController < BaseController
   end
 
   def new
-    load_available_resources
+    load_available_resources_by_type_name_and_name
     @booking = Booking.new
   end
 
   def create
     @booking = Booking.create_for_user(current_user, booking_params)
     return redirect_to bookings_path if @booking.valid?
-    load_available_resources
+    load_available_resources_by_type_name_and_name
     render 'new'
   end
 
@@ -37,8 +37,8 @@ class BookingsController < BaseController
     params.require(:booking).permit(:start_date, :end_date, :resource_id)
   end
 
-  def load_available_resources
-    @resources = Resource.available
+  def load_available_resources_by_type_name_and_name
+    @resources = Resource.avalaible_by_type_name_and_name
   end
 
   def load_booking

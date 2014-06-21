@@ -1,0 +1,7 @@
+= title
+
+= simple_form_for @resource_type, url: admin_resource_types_path, html: { class: 'form-vertical' } do |f|
+  = render_model_base_errors f.object
+
+  = f.input :name
+  = f.button icon_with_text('ok', t('.create_resource_type')), class: 'btn btn-primary'

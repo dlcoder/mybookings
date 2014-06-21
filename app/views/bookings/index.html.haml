@@ -1,7 +1,7 @@
 = title
 
 - if @bookings.any?
-  = table_for @bookings, :resource_name, :status, :start_date, :end_date
+  = table_for @bookings, :resource_type_name, :resource_name, :status, :start_date, :end_date
 
   = content_for :actions do
     = link_to icon_with_text('plus', t('.new_booking')), new_booking_path, class: 'btn btn-primary'

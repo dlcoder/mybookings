@@ -2,7 +2,17 @@ en:
   activerecord:
     attributes:
       booking:
+        resource_type_name: Resource type
+        resource_name: Resource name
+        status: Status
         start_date: Start date
         end_date: End date
       resource:
+        id: ID
+        resource_type: Resource type
         name: Resource name
+        pending_bookings: Pending bookings
+      resource_type:
+        id: ID
+        name: Resource type name
+        resources_number: Number of resources

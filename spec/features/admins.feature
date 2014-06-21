@@ -11,3 +11,10 @@ Feature: Admin
     And I can disable a resource
     And I can enable a resource
     And I can add a new resource
+
+  Scenario: Manage resource types as administrator
+    Given a signed in administrator
+    Then I go to the administer page
+    And I click on Resource types menu item
+    And I can view a list of resource types
+    And I can add a new resource type

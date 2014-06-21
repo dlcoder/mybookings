@@ -24,7 +24,7 @@ class Admin::ResourcesController < Admin::BaseController
   private
 
   def resource_params
-    params.require(:resource).permit(:name)
+    params.require(:resource).permit!
   end
 
   def load_resource

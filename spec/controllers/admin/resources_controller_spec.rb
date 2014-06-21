@@ -67,7 +67,7 @@ describe Admin::ResourcesController do
       let(:resource_params) { { 'name' => '' } }
       let(:resource) { Resource.new(name: '') }
 
-      context 'when the resource params is not valid' do
+      context 'when the resource params are not valid' do
         before do
           allow(Resource).to receive(:new).with(resource_params).and_return(resource)
           allow(resource).to receive(:valid?).and_return(false)
@@ -78,7 +78,7 @@ describe Admin::ResourcesController do
         it { expect(page).to render_template(:new) }
       end
 
-      context 'when the resource params is valid' do
+      context 'when the resource params are valid' do
         before do
           allow(Resource).to receive(:new).with(resource_params).and_return(resource)
           allow(resource).to receive(:valid?).and_return(true)

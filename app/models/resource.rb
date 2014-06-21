@@ -1,10 +1,13 @@
 class Resource < ActiveRecord::Base
+  belongs_to :resource_type
   has_many :bookings
 
-  validates :name, presence: true
+  validates :name, :resource_type, presence: true
 
-  def self.available
-    where(disabled: false)
+  delegate :name, to: :resource_type, prefix: true
+
+  def self.avalaible_by_type_name_and_name
+    includes(:resource_type).order('resource_types.name asc, resources.name asc').where(disabled: false)
   end
 
   def self.by_id
@@ -22,5 +25,9 @@ class Resource < ActiveRecord::Base
 
   def pending_bookings_count
     Booking.pending_by_resource(self).count
+  end
+
+  def name_prefixed_with_resource_type
+    "#{self.resource_type.name}: #{self.name}"
   end
 end
