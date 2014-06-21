@@ -9,3 +9,4 @@
 - else
   .lead
     %p= t('.no_resource_types')
+    %p= link_to icon_with_text('plus', t('.new_resource_type')), new_admin_resource_type_path, class: 'btn btn-primary'
