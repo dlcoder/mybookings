@@ -16,3 +16,8 @@ en:
         id: ID
         name: Resource type name
         resources_number: Number of resources
+      user:
+        id: ID
+        email: Email
+        created_at: Creation date
+        roles: Role

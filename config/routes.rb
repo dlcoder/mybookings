@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
 
     resources :resource_types
+    resources :users
   end
 
 end

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :bookings
+  has_and_belongs_to_many :resource_types, join_table: 'user_managed_resource_types'
 
   include RoleModel
 
@@ -20,6 +21,10 @@ class User < ActiveRecord::Base
       user.email = auth['info']['email']
       user.password = Devise.friendly_token[0,20]
     end
+  end
+
+  def self.by_id
+    order(id: :asc)
   end
 
 end

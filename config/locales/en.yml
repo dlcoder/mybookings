@@ -7,6 +7,7 @@ en:
 
   admin:
     admin_menu:
+      manage: 'Manage'
       resources: 'Resources'
       resource_types: 'Resource types'
       users: 'Users'
@@ -29,6 +30,15 @@ en:
       new:
         create_resource_type: 'Create resource type'
         title: 'New resource type'
+    users:
+      edit:
+        email: 'Email: %{user_email}'
+        managed_resource_types: 'Managed resource types'
+        resource_types_hint: 'This option only has effect if the user has the "manager" role assigned.'
+        save_user: 'Save user'
+        title: 'Editing user'
+      index:
+        title: 'Users'
 
   application:
     homepage:

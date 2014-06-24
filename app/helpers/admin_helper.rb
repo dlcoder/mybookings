@@ -14,4 +14,8 @@ module AdminHelper
     end
   end
 
+  def roles_for user
+    user.role_symbols.join(", ")
+  end
+
 end

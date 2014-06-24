@@ -1,6 +1,6 @@
 = title
 
-= simple_form_for @resource, url: admin_resources_path, html: { class: 'form-vertical' } do |f|
+= simple_form_for @resource, url: admin_resources_path do |f|
   = render_model_base_errors f.object
 
   = f.association :resource_type, as: :select

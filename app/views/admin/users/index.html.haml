@@ -1,0 +1,8 @@
+= title
+
+- if @users.any?
+  = table_for @users, :id, :email, :created_at, :roles
+
+- else
+  .lead
+    %p= t('.no_users')

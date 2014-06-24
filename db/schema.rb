@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621162938) do
+ActiveRecord::Schema.define(version: 20140623230453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,16 @@ ActiveRecord::Schema.define(version: 20140621162938) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "disabled",        default: false
+    t.boolean  "disabled",         default: false
     t.integer  "resource_type_id"
   end
 
   add_index "resources", ["name"], name: "index_resources_on_name", using: :btree
+
+  create_table "user_managed_resource_types", force: true do |t|
+    t.integer "user_id"
+    t.integer "resource_type_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

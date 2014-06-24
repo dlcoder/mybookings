@@ -52,3 +52,30 @@ step 'I can add a new resource type' do
 
   click_button 'Create resource type'
 end
+
+step 'I click on Users menu item' do
+  within '#admin-menu' do
+    click_link 'Users'
+  end
+end
+
+step 'I can view a list of users registered on MyBookings' do
+  expect(page).to have_content('user@mybookings.com')
+  expect(page).to have_content('admin@mybookings.com')
+end
+
+step 'I can edit an user' do
+  click_link 'user@mybookings.com'
+end
+
+step 'I can set the user as resource manager' do
+  select 'manager', from: 'Role'
+end
+
+step 'I can assign the list of resource types that the user can manage' do
+  check 'Adobe Connect Meeting Rooms'
+end
+
+step 'I can save the user' do
+  click_button 'Save user'
+end
