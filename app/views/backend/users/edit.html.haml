@@ -2,7 +2,7 @@
 
 %p.lead= t('.email', user_email: @user.email)
 
-= simple_form_for @user, url: admin_user_path do |f|
+= simple_form_for @user, url: backend_user_path do |f|
   = f.input :roles, collection: @valid_roles
   .panel.panel-default
     .panel-heading

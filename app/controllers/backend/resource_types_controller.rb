@@ -1,4 +1,7 @@
-class Admin::ResourceTypesController < Admin::BaseController
+class Backend::ResourceTypesController < Backend::BaseController
+
+  include Administerable
+  include Authorizable
 
   def index
     @resource_types = ResourceType.all
@@ -12,7 +15,7 @@ class Admin::ResourceTypesController < Admin::BaseController
     @resource_type = ResourceType.new(resource_type_params)
     return render 'new' unless @resource_type.valid?
     @resource_type.save!
-    return redirect_to admin_resource_types_path
+    return redirect_to backend_resource_types_path
   end
 
   private

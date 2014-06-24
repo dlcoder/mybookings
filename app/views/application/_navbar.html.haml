@@ -11,7 +11,7 @@
     - if user_signed_in?
       .collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
-          - if @current_user.has_role? :admin
-            %li= link_to icon_with_text('cog', t('.administer')), admin_resources_path
+          - if @current_user.has_any_role? :admin, :manager
+            %li= link_to icon_with_text('cog', t('.manage')), backend_resources_path
           %li= link_to icon_with_text('user', t('.you_are_logged_in_as', email: @current_user.email)), '#'
           %li= link_to icon_with_text('log-out', t('.sign_out')), destroy_user_session_path, method: :delete

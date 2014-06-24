@@ -19,6 +19,11 @@ step 'a signed in administrator' do
   step 'login a user'
 end
 
+step 'a signed in manager' do
+  @user = users(:manager)
+  step 'login a user'
+end
+
 step 'an existing booking' do
   step 'I go to the bookings page'
   step 'I go to the new booking page'

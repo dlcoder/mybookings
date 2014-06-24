@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ResourceTypesController do
+describe Backend::ResourceTypesController do
 
   context 'when the user is not logged in' do
     describe 'on GET to index' do
@@ -73,7 +73,7 @@ describe Admin::ResourceTypesController do
           post :create, resource_type: resource_type_params
         end
 
-        it { expect(page).to redirect_to(admin_resource_types_path) }
+        it { expect(page).to redirect_to(backend_resource_types_path) }
       end
     end
   end

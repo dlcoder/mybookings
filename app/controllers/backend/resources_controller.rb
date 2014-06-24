@@ -1,4 +1,8 @@
-class Admin::ResourcesController < Admin::BaseController
+class Backend::ResourcesController < Backend::BaseController
+
+  include Administerable
+  include Manageable
+  include Authorizable
 
   before_action :load_resource, only: [:switch_availability]
 
@@ -8,7 +12,7 @@ class Admin::ResourcesController < Admin::BaseController
 
   def switch_availability
     @resource.switch_availability!
-    return redirect_to admin_resources_path
+    return redirect_to backend_resources_path
   end
 
   def new
@@ -19,7 +23,7 @@ class Admin::ResourcesController < Admin::BaseController
     @resource = Resource.new(resource_params)
     return render 'new' unless @resource.valid?
     @resource.save!
-    return redirect_to admin_resources_path
+    return redirect_to backend_resources_path
   end
 
   private

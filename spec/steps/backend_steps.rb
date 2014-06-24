@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-step 'I go to the administer page' do
+step 'I go to the manage page' do
   within '.navbar' do
-    click_link 'Administer'
+    click_link 'Manage'
   end
 end
 
 step 'I click on Resources menu item' do
-  within '#admin-menu' do
+  within '#backend-menu' do
     click_link 'Resources'
   end
 end
@@ -35,8 +35,12 @@ step 'I can add a new resource' do
   click_button 'Create resource'
 end
 
+step 'I can see that the resource has been added' do
+  expect(page).to have_content('PCV5')
+end
+
 step 'I click on Resource types menu item' do
-  within '#admin-menu' do
+  within '#backend-menu' do
     click_link 'Resource types'
   end
 end
@@ -54,7 +58,7 @@ step 'I can add a new resource type' do
 end
 
 step 'I click on Users menu item' do
-  within '#admin-menu' do
+  within '#backend-menu' do
     click_link 'Users'
   end
 end

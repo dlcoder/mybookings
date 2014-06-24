@@ -1,4 +1,7 @@
-class Admin::UsersController < Admin::BaseController
+class Backend::UsersController < Backend::BaseController
+
+  include Administerable
+  include Authorizable
 
   before_action :load_user, only: [:edit, :update]
 
@@ -12,7 +15,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    return redirect_to admin_users_path if @user.update(user_params)
+    return redirect_to backend_users_path if @user.update(user_params)
     load_valid_roles
     load_resource_types
     render 'edit'

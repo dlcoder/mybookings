@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ResourcesController do
+describe Backend::ResourcesController do
 
   context 'when the user is not logged in' do
     describe 'on GET to index' do
@@ -53,7 +53,7 @@ describe Admin::ResourcesController do
         put :switch_availability, resource_id: resource_id
       end
 
-      it { expect(page).to redirect_to(admin_resources_path) }
+      it { expect(page).to redirect_to(backend_resources_path) }
     end
 
     describe 'on GET to new' do
@@ -87,7 +87,7 @@ describe Admin::ResourcesController do
           post :create, resource: resource_params
         end
 
-        it { expect(page).to redirect_to(admin_resources_path) }
+        it { expect(page).to redirect_to(backend_resources_path) }
       end
     end
   end

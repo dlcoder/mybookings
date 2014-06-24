@@ -9,13 +9,16 @@ Rails.application.routes.draw do
     put :set_feedback
   end
 
-  namespace :admin do
+  namespace :backend do
+
     resources :resources do
       put :switch_availability
     end
 
     resources :resource_types
+
     resources :users
+
   end
 
 end

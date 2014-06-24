@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::UsersController do
+describe Backend::UsersController do
 
   context 'when the user is not logged in' do
     describe 'on GET to index' do

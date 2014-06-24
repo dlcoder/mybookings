@@ -1,9 +1,0 @@
-%h3= t('.manage')
-
-%ul.nav.nav-pills.nav-stacked
-  %li{ class: "#{active_class_for('admin/resources')}" }
-    = link_to t('.resources'), admin_resources_path
-  %li{ class: "#{active_class_for('admin/resource_types')}" }
-    = link_to t('.resource_types'), admin_resource_types_path
-  %li{ class: "#{active_class_for('admin/users')}" }
-    = link_to t('.users'), admin_users_path

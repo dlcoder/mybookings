@@ -1,4 +1,4 @@
-module AdminHelper
+module BackendHelper
 
   def active_class_for controller
     'active' if params[:controller] == controller
