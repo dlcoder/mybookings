@@ -11,3 +11,4 @@ manager:
   email: manager@mybookings.com
   encrypted_password: $2a$10$GiT8aeGdVfQnu54L6bQ.x.fSOsLLxfTwDWhK8rx1D2znOG7wzcrbS # 12345678
   roles_mask: 2
+  resource_types: pcv, acmr

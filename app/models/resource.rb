@@ -5,6 +5,7 @@ class Resource < ActiveRecord::Base
   validates :name, :resource_type, presence: true
 
   delegate :name, to: :resource_type, prefix: true
+  delegate :managed_by?, to: :resource_type, prefix: true
 
   def self.avalaible_by_type_name_and_name
     includes(:resource_type).order('resource_types.name asc, resources.name asc').where(disabled: false)

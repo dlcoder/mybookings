@@ -31,9 +31,10 @@ describe Backend::ResourcesController do
 
     describe 'on GET to index' do
       let(:resources) { [] }
+      let(:filtered_resources) { double(by_id: resources) }
 
       before do
-        allow(Resource).to receive(:by_id).and_return(resources)
+        allow_any_instance_of(ResourcePolicy::Scope).to receive(:resolve).and_return(filtered_resources)
 
         get :index
       end
@@ -48,6 +49,7 @@ describe Backend::ResourcesController do
 
       before do
         allow(Resource).to receive(:find).with(resource_id).and_return(resource)
+        allow(resource).to receive(:resource_type_managed_by?).with(admin).and_return(true)
         allow(resource).to receive(:switch_availability!)
 
         put :switch_availability, resource_id: resource_id
@@ -57,20 +59,30 @@ describe Backend::ResourcesController do
     end
 
     describe 'on GET to new' do
-      before { get :new }
+      let(:managed_resource_types) { [] }
+
+      before do
+        allow_any_instance_of(ResourceTypePolicy::Scope).to receive(:resolve).and_return(managed_resource_types)
+
+        get :new
+      end
 
       it { expect(assigns[:resource]).to be_a(Resource) }
+      it { expect(assigns[:managed_resource_types]).to eq(managed_resource_types) }
       it { expect(page).to render_template(:new) }
     end
 
     describe 'on POST to create' do
       let(:resource_params) { { 'name' => '' } }
       let(:resource) { Resource.new(name: '') }
+      let(:managed_resource_types) { [] }
 
       context 'when the resource params are not valid' do
         before do
           allow(Resource).to receive(:new).with(resource_params).and_return(resource)
-          allow(resource).to receive(:valid?).and_return(false)
+          allow(resource).to receive(:resource_type_managed_by?).with(admin).and_return(true)
+          allow(resource).to receive(:save).and_return(false)
+          allow_any_instance_of(ResourceTypePolicy::Scope).to receive(:resolve).and_return(managed_resource_types)
 
           post :create, resource: resource_params
         end
@@ -81,8 +93,8 @@ describe Backend::ResourcesController do
       context 'when the resource params are valid' do
         before do
           allow(Resource).to receive(:new).with(resource_params).and_return(resource)
-          allow(resource).to receive(:valid?).and_return(true)
-          allow(resource).to receive(:save!)
+          allow(resource).to receive(:resource_type_managed_by?).with(admin).and_return(true)
+          allow(resource).to receive(:save).and_return(true)
 
           post :create, resource: resource_params
         end

@@ -1,12 +1,12 @@
 PCV1:
   name: PCV1
-  resource_type: PCV
+  resource_type: pcv
 
 resource_for_expired_booking:
   name: Resource for expired booking
-  resource_type: ACMR
+  resource_type: acmr
 
 disabled_resource:
   name: Disabled resource
   disabled: true
-  resource_type: ACMR
+  resource_type: acmr
