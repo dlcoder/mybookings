@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   # TODO: That makes that login with SAML crashes
   # protect_from_forgery with: :exception
 
@@ -16,4 +17,5 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for resource
     root_path
   end
+  
 end

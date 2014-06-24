@@ -1,4 +1,5 @@
 class Admin::ResourcesController < Admin::BaseController
+
   before_action :load_resource, only: [:switch_availability]
 
   def index
@@ -32,4 +33,5 @@ class Admin::ResourcesController < Admin::BaseController
 
     @resource = Resource.find(resource_id)
   end
+
 end

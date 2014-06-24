@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseController
+
   before_action :load_user, only: [:edit, :update]
 
   def index

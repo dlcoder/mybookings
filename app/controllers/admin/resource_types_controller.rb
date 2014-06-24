@@ -21,5 +21,4 @@ class Admin::ResourceTypesController < Admin::BaseController
     params.require(:resource_type).permit!
   end
 
-
 end
