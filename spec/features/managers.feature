@@ -3,7 +3,7 @@ Feature: Manager
   As a manager
   I want to be able to login in MyBookings
 
-  Scenario: 
+  Scenario: Manage resources as manager
     Given a signed in manager
     Then I go to the manage page
     And I click on Resources menu item
@@ -12,3 +12,4 @@ Feature: Manager
     And I can enable a resource
     And I can add a new resource
     And I can see that the resource has been added
+    And I can see a bookings of a resource and all the info of them

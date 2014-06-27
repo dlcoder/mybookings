@@ -29,7 +29,3 @@ step 'an existing booking' do
   step 'I go to the new booking page'
   step 'I can book an available resource'
 end
-
-step 'an expired booking' do
-  expect(page).to have_selector('.booking-expired')
-end

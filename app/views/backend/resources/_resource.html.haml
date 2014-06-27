@@ -2,8 +2,10 @@
   %td= resource.id
   %td= resource.name
   %td= resource.resource_type_name
-  %td= resource.pending_bookings_count
+  %td= bookings_counters_for(resource)
   %td
+    = link_to icon_with_text('th-list', t('.show_bookings')), backend_resource_bookings_path(resource.id), class: 'btn btn-default btn-xs'
+
     - if resource.disabled?
       - enable_or_disable_text_link = icon_with_text('ok', t('.enable'))
     - else

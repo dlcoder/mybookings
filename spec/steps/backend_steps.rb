@@ -17,9 +17,7 @@ step 'I can view a list of resources' do
 end
 
 step 'I can disable a resource' do
-  within 'table#resources tbody tr:first-child' do
-    click_link 'Disable'
-  end
+  find('tr', text: 'PCV1').click_link 'Disable'
 end
 
 step 'I can enable a resource' do
@@ -82,4 +80,13 @@ end
 
 step 'I can save the user' do
   click_button 'Save user'
+end
+
+step 'I can see a bookings of a resource and all the info of them' do
+  find('tr', text: 'ACMR2').click_link 'Show bookings'
+
+  expect(page).to have_content('user@mybookings.com')
+  expect(page).to have_content('January 02, 2000 13:00')
+  expect(page).to have_content('January 02, 2000 14:00')
+  expect(page).to have_content('The resource have a lot of problems.')
 end

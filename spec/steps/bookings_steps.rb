@@ -33,19 +33,15 @@ step 'I can see my bookings summary' do
 end
 
 step 'I cancel the booking' do
-  within 'table#bookings tbody tr:first-child' do
-    click_link 'Cancel'
-  end
+  find('tr', text: 'PCV1').click_link 'Cancel'
 end
 
 step 'I can see that the booking does not exists' do
   expect(page).to_not have_content('PCV1')
 end
 
-step 'I click button to submit some feedback about expired booking' do
-  within 'table#bookings tbody tr:first-child' do
-    click_link 'Send feedback'
-  end
+step 'I click button to submit some feedback about an expired booking' do
+  find('tr', text: 'ACMR1').click_link 'Send feedback'
 end
 
 step 'I can send a feedback message' do
@@ -56,8 +52,5 @@ end
 
 step 'I can see that the feedback have been submitted' do
   expect(page).to have_content('Thanks. We have received your feedback.')
-
-  within 'table#bookings tbody tr:first-child' do
-    expect(page).to_not have_content('Send feedback')
-  end
+  expect(find('tr', text: 'ACMR1')).to_not have_content('Send feedback')
 end

@@ -24,8 +24,16 @@ class Resource < ActiveRecord::Base
     self.disabled
   end
 
+  def expired_bookings_count
+    Booking.by_resource(self).count
+  end
+
   def pending_bookings_count
     Booking.pending_by_resource(self).count
+  end
+
+  def occurring_bookings_count
+    Booking.occurring_by_resource(self).count
   end
 
   def name_prefixed_with_resource_type

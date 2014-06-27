@@ -8,6 +8,7 @@ class Booking < ActiveRecord::Base
   validate :date_range
   validate :overlap, on: :create, unless: "resource.nil?"
 
+  delegate :email, to: :user, prefix: true
   delegate :name, to: :resource, prefix: true
   delegate :resource_type_name, to: :resource, prefix: true
 
@@ -24,17 +25,25 @@ class Booking < ActiveRecord::Base
     booking
   end
 
+  def self.by_resource resource
+    where('? = resource_id', resource)
+  end
+
   def self.pending_by_resource resource
-    where('? = resource_id AND ? < end_date', resource, Time.now)
+    where('? = resource_id AND ? < start_date', resource, Time.now)
+  end
+
+  def self.occurring_by_resource resource
+    where('? = resource_id AND ? >= start_date AND ? <= end_date', resource, Time.now, Time.now)
   end
 
   def status
     if self.pending?
-      I18n.t('bookings.statuses.pending')
+      'pending'
     elsif self.expired?
-      I18n.t('bookings.statuses.expired')
+      'expired'
     elsif self.occurring?
-      I18n.t('bookings.statuses.occurring')
+      'occurring'
     end
   end
 

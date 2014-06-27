@@ -1,0 +1,24 @@
+%dl.panel{ class: "panel-#{bootstrap_class_for(booking.status)}" }
+  .panel-heading
+    .row
+      .col-xs-9
+        = icon_with_text('envelope', booking.user_email)
+      .col-xs-3.text-right
+        %span.label{ class: "label-#{bootstrap_class_for(booking.status)}" }= booking.status
+  .panel-body
+    .row
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('.booking_date'))
+        %dd= l booking.created_at, format: :long
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('.start_date'))
+        %dd= l booking.start_date, format: :long
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('.end_date'))
+        %dd= l booking.end_date, format: :long
+    - unless booking.feedback.nil?
+      %hr
+      .row
+        .col-xs-12
+          %dt= icon_with_text('pencil', t('.feedback'))
+          %dd= booking.feedback

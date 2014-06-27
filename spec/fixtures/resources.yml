@@ -2,8 +2,12 @@ PCV1:
   name: PCV1
   resource_type: pcv
 
-resource_for_expired_booking:
-  name: Resource for expired booking
+acmr1:
+  name: ACMR1
+  resource_type: acmr
+
+acmr2:
+  name: ACMR2
   resource_type: acmr
 
 disabled_resource:

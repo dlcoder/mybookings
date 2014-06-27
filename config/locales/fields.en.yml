@@ -11,7 +11,7 @@ en:
         id: ID
         resource_type: Resource type
         name: Resource name
-        pending_bookings: Pending bookings
+        bookings: Bookings
       resource_type:
         id: ID
         name: Resource type name

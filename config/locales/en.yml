@@ -23,6 +23,17 @@ en:
       resources: 'Resources'
       resource_types: 'Resource types'
       users: 'Users'
+    bookings:
+      booking:
+        booking_date: 'Booking date'
+        feedback: 'Feedback'
+        start_date: 'Start date'
+        end_date: 'End date'
+        user_email: 'User email'
+      index:
+        no_bookings: 'This resource has no bookings yet.'
+        resource: 'Resource:'
+        title: 'Resource bookings'
     manager_menu:
       manage: 'Manage'
       resources: 'Resources'
@@ -37,6 +48,10 @@ en:
       resource:
         enable: 'Enable'
         disable: 'Disable for new bookings'
+        expired: '%{expired_bookings} expired'
+        pending: '%{pending_bookings} pending'
+        occurring: '%{occurring_bookings} occurring'
+        show_bookings: 'Show bookings'
     resource_types:
       index:
         new_resource_type: 'New resource type'
@@ -70,7 +85,3 @@ en:
     new:
       create_booking: 'Create booking'
       title: 'New booking'
-    statuses:
-      pending: 'Pending'
-      expired: 'Expired'
-      occurring: 'Occurring'
