@@ -1,4 +1,4 @@
-module Manageable
+module Backend::Manageable
 
   extend ActiveSupport::Concern
 

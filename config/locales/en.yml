@@ -85,3 +85,7 @@ en:
     new:
       create_booking: 'Create booking'
       title: 'New booking'
+    statuses:
+      pending: 'Pending'
+      expired: 'Expired'
+      occurring: 'Occurring'

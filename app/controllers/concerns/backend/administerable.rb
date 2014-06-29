@@ -1,4 +1,4 @@
-module Administerable
+module Backend::Administerable
 
   extend ActiveSupport::Concern
 

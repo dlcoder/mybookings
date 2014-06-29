@@ -1,11 +1,11 @@
-%tr{ class: bootstrap_class_for(booking.status) }
+%tr{ class: bootstrap_class_for(status_for(booking)) }
   %td= booking.resource_resource_type_name
   %td= booking.resource_name
-  %td= booking.status
+  %td= status_for(booking)
   %td= booking.start_date
   %td= booking.end_date
   %td
     - if booking.pending?
       = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
-    - if booking.expired? && !booking.refed?
+    - if booking.expired? && !booking.has_feedback?
       = link_to t('.send_feedback'), booking_edit_feedback_path(booking.id), class: 'btn btn-default btn-xs'

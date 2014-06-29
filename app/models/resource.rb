@@ -16,24 +16,19 @@ class Resource < ActiveRecord::Base
   end
 
   def switch_availability!
-    self.disabled = !self.disabled
-    self.save!
-  end
-
-  def disabled?
-    self.disabled
+    self.update_attribute(:disabled, !self.disabled)
   end
 
   def expired_bookings_count
-    Booking.by_resource(self).count
+    self.bookings.expired_bookings.count
   end
 
   def pending_bookings_count
-    Booking.pending_by_resource(self).count
+    self.bookings.pending_bookings.count
   end
 
   def occurring_bookings_count
-    Booking.occurring_by_resource(self).count
+    self.bookings.occurring_bookings.count
   end
 
   def name_prefixed_with_resource_type

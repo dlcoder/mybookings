@@ -1,7 +1,7 @@
 class Backend::UsersController < Backend::BaseController
 
-  include Administerable
-  include Authorizable
+  include Backend::Administerable
+  include Backend::Authorizable
 
   before_action :load_user, only: [:edit, :update]
 

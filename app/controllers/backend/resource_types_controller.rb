@@ -1,7 +1,7 @@
 class Backend::ResourceTypesController < Backend::BaseController
 
-  include Administerable
-  include Authorizable
+  include Backend::Administerable
+  include Backend::Authorizable
 
   def index
     @resource_types = ResourceType.all

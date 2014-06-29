@@ -1,4 +1,4 @@
-module Authorizable
+module Backend::Authorizable
 
   extend ActiveSupport::Concern
 

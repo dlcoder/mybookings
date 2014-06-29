@@ -1,8 +1,8 @@
 class Backend::BookingsController < Backend::BaseController
 
-  include Administerable
-  include Manageable
-  include Authorizable
+  include Backend::Administerable
+  include Backend::Manageable
+  include Backend::Authorizable
 
   before_action :load_resource, only: [:index]
 

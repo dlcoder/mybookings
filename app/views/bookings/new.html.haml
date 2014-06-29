@@ -3,7 +3,7 @@
 = simple_form_for @booking do |f|
   = render_model_base_errors f.object
 
-  = f.input :resource_id, as: :select, collection: @resources, include_blank: true, label_method: :name_prefixed_with_resource_type
+  = f.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
   = f.input :start_date, as: :datetimepicker
   = f.input :end_date, as: :datetimepicker
   = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
