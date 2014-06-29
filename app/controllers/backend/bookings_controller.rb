@@ -7,7 +7,7 @@ class Backend::BookingsController < Backend::BaseController
   before_action :load_resource, only: [:index]
 
   def index
-    @bookings = @resource.bookings
+    @bookings = @resource.bookings.decorate
   end
   
   private

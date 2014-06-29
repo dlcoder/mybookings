@@ -17,6 +17,7 @@ gem 'bootstrap3-datetimepicker-rails', git: 'git://github.com/ChrisLusted/bootst
 gem 'omniauth-saml'
 gem 'pundit'
 gem 'role_model'
+gem 'draper', '~> 1.3'
 
 group :development do
   gem 'better_errors'

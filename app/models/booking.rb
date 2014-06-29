@@ -1,4 +1,5 @@
 class Booking < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :resource
 
@@ -33,24 +34,6 @@ class Booking < ActiveRecord::Base
 
   def self.occurring_bookings
     where('? >= start_date AND ? <= end_date', Time.now, Time.now)
-  end
-
-  # TODO: Think about moving that methods to a presenter
-  # http://railscasts.com/episodes/286-draper
-  def pending?
-    self.start_date.future?
-  end
-
-  def expired?
-    self.end_date.past?
-  end
-
-  def occurring?
-    self.start_date.past? && self.end_date.future?
-  end
-
-  def has_feedback?
-    !self.feedback.nil?
   end
 
   private

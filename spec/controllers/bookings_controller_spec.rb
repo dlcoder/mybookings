@@ -20,6 +20,7 @@ describe BookingsController do
     describe 'on GET to index' do
       before do
         allow_any_instance_of(BookingPolicy::Scope).to receive(:resolve).and_return(filtered_bookings)
+        allow(bookings).to receive(:decorate).and_return(bookings)
 
         get :index
       end
@@ -79,7 +80,7 @@ describe BookingsController do
       let(:booking) { Booking.new(user: user) }
 
       before do
-        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+        allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
         allow(booking).to receive(:destroy)
 
         delete :destroy, id: booking_id
@@ -93,7 +94,7 @@ describe BookingsController do
       let(:booking) { Booking.new(user: user) }
 
       before do
-        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+        allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
 
         get :edit_feedback, booking_id: booking_id
       end
@@ -107,7 +108,7 @@ describe BookingsController do
       let(:feedback) { '' }
 
       before do
-        allow(Booking).to receive(:find).with(booking_id).and_return(booking)
+        allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
         allow(booking).to receive(:feedback=).with(feedback)
         allow(booking).to receive(:save!)
 

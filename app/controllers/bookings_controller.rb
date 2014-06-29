@@ -45,12 +45,12 @@ class BookingsController < BaseController
   def load_booking
     booking_id = params[:id] || params[:booking_id]
 
-    @booking = Booking.find(booking_id)
+    @booking = BookingDecorator.find(booking_id)
     authorize @booking
   end
 
   def load_current_user_bookings
-    @bookings = policy_scope(Booking).by_start_date
+    @bookings = policy_scope(Booking).by_start_date.decorate
   end
 
 end
