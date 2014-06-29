@@ -15,6 +15,7 @@ en:
       resource_type:
         id: ID
         name: Resource type name
+        extension: Resource type extension
         resources_number: Number of resources
       user:
         id: ID

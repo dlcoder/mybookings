@@ -51,6 +51,7 @@ step 'I can add a new resource type' do
   click_link 'New resource type'
 
   fill_in 'Resource type name', with: 'Virtual PC'
+  fill_in 'Resource type extension', with: 'DefaultExtension'
 
   click_button 'Create resource type'
 end
