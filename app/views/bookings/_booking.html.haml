@@ -1,7 +1,7 @@
-%tr{ class: bootstrap_class_for(status_for(booking)) }
+%tr{ class: bootstrap_class_for(booking.status) }
   %td= booking.resource_resource_type_name
   %td= booking.resource_name
-  %td= status_for(booking)
+  %td= t("bookings.statuses.#{booking.status}")
   %td= booking.start_date
   %td= booking.end_date
   %td

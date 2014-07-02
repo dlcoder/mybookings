@@ -46,16 +46,22 @@ describe BookingsController do
       let(:booking) { Booking.new }
 
       before do
-        allow(Booking).to receive(:create_for_user).with(user, booking_params).and_return(booking)
+        allow(Booking).to receive(:new_for_user).with(user, booking_params).and_return(booking)
       end
 
       context 'when the booking params is valid' do
+        let(:resource_type_extension) { '' }
+
         before do
-          expect(booking).to receive(:valid?).and_return(true)
+          allow(booking).to receive(:valid?).and_return(true)
+          allow(booking).to receive(:resource_resource_type_extension).and_return(resource_type_extension)
+          allow(ResourceTypesExtensions).to receive(:call).with(resource_type_extension, :after_booking_creation, booking)
+          allow(booking).to receive(:save!).and_return(true)
 
           post :create, booking: booking_params
         end
 
+        it { expect(assigns[:booking]).to be_a(Booking) }
         it { expect(page).to redirect_to(bookings_path) }
       end
 
@@ -63,7 +69,7 @@ describe BookingsController do
         let(:resources) { [] }
 
         before do
-          expect(booking).to receive(:valid?).and_return(false)
+          allow(booking).to receive(:valid?).and_return(false)
           allow(Resource).to receive(:avalaible_by_type_name_and_name).and_return(resources)
 
           post :create, booking: booking_params

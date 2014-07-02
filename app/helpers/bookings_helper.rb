@@ -1,17 +1,9 @@
 module BookingsHelper
 
-  # TODO: Think about refactor booking status
-  def status_for booking
-    return t('bookings.statuses.pending') if booking.pending?
-    return t('bookings.statuses.expired') if booking.expired?
-    return t('bookings.statuses.occurring') if booking.occurring?
-  end
-
-  # TODO: Think about refactor booking status
   def bootstrap_class_for booking_status
-    return 'warning' if booking_status == t('bookings.statuses.pending')
-    return 'success' if booking_status == t('bookings.statuses.expired')
-    return 'info' if booking_status == t('bookings.statuses.occurring')
+    return 'warning' if booking_status == 'pending'
+    return 'info' if booking_status == 'occurring'
+    return 'success' if booking_status == 'expired'
   end
 
 end

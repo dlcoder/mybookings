@@ -5,6 +5,7 @@ class Resource < ActiveRecord::Base
   validates :name, :resource_type, presence: true
 
   delegate :name, to: :resource_type, prefix: true
+  delegate :extension, to: :resource_type, prefix: true
   delegate :managed_by?, to: :resource_type, prefix: true
 
   def self.avalaible_by_type_name_and_name
@@ -19,16 +20,16 @@ class Resource < ActiveRecord::Base
     self.update_attribute(:disabled, !self.disabled)
   end
 
-  def expired_bookings_count
-    self.bookings.expired_bookings.count
-  end
-
   def pending_bookings_count
-    self.bookings.pending_bookings.count
+    self.bookings.pending.count
   end
 
   def occurring_bookings_count
-    self.bookings.occurring_bookings.count
+    self.bookings.occurring.count
+  end
+
+  def expired_bookings_count
+    self.bookings.expired.count
   end
 
   def name_prefixed_with_resource_type

@@ -3,6 +3,7 @@ expired_booking:
   resource: acmr1
   start_date: '2000-01-01 12:00:00 UTC'
   end_date: '2000-01-01 13:00:00 UTC'
+  status: 2
 
 expired_booking_with_feedback:
   user: user
@@ -10,3 +11,4 @@ expired_booking_with_feedback:
   start_date: '2000-01-02 12:00:00 UTC'
   end_date: '2000-01-02 13:00:00 UTC'
   feedback: 'The resource have a lot of problems.'
+  status: 2

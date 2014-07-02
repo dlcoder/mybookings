@@ -12,10 +12,16 @@ class BookingsController < BaseController
   end
 
   def create
-    @booking = Booking.create_for_user(current_user, booking_params)
-    return redirect_to bookings_path if @booking.valid?
-    load_available_resources_by_type_name_and_name
-    render 'new'
+    @booking = Booking.new_for_user(current_user, booking_params)
+
+    if @booking.valid?
+      ResourceTypesExtensions.call(@booking.resource_resource_type_extension, :after_booking_creation, @booking)
+      @booking.save!
+      return redirect_to bookings_path
+    else
+      load_available_resources_by_type_name_and_name
+      render 'new'
+    end
   end
 
   def destroy

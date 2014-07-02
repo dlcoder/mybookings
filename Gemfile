@@ -18,6 +18,7 @@ gem 'omniauth-saml'
 gem 'pundit'
 gem 'role_model'
 gem 'draper', '~> 1.3'
+gem 'clockwork'
 
 group :development do
   gem 'better_errors'

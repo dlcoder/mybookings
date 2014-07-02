@@ -3,7 +3,7 @@ class ResourceType < ActiveRecord::Base
   has_many :resources
   has_and_belongs_to_many :users, join_table: 'user_managed_resource_types'
 
-  validates :name, presence: true
+  validates :name, :extension, presence: true
 
   def self.by_name
     order(name: :asc)
