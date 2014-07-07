@@ -10,11 +10,13 @@ every(MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes, 'extensions_tri
   recently_finished_bookings = Booking.recently_finished
 
   about_to_begin_bookings.each do |booking|
-    ResourceTypesExtensions.call(booking.resource_resource_type_extension, :on_booking_start, booking)
+    booking.occurring!
+    ResourceTypesExtensionsWrapper.call(booking.resource_resource_type_extension, :on_booking_start, booking)
   end
 
   recently_finished_bookings.each do |booking|
-    ResourceTypesExtensions.call(booking.resource_resource_type_extension, :on_booking_end, booking)
+    booking.expired!
+    ResourceTypesExtensionsWrapper.call(booking.resource_resource_type_extension, :on_booking_end, booking)
   end
 
 end

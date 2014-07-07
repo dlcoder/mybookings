@@ -5,6 +5,23 @@ GIT
     bootstrap3-datetimepicker-rails (3.0.0)
       momentjs-rails (~> 2.5.0)
 
+GIT
+  remote: git@bitbucket.org:skuark/mybookings_adobe_connect_extension.git
+  revision: 0025467a11f980f8bd1daab094a658279b8a6c11
+  specs:
+    adobe_connect_extension (0.0.1)
+      adobe_connect
+      rails (~> 4.1.4)
+
+GIT
+  remote: git@github.com:skuark/adobe_connect.git
+  revision: 40cd8646ad62e70f822ce39ca2ffaf313a96cc72
+  specs:
+    adobe_connect (1.0.1)
+      activesupport (>= 2.3.17)
+      nokogiri (~> 1.5.5)
+      rake (>= 0.9.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -223,6 +240,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  adobe_connect!
+  adobe_connect_extension!
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.1)

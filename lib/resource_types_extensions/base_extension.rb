@@ -4,11 +4,9 @@ class ResourceTypesExtensions::BaseExtension
   end
 
   def self.on_booking_start booking
-    booking.occurring!
   end
 
   def self.on_booking_end booking
-    booking.expired!
   end
 
 end

@@ -15,7 +15,7 @@ class BookingsController < BaseController
     @booking = Booking.new_for_user(current_user, booking_params)
 
     if @booking.valid?
-      ResourceTypesExtensions.call(@booking.resource_resource_type_extension, :after_booking_creation, @booking)
+      ResourceTypesExtensionsWrapper.call(@booking.resource_resource_type_extension, :after_booking_creation, @booking)
       @booking.save!
       return redirect_to bookings_path
     else
