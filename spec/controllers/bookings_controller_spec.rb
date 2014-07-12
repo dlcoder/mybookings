@@ -55,7 +55,7 @@ describe BookingsController do
         before do
           allow(booking).to receive(:valid?).and_return(true)
           allow(booking).to receive(:resource_resource_type_extension).and_return(resource_type_extension)
-          allow(ResourceTypesExtensions).to receive(:call).with(resource_type_extension, :after_booking_creation, booking)
+          allow(ResourceTypesExtensionsWrapper).to receive(:call).with(resource_type_extension, :after_booking_creation, booking)
           allow(booking).to receive(:save!).and_return(true)
 
           post :create, booking: booking_params
