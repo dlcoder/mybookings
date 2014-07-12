@@ -6,21 +6,21 @@ GIT
       momentjs-rails (~> 2.5.0)
 
 GIT
-  remote: git@bitbucket.org:skuark/mybookings_adobe_connect_extension.git
-  revision: 0025467a11f980f8bd1daab094a658279b8a6c11
-  specs:
-    adobe_connect_extension (0.0.1)
-      adobe_connect
-      rails (~> 4.1.4)
-
-GIT
-  remote: git@github.com:skuark/adobe_connect.git
+  remote: git://github.com/skuark/adobe_connect.git
   revision: 40cd8646ad62e70f822ce39ca2ffaf313a96cc72
   specs:
     adobe_connect (1.0.1)
       activesupport (>= 2.3.17)
       nokogiri (~> 1.5.5)
       rake (>= 0.9.2)
+
+GIT
+  remote: git://github.com/skuark/mybookings_adobe_connect_extension.git
+  revision: 0025467a11f980f8bd1daab094a658279b8a6c11
+  specs:
+    adobe_connect_extension (0.0.1)
+      adobe_connect
+      rails (~> 4.1.4)
 
 GEM
   remote: https://rubygems.org/

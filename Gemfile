@@ -21,8 +21,8 @@ gem 'draper', '~> 1.3'
 gem 'clockwork'
 
 # extensions
-gem 'adobe_connect', git: 'git@github.com:skuark/adobe_connect.git'
-gem 'adobe_connect_extension', git: 'git@bitbucket.org:skuark/mybookings_adobe_connect_extension.git'
+gem 'adobe_connect', git: 'git://github.com/skuark/adobe_connect.git'
+gem 'adobe_connect_extension', git: 'git://github.com/skuark/mybookings_adobe_connect_extension.git'
 
 group :development do
   gem 'better_errors'
