@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702100506) do
+ActiveRecord::Schema.define(version: 20140712122609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adobe_connect_extension_bookings", force: true do |t|
+    t.integer  "booking_id"
+    t.integer  "meeting_id"
+    t.text     "participants"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bookings", force: true do |t|
     t.integer  "user_id"

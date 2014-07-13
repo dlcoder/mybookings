@@ -3,8 +3,8 @@ admin = User.create({ email: 'skuark@gmail.com', password: '12345678' })
 admin.roles = [:admin]
 admin.save!
 
-resource_type_vp = ResourceType.create({ name: 'Virtual PC' })
-resource_type_acmr = ResourceType.create({ name: 'Adobe Connect Meeting Room' })
+resource_type_vp = ResourceType.create({ name: 'Virtual PC', extension: 'DefaultExtension' })
+resource_type_acmr = ResourceType.create({ name: 'Adobe Connect Meeting Room', extension: 'AdobeConnectExtension' })
 
 resources = Resource.create([
   { name: 'PC1', resource_type: resource_type_vp },
