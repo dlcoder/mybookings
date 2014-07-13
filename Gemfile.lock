@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/skuark/mybookings_adobe_connect_extension.git
-  revision: 0025467a11f980f8bd1daab094a658279b8a6c11
+  revision: 6ba0c4501f6bcc1d283a962f05c98714e4953872
   specs:
     adobe_connect_extension (0.0.1)
       adobe_connect
@@ -108,7 +108,7 @@ GEM
       railties (>= 4.0.1)
     hashie (2.1.1)
     hike (1.2.3)
-    i18n (0.6.9)
+    i18n (0.6.11)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -124,7 +124,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.3.5)
+    minitest (5.4.0)
     momentjs-rails (2.5.1)
       railties (>= 3.1)
     multi_json (1.10.1)
