@@ -9,4 +9,7 @@ class ResourceTypesExtensions::BaseExtension
   def self.on_booking_end booking
   end
 
+  def self.actions_for booking
+  end
+
 end

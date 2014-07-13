@@ -5,6 +5,7 @@
   %td= booking.start_date
   %td= booking.end_date
   %td
+    = show_specific_actions_for booking
     - if booking.pending?
       = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
     - if booking.expired? && !booking.has_feedback?
