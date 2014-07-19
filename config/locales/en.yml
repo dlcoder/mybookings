@@ -26,6 +26,7 @@ en:
     bookings:
       booking:
         booking_date: 'Booking date'
+        comment: 'Comment'
         feedback: 'Feedback'
         start_date: 'Start date'
         end_date: 'End date'
@@ -83,6 +84,7 @@ en:
       no_bookings: 'You does not have any booking yet.'
       title: 'My bookings'
     new:
+      comment_hint: 'Write a comment for the resource manager if you need.'
       create_booking: 'Create booking'
       title: 'New booking'
     statuses:

@@ -41,7 +41,7 @@ class BookingsController < BaseController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :resource_id)
+    params.require(:booking).permit!
   end
 
   def load_available_resources_by_type_name_and_name

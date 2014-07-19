@@ -2,11 +2,13 @@ en:
   activerecord:
     attributes:
       booking:
-        resource_type_name: Resource type
+        comment: Comment
+        end_date: End date
+        resource: Resource
         resource_name: Resource name
+        resource_type_name: Resource type
         status: Status
         start_date: Start date
-        end_date: End date
       resource:
         id: ID
         resource_type: Resource type

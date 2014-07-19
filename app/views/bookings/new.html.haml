@@ -3,7 +3,12 @@
 = simple_form_for @booking do |f|
   = render_model_base_errors f.object
 
-  = f.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
-  = f.input :start_date, as: :datetimepicker
-  = f.input :end_date, as: :datetimepicker
+  .row
+    .col-xs-12.col-sm-4
+      = f.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
+    .col-xs-12.col-sm-4
+      = f.input :start_date, as: :datetimepicker
+    .col-xs-12.col-sm-4
+      = f.input :end_date, as: :datetimepicker
+  = f.input :comment, input_html: { rows: 5 }, hint: t('.comment_hint')
   = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
