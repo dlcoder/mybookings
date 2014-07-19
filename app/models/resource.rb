@@ -1,4 +1,6 @@
 class Resource < ActiveRecord::Base
+  include Loggable
+
   belongs_to :resource_type
   has_many :bookings
 

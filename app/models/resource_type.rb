@@ -1,4 +1,5 @@
 class ResourceType < ActiveRecord::Base
+  include Loggable
 
   has_many :resources
   has_and_belongs_to_many :users, join_table: 'user_managed_resource_types'

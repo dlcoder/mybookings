@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Booking do
   let(:resource) { Resource.new(name: 'Resource', resource_type: ResourceType.new ) }
-  let(:booking) { Booking.new(resource: resource, start_date: 1.hour.from_now, end_date: 2.hour.from_now) }
-  let(:booking_overlapped) { Booking.new(resource: resource, start_date: 90.minutes.from_now, end_date: 5.hour.from_now) }
+  let(:booking) { Booking.new(resource: resource, start_date: 1.hour.from_now, end_date: 2.hour.from_now, user: User.new) }
+  let(:booking_overlapped) { Booking.new(resource: resource, start_date: 90.minutes.from_now, end_date: 5.hour.from_now, user: User.new) }
 
   it 'validates that a booking with start date in the past is not valid' do
     booking.start_date = 2.hour.ago

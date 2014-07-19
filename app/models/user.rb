@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Loggable
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,

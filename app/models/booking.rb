@@ -1,4 +1,5 @@
 class Booking < ActiveRecord::Base
+  include Loggable
 
   belongs_to :user
   belongs_to :resource
@@ -63,5 +64,4 @@ class Booking < ActiveRecord::Base
       errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_bookings.any?
     end
   end
-
 end
