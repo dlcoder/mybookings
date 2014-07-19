@@ -1,5 +1,6 @@
 %tr
   %td= resource_type.id
-  %td= resource_type.name
+  %td= link_to resource_type.name, edit_backend_resource_type_path(resource_type)
   %td= resource_type.resources_number
   %td
+    = link_to icon_with_text('pencil', t('.edit')), edit_backend_resource_type_path(resource_type), class: 'btn btn-default btn-xs'

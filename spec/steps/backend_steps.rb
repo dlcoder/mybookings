@@ -51,9 +51,21 @@ step 'I can add a new resource type' do
   click_link 'New resource type'
 
   fill_in 'Resource type name', with: 'Virtual PC'
-  fill_in 'Resource type extension', with: 'DefaultExtension'
+  select 'DefaultExtension', from: 'Resource type extension'
 
   click_button 'Create resource type'
+end
+
+step 'I can edit a resource type' do
+  find('tr', text: 'Adobe Connect Meeting Rooms').click_link ('Edit')
+end
+
+step 'I can change the name of the resource type' do
+  fill_in 'Resource type name', with: 'Virtual'
+end
+
+step 'I can update the resource type' do
+  click_button 'Update resource type'
 end
 
 step 'I click on Users menu item' do

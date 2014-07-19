@@ -20,6 +20,9 @@ Feature: Admin
     And I click on Resource types menu item
     And I can view a list of resource types
     And I can add a new resource type
+    And I can edit a resource type
+    And I can change the name of the resource type
+    And I can update the resource type
 
   Scenario: Manage users as administrator
     Given a signed in administrator

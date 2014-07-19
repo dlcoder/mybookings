@@ -54,6 +54,9 @@ en:
         occurring: '%{occurring_bookings} occurring'
         show_bookings: 'Show bookings'
     resource_types:
+      edit:
+        title: 'Editing resource type'
+        update_resource_type: 'Update resource type'
       index:
         new_resource_type: 'New resource type'
         no_resource_types: 'There is no resource types yet.'
@@ -61,6 +64,8 @@ en:
       new:
         create_resource_type: 'Create resource type'
         title: 'New resource type'
+      resource_type:
+        edit: 'Edit'
     users:
       edit:
         email: 'Email: %{user_email}'
@@ -70,6 +75,8 @@ en:
         title: 'Editing user'
       index:
         title: 'Users'
+      user:
+        edit: 'Edit'
 
   bookings:
     booking:

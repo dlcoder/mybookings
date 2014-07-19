@@ -3,6 +3,8 @@ class Backend::ResourceTypesController < Backend::BaseController
   include Backend::Administerable
   include Backend::Authorizable
 
+  before_action :load_resource_type, only: [:edit, :update]
+
   def index
     @resource_types = ResourceType.all
   end
@@ -18,10 +20,23 @@ class Backend::ResourceTypesController < Backend::BaseController
     return redirect_to backend_resource_types_path
   end
 
+  def edit; end
+
+  def update
+    return render 'edit' unless @resource_type.update_attributes(resource_type_params)
+    return redirect_to backend_resource_types_path
+  end
+
   private
 
   def resource_type_params
     params.require(:resource_type).permit!
+  end
+
+  def load_resource_type
+    resource_type_id = params[:id] || params[:resource_type_id]
+
+    @resource_type = ResourceType.find(resource_type_id)
   end
 
 end

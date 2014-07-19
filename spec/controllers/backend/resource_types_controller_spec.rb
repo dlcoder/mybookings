@@ -76,6 +76,47 @@ describe Backend::ResourceTypesController do
         it { expect(page).to redirect_to(backend_resource_types_path) }
       end
     end
+
+    describe 'on GET to edit' do
+      let(:resource_type_id) { '1' }
+      let(:resource_type) { ResourceType.new }
+
+      before do
+        allow(ResourceType).to receive(:find).with(resource_type_id).and_return(resource_type)
+
+        get :edit, id: resource_type_id
+      end
+
+      it { expect(page).to render_template(:edit) }
+    end
+
+    describe 'on PATCH to update' do
+      let(:resource_type_id) { '1' }
+      let(:resource_type) { ResourceType.new }
+      let(:resource_type_params) { { 'name' => 'New name' } }
+
+      context 'when the resource params are not valid' do
+        before do
+          allow(ResourceType).to receive(:find).with(resource_type_id).and_return(resource_type)
+          allow(resource_type).to receive(:update_attributes).with(resource_type_params).and_return(false)
+
+          patch :update, id: resource_type_id, resource_type: resource_type_params
+        end
+
+        it { expect(page).to render_template(:edit) }
+      end
+
+      context 'when the resource params are valid' do
+        before do
+          allow(ResourceType).to receive(:find).with(resource_type_id).and_return(resource_type)
+          allow(resource_type).to receive(:update_attributes).with(resource_type_params).and_return(true)
+
+          patch :update, id: resource_type_id, resource_type: resource_type_params
+        end
+
+        it { expect(page).to redirect_to(backend_resource_types_path) }
+      end
+    end
   end
 
 end
