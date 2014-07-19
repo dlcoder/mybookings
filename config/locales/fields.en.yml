@@ -4,6 +4,7 @@ en:
       booking:
         comment: Comment
         end_date: End date
+        feedback: Feedback
         resource: Resource
         resource_name: Resource name
         resource_type_name: Resource type

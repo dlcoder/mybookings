@@ -83,8 +83,8 @@ en:
       cancel_booking: 'Cancel'
       send_feedback: 'Send feedback'
     edit_feedback:
-      send_feedback: Send feedback
-      title: Send feedback
+      send_feedback: 'Send feedback'
+      title: 'Send feedback'
     index:
       feedback_received: 'Thanks. We have received your feedback.'
       new_booking: 'Book a resource'

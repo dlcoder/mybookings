@@ -2,8 +2,8 @@
   %td= booking.resource_resource_type_name
   %td= booking.resource_name
   %td= t("bookings.statuses.#{booking.status}")
-  %td= booking.start_date
-  %td= booking.end_date
+  %td= l booking.start_date, format: :long
+  %td= l booking.end_date, format: :long
   %td
     = show_specific_actions_for booking
     - if booking.pending?

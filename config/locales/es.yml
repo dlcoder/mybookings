@@ -1,0 +1,100 @@
+es:
+  actions: 'Acciones'
+  app_name: 'Reservas institucionales'
+  delete_confirmation: '¿Estás seguro?'
+  not_authorized: 'Parece que no estás autorizado para estar aquí.'
+  saving: 'Guardando...'
+
+  application:
+    homepage:
+      promo_message: 'Bienvenido al Sistema de reservas de la institución.'
+      sign_in: 'Acceder'
+      sign_up: 'Registro'
+      title: 'Página de inicio'
+    navbar:
+      manage: 'Gestionar'
+      sign_out: 'Cerrar sesión'
+      toggle_navigation: 'Abrir menú'
+      you_are_logged_in_as: '%{email}'
+
+  backend:
+    backend_menu:
+      manage: 'Gestionar'
+      resources: 'Recursos'
+      resource_types: 'Tipos de recurso'
+      users: 'Usuarios'
+    bookings:
+      booking:
+        booking_date: 'Fecha de la reserva'
+        comment: 'Observaciones'
+        feedback: 'Comentario'
+        start_date: 'Fecha de inicio'
+        end_date: 'Fecha de fin'
+        user_email: 'Email del usuario'
+      index:
+        no_bookings: 'Este recurso aún no ha sido reservado.'
+        resource: 'Recurso:'
+        title: 'Reservas del recurso'
+    manager_menu:
+      manage: 'Gestionar'
+      resources: 'Recursos'
+    resources:
+      index:
+        new_resource: 'Nuevo recurso'
+        no_resources: 'Aún no se han creado recursos.'
+        title: 'Recursos'
+      new:
+        create_resource: 'Crear recurso'
+        title: 'Nuevo recurso'
+      resource:
+        enable: 'Activar'
+        disable: 'Desactivar'
+        expired: '%{expired_bookings} terminadas'
+        pending: '%{pending_bookings} pendientes'
+        occurring: '%{occurring_bookings} en proceso'
+        show_bookings: 'Ver reservas'
+    resource_types:
+      edit:
+        title: 'Editando tipo de recurso'
+        update_resource_type: 'Actualizar tipo de recurso'
+      index:
+        new_resource_type: 'Nuevo tipo de recurso'
+        no_resource_types: 'Aún no se han creado tipos de recurso.'
+        title: 'Tipos de recurso'
+      new:
+        create_resource_type: 'Crear tipo de recurso'
+        title: 'Nuevo tipo de recurso'
+      resource_type:
+        edit: 'Editar'
+    users:
+      edit:
+        email: 'Email: %{user_email}'
+        managed_resource_types: 'Tipos de recurso gestionados'
+        resource_types_hint: 'Esta opción solo tiene efecto si el usuario tiene el rol de "manager".'
+        save_user: 'Guardar usuario'
+        title: 'Editando usuario'
+      index:
+        title: 'Usuarios'
+      user:
+        edit: 'Editar'
+
+  bookings:
+    booking:
+      cancel_booking: 'Cancelar'
+      send_feedback: 'Enviar comentarios'
+    edit_feedback:
+      send_feedback: 'Enviar comentarios'
+      title: 'Enviar comentarios'
+    index:
+      feedback_received: 'Gracias. Hemos recibido tus comentarios.'
+      new_booking: 'Reservar un recurso'
+      no_bookings: 'Aún no has realizado ninguna reserva.'
+      title: 'Mis reservas'
+    new:
+      comment_hint: 'Escribe alguna observación para el gestor de recursos si lo necesitas.'
+      create_booking: 'Crear reserva'
+      title: 'Nueva reserva'
+    statuses:
+      pending: 'Pendiente'
+      expired: 'Terminada'
+      occurring: 'En proceso'

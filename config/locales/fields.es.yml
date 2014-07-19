@@ -1,0 +1,27 @@
+es:
+  activerecord:
+    attributes:
+      booking:
+        comment: Observaciones
+        end_date: Fecha de fin
+        feedback: Comentarios
+        resource: Recurso
+        resource_name: Nombre del recurso
+        resource_type_name: Tipo de recurso
+        status: Estado
+        start_date: Fecha de inicio
+      resource:
+        id: ID
+        resource_type: Tipo del recurso
+        name: Nombre del recurso
+        bookings: Reservas
+      resource_type:
+        id: ID
+        name: Nombre del tipo de recurso
+        extension: Extensión del tipo de recurso
+        resources_number: Número de recursos
+      user:
+        id: ID
+        email: Email
+        created_at: Fecha de creación
+        roles: Rol

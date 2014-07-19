@@ -16,13 +16,13 @@
       .col-xs-12.col-md-4
         %dt= icon_with_text('time', t('.end_date'))
         %dd= l booking.end_date, format: :long
-    - unless booking.comment.nil?
+    - unless booking.comment.blank?
       %hr
       .row
         .col-xs-12
           %dt= icon_with_text('comment', t('.comment'))
           %dd= booking.comment
-    - unless booking.feedback.nil?
+    - unless booking.feedback.blank?
       %hr
       .row
         .col-xs-12
