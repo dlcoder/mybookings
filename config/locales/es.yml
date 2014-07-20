@@ -91,7 +91,7 @@ es:
       no_bookings: 'Aún no has realizado ninguna reserva.'
       title: 'Mis reservas'
     new:
-      comment_hint: 'Escribe alguna observación para el gestor de recursos si lo necesitas.'
+      comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
       create_booking: 'Crear reserva'
       title: 'Nueva reserva'
     statuses:

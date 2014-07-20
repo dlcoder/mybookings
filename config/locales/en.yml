@@ -91,7 +91,7 @@ en:
       no_bookings: 'You does not have any booking yet.'
       title: 'My bookings'
     new:
-      comment_hint: 'Write a comment for the resource manager if you need.'
+      comment_hint: 'You can write some indication to notify the resource responsible.'
       create_booking: 'Create booking'
       title: 'New booking'
     statuses:
