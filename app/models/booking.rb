@@ -34,6 +34,10 @@ class Booking < ActiveRecord::Base
     Booking.occurring.where('? >= end_date', Time.now)
   end
 
+  def log_for_record_created name, datetime
+    Rails.logger.info "#{name} - New #{self.class.name} (#{self.id}) of #{self.resource_name} (#{self.resource_resource_type_name}) by user #{self.user_email} at #{datetime}."
+  end
+
   private
 
   def dates_in_the_future
