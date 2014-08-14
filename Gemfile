@@ -27,8 +27,7 @@ gem 'adobe_connect_extension', git: 'git://github.com/skuark/mybookings_adobe_co
 
 group :development do
   gem 'better_errors'
-  gem "binding_of_caller"
-  gem 'railroady'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
