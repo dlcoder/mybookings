@@ -25,7 +25,7 @@ class BookingsController < BaseController
   end
 
   def destroy
-    @booking.destroy
+    @booking.destroy if @booking.pending?
     redirect_to bookings_path
   end
 

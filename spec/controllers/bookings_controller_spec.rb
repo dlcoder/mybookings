@@ -87,12 +87,29 @@ describe BookingsController do
 
       before do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
-        allow(booking).to receive(:destroy)
-
-        delete :destroy, id: booking_id
       end
 
-      it { expect(page).to redirect_to(bookings_path) }
+      context 'when the booking has started' do
+        before do
+          allow(booking).to receive(:pending?).and_return(false)
+          expect(booking).to_not receive(:destroy)
+
+          delete :destroy, id: booking_id
+        end
+
+        it { expect(page).to redirect_to(bookings_path) }
+      end
+
+      context 'when the booking have not started' do
+        before do
+          allow(booking).to receive(:pending?).and_return(true)
+          expect(booking).to receive(:destroy)
+
+          delete :destroy, id: booking_id
+        end
+
+        it { expect(page).to redirect_to(bookings_path) }
+      end
     end
 
     describe 'on GET to edit_feedback' do
