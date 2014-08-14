@@ -28,4 +28,11 @@ module BackendHelper
     user.role_symbols.join(", ")
   end
 
+  def available_resource_types_extensions
+    extensions = ResourceTypesExtensions.constants
+    extensions.delete(:BaseExtension)
+
+    extensions
+  end
+
 end
