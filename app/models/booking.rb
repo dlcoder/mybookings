@@ -60,10 +60,10 @@ class Booking < ActiveRecord::Base
   end
 
   def dates_overlap
-    start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-    end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+    unless start_date.nil? or end_date.nil? or resource.nil?
+      start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+      end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
 
-    unless resource.nil?
       overlapped_bookings = resource.bookings.where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
       errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_bookings.any?
     end
