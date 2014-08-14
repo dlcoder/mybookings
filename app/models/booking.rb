@@ -9,6 +9,7 @@ class Booking < ActiveRecord::Base
   validates :resource, :start_date, :end_date, presence: true
   validate :dates_range
   validate :dates_in_the_future, :dates_overlap, on: :create
+  validate :resource_is_available, on: :create
 
   delegate :email, to: :user, prefix: true
   delegate :name, to: :resource, prefix: true
@@ -66,6 +67,12 @@ class Booking < ActiveRecord::Base
 
       overlapped_bookings = resource.bookings.where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
       errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_bookings.any?
+    end
+  end
+
+  def resource_is_available
+    unless resource.nil?
+      errors.add(:resource, I18n.t('errors.messages.booking.resource_is_not_available')) if resource.disabled?
     end
   end
 end
