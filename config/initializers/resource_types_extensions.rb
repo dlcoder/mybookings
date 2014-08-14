@@ -1,4 +1,4 @@
-# TODO: ¿Ok?
+# DOUBT: ¿Ok?
 module ResourceTypesExtensions
   module DefaultExtension
   end

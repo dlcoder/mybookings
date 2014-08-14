@@ -1,5 +1,4 @@
 = render_model_base_errors f.object
 
 = f.input :name
-/ TODO: Review ResourceTypesExtensions.constants, and delete BaseExtension
 = f.input :extension, as: :select, collection: ResourceTypesExtensions.constants, include_blank: false, default: 'DefaultExtension'

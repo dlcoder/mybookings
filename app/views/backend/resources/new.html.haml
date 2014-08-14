@@ -3,7 +3,7 @@
 = simple_form_for @resource, url: backend_resources_path do |f|
   = render_model_base_errors f.object
 
-  / TODO: ¿Another way instead resource_type_id? Also, this is problematic when errors on submit.
+  / DOUBT: ¿Another way instead resource_type_id? Also, this is problematic when errors on submit.
   = f.input :resource_type_id, as: :select, collection: @managed_resource_types, include_blank: false
   = f.input :name
   = f.button icon_with_text('ok', t('.create_resource')), class: 'btn btn-primary'

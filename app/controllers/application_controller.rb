@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  # TODO: That makes that login with SAML crashes
+  # DOUBT: That makes that login with SAML crashes
   # protect_from_forgery with: :exception
 
   def index

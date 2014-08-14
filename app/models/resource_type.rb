@@ -14,7 +14,7 @@ class ResourceType < ActiveRecord::Base
     self.resources.count
   end
 
-  # TODO: Move to policy (resource_policy)
+  # DOUBT: Move to policy (resource_policy)
   def managed_by? user
     self.users.exists? user
   end
