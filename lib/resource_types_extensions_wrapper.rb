@@ -1,7 +1,8 @@
 class ResourceTypesExtensionsWrapper
 
-  def self.call extension, callback, booking
-    extension = "ResourceTypesExtensions::#{extension}::Extension".constantize
+  def self.call callback, booking
+    extension_name = booking.resource_resource_type_extension
+    extension = "ResourceTypesExtensions::#{extension_name}::Extension".constantize
     extension.send(callback, booking)
   end
 

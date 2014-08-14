@@ -7,7 +7,7 @@ module BookingsHelper
   end
 
   def show_specific_actions_for booking
-    resource_type_extension_actions = ResourceTypesExtensionsWrapper.call(booking.resource_resource_type_extension, :actions_for, booking)
+    resource_type_extension_actions = ResourceTypesExtensionsWrapper.call(:actions_for, booking)
     links = ''
 
     unless resource_type_extension_actions.nil?
