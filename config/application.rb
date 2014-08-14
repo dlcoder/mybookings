@@ -20,6 +20,9 @@ module Mybookings
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # I18n fallback to :en
+    config.i18n.fallbacks = [:en]
+
     # For loading local_env.yml file in development
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
