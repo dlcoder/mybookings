@@ -1,15 +1,20 @@
 en:
   actions: 'Actions'
-  app_name: 'Institutional Bookings'
+  app_name: 'MyBookings'
   delete_confirmation: 'Are you sure?'
   not_authorized: 'Oops! This resource is not available for you.'
   saving: 'Saving...'
 
   application:
     homepage:
-      promo_message: 'Welcome to the Institutional booking system.'
+      basic_login_title: 'Login with your MyBookings account'
+      forgot_your_password: 'Forgot your password'
+      idps_login_description: 'You can login into MyBookings with one of those external identity providers:'
+      idps_login_title: 'Login with an external identity provider'
+      promo_message: 'Welcome to MyBookings system'
       sign_in: 'Sign in'
-      sign_up: 'Sign up'
+      sign_in_with: 'Sign in with %{provider}'
+      sign_up: 'Sign up for a new account'
       title: 'Homepage'
     navbar:
       manage: 'Manage'

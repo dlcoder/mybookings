@@ -4,12 +4,8 @@ step 'I visit the homepage' do
   visit root_path
 end
 
-step 'I go to the sign in page' do
-  click_link 'Sign in'
-end
-
 step 'I go to the sign up page' do
-  click_link 'Sign up'
+  click_link 'Sign up for a new account'
 end
 
 step 'I can sign up' do
@@ -43,12 +39,12 @@ step 'I can see that I have signed in' do
   expect(page).to have_content("#{ @user.email }")
 end
 
-step 'I go to the sign in with SAML page' do
-  click_link 'Sign in with Saml'
+step 'I go to the sign in with feide page' do
+  click_link 'Sign in with feide'
 end
 
-step 'I can see that I have signed in with SAML' do
-  expect(page).to have_content('Successfully authenticated from SAML account.')
+step 'I can see that I have signed in with feide' do
+  expect(page).to have_content('Successfully authenticated from feide account.')
 end
 
 step 'I go to sign out' do

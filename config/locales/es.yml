@@ -1,15 +1,20 @@
 es:
   actions: 'Acciones'
-  app_name: 'Reservas institucionales'
+  app_name: 'MyBookings'
   delete_confirmation: '¿Estás seguro?'
   not_authorized: 'Parece que no estás autorizado para estar aquí.'
   saving: 'Guardando...'
 
   application:
     homepage:
-      promo_message: 'Bienvenido al Sistema de reservas de la institución.'
+      basic_login_title: 'Accede con tu cuenta de MyBookings'
+      forgot_your_password: 'Olvidé mi contraseña'
+      idps_login_description: 'Puedes acceder a MyBookings con alguno de los siguientes proveedores de identidad externos:'
+      idps_login_title: 'Accer con un proveedor de identidad externo'
+      promo_message: 'Bienvenido al Sistema MyBookings'
       sign_in: 'Acceder'
-      sign_up: 'Registro'
+      sign_in_with: 'Acceder on %{provider}'
+      sign_up: 'Crear una nueva cuenta de usuario'
       title: 'Página de inicio'
     navbar:
       manage: 'Gestionar'

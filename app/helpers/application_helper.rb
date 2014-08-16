@@ -1,5 +1,25 @@
 module ApplicationHelper
 
+  #TODO: ¿Ok?
+  def resource_name
+    :user
+  end
+
+  #TODO: ¿Ok?
+  def resource
+    @resource ||= User.new
+  end
+
+  #TODO: ¿Ok?
+  def devise_mappings
+    @devise_mappings ||= Devise.mappings[:user]
+  end
+
+  #TODO: ¿Ok?
+  def resource_class
+    User
+  end
+
   def title title=t('.title')
     title_for_html title
     title_for_page title

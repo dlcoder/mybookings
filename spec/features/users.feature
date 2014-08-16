@@ -5,7 +5,6 @@ Feature: Users
 
   Scenario: Login as an unexisting user
     When I visit the homepage
-    And I go to the sign in page
     And I go to the sign up page
     Then I can sign up
     And I can see that I have signed up
@@ -14,24 +13,21 @@ Feature: Users
   Scenario: Login as an existing user
     Given a registered user
     When I visit the homepage
-    And I go to the sign in page
     Then I can sign in
     And I can see that I have signed in
     And I can see my bookings page
 
-  Scenario: Login with SAML as an unexisting user
+  Scenario: Login with feide as an unexisting user
     When I visit the homepage
-    And I go to the sign in page
-    And I go to the sign in with SAML page
-    And I can see that I have signed in with SAML
+    And I go to the sign in with feide page
+    And I can see that I have signed in with feide
     And I can see my bookings page
 
-  Scenario: Login with SAML as an existing user
+  Scenario: Login with feide as an existing user
     Given a registered user
     When I visit the homepage
-    And I go to the sign in page
-    And I go to the sign in with SAML page
-    And I can see that I have signed in with SAML
+    And I go to the sign in with feide page
+    And I can see that I have signed in with feide
     And I can see my bookings page
 
   Scenario: Logout
