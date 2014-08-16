@@ -13,7 +13,7 @@ es:
       idps_login_title: 'Accer con un proveedor de identidad externo'
       promo_message: 'Bienvenido al Sistema MyBookings'
       sign_in: 'Acceder'
-      sign_in_with: 'Acceder on %{provider}'
+      sign_in_with: 'Acceder con %{provider}'
       sign_up: 'Crear una nueva cuenta de usuario'
       title: 'Página de inicio'
     navbar:
