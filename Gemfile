@@ -19,7 +19,9 @@ gem 'omniauth-saml'
 gem 'pundit'
 gem 'role_model'
 gem 'draper', '~> 1.3'
+
 gem 'clockwork'
+# gem 'whenever', :require => false
 
 # extensions
 gem 'adobe_connect', git: 'git://github.com/skuark/adobe_connect.git'
