@@ -62,7 +62,7 @@ es:
         sign_in_with: 'Acceder con %{provider}'
         sign_up: 'Crear una nueva cuenta de usuario'
       new:
-        sign_in: Acceder
+        title: "Acceder"
       signed_in: "Ha iniciado sesión satisfactoriamente."
       signed_out: "Ha cerrado la sesión satisfactoriamente."
     unlocks:
