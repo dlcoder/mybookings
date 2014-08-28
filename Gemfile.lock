@@ -7,18 +7,18 @@ GIT
 
 GIT
   remote: git://github.com/skuark/adobe_connect.git
-  revision: 40cd8646ad62e70f822ce39ca2ffaf313a96cc72
+  revision: f8cc586be4558bf6562c0fa2861f968918bbfe65
   specs:
-    adobe_connect (1.0.1)
+    adobe_connect (1.0.2)
       activesupport (>= 2.3.17)
       nokogiri (~> 1.5.5)
       rake (>= 0.9.2)
 
 GIT
   remote: git://github.com/skuark/mybookings_adobe_connect_extension.git
-  revision: 6786884574ba6efeea95b48a0028e3082630161b
+  revision: 4a11b6b1eb184a4aeb8394cf048052b14065240e
   specs:
-    adobe_connect_extension (0.0.1)
+    adobe_connect_extension (1.0.0)
       adobe_connect
       rails (~> 4.1.4)
 
@@ -223,7 +223,7 @@ GEM
     turnip (1.2.1)
       gherkin (>= 2.5)
       rspec (>= 2.0, < 4.0)
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
