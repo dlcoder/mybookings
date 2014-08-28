@@ -26,3 +26,4 @@ es:
         created_at: Fecha de creación
         roles: Rol
         password: Contraseña
+        password_confirmation: Contraseña (confirmación)

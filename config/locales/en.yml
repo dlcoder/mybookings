@@ -7,14 +7,7 @@ en:
 
   application:
     homepage:
-      basic_login_title: 'Login with your MyBookings account'
-      forgot_your_password: 'Forgot your password'
-      idps_login_description: 'You can login into MyBookings with one of those external identity providers:'
-      idps_login_title: 'Login with an external identity provider'
       promo_message: 'Welcome to MyBookings system'
-      sign_in: 'Sign in'
-      sign_in_with: 'Sign in with %{provider}'
-      sign_up: 'Sign up for a new account'
       title: 'Homepage'
     navbar:
       manage: 'Manage'

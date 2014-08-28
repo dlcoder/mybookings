@@ -34,6 +34,11 @@ es:
       send_paranoid_instructions: "Si su correo electrónico existe en nuestra base de datos, recibira un enlace para restablecer la contraseña en unos minutos."
       updated: "Su contraseña ha cambiado correctamente. Ha sido identificado correctamente."
       updated_not_active: "Su contraseña se ha cambiado correctamente."
+      new:
+        password_title: "Recuperar tu contraseña"
+        send_me_reset_instructions: "Enviarme instrucciones para restablecer la contraseña"
+        sign_in: "Acceder si ya tienes una cuenta de usuario"
+        title: "¿Has olvidado tu contraseña?"
     registrations:
       destroyed: "¡Adiós! Su cuenta ha sido cancelada. Esperamos volver a verle pronto."
       signed_up: "¡Bienvenido! Usted ha sido identificado."
@@ -42,7 +47,22 @@ es:
       signed_up_but_unconfirmed: "Se le ha enviado un mensaje con un enlace de confirmación. Por favor visite el enlace para activar su cuenta."
       update_needs_confirmation: "Ha actualizado su cuenta correctamente, sin embargo necesitamos verificar su nueva cuenta de correo. Por favor revise su correo electrónico y visite el enlace para finalizar la confirmación de su nueva dirección de correo electrónico."
       updated: "Ha actualizado tu cuenta correctamente."
+      new:
+        registration_title: "Crear una nueva cuenta de usuario"
+        sign_in: "Acceder si ya tienes una cuenta de usuario"
+        sign_up: "Registro"
+        title: "Registro"
     sessions:
+      login_blocks:
+        basic_login_title: 'Accede con tu cuenta de MyBookings'
+        forgot_your_password: 'Olvidé mi contraseña'
+        idps_login_description: 'Puedes acceder a MyBookings con alguno de los siguientes proveedores de identidad externos:'
+        idps_login_title: 'Acceder con un proveedor de identidad externo'
+        sign_in: 'Acceder'
+        sign_in_with: 'Acceder con %{provider}'
+        sign_up: 'Crear una nueva cuenta de usuario'
+      new:
+        sign_in: Acceder
       signed_in: "Ha iniciado sesión satisfactoriamente."
       signed_out: "Ha cerrado la sesión satisfactoriamente."
     unlocks:

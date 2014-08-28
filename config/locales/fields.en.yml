@@ -25,3 +25,5 @@ en:
         email: Email
         created_at: Creation date
         roles: Role
+        password: Password
+        password_confirmation: Password confirmation

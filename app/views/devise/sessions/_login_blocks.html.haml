@@ -1,0 +1,30 @@
+.row
+  .col-xs-12.col-sm-6
+    .panel.panel-default
+      .panel-heading
+        = t('.basic_login_title')
+      .panel-body
+        = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+          = f.input :email
+          = f.input :password
+          - if devise_mappings.rememberable?
+            = f.input :remember_me, as: :boolean
+          = f.submit t('.sign_in'), class: 'btn btn-primary'
+        %hr
+        .row
+          .col-xs-12.col-sm-6
+            - if devise_mappings.recoverable?
+              = link_to t('.forgot_your_password'), new_password_path(resource_name)
+          .col-xs-12.col-sm-6
+            - if devise_mappings.registerable?
+              .text-right= link_to t('.sign_up'), new_registration_path(resource_name)
+
+  .col-xs-12.col-sm-6
+    .panel.panel-default
+      .panel-heading
+        = t('.idps_login_title')
+      .panel-body
+        .lead= t('.idps_login_description')
+        - if devise_mappings.omniauthable?
+          - resource_class.omniauth_providers.each do |provider|
+            = link_to t('.sign_in_with', provider: provider.to_s), omniauth_authorize_path(resource_name, provider), class: 'btn btn-default'
