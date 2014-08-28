@@ -37,4 +37,9 @@ Rails.application.configure do
 
   # Required by Devise
   config.action_mailer.default_url_options = { host: 'mybookings.dev' }
+  config.action_mailer.asset_host = 'http://mybookings.dev'
+
+  # Using Mailcatcher on dev (http://mailcatcher.me)
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end
