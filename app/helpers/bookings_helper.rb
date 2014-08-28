@@ -12,7 +12,11 @@ module BookingsHelper
 
     unless resource_type_extension_actions.nil?
       resource_type_extension_actions.each do |action|
-        links << "#{link_to icon_with_text(action[:icon], action[:text]), action[:path], class: 'btn btn-default btn-xs'}"
+        action[:target] ||= '_self'
+
+        link = link_to icon_with_text(action[:icon], action[:text]), action[:path], target: action[:target], class: 'btn btn-default btn-xs'
+
+        links << link
       end
     end
 
