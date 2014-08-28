@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/skuark/mybookings_adobe_connect_extension.git
-  revision: ab9369e3fdf05def0d26ada021ef80cf70adb629
+  revision: 6786884574ba6efeea95b48a0028e3082630161b
   specs:
     adobe_connect_extension (0.0.1)
       adobe_connect
