@@ -6,8 +6,9 @@ namespace :mybookings do
     about_to_begin_bookings = Booking.about_to_begin
 
     about_to_begin_bookings.each do |booking|
-      booking.occurring!
       ResourceTypesExtensionsWrapper.call(:on_booking_start, booking)
+
+      booking.occurring!
     end
 
   end
@@ -18,8 +19,9 @@ namespace :mybookings do
     recently_finished_bookings = Booking.recently_finished
 
     recently_finished_bookings.each do |booking|
-      booking.expired!
       ResourceTypesExtensionsWrapper.call(:on_booking_end, booking)
+
+      booking.expired!
     end
 
   end
