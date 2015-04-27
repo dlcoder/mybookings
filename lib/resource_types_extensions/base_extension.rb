@@ -1,5 +1,4 @@
 class ResourceTypesExtensions::BaseExtension
-
   def self.after_booking_creation booking
   end
 
@@ -11,5 +10,4 @@ class ResourceTypesExtensions::BaseExtension
 
   def self.actions_for booking
   end
-
 end

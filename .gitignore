@@ -1,7 +1,7 @@
 .DS_Store
-*.todo
+todo.md
 /.bundle
 /log/*.log
 /tmp
 /config/database.yml
-/config/local_env.yml
+/config/secrets.yml

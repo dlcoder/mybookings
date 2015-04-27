@@ -1,5 +1,4 @@
 class BookingsController < BaseController
-
   before_action :load_booking, only: [:destroy, :edit_feedback, :set_feedback]
 
   def index
@@ -58,5 +57,4 @@ class BookingsController < BaseController
   def load_current_user_bookings
     @bookings = policy_scope(Booking).by_start_date.decorate
   end
-
 end

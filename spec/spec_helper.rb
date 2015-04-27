@@ -56,6 +56,6 @@ OmniAuth.config.mock_auth[:feide] = {
   'provider' => 'feide',
   'uid' => '12354567890',
   'info' => {
-    'email' => 'skuark@gmail.com'
+    'email' => 'user@example.com'
   }
 }

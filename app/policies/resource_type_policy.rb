@@ -1,5 +1,4 @@
 class ResourceTypePolicy < ApplicationPolicy
-
   class Scope < Struct.new(:user, :scope)
     def resolve
       if user.has_role? :admin
@@ -13,5 +12,4 @@ class ResourceTypePolicy < ApplicationPolicy
   def manage?
     return false
   end
-
 end

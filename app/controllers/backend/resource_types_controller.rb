@@ -1,5 +1,4 @@
 class Backend::ResourceTypesController < Backend::BaseController
-
   include Backend::Administerable
   include Backend::Authorizable
 
@@ -38,5 +37,4 @@ class Backend::ResourceTypesController < Backend::BaseController
 
     @resource_type = ResourceType.find(resource_type_id)
   end
-
 end

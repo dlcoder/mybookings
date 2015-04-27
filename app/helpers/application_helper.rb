@@ -1,21 +1,16 @@
 module ApplicationHelper
-
-  #TODO: ¿Ok?
   def resource_name
     :user
   end
 
-  #TODO: ¿Ok?
   def resource
     @resource ||= User.new
   end
 
-  #TODO: ¿Ok?
   def devise_mappings
     @devise_mappings ||= Devise.mappings[:user]
   end
 
-  #TODO: ¿Ok?
   def resource_class
     User
   end
@@ -104,5 +99,4 @@ module ApplicationHelper
     icon = options.delete(:icon)
     link_to icon_with_text(icon, text), path, { data: { confirm: title }, method: verb }.merge(options)
   end
-
 end

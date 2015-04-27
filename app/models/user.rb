@@ -28,5 +28,4 @@ class User < ActiveRecord::Base
   def self.by_id
     order(id: :asc)
   end
-
 end

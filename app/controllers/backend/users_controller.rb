@@ -1,5 +1,4 @@
 class Backend::UsersController < Backend::BaseController
-
   include Backend::Administerable
   include Backend::Authorizable
 
@@ -40,5 +39,4 @@ class Backend::UsersController < Backend::BaseController
   def user_params
     params.require(:user).permit(:roles, :resource_type_ids => [])
   end
-
 end

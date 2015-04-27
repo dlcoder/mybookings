@@ -1,5 +1,4 @@
 module BackendHelper
-
   def active_class_for controller
     'active' if params[:controller] == controller
   end
@@ -34,5 +33,4 @@ module BackendHelper
 
     extensions
   end
-
 end

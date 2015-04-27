@@ -1,5 +1,4 @@
 module Backend::Administerable
-
   extend ActiveSupport::Concern
 
   included do
@@ -11,5 +10,4 @@ module Backend::Administerable
   def authorize_if_admin
     @authorized = true if current_user.has_role? :admin
   end
-
 end

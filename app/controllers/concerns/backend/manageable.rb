@@ -1,5 +1,4 @@
 module Backend::Manageable
-
   extend ActiveSupport::Concern
 
   included do
@@ -11,5 +10,4 @@ module Backend::Manageable
   def authorize_if_manager
     @authorized = true if current_user.has_role? :manager
   end
-
 end

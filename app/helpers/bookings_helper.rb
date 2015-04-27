@@ -1,5 +1,4 @@
 module BookingsHelper
-
   def bootstrap_class_for booking_status
     return 'warning' if booking_status == 'pending'
     return 'info' if booking_status == 'occurring'
@@ -22,5 +21,4 @@ module BookingsHelper
 
     links.html_safe
   end
-
 end

@@ -1,5 +1,4 @@
 module Backend::Authorizable
-
   extend ActiveSupport::Concern
 
   included do
@@ -11,5 +10,4 @@ module Backend::Authorizable
   def authorize!
     redirect_to (request.referrer || root_path), alert: t('not_authorized') unless @authorized
   end
-
 end

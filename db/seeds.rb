@@ -1,4 +1,4 @@
-admin = User.create({ email: 'skuark@gmail.com', password: '12345678' })
+admin = User.create({ email: 'user@example.com', password: '12345678' })
 
 admin.roles = [:admin]
 admin.save!

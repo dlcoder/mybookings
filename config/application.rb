@@ -23,14 +23,6 @@ module Mybookings
     # I18n fallback to :en
     config.i18n.fallbacks = [:en]
 
-    # For loading local_env.yml file in development
-    config.before_configuration do
-      env_file = File.join(Rails.root, 'config', 'local_env.yml')
-      YAML.load(File.open(env_file)).each do |key, value|
-        ENV[key.to_s] = value
-      end if File.exists?(env_file)
-    end
-
     # Autoload lib directory
     config.autoload_paths += %W(#{config.root}/lib)
   end

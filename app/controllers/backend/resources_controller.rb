@@ -1,5 +1,4 @@
 class Backend::ResourcesController < Backend::BaseController
-
   include Backend::Administerable
   include Backend::Manageable
   include Backend::Authorizable
@@ -46,5 +45,4 @@ class Backend::ResourcesController < Backend::BaseController
   def load_current_user_managed_resource_types
     @managed_resource_types = policy_scope(ResourceType)
   end
-
 end

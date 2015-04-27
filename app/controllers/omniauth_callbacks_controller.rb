@@ -1,5 +1,4 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   def feide
     @user = User.find_saml_user_or_create(request.env['omniauth.auth'])
 
@@ -11,5 +10,4 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
-
 end

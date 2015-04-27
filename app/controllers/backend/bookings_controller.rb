@@ -1,5 +1,4 @@
 class Backend::BookingsController < Backend::BaseController
-
   include Backend::Administerable
   include Backend::Manageable
   include Backend::Authorizable
@@ -9,7 +8,7 @@ class Backend::BookingsController < Backend::BaseController
   def index
     @bookings = @resource.bookings.decorate
   end
-  
+
   private
 
   def load_resource
@@ -18,5 +17,4 @@ class Backend::BookingsController < Backend::BaseController
     @resource = Resource.find(resource_id)
     authorize @resource
   end
-
 end

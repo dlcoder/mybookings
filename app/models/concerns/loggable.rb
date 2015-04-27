@@ -14,7 +14,6 @@ module Loggable
     end
   end
 
-
   private
 
   def notify_record_created

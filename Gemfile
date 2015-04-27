@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
 
 gem 'rails', '4.1.4'
 gem 'pg'
@@ -14,18 +13,11 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'simple_form'
 gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', git: 'git://github.com/ChrisLusted/bootstrap3-datetimepicker-rails.git'
+gem 'bootstrap3-datetimepicker-rails', github: 'ChrisLusted/bootstrap3-datetimepicker-rails'
 gem 'omniauth-saml'
 gem 'pundit'
 gem 'role_model'
 gem 'draper', '~> 1.3'
-
-gem 'clockwork'
-# gem 'whenever', :require => false
-
-# extensions
-gem 'adobe_connect', git: 'git://github.com/skuark/adobe_connect.git'
-gem 'adobe_connect_extension', git: 'git://github.com/skuark/mybookings_adobe_connect_extension.git'
 
 group :development do
   gem 'better_errors'
@@ -47,5 +39,5 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'whenever', :require => false
 end

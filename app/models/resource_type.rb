@@ -9,14 +9,12 @@ class ResourceType < ActiveRecord::Base
   def self.by_name
     order(name: :asc)
   end
-  
+
   def resources_number
     self.resources.count
   end
 
-  # DOUBT: Move to policy (resource_policy)
   def managed_by? user
     self.users.exists? user
   end
-
 end

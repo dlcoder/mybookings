@@ -1,5 +1,4 @@
 class ::BaseController < ApplicationController
-
   include Pundit
 
   before_action :authenticate_user!
@@ -16,5 +15,4 @@ class ::BaseController < ApplicationController
   def user_not_authorized
     redirect_to (request.referrer || root_path), alert: t('not_authorized')
   end
-
 end
