@@ -33,7 +33,7 @@ Before trying to make significant changes and sending a pull request, please ope
 
 The development of MyBookings started at 2014 in the [University of Jaén](http://www.ujaen.es/) as a Degree's Final Project by [Jesús Manuel García Muñoz](//github.com/skuark), a computer engineering student.
 
-Nowadays, it is maintained by [Delirium Coder](http://www.deliriumcoder.com), a web development company [based on Jaén](http://www.lugaresmiticosdejaen.com).
+Nowadays, it is maintained by [Delirium Coder](http://www.deliriumcoder.com), a web development company [based in Jaén, Spain](http://www.lugaresmiticosdejaen.com).
 
 For a list of people who have contributed to the codebase, see [GitHub's list of contributors](https://github.com/dlcoder/mybookings/contributors).
 
