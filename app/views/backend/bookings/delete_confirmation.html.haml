@@ -1,0 +1,4 @@
+= title
+= simple_form_for @booking_form, url: backend_resource_booking_path(@resource.id, @booking.id), method: :delete do |f|
+  = f.input :reason, as: :text
+  = f.button icon_with_text('remove', t('bookings.booking.cancel_booking')), class: 'btn btn-danger'

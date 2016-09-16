@@ -33,6 +33,8 @@ en:
         no_bookings: 'This resource has no bookings yet.'
         resource: 'Resource:'
         title: 'Resource bookings'
+      delete_confirmation:
+        title: 'Cancel booking confirmation'
     manager_menu:
       manage: 'Manage'
       resources: 'Resources'

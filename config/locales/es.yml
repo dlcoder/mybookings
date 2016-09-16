@@ -33,6 +33,8 @@ es:
         no_bookings: 'Este recurso aún no ha sido reservado.'
         resource: 'Recurso:'
         title: 'Reservas del recurso'
+      delete_confirmation:
+        title: 'Confirmación de la cancelación de la reserva'
     manager_menu:
       manage: 'Gestionar'
       resources: 'Recursos'

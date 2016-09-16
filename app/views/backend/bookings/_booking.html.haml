@@ -1,10 +1,13 @@
 %dl.panel{ class: "panel-#{bootstrap_class_for(booking.status)}" }
   .panel-heading
     .row
-      .col-xs-9
+      .col-xs-8
         = icon_with_text('envelope', booking.user_email)
-      .col-xs-3.text-right
+      .col-xs-4.text-right
         %span.label{ class: "label-#{bootstrap_class_for(booking.status)}" }= t("bookings.statuses.#{booking.status}")
+        - if booking.pending?
+          %span
+            = link_to icon_with_text('remove', t('bookings.booking.cancel_booking')), backend_resource_booking_delete_confirmation_path(resource.id, booking.id), class: 'btn btn-danger btn-xs'
   .panel-body
     .row
       .col-xs-12.col-md-4
