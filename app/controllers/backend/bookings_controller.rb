@@ -17,9 +17,9 @@ class Backend::BookingsController < Backend::BaseController
   def destroy
     @booking_form = DeleteBookingForm.new(params[:delete_booking_form])
     if @booking_form.valid?
-      logger.info "The booking #{@booking.name} of the resource #{@resource.name} has been deleted. The reason is reason: #{@booking_form.reason}"
+      logger.info "The booking #{@booking.id} of the resource #{@resource.name} has been deleted. The reason is: #{@booking_form.reason}"
       @booking.destroy!
-      redirect_to backend_resource_bookings_path, notice: I18n.t('bookings.destroy.cancel_notice')
+      redirect_to backend_resource_bookings_path, notice: I18n.t('backend.bookings.destroy.cancel_notice')
     else
       render 'delete_confirmation'
     end
