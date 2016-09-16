@@ -35,6 +35,8 @@ en:
         title: 'Resource bookings'
       delete_confirmation:
         title: 'Cancel booking confirmation'
+      destroy:
+        cancel_notice: 'The booking has been canceled.'
     manager_menu:
       manage: 'Manage'
       resources: 'Resources'

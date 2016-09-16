@@ -35,6 +35,8 @@ es:
         title: 'Reservas del recurso'
       delete_confirmation:
         title: 'Confirmación de la cancelación de la reserva'
+      destroy:
+        cancel_notice: 'La reserva ha sido cancelada.'
     manager_menu:
       manage: 'Gestionar'
       resources: 'Recursos'
