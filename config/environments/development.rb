@@ -46,4 +46,7 @@ Rails.application.configure do
   # Using Mailcatcher on dev (http://mailcatcher.me)
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+
+  # ActionMailer Preview emails
+  config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
 end

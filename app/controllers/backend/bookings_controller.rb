@@ -19,6 +19,7 @@ class Backend::BookingsController < Backend::BaseController
     if @booking_form.valid?
       logger.info "The booking #{@booking.id} of the resource #{@resource.name} has been deleted. The reason is: #{@booking_form.reason}"
       @booking.destroy!
+      BookingsMailer.cancel_booking(@booking, @booking_form.reason).deliver!
       redirect_to backend_resource_bookings_path, notice: I18n.t('backend.bookings.destroy.cancel_notice')
     else
       render 'delete_confirmation'
