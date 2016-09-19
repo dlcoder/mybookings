@@ -25,4 +25,4 @@ en:
     #     password: 'No special characters, please.'
     labels:
       delete_booking_form:
-        reason: The reason because you cancel the booking
+        reason: 'The reason you are canceling the booking'
