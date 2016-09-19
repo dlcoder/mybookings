@@ -4,7 +4,7 @@ class Backend::BookingsController < Backend::BaseController
   include Backend::Authorizable
 
   before_action :load_resource, only: [:index, :delete_confirmation, :destroy]
-  before_action :load_booking, only: [:delete_confirmation, :destroy]
+  before_action :load_booking, only: [:delete_confirmation, :destroy, :update]
 
   def index
     @bookings = @resource.bookings.decorate
@@ -12,6 +12,7 @@ class Backend::BookingsController < Backend::BaseController
 
   def delete_confirmation
     @booking_form = DeleteBookingForm.new
+    @resources = @booking.alternative_resources
   end
 
   def destroy
@@ -26,7 +27,20 @@ class Backend::BookingsController < Backend::BaseController
     end
   end
 
+  def update
+    if @booking.valid?
+      @booking.update(booking_params)
+      return redirect_to backend_resources_path, notice: I18n.t('backend.bookings.update.reallocated_notice')
+    else
+      render 'delete_confirmation'
+    end
+  end
+
   private
+
+  def booking_params
+    params.require(:booking).permit!
+  end
 
   def load_resource
     resource_id = params[:resource_id]

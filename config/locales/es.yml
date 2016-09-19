@@ -35,8 +35,15 @@ es:
         title: 'Reservas del recurso'
       delete_confirmation:
         title: 'Confirmación de la cancelación de la reserva'
+        reallocate_booking_header: 'Reasignar reserva'
+        reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'
+        no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
+        cancel_booking_header: 'Cancelar reserva'
+        cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje que se enviará al ususario.'
       destroy:
         cancel_notice: 'La reserva ha sido cancelada.'
+      update:
+        reallocated_notice: 'La reserva ha sido reasignada.'
     manager_menu:
       manage: 'Gestionar'
       resources: 'Recursos'

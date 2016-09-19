@@ -35,8 +35,15 @@ en:
         title: 'Resource bookings'
       delete_confirmation:
         title: 'Cancel booking confirmation'
+        reallocate_booking_header: 'Reallocate booking'
+        reallocate_booking_message: 'There is available resource at the same time slot. Do you want to assign this booking to a new resource of the same type?'
+        no_resources_availables_message: 'In this moment, there is not any resource to reallocate this booking.'
+        cancel_booking_header: 'Cancel booking'
+        cancel_booking_message: 'Are you sure that you want cancel this booking? You must write a message that it will be sent to the user.'
       destroy:
         cancel_notice: 'The booking has been canceled.'
+      update:
+        reallocated_notice: 'The booking has been reasigned.'
     manager_menu:
       manage: 'Manage'
       resources: 'Resources'
@@ -103,5 +110,5 @@ en:
 
   bookings_mailer:
     cancel_booking:
-      subject: 'Your booking in MyBokkings has been canceled.'
+      subject: 'Your booking in MyBookings has been canceled.'
       body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'

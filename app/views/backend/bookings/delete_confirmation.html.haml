@@ -1,4 +1,29 @@
 = title
-= simple_form_for @booking_form, url: backend_resource_booking_path(@resource.id, @booking.id), method: :delete do |f|
-  = f.input :reason, as: :text
-  = f.button icon_with_text('remove', t('bookings.booking.cancel_booking')), class: 'btn btn-danger'
+
+.panel.panel-info
+  .panel-heading
+    = t('backend.bookings.delete_confirmation.reallocate_booking_header')
+  .panel-body
+    - if @resources.any?
+      %h5= t('backend.bookings.delete_confirmation.reallocate_booking_message')
+
+      = simple_form_for @booking, url: backend_resource_booking_path(@resource.id, @booking.id) do |f|
+        = render_model_base_errors f.object
+
+        .row
+          .col-xs-12.col-sm-4
+            = f.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
+        = f.button icon_with_text('ok', t('.update_booking')), class: 'btn btn-primary'
+    - else
+      %p= t('backend.bookings.delete_confirmation.no_resources_availables_message')
+
+.panel.panel-danger
+  .panel-heading
+    = t('backend.bookings.delete_confirmation.cancel_booking_header')
+  .panel-body
+    %h5= t('backend.bookings.delete_confirmation.cancel_booking_message')
+
+    = simple_form_for @booking_form, url: backend_resource_booking_path(@resource.id, @booking.id), method: :delete do |f|
+      = f.input :reason, as: :text, input_html: { rows: 5 }
+      = f.button icon_with_text('remove', t('bookings.booking.cancel_booking')), class: 'btn btn-danger'
+
