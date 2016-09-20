@@ -117,3 +117,6 @@ en:
     cancel_booking:
       subject: 'Your booking in MyBookings has been canceled.'
       body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
+    notify_upcoming_booking:
+      subject: 'Remember that you have an upcoming booking to be held'
+      body_html: 'This message is to remember you that you have an upcoming scheluded booking to begin the %{start_date}.'
