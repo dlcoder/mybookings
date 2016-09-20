@@ -40,7 +40,7 @@ class Booking < ActiveRecord::Base
     start_date, end_date = dates_with_extension
 
     bookings = Booking.joins(:resource)
-                      .where('resources.resource_type_id = ? AND ? <= bookings.start_date AND ? >= bookings.end_date', resource.resource_type_id, start_date, end_date)
+                      .where(resources: { resource_type_id: resource.resource_type_id }, bookings: { start_date:  (start_date..end_date), end_date: (start_date..end_date) })
                       .pluck('resources.id')
 
     Resource.where.not(id: bookings)
