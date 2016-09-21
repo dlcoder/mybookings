@@ -18,4 +18,14 @@ class NotificationsMailer < ApplicationMailer
       mail(to: user.email, subject: t('notifications_mailer.notify_new_booking.subject')).deliver
     end
   end
+
+  def notify_delete_booking booking
+    users = booking.resource.resource_type_users
+    @resource_name = booking.resource_name
+
+    users.each do |user|
+      mail(to: user.email, subject: t('notifications_mailer.notify_delete_booking.subject')).deliver
+    end
+  end
+
 end

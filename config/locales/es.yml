@@ -123,3 +123,6 @@ es:
     notify_new_booking:
       subject: 'Una nueva reserva ha sido creada'
       body_html: 'Queremos notificarle que una nueva reserva ha sido creada en el recurso <strong>%{resource_name}</strong>'
+    notify_delete_booking:
+      subject: 'Una reserva ha sido cancelada'
+      body_html: 'Queremos notificarle que una reserva asociada al recurso <strong>%{resource_name}</strong> ha sido cancelada.'

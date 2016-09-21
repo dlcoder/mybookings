@@ -25,7 +25,10 @@ class BookingsController < BaseController
   end
 
   def destroy
-    @booking.destroy if @booking.pending?
+    if @booking.pending?
+      NotificationsMailer.notify_delete_booking @booking if @booking.resource.resource_type_users.any?
+      @booking.destroy
+    end
     redirect_to bookings_path
   end
 
