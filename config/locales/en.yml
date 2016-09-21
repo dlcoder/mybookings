@@ -113,7 +113,7 @@ en:
       expired: 'Expired'
       occurring: 'Occurring'
 
-  bookings_mailer:
+  notifications_mailer:
     cancel_booking:
       subject: 'Your booking in MyBookings has been canceled.'
       body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
