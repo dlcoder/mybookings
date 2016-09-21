@@ -16,6 +16,7 @@ class BookingsController < BaseController
     if @booking.valid?
       ResourceTypesExtensionsWrapper.call(:after_booking_creation, @booking)
       @booking.save!
+      NotificationsMailer.notify_new_booking(@booking) if @booking.resource.resource_type_users.any?
       return redirect_to bookings_path
     else
       load_available_resources_by_type_name_and_name

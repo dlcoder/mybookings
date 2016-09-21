@@ -120,3 +120,6 @@ es:
     notify_upcoming_booking:
       subject: 'Recuerda que tienes un reserva próxima a celebrarse'
       body_html: 'Este mensaje es para recordale que tienes un reserve programada para comenzar el %{start_date}.'
+    notify_new_booking:
+      subject: 'Una nueva reserva ha sido creada'
+      body_html: 'Queremos notificarle que una nueva reserva ha sido creada en el recurso <strong>%{resource_name}</strong>'
