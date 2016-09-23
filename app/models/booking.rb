@@ -3,12 +3,13 @@ class Booking < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :resource
+  has_many :events , inverse_of: :booking
+
+  accepts_nested_attributes_for :events
 
   enum status: %w(pending occurring expired)
 
-  validates :resource, :start_date, :end_date, presence: true
-  validate :dates_range
-  validate :dates_in_the_future, :dates_overlap, on: :create
+  validate :resource, presence: true
   validate :resource_is_available, on: :create
 
   delegate :email, to: :user, prefix: true
@@ -17,7 +18,7 @@ class Booking < ActiveRecord::Base
   delegate :resource_type_extension, to: :resource, prefix: true
 
   def self.by_start_date
-    order(start_date: :desc)
+    includes(:events).order('events.start_date DESC')
   end
 
   def self.new_for_user user, params
@@ -67,32 +68,6 @@ class Booking < ActiveRecord::Base
   end
 
   private
-
-  def dates_in_the_future
-    unless start_date.nil?
-      errors.add(:start_date, I18n.t('errors.messages.booking.start_date_in_the_past')) if start_date.past?
-    end
-
-    unless end_date.nil?
-      errors.add(:end_date, I18n.t('errors.messages.booking.end_date_in_the_past')) if end_date.past?
-    end
-  end
-
-  def dates_range
-    unless start_date.nil? or end_date.nil?
-      if end_date <= start_date
-        errors.add(:start_date, I18n.t('errors.messages.booking.start_date_greater_than_end_date'))
-        errors.add(:end_date, I18n.t('errors.messages.booking.end_date_smaller_than_start_date'))
-      end
-    end
-  end
-
-  def dates_overlap
-    unless start_date.nil? or end_date.nil? or resource.nil?
-      overlapped_bookings = resource.bookings.overlapped_at(start_date, end_date)
-      errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_bookings.any?
-    end
-  end
 
   def resource_is_available
     unless resource.nil?

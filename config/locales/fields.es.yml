@@ -3,12 +3,13 @@ es:
     attributes:
       booking:
         comment: Observaciones
-        end_date: Fecha de fin
         feedback: Comentarios
         resource: Recurso
         resource_name: Nombre del recurso
         resource_type_name: Tipo de recurso
         status: Estado
+      event:
+        end_date: Fecha de fin
         start_date: Fecha de inicio
       resource:
         id: ID

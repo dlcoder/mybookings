@@ -1,0 +1,9 @@
+event1:
+  start_date: '2000-01-01 12:00:00 UTC'
+  end_date: '2000-01-01 13:00:00 UTC'
+  booking: expired_booking
+
+event2:
+  start_date: '2000-01-02 12:00:00 UTC'
+  end_date: '2000-01-02 13:00:00 UTC'
+  booking: expired_booking_with_feedback

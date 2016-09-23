@@ -8,6 +8,7 @@ class BookingsController < BaseController
   def new
     load_available_resources_by_type_name_and_name
     @booking = Booking.new
+    @booking.events.build
   end
 
   def create
