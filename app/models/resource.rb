@@ -2,7 +2,7 @@ class Resource < ActiveRecord::Base
   include Loggable
 
   belongs_to :resource_type
-  has_many :bookings
+  has_many :events
 
   validates :name, :resource_type, presence: true
 

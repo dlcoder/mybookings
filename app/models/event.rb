@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   include Loggable
 
   belongs_to :booking
+  belongs_to :resource
 
   validates :start_date, :end_date, presence: true
   validate :dates_range
