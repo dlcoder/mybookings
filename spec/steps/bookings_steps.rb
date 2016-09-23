@@ -16,8 +16,8 @@ step 'I can book an available resource' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'booking_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
-  fill_in 'booking_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_events_attributes_0_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_events_attributes_0_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
   click_button 'Create booking'
