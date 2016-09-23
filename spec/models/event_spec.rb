@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Event do
-  let(:event) { Event.new(start_date: 1.hour.from_now, end_date: 2.hour.from_now) }
+  let(:resource) { Resource.new(name: 'Resource', resource_type: ResourceType.new ) }
+  let(:event) { Event.new(resource: resource, start_date: 1.hour.from_now, end_date: 2.hour.from_now) }
 
   it 'validates that a event with start date in the past is not valid' do
     event.start_date = 2.hour.ago
@@ -25,6 +26,13 @@ describe Event do
     expect(event.valid?).to be_false
     expect(event).to have(1).errors_on(:start_date)
     expect(event).to have(1).errors_on(:end_date)
+  end
+
+  it 'validates that a event can not be saved if the associated resource not is available' do
+    resource.switch_availability!
+
+    expect(event.valid?).to be_false
+    expect(event).to have(1).errors
   end
 
 end

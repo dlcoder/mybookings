@@ -4,9 +4,9 @@ class Event < ActiveRecord::Base
   belongs_to :booking
   belongs_to :resource
 
-  validates :start_date, :end_date, presence: true
+  validates :start_date, :end_date, :resource, presence: true
   validate :dates_range
-  validate :dates_in_the_future, :dates_ovelap, on: :create
+  validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
 
   private
 
@@ -30,13 +30,18 @@ class Event < ActiveRecord::Base
   end
 
   def dates_ovelap
-    unless start_date.nil? or end_date.nil? or self.booking.nil?
-      resource = self.booking.resource
+    unless start_date.nil? or end_date.nil? or resource.nil?
       start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
       end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
 
-      overlapped_events = Resource.joins(bookings: :events).where('(resources.id = ?) AND ((? >= events.start_date AND ? <= events.end_date) OR (? >= events.start_date AND ? <= events.end_date))', resource.id, start_date, start_date, end_date, end_date)
+      overlapped_events = resource.events.where('(? >= events.start_date AND ? <= events.end_date) OR (? >= events.start_date AND ? <= events.end_date)', start_date, start_date, end_date, end_date)
       errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_events.any?
+    end
+  end
+
+  def resource_is_available
+    unless resource.nil?
+      errors.add(:resource, I18n.t('errors.messages.booking.resource_is_not_available')) if resource.disabled?
     end
   end
 
