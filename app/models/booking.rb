@@ -2,6 +2,7 @@ class Booking < ActiveRecord::Base
   include Loggable
 
   belongs_to :user
+  belongs_to :resource_type
   has_many :events , inverse_of: :booking
 
   accepts_nested_attributes_for :events

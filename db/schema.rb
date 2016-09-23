@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923101408) do
+ActiveRecord::Schema.define(version: 20160923111721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20160923101408) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "feedback"
-    t.integer  "status",     default: 0
+    t.integer  "status",           default: 0
     t.text     "comment"
+    t.integer  "resource_type_id"
   end
+
+  add_index "bookings", ["resource_type_id"], name: "index_bookings_on_resource_type_id", using: :btree
 
   create_table "events", force: true do |t|
     t.datetime "start_date"
