@@ -1,10 +1,10 @@
 expired_booking:
   user: user
-  resource: acmr1
   status: 2
+  resource_type: acmr
 
 expired_booking_with_feedback:
   user: user
-  resource: acmr2
   feedback: 'The resource have a lot of problems.'
   status: 2
+  resource_type: acmr
