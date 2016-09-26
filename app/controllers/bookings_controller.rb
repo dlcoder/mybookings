@@ -26,9 +26,10 @@ class BookingsController < BaseController
   end
 
   def destroy
-    if @booking.events.first.pending?
+    if @booking.has_pending_events?
       NotificationsMailer.notify_delete_booking(@booking).deliver!
-      @booking.destroy
+      @booking.delete_pending_events
+      @booking.destroy unless @booking.has_events?
     end
     redirect_to bookings_path
   end
@@ -60,6 +61,6 @@ class BookingsController < BaseController
   end
 
   def load_current_user_bookings
-    @bookings = policy_scope(Booking).by_start_date.decorate
+    @bookings = policy_scope(Booking).by_start_date
   end
 end
