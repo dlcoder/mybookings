@@ -1,12 +1,13 @@
-%tr{ class: bootstrap_class_for(booking.events.first.status) }
-  %td= booking.events.first.resource_resource_type_name
-  %td= booking.events.first.resource_name
-  %td= t("bookings.statuses.#{booking.events.first.status}")
-  %td= l booking.events.first.start_date, format: :long
-  %td= l booking.events.first.end_date, format: :long
-  %td
-    = show_specific_actions_for booking.events.first
-    - if booking.events.first.pending?
-      = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
-    - if booking.events.first.expired? && !booking.has_feedback?
-      = link_to t('.send_feedback'), booking_edit_feedback_path(booking.id), class: 'btn btn-default btn-xs'
+- booking.events.each do |event|
+  %tr{ class: bootstrap_class_for(event.status) }
+    %td= event.resource_resource_type_name
+    %td= event.resource_name
+    %td= t("bookings.statuses.#{event.status}")
+    %td= l event.start_date, format: :long
+    %td= l event.end_date, format: :long
+    %td
+      = show_specific_actions_for event
+      - if event.pending?
+        = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
+      - if event.expired? && !booking.has_feedback?
+        = link_to t('.send_feedback'), booking_edit_feedback_path(booking.id), class: 'btn btn-default btn-xs'
