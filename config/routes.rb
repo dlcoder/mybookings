@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     put :set_feedback
   end
 
+  resources :events
+
   namespace :backend do
 
     resources :resources do
