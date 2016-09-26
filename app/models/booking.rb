@@ -7,9 +7,8 @@ class Booking < ActiveRecord::Base
 
   accepts_nested_attributes_for :events
 
-  enum status: %w(pending occurring expired)
-
   delegate :email, to: :user, prefix: true
+  delegate :name, to: :resource_type, prefix: true
 
   def self.by_start_date
     includes(:events).order('events.start_date DESC')
@@ -20,14 +19,6 @@ class Booking < ActiveRecord::Base
     booking.user = user
 
     booking
-  end
-
-  def self.about_to_begin
-    Booking.pending.where('? >= start_date', Time.now + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes)
-  end
-
-  def self.recently_finished
-    Booking.occurring.where('? >= end_date', Time.now)
   end
 
 end

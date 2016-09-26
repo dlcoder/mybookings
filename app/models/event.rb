@@ -8,6 +8,20 @@ class Event < ActiveRecord::Base
   validate :dates_range
   validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
 
+  delegate :name, to: :resource, prefix: true
+  delegate :resource_type_name, to: :resource, prefix: true
+  delegate :resource_type_extension, to: :resource, prefix: true
+
+  enum status: %w(pending occurring expired)
+
+  def self.about_to_begin
+    Event.pending.where('? >= start_date', Time.now + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes)
+  end
+
+  def self.recently_finished
+    Event.occurring.where('? >= end_date', Time.now)
+  end
+
   private
 
   def dates_in_the_future

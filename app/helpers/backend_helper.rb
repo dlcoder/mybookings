@@ -8,16 +8,16 @@ module BackendHelper
   end
 
   def bookings_counters_for resource
-    expired_bookings = resource.expired_bookings_count
-    expired = t('.expired', expired_bookings: expired_bookings)
+    expired_events = resource.expired_events_count
+    expired = t('.expired', expired_events: expired_events)
     expired_formatted = "<span class='label label-#{bootstrap_class_for('expired')}'>#{expired}</span>"
 
-    pending_bookings = resource.pending_bookings_count
-    pending = t('.pending', pending_bookings: pending_bookings) if pending_bookings > 0
+    pending_events = resource.pending_events_count
+    pending = t('.pending', pending_events: pending_events) if pending_events > 0
     pending_formatted = "<span class='label label-#{bootstrap_class_for('pending')}'>#{pending}</span>"
 
-    occurring_bookings = resource.occurring_bookings_count
-    occurring = t('.occurring', occurring_bookings: occurring_bookings) if occurring_bookings > 0
+    occurring_events = resource.occurring_events_count
+    occurring = t('.occurring', occurring_events: occurring_events) if occurring_events > 0
     occurring_formatted = "<span class='label label-#{bootstrap_class_for('occurring')}'>#{occurring}</span>"
 
     "#{expired_formatted} #{pending_formatted} #{occurring_formatted}".html_safe

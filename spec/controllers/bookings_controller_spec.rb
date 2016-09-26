@@ -42,10 +42,8 @@ describe BookingsController do
     end
 
     describe 'on POST to create' do
-      let(:booking_params) { { "start_date" => '' } }
-      let(:resource_type) { resource_types(:pcv)}
-      let(:resource) { Resource.new(resource_type: resource_type) }
-      let(:booking) { Booking.new(user: user, resource: resource) }
+      let(:booking_params) { { "events" => {"start_date" => ''} } }
+      let(:booking) { Booking.new }
 
       before do
         allow(Booking).to receive(:new_for_user).with(user, booking_params).and_return(booking)
@@ -57,7 +55,7 @@ describe BookingsController do
         before do
           allow(booking).to receive(:valid?).and_return(true)
           allow(booking).to receive(:resource_resource_type_extension).and_return(resource_type_extension)
-          allow(ResourceTypesExtensionsWrapper).to receive(:call).with(:after_booking_creation, booking)
+          allow(ResourceTypesExtensionsWrapper).to receive(:call).with(:after_booking_creation, booking.events.first)
           allow(booking).to receive(:save!).and_return(true)
 
           post :create, booking: booking_params
@@ -84,10 +82,9 @@ describe BookingsController do
     end
 
     describe 'on DELETE to destroy' do
+      let(:event) { Event.new(start_date: '') }
       let(:booking_id) { '1' }
-      let(:resource_type) { resource_types(:pcv)}
-      let(:resource) { Resource.new(resource_type: resource_type) }
-      let(:booking) { Booking.new(user: user, resource: resource) }
+      let(:booking) { Booking.new(user: user, events: [event]) }
 
       before do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
@@ -95,7 +92,7 @@ describe BookingsController do
 
       context 'when the booking has started' do
         before do
-          allow(booking).to receive(:pending?).and_return(false)
+          allow(event).to receive(:pending?).and_return(false)
           expect(booking).to_not receive(:destroy)
 
           delete :destroy, id: booking_id
@@ -106,7 +103,7 @@ describe BookingsController do
 
       context 'when the booking have not started' do
         before do
-          allow(booking).to receive(:pending?).and_return(true)
+          allow(event).to receive(:pending?).and_return(true)
           expect(booking).to receive(:destroy)
 
           delete :destroy, id: booking_id

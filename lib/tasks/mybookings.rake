@@ -1,27 +1,27 @@
 namespace :mybookings do
 
-  desc "Process about to begin bookings"
-  task process_about_to_begin_bookings: :environment do
+  desc "Process about to begin events"
+  task process_about_to_begin_events: :environment do
 
-    about_to_begin_bookings = Booking.about_to_begin
+    about_to_begin_events = Event.about_to_begin
 
-    about_to_begin_bookings.each do |booking|
-      ResourceTypesExtensionsWrapper.call(:on_booking_start, booking)
+    about_to_begin_events.each do |event|
+      ResourceTypesExtensionsWrapper.call(:on_event_start, event)
 
-      booking.occurring!
+      event.occurring!
     end
 
   end
 
-  desc "Process recently finished bookings"
-  task process_recently_finished_bookings: :environment do
+  desc "Process recently finished events"
+  task process_recently_finished_events: :environment do
 
-    recently_finished_bookings = Booking.recently_finished
+    recently_finished_events = Event.recently_finished
 
-    recently_finished_bookings.each do |booking|
-      ResourceTypesExtensionsWrapper.call(:on_booking_end, booking)
+    recently_finished_events.each do |event|
+      ResourceTypesExtensionsWrapper.call(:on_event_end, event)
 
-      booking.expired!
+      event.expired!
     end
 
   end

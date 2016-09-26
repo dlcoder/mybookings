@@ -23,16 +23,20 @@ class Resource < ActiveRecord::Base
     self.update_attribute(:disabled, !self.disabled)
   end
 
-  def pending_bookings_count
-    self.bookings.pending.count
+  def bookings
+    Booking.joins(:events).where(events: { resource: self })
   end
 
-  def occurring_bookings_count
-    self.bookings.occurring.count
+  def pending_events_count
+    self.events.pending.count
   end
 
-  def expired_bookings_count
-    self.bookings.expired.count
+  def occurring_events_count
+    self.events.occurring.count
+  end
+
+  def expired_events_count
+    self.events.expired.count
   end
 
   def name_prefixed_with_resource_type

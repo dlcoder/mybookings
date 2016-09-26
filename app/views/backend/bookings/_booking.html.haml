@@ -1,10 +1,10 @@
-%dl.panel{ class: "panel-#{bootstrap_class_for(booking.status)}" }
+%dl.panel{ class: "panel-#{bootstrap_class_for(booking.events.first.status)}" }
   .panel-heading
     .row
       .col-xs-9
         = icon_with_text('envelope', booking.user_email)
       .col-xs-3.text-right
-        %span.label{ class: "label-#{bootstrap_class_for(booking.status)}" }= t("bookings.statuses.#{booking.status}")
+        %span.label{ class: "label-#{bootstrap_class_for(booking.events.first.status)}" }= t("bookings.statuses.#{booking.events.first.status}")
   .panel-body
     .row
       .col-xs-12.col-md-4

@@ -63,8 +63,8 @@ es:
       resource:
         enable: 'Activar'
         disable: 'Desactivar'
-        expired: '%{expired_bookings} terminadas'
-        pending: '%{pending_bookings} pendientes'
+        expired: '%{expired_events} terminadas'
+        pending: '%{pending_events} pendientes'
         occurring: '%{occurring_bookings} en proceso'
         show_bookings: 'Ver reservas'
     resource_types:
