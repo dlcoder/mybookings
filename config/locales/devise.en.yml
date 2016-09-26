@@ -70,12 +70,11 @@ en:
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
-      booking:
-        overlap: "There is another booking for the same resource at the same time."
-        resource_is_not_available: "The selected resource is not available for new bookings."
       event:
         end_date_in_the_past: "End date must be in the future."
         end_date_smaller_than_start_date: "End date must be greater than start date"
+        overlap: "There is another booking for the same resource at the same time."
+        resource_is_not_available: "The selected resource is not available for new bookings."
         start_date_in_the_past: "Start date must be in the future."
         start_date_greater_than_end_date: "Start date must be smaller than the end date"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"

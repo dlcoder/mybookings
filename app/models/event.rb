@@ -49,13 +49,13 @@ class Event < ActiveRecord::Base
       end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
 
       overlapped_events = resource.events.where('(? >= events.start_date AND ? <= events.end_date) OR (? >= events.start_date AND ? <= events.end_date)', start_date, start_date, end_date, end_date)
-      errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_events.any?
+      errors.add(:base, I18n.t('errors.messages.event.overlap')) if overlapped_events.any?
     end
   end
 
   def resource_is_available
     unless resource.nil?
-      errors.add(:resource, I18n.t('errors.messages.booking.resource_is_not_available')) if resource.disabled?
+      errors.add(:resource, I18n.t('errors.messages.event.resource_is_not_available')) if resource.disabled?
     end
   end
 

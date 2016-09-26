@@ -4,13 +4,14 @@ es:
       booking:
         comment: Observaciones
         feedback: Comentarios
+        resource_type: Tipo de Recurso
+      event:
+        end_date: Fecha de fin
         resource: Recurso
         resource_name: Nombre del recurso
         resource_type_name: Tipo de recurso
-        status: Estado
-      event:
-        end_date: Fecha de fin
         start_date: Fecha de inicio
+        status: Estado
       resource:
         id: ID
         resource_type: Tipo del recurso
