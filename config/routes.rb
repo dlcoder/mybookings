@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  resources :bookings do
+  resources :bookings, only: [:create, :index, :show, :destroy] do
+    get :new_first_step, on: :collection
+    get :new_second_step
     get :edit_feedback
     put :set_feedback
   end

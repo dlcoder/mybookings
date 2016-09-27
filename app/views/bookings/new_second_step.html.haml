@@ -4,6 +4,7 @@
   = render_model_base_errors f.object
 
   .row
+    = f.input :resource_type_id, as: :hidden
     = f.simple_fields_for :events do |event_form|
       .col-xs-12.col-sm-4
         = event_form.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type

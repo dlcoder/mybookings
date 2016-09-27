@@ -7,9 +7,9 @@
       = table_for bookings, t('activerecord.attributes.resource_type.name'), t('activerecord.attributes.event.status'), t('activerecord.attributes.event.start_date'), t('activerecord.attributes.event.end_date')
 
   = content_for :actions do
-    = link_to icon_with_text('plus', t('.new_booking')), new_booking_path, class: 'btn btn-primary'
+    = link_to icon_with_text('plus', t('.new_booking')), new_first_step_bookings_path, class: 'btn btn-primary'
 
 - else
   .lead
     %p= t('.no_bookings')
-    %p= link_to icon_with_text('plus', t('.new_booking')), new_booking_path, class: 'btn btn-primary'
+    %p= link_to icon_with_text('plus', t('.new_booking')), new_first_step_bookings_path, class: 'btn btn-primary'

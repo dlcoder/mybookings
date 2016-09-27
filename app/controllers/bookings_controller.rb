@@ -5,9 +5,14 @@ class BookingsController < BaseController
     load_current_user_bookings
   end
 
-  def new
-    load_available_resources_by_type_name_and_name
-    @booking = Booking.new
+  def new_first_step
+    @resource_types = ResourceType.all
+  end
+
+  def new_second_step
+    resource_type = ResourceType.find(params[:booking_id])
+    load_available_resources_by_resource_type resource_type
+    @booking = Booking.new(resource_type: resource_type)
     @booking.events.build
   end
 
@@ -22,7 +27,7 @@ class BookingsController < BaseController
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
       return redirect_to bookings_path
     else
-      load_available_resources_by_type_name_and_name
+      load_available_resources_by_resource_type resource_type @booking.resource_type
       render 'new'
     end
   end
@@ -51,8 +56,8 @@ class BookingsController < BaseController
     params.require(:booking).permit!
   end
 
-  def load_available_resources_by_type_name_and_name
-    @resources = Resource.avalaible_by_type_name_and_name
+  def load_available_resources_by_resource_type resource_type
+    @resources = Resource.available_by_resource_type resource_type
   end
 
   def load_booking
