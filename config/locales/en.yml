@@ -63,9 +63,9 @@ en:
       resource:
         enable: 'Enable'
         disable: 'Disable for new bookings'
-        expired: '%{expired_events} expired'
-        pending: '%{pending_events} pending'
-        occurring: '%{occurring_events} occurring'
+        expired: '%{expired_bookings} expired'
+        pending: '%{pending_bookings} pending'
+        occurring: '%{occurring_bookings} occurring'
         show_bookings: 'Show bookings'
     resource_types:
       edit:

@@ -1,7 +1,7 @@
 = title
 
 - if @resources.any?
-  = table_for @resources, :id, :name, :resource_type, :bookings
+  = table_for @resources, t('activerecord.attributes.resources.id'), t('activerecord.attributes.resources.name'), t('activerecord.attributes.resources.resource_type'), t('activerecord.attributes.resources.bookings')
 
   = content_for :actions do
     = link_to icon_with_text('plus', t('.new_resource')), new_backend_resource_path, class: 'btn btn-primary'

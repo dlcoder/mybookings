@@ -27,16 +27,18 @@ class Resource < ActiveRecord::Base
     Booking.joins(:events).where(events: { resource: self })
   end
 
-  def pending_events_count
-    self.events.pending.count
+  #TODO See how to get access to the event status constant.
+
+  def pending_bookings_count
+    Booking.joins(:events).where(events: { status: 0, resource: self }).count
   end
 
-  def occurring_events_count
-    self.events.occurring.count
+  def occurring_bookings_count
+    Booking.joins(:events).where(events: { status: 1, resource: self }).count
   end
 
-  def expired_events_count
-    self.events.expired.count
+  def expired_bookings_count
+    Booking.joins(:events).where(events: { status: 2, resource: self }).count
   end
 
   def name_prefixed_with_resource_type
