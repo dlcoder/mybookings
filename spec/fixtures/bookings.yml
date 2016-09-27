@@ -4,5 +4,4 @@ expired_booking:
 
 expired_booking_with_feedback:
   user: user
-  feedback: 'The resource have a lot of problems.'
   resource_type: acmr
