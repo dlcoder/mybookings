@@ -1,6 +1,5 @@
 - booking.events.each do |event|
   %tr{ class: bootstrap_class_for(event.status) }
-    %td= event.resource_resource_type_name
     %td= event.resource_name
     %td= t("bookings.statuses.#{event.status}")
     %td= l event.start_date, format: :long

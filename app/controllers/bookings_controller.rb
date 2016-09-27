@@ -15,7 +15,9 @@ class BookingsController < BaseController
     @booking = Booking.new_for_user(current_user, booking_params)
 
     if @booking.valid?
-      ResourceTypesExtensionsWrapper.call(:after_booking_creation, @booking.events.first)
+      @booking.events.each do |event|
+        ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
+      end
       @booking.save!
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
       return redirect_to bookings_path
@@ -61,6 +63,7 @@ class BookingsController < BaseController
   end
 
   def load_current_user_bookings
-    @bookings = policy_scope(Booking).by_start_date
+    @bookings = policy_scope(Booking).by_start_date.map { |resource_type, bookings| [resource_type,
+      BookingDecorator.decorate_collection(bookings)] }
   end
 end

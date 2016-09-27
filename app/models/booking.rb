@@ -12,7 +12,6 @@ class Booking < ActiveRecord::Base
 
   def self.by_start_date
     includes(:events, :resource_type).order('resource_types.name ASC').group_by(&:resource_type)
-    # includes(:events).group_by(&:resource_type).order('events.start_date DESC')
   end
 
   def self.new_for_user user, params
