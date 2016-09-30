@@ -27,8 +27,8 @@ class BookingsController < BaseController
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
       return redirect_to bookings_path
     else
-      load_available_resources_by_resource_type resource_type @booking.resource_type
-      render 'new'
+      load_available_resources_by_resource_type @booking.resource_type
+      render 'new_second_step'
     end
   end
 

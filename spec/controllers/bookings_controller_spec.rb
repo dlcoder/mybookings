@@ -25,7 +25,6 @@ describe BookingsController do
         get :index
       end
 
-      it { expect(assigns[:bookings]).to eq(bookings) }
       it { expect(page).to render_template(:index) }
     end
 
@@ -36,13 +35,12 @@ describe BookingsController do
         get :new_first_step
       end
 
-      it { expect(assigns[:resource_types]).to be_a(ActiveRecord::Relation) }
-      it { expect(:resource_types).to have_at_least(1).item }
       it { expect(page).to render_template(:new_first_step) }
     end
 
     describe 'on POST to create' do
-      let(:booking_params) { { "resource_type_id" => 1, "events" => {"resource_id" => 1, "start_date" => ''} } }
+      let(:resource_type) { resource_types(:pcv) }
+      let(:booking_params) { { "resource_type_id" => "#{resource_type.id}", "events" => {"resource_id" => "1", "start_date" => ''} } }
       let(:booking) { Booking.new }
 
       before do
@@ -61,7 +59,6 @@ describe BookingsController do
           post :create, booking: booking_params
         end
 
-        it { expect(assigns[:booking]).to be_a(Booking) }
         it { expect(page).to redirect_to(bookings_path) }
       end
 
@@ -70,19 +67,17 @@ describe BookingsController do
 
         before do
           allow(booking).to receive(:valid?).and_return(false)
-          allow(Resource).to receive(:avalaible_by_type_name_and_name).and_return(resources)
+          allow(Resource).to receive(:avalaible_by_resource_type).and_return(resources)
 
           post :create, booking: booking_params
         end
 
-        it { expect(assigns[:resources]).to eq(resources) }
-        it { expect(assigns[:booking]).to be_a(Booking) }
-        it { expect(page).to render_template(:new) }
+        it { expect(page).to render_template(:new_second_step) }
       end
     end
 
     describe 'on DELETE to destroy' do
-      let(:event) { Event.new(start_date: '') }
+      let(:event) { Event.new }
       let(:booking_id) { '1' }
       let(:booking) { Booking.new(user: user, events: [event]) }
 
@@ -90,7 +85,7 @@ describe BookingsController do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
       end
 
-      context 'when the booking has started' do
+      context 'when the booking has events started' do
         before do
           allow(event).to receive(:pending?).and_return(false)
           expect(booking).to_not receive(:destroy)
@@ -101,9 +96,11 @@ describe BookingsController do
         it { expect(page).to redirect_to(bookings_path) }
       end
 
-      context 'when the booking have not started' do
+      context 'when the booking has events not started' do
         before do
           allow(event).to receive(:pending?).and_return(true)
+          allow(booking).to receive(:has_pending_events?).and_return(true)
+          allow(booking).to receive(:has_events?).and_return(false)
           expect(booking).to receive(:destroy)
 
           delete :destroy, id: booking_id
@@ -111,38 +108,6 @@ describe BookingsController do
 
         it { expect(page).to redirect_to(bookings_path) }
       end
-    end
-
-    describe 'on GET to edit_feedback' do
-      let(:booking_id) { '1' }
-      let(:booking) { Booking.new(user: user) }
-
-      before do
-        allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
-
-        get :edit_feedback, booking_id: booking_id
-      end
-
-      it { expect(page).to render_template(:edit_feedback) }
-    end
-
-    describe 'on PUT to set_feedback' do
-      let(:booking_id) { '1' }
-      let(:booking) { Booking.new(user: user) }
-      let(:feedback) { '' }
-
-      before do
-        allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
-        allow(booking).to receive(:feedback=).with(feedback)
-        allow(booking).to receive(:save!)
-
-        put :set_feedback, booking_id: booking_id, booking: { feedback: feedback }
-      end
-
-      it 'saves feedback' do
-      end
-
-      it { expect(page).to redirect_to(bookings_path) }
     end
   end
 
