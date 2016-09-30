@@ -99,7 +99,9 @@ es:
       new_booking: 'Reservar un recurso'
       no_bookings: 'Aún no has realizado ninguna reserva.'
       title: 'Mis reservas'
-    new:
+    new_first_step:
+      title: 'Nueva reserva'
+    new_second_step:
       comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
       create_booking: 'Crear reserva'
       title: 'Nueva reserva'
