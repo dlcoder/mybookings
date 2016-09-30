@@ -13,6 +13,7 @@ step 'I can not see a disabled resource for booking' do
 end
 
 step 'I can book an available resource' do
+  click_link 'Virtual PC'
   select 'PCV1', from: 'Resource'
 
   now = Time.now
@@ -20,17 +21,17 @@ step 'I can book an available resource' do
   fill_in 'booking_events_attributes_0_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
-  click_button 'Create booking'
+  click_button 'Create Booking'
 end
 
 step 'I can see that the booking has been created' do
-  within 'table#bookings' do
+  within 'table#resource-type-virtual-pc' do
     expect(page).to have_content('PCV1')
   end
 end
 
 step 'I can see my bookings summary' do
-  expect(page).to have_selector('table#bookings')
+  expect(page).to have_selector('table#resource-type-virtual-pc')
 end
 
 step 'I cancel the booking' do
@@ -42,7 +43,7 @@ step 'I can see that the booking does not exists' do
 end
 
 step 'I click button to submit some feedback about an expired booking' do
-  find('tr', text: 'ACMR1').click_link 'Send feedback'
+  find('tr', text: 'ACMR2').click_link 'Send Feedback'
 end
 
 step 'I can send a feedback message' do

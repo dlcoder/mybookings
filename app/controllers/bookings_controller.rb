@@ -1,5 +1,5 @@
 class BookingsController < BaseController
-  before_action :load_booking, only: [:destroy, :edit_feedback, :set_feedback]
+  before_action :load_booking, only: [:destroy]
 
   def index
     load_current_user_bookings
@@ -47,7 +47,7 @@ class BookingsController < BaseController
     @booking.feedback = params[:booking][:feedback]
     @booking.save!
 
-    redirect_to bookings_path, notice: I18n.t('bookings.index.feedback_received')
+    redirect_to bookings_path, notice: I18n.t('events.index.feedback_received')
   end
 
   private

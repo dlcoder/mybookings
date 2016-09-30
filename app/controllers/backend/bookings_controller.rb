@@ -43,7 +43,7 @@ class Backend::BookingsController < Backend::BaseController
   end
 
   def load_resource
-    resource_id = params[:resource_id]
+    resource_id = params[:id] || params[:resource_id]
 
     @resource = Resource.find(resource_id)
     authorize @resource

@@ -94,13 +94,8 @@ es:
 
   bookings:
     booking:
-      cancel_booking: 'Cancelar o reasignar a otro recurso'
-      send_feedback: 'Enviar comentarios'
-    edit_feedback:
-      send_feedback: 'Enviar comentarios'
-      title: 'Enviar comentarios'
+      cancel_booking: 'Cancelar'
     index:
-      feedback_received: 'Gracias. Hemos recibido tus comentarios.'
       new_booking: 'Reservar un recurso'
       no_bookings: 'Aún no has realizado ninguna reserva.'
       title: 'Mis reservas'
@@ -108,6 +103,15 @@ es:
       comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
       create_booking: 'Crear reserva'
       title: 'Nueva reserva'
+
+  events:
+    event:
+      send_feedback: 'Enviar comentarios'
+    edit_feedback:
+      send_feedback: 'Enviar comentarios'
+      title: 'Enviar comentarios'
+    index:
+      feedback_received: 'Gracias. Hemos recibido tus comentarios.'
     statuses:
       pending: 'Pendiente'
       expired: 'Terminada'

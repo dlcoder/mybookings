@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   resources :bookings, only: [:create, :index, :show, :destroy] do
     get :new_first_step, on: :collection
     get :new_second_step
+  end
+
+  resources :events do
     get :edit_feedback
     put :set_feedback
   end
-
-  resources :events
 
   namespace :backend do
 

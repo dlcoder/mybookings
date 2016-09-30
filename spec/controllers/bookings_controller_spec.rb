@@ -29,20 +29,20 @@ describe BookingsController do
       it { expect(page).to render_template(:index) }
     end
 
-    describe 'on GET to new' do
-      before do
-        allow(Resource).to receive(:avalaible_by_type_name_and_name).and_return(resources)
+    describe 'on GET to new first step' do
 
-        get :new
+      before do
+
+        get :new_first_step
       end
 
-      it { expect(assigns[:resources]).to eq(resources) }
-      it { expect(assigns[:booking]).to be_a(Booking) }
-      it { expect(page).to render_template(:new) }
+      it { expect(assigns[:resource_types]).to be_a(ActiveRecord::Relation) }
+      it { expect(:resource_types).to have_at_least(1).item }
+      it { expect(page).to render_template(:new_first_step) }
     end
 
     describe 'on POST to create' do
-      let(:booking_params) { { "events" => {"start_date" => ''} } }
+      let(:booking_params) { { "resource_type_id" => 1, "events" => {"resource_id" => 1, "start_date" => ''} } }
       let(:booking) { Booking.new }
 
       before do
@@ -54,7 +54,7 @@ describe BookingsController do
 
         before do
           allow(booking).to receive(:valid?).and_return(true)
-          allow(booking).to receive(:resource_resource_type_extension).and_return(resource_type_extension)
+          allow(booking).to receive(:resource_type_extension).and_return(resource_type_extension)
           allow(ResourceTypesExtensionsWrapper).to receive(:call).with(:after_booking_creation, booking.events.first)
           allow(booking).to receive(:save!).and_return(true)
 

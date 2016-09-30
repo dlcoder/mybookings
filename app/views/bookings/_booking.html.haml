@@ -8,5 +8,5 @@
       = show_specific_actions_for event
       - if event.pending?
         = link_to_delete t('.cancel_event'), event_path(event.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
-      - if event.expired? && !event.has_feedback?
-        = link_to t('.send_feedback'), booking_edit_feedback_path(booking.id), class: 'btn btn-default btn-xs'
+      - if event.expired? && !event.feedback.blank?
+        = link_to t('.send_feedback'), event_edit_feedback_path(event.id), class: 'btn btn-default btn-xs'
