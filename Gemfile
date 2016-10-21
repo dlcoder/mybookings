@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.7.1'
 gem 'pg'
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.2'
@@ -22,6 +22,7 @@ gem 'draper', '~> 1.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
