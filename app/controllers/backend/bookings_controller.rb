@@ -18,7 +18,10 @@ class Backend::BookingsController < Backend::BaseController
   def destroy
     @booking_form = DeleteBookingForm.new(params[:delete_booking_form])
 
-    return render 'delete_confirmation' unless @booking_form.valid?
+    unless @booking_form.valid?
+      @resources = @booking.alternative_resources
+      return render 'delete_confirmation'
+    end
 
     logger.info "The booking #{@booking.id} of the resource #{@resource.name} has been deleted. The reason is: #{@booking_form.reason}"
     @booking.destroy!
