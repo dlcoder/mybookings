@@ -24,6 +24,7 @@ es:
     bookings:
       booking:
         booking_date: 'Fecha de la reserva'
+        cancel_booking: 'Cancelar o reasignar'
         comment: 'Observaciones'
         feedback: 'Comentario'
         start_date: 'Fecha de inicio'
@@ -34,12 +35,16 @@ es:
         resource: 'Recurso:'
         title: 'Reservas del recurso'
       delete_confirmation:
-        title: 'Confirmación de la cancelación de la reserva'
-        reallocate_booking_header: 'Reasignar reserva'
-        reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'
-        no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
+        booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
         cancel_booking_header: 'Cancelar reserva'
         cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje que se enviará al ususario.'
+        no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
+        reallocate_booking_header: 'Reasignar reserva'
+        reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'
+        return_to: 'Volver al recurso %{resource_name}'
+        title: 'Confirmación de la cancelación de la reserva'
+        update: 'Reasignar a otro recurso'
+        cancel: 'Cancelar reserva'
       destroy:
         cancel_notice: 'La reserva ha sido cancelada.'
       update:
@@ -89,7 +94,7 @@ es:
 
   bookings:
     booking:
-      cancel_booking: 'Cancelar'
+      cancel_booking: 'Cancelar o reasignar a otro recurso'
       send_feedback: 'Enviar comentarios'
     edit_feedback:
       send_feedback: 'Enviar comentarios'

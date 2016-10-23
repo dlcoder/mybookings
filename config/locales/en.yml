@@ -24,6 +24,7 @@ en:
     bookings:
       booking:
         booking_date: 'Booking date'
+        cancel_booking: 'Cancel or reallocate'
         comment: 'Comment'
         feedback: 'Feedback'
         start_date: 'Start date'
@@ -34,12 +35,16 @@ en:
         resource: 'Resource:'
         title: 'Resource bookings'
       delete_confirmation:
-        title: 'Cancel booking confirmation'
-        reallocate_booking_header: 'Reallocate booking'
-        reallocate_booking_message: 'There is available resource at the same time slot. Do you want to assign this booking to a new resource of the same type?'
-        no_resources_availables_message: 'In this moment, there is not any resource to reallocate this booking.'
+        booking_info_html: 'Booking of resource <em>%{resource}</em> for user <em>%{user}</em> from <em>%{start_date}</em> to <em>%{end_date}</em>.'
         cancel_booking_header: 'Cancel booking'
         cancel_booking_message: 'Are you sure that you want cancel this booking? You must write a message that it will be sent to the user.'
+        no_resources_availables_message: 'In this moment, there is not any resource to reallocate this booking.'
+        reallocate_booking_header: 'Reallocate booking'
+        reallocate_booking_message: 'There are resources of the same type available at the same time slot. Do you want to reallocate this booking to another one resource?'
+        return_to: 'Return to resource %{resource_name}'
+        title: 'Booking cancel confirmation'
+        update: 'Reallocate to another resource'
+        cancel: 'Cancel booking'
       destroy:
         cancel_notice: 'The booking has been canceled.'
       update:
@@ -89,7 +94,7 @@ en:
 
   bookings:
     booking:
-      cancel_booking: 'Cancel'
+      cancel_booking: 'Cancel or reallocate to another resource'
       send_feedback: 'Send feedback'
     edit_feedback:
       send_feedback: 'Send feedback'
