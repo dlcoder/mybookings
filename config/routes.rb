@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
     resources :resources do
       put :switch_availability
-      resources :bookings
+      resources :bookings do
+        get :delete_confirmation
+      end
     end
 
     resources :resource_types

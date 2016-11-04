@@ -23,4 +23,7 @@ es:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
+    labels:
+      delete_booking_form:
+        reason: La razón por la que cancelas la reserva
 

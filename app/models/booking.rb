@@ -35,6 +35,27 @@ class Booking < ActiveRecord::Base
     Booking.occurring.where('? >= end_date', Time.now)
   end
 
+  def self.overlapped_at start_date, end_date
+    # Dates extended to trigger frequency
+    start_date = start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+    end_date = end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+
+    where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
+  end
+
+  def alternative_resources
+    # Enabled resources of the same type that overlaps with self booking
+    resources_with_overlapped_bookings = Booking.overlapped_at(self.start_date, self.end_date)
+      .joins(:resource)
+      .where(resources: { resource_type_id: resource.resource_type_id, disabled: false })
+      .pluck('resources.id')
+
+    # Add self booking resource to exclude it
+    resources_with_overlapped_bookings.push(resource.id)
+
+    Resource.where.not(id: resources_with_overlapped_bookings)
+  end
+
   def log_for_record_created name, datetime
     Rails.logger.info "#{name} - New #{self.class.name} (#{self.id}) of #{self.resource_name} (#{self.resource_resource_type_name}) by user #{self.user_email} at #{datetime}."
   end
@@ -62,10 +83,7 @@ class Booking < ActiveRecord::Base
 
   def dates_overlap
     unless start_date.nil? or end_date.nil? or resource.nil?
-      start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-      end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-
-      overlapped_bookings = resource.bookings.where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
+      overlapped_bookings = resource.bookings.overlapped_at(start_date, end_date)
       errors.add(:base, I18n.t('errors.messages.booking.overlap')) if overlapped_bookings.any?
     end
   end

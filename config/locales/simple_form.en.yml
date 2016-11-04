@@ -23,4 +23,6 @@ en:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
-
+    labels:
+      delete_booking_form:
+        reason: 'The reason you are canceling the booking'

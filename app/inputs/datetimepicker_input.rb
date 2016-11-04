@@ -1,5 +1,5 @@
 class DatetimepickerInput < SimpleForm::Inputs::Base
-  def input
+  def input(wrapper_options)
     input_html_options[:class].push 'form-control'
 
     addon = "<span class='glyphicon glyphicon-calendar'></span>"

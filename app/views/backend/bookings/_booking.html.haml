@@ -28,3 +28,7 @@
         .col-xs-12
           %dt= icon_with_text('pencil', t('.feedback'))
           %dd= booking.feedback
+    - if booking.pending?
+      %hr
+        = link_to t('.cancel_booking'), backend_resource_booking_delete_confirmation_path(resource.id, booking.id)
+
