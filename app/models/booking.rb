@@ -54,6 +54,7 @@ class Booking < ActiveRecord::Base
     resources_with_overlapped_bookings.push(resource.id)
 
     Resource.where.not(id: resources_with_overlapped_bookings)
+  end
 
   def self.upcoming
     start_date = Time.now + MYBOOKINGS_CONFIG['bookings_notifications_interval'].minutes
