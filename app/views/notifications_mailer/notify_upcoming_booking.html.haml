@@ -1,2 +1,2 @@
 = content_for :email_body do
-  %p= t('notifications_mailer.notify_upcoming_booking.body_html', start_date: l(@booking.start_date, format: :long))
+  %p= t('.body_html', start_date: l(@booking.start_date, format: :long))
