@@ -31,7 +31,7 @@ namespace :mybookings do
     upcoming_bookings = Booking.upcoming
 
     upcoming_bookings.each do |booking|
-      NotificationsMailer.notify_upcoming_booking booking
+      NotificationsMailer.notify_upcoming_booking(booking).deliver!
     end
   end
 
