@@ -9,6 +9,7 @@ class Resource < ActiveRecord::Base
   delegate :name, to: :resource_type, prefix: true
   delegate :extension, to: :resource_type, prefix: true
   delegate :managed_by?, to: :resource_type, prefix: true
+  delegate :users, to: :resource_type, prefix: true
 
   def self.avalaible_by_type_name_and_name
     includes(:resource_type).order('resource_types.name asc, resources.name asc').where(disabled: false)

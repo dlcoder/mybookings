@@ -113,7 +113,16 @@ en:
       expired: 'Expired'
       occurring: 'Occurring'
 
-  bookings_mailer:
+  notifications_mailer:
     cancel_booking:
       subject: 'Your booking in MyBookings has been canceled.'
       body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
+    notify_upcoming_booking:
+      subject: 'Remember that you have an upcoming booking to be held'
+      body_html: 'This message is to remember you that you have an upcoming scheluded booking to begin the %{start_date}.'
+    notify_new_booking:
+      subject: 'A new booking has been created'
+      body_html: 'We want to notify that a new booking has been created in the resource <strong>%{resource_name}</strong>'
+    notify_delete_booking:
+      subject: 'A booking has been canceled'
+      body_html: 'We want to notify that a booking associated with the resource <strong>%{resource_name}</strong> has been canceled.'

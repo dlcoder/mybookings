@@ -56,6 +56,12 @@ class Booking < ActiveRecord::Base
     Resource.where.not(id: resources_with_overlapped_bookings)
   end
 
+  def self.upcoming
+    start_date = Time.now + MYBOOKINGS_CONFIG['bookings_notifications_interval'].minutes
+    end_date = start_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+    Booking.pending.where('? >= start_date AND ? < start_date', start_date, end_date)
+  end
+
   def log_for_record_created name, datetime
     Rails.logger.info "#{name} - New #{self.class.name} (#{self.id}) of #{self.resource_name} (#{self.resource_resource_type_name}) by user #{self.user_email} at #{datetime}."
   end

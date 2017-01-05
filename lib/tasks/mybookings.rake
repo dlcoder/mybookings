@@ -26,4 +26,13 @@ namespace :mybookings do
 
   end
 
+  desc "Notify user upcoming bookings"
+  task notify_user_upcoming_bookings: :enviroment do
+    upcoming_bookings = Booking.upcoming
+
+    upcoming_bookings.each do |booking|
+      NotificationsMailer.notify_upcoming_booking(booking).deliver!
+    end
+  end
+
 end

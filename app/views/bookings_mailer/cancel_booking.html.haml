@@ -1,6 +1,0 @@
-!!!
-%html
-  %head
-    %meta{:content =>'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}
-  %body
-    %p= t('bookings_mailer.cancel_booking.body_html', name: @booking.resource_name, start_date: l(@booking.start_date, format: :long), reason: @reason)
