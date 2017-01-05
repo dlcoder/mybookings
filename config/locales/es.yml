@@ -119,7 +119,7 @@ es:
       body_html: 'Tu reserva %{name} prevista para el %{start_date} ha sido cancelada por un administrador por la siguiente razón: %{reason}.'
     notify_upcoming_booking:
       subject: 'Recuerda que tienes un reserva próxima a celebrarse'
-      body_html: 'Este mensaje es para recordale que tienes un reserve programada para comenzar el %{start_date}.'
+      body_html: 'Este mensaje es para recordale que tienes una reserva programada para comenzar el %{start_date}.'
     notify_new_booking:
       subject: 'Una nueva reserva ha sido creada'
       body_html: 'Queremos notificarle que una nueva reserva ha sido creada en el recurso <strong>%{resource_name}</strong>'
