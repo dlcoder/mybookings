@@ -10,6 +10,7 @@ class Booking < ActiveRecord::Base
   delegate :email, to: :user, prefix: true
   delegate :name, to: :resource_type, prefix: true
   delegate :extension, to: :resource_type, prefix: true
+  delegate :users, to: :resource_type, prefix: true
 
   def self.by_start_date
     includes(:events, :resource_type).order('resource_types.name ASC').group_by(&:resource_type)
