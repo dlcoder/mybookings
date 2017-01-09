@@ -73,7 +73,11 @@ class BookingsController < BaseController
   end
 
   def load_current_user_bookings
-    @bookings = policy_scope(Booking).by_start_date.map { |resource_type, bookings| [resource_type,
-      BookingDecorator.decorate_collection(bookings)] }
+    # This map is necessary to decorate bookings in the array returned by the model method.
+    # The model method not return a collection.
+    @bookings = policy_scope(Booking).by_start_date_group_by_resource_type.map { |resource_type, bookings| [
+      resource_type,
+      BookingDecorator.decorate_collection(bookings)
+    ] }
   end
 end

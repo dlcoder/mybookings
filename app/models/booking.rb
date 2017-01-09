@@ -12,7 +12,7 @@ class Booking < ActiveRecord::Base
   delegate :extension, to: :resource_type, prefix: true
   delegate :users, to: :resource_type, prefix: true
 
-  def self.by_start_date
+  def self.by_start_date_group_by_resource_type
     includes(:events, :resource_type).order('resource_types.name ASC').group_by(&:resource_type)
   end
 
