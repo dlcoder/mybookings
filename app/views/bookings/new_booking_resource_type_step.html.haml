@@ -1,0 +1,8 @@
+= title
+
+- @resource_types.each do |resource_type|
+
+  .col-xs-3
+    .panel.panel-default
+      .panel-body
+        %h5.text-center= link_to resource_type.name, booking_new_booking_events_step_path(resource_type.id)

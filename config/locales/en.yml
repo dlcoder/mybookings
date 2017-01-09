@@ -99,9 +99,9 @@ en:
       new_booking: 'Book a resource'
       no_bookings: 'You does not have any booking yet.'
       title: 'My bookings'
-    new_first_step:
+    new_booking_resource_type_step:
       title: 'New booking'
-    new_second_step:
+    new_booking_events_step:
       comment_hint: 'You can write some indication to notify the resource responsible.'
       create_booking: 'Create booking'
       title: 'New booking'

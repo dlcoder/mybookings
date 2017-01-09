@@ -5,11 +5,11 @@ class BookingsController < BaseController
     load_current_user_bookings
   end
 
-  def new_first_step
+  def new_booking_resource_type_step
     @resource_types = ResourceType.all
   end
 
-  def new_second_step
+  def new_booking_events_step
     resource_type = ResourceType.find(params[:booking_id])
     load_available_resources_by_resource_type resource_type
     @booking = Booking.new(resource_type: resource_type)
@@ -20,6 +20,8 @@ class BookingsController < BaseController
     @booking = Booking.new_for_user(current_user, booking_params)
 
     if @booking.valid?
+      # If it's a valid booking we have to fire, for all events in a booking,
+      # the creation event in the resource type associated.
       @booking.events.each do |event|
         ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
       end
@@ -28,13 +30,16 @@ class BookingsController < BaseController
       return redirect_to bookings_path
     else
       load_available_resources_by_resource_type @booking.resource_type
-      render 'new_second_step'
+      render 'new_booking_events_step'
     end
   end
 
   def destroy
     if @booking.has_pending_events?
-      NotificationsMailer.notify_delete_booking(@booking).deliver!
+      NotificationsMailer.notify_delete_booking(@booking).deliver_now!
+
+      # Only we delete the pending events associated to the booking.
+      # If a booking has events with other statuses we don't delete the booking for archival purposes.
       @booking.delete_pending_events
       @booking.destroy unless @booking.has_events?
     end
