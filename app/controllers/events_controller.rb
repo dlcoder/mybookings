@@ -1,5 +1,4 @@
 class EventsController < BaseController
-
   before_action :load_event , only: [:destroy, :edit_feedback, :set_feedback]
 
   def destroy
