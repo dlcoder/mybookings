@@ -18,6 +18,7 @@ class EventsController < BaseController
   end
 
   private
+
   def load_event
     event_id = params[:id] || params[:event_id]
 
