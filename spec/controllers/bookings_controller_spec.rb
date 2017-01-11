@@ -43,7 +43,9 @@ describe BookingsController do
 
     describe 'on POST to create' do
       let(:booking_params) { { "start_date" => '' } }
-      let(:booking) { Booking.new }
+      let(:resource_type) { resource_types(:pcv)}
+      let(:resource) { Resource.new(resource_type: resource_type) }
+      let(:booking) { Booking.new(user: user, resource: resource) }
 
       before do
         allow(Booking).to receive(:new_for_user).with(user, booking_params).and_return(booking)
@@ -83,7 +85,9 @@ describe BookingsController do
 
     describe 'on DELETE to destroy' do
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new(user: user) }
+      let(:resource_type) { resource_types(:pcv)}
+      let(:resource) { Resource.new(resource_type: resource_type) }
+      let(:booking) { Booking.new(user: user, resource: resource) }
 
       before do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
@@ -140,7 +144,7 @@ describe BookingsController do
 
       it 'saves feedback' do
       end
-        
+
       it { expect(page).to redirect_to(bookings_path) }
     end
   end
