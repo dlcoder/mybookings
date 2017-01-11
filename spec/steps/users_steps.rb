@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 step 'I visit the homepage' do
   visit root_path

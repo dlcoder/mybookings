@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 step 'login a user' do
   visit '/users/sign_in'

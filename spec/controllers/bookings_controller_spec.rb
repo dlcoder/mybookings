@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BookingsController do
 
   context 'when the user is not logged in' do
     describe 'on GET to index' do
       before { get :index }
-      it { expect(page).to redirect_to(new_user_session_path) }
+      it { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 
@@ -20,13 +20,14 @@ describe BookingsController do
     describe 'on GET to index' do
       before do
         allow_any_instance_of(BookingPolicy::Scope).to receive(:resolve).and_return(filtered_bookings)
-        allow(bookings).to receive(:decorate).and_return(bookings)
+        allow(filtered_bookings).to receive(:by_start_date).and_return(filtered_bookings)
+        allow(filtered_bookings).to receive(:decorate).and_return(bookings)
 
         get :index
       end
 
       it { expect(assigns[:bookings]).to eq(bookings) }
-      it { expect(page).to render_template(:index) }
+      it { expect(response).to render_template(:index) }
     end
 
     describe 'on GET to new' do
@@ -38,7 +39,7 @@ describe BookingsController do
 
       it { expect(assigns[:resources]).to eq(resources) }
       it { expect(assigns[:booking]).to be_a(Booking) }
-      it { expect(page).to render_template(:new) }
+      it { expect(response).to render_template(:new) }
     end
 
     describe 'on POST to create' do
@@ -64,7 +65,7 @@ describe BookingsController do
         end
 
         it { expect(assigns[:booking]).to be_a(Booking) }
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
 
       context 'when the booking params is not valid' do
@@ -79,7 +80,7 @@ describe BookingsController do
 
         it { expect(assigns[:resources]).to eq(resources) }
         it { expect(assigns[:booking]).to be_a(Booking) }
-        it { expect(page).to render_template(:new) }
+        it { expect(response).to render_template(:new) }
       end
     end
 
@@ -101,7 +102,7 @@ describe BookingsController do
           delete :destroy, id: booking_id
         end
 
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
 
       context 'when the booking have not started' do
@@ -112,7 +113,7 @@ describe BookingsController do
           delete :destroy, id: booking_id
         end
 
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
     end
 
@@ -126,7 +127,7 @@ describe BookingsController do
         get :edit_feedback, booking_id: booking_id
       end
 
-      it { expect(page).to render_template(:edit_feedback) }
+      it { expect(response).to render_template(:edit_feedback) }
     end
 
     describe 'on PUT to set_feedback' do
@@ -145,7 +146,7 @@ describe BookingsController do
       it 'saves feedback' do
       end
 
-      it { expect(page).to redirect_to(bookings_path) }
+      it { expect(response).to redirect_to(bookings_path) }
     end
   end
 

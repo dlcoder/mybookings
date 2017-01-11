@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Booking do
   let(:resource) { Resource.new(name: 'Resource', resource_type: ResourceType.new ) }
@@ -8,7 +8,7 @@ describe Booking do
   it 'validates that a booking with start date in the past is not valid' do
     booking.start_date = 2.hour.ago
 
-    expect(booking.valid?).to be_false
+    expect(booking.valid?).to be false
     expect(booking).to have(1).errors_on(:start_date)
   end
 
@@ -16,7 +16,7 @@ describe Booking do
     booking.start_date = 2.hour.ago
     booking.end_date = 1.hour.ago
 
-    expect(booking.valid?).to be_false
+    expect(booking.valid?).to be false
     expect(booking).to have(1).errors_on(:end_date)
   end
 
@@ -24,7 +24,7 @@ describe Booking do
     booking.start_date = 2.day.from_now
     booking.end_date = 1.day.from_now
 
-    expect(booking.valid?).to be_false
+    expect(booking.valid?).to be false
     expect(booking).to have(1).errors_on(:start_date)
     expect(booking).to have(1).errors_on(:end_date)
   end
@@ -32,7 +32,7 @@ describe Booking do
   it 'validates that a resource can not be reserved more than one time in the same time slot' do
     booking.save!
 
-    expect(booking_overlapped.valid?).to be_false
+    expect(booking_overlapped.valid?).to be false
     expect(booking_overlapped).to have(1).errors
   end
 end

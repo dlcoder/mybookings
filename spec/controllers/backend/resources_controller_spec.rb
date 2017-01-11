@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Backend::ResourcesController do
 
@@ -6,7 +6,7 @@ describe Backend::ResourcesController do
     describe 'on GET to index' do
       before { get :index }
 
-      it { expect(page).to redirect_to(new_user_session_path) }
+      it { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 
@@ -20,7 +20,7 @@ describe Backend::ResourcesController do
         get :index
       end
 
-      it { expect(page).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(root_path) }
     end
   end
 
@@ -40,7 +40,7 @@ describe Backend::ResourcesController do
       end
 
       it { expect(assigns[:resources]).to eq(resources) }
-      it { expect(page).to render_template(:index) }
+      it { expect(response).to render_template(:index) }
     end
 
     describe 'on PUT to switch_availability' do
@@ -55,7 +55,7 @@ describe Backend::ResourcesController do
         put :switch_availability, resource_id: resource_id
       end
 
-      it { expect(page).to redirect_to(backend_resources_path) }
+      it { expect(response).to redirect_to(backend_resources_path) }
     end
 
     describe 'on GET to new' do
@@ -69,7 +69,7 @@ describe Backend::ResourcesController do
 
       it { expect(assigns[:resource]).to be_a(Resource) }
       it { expect(assigns[:managed_resource_types]).to eq(managed_resource_types) }
-      it { expect(page).to render_template(:new) }
+      it { expect(response).to render_template(:new) }
     end
 
     describe 'on POST to create' do
@@ -87,7 +87,7 @@ describe Backend::ResourcesController do
           post :create, resource: resource_params
         end
 
-        it { expect(page).to render_template(:new) }
+        it { expect(response).to render_template(:new) }
       end
 
       context 'when the resource params are valid' do
@@ -99,7 +99,7 @@ describe Backend::ResourcesController do
           post :create, resource: resource_params
         end
 
-        it { expect(page).to redirect_to(backend_resources_path) }
+        it { expect(response).to redirect_to(backend_resources_path) }
       end
     end
   end

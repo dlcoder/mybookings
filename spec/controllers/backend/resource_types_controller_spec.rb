@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Backend::ResourceTypesController do
 
@@ -6,7 +6,7 @@ describe Backend::ResourceTypesController do
     describe 'on GET to index' do
       before { get :index }
 
-      it { expect(page).to redirect_to(new_user_session_path) }
+      it { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 
@@ -20,7 +20,7 @@ describe Backend::ResourceTypesController do
         get :index
       end
 
-      it { expect(page).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(root_path) }
     end
   end
 
@@ -39,14 +39,14 @@ describe Backend::ResourceTypesController do
       end
 
       it { expect(assigns[:resource_types]).to eq(resource_types) }
-      it { expect(page).to render_template(:index) }
+      it { expect(response).to render_template(:index) }
     end
 
     describe 'on GET to new' do
       before { get :new }
 
       it { expect(assigns[:resource_type]).to be_a(ResourceType) }
-      it { expect(page).to render_template(:new) }
+      it { expect(response).to render_template(:new) }
     end
 
     describe 'on POST to create' do
@@ -61,7 +61,7 @@ describe Backend::ResourceTypesController do
           post :create, resource_type: resource_type_params
         end
 
-        it { expect(page).to render_template(:new) }
+        it { expect(response).to render_template(:new) }
       end
 
       context 'when the resource params are valid' do
@@ -73,7 +73,7 @@ describe Backend::ResourceTypesController do
           post :create, resource_type: resource_type_params
         end
 
-        it { expect(page).to redirect_to(backend_resource_types_path) }
+        it { expect(response).to redirect_to(backend_resource_types_path) }
       end
     end
 
@@ -87,7 +87,7 @@ describe Backend::ResourceTypesController do
         get :edit, id: resource_type_id
       end
 
-      it { expect(page).to render_template(:edit) }
+      it { expect(response).to render_template(:edit) }
     end
 
     describe 'on PATCH to update' do
@@ -103,7 +103,7 @@ describe Backend::ResourceTypesController do
           patch :update, id: resource_type_id, resource_type: resource_type_params
         end
 
-        it { expect(page).to render_template(:edit) }
+        it { expect(response).to render_template(:edit) }
       end
 
       context 'when the resource params are valid' do
@@ -114,7 +114,7 @@ describe Backend::ResourceTypesController do
           patch :update, id: resource_type_id, resource_type: resource_type_params
         end
 
-        it { expect(page).to redirect_to(backend_resource_types_path) }
+        it { expect(response).to redirect_to(backend_resource_types_path) }
       end
     end
   end
