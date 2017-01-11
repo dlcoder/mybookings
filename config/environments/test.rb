@@ -43,3 +43,13 @@ Rails.application.configure do
   # Required by Devise
   config.action_mailer.default_url_options = { host: 'mybookings.dev' }
 end
+
+Devise.setup do |config|
+  config.omniauth :saml, {
+    name: Rails.application.secrets.saml_provider_name,
+    issuer: Rails.application.secrets.saml_issuer,
+    idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+    name_identifier_format: Rails.application.secrets.saml_name_identifier_format,
+    idp_cert: Rails.application.secrets.saml_idp_cert
+  }
+end

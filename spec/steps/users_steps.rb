@@ -39,12 +39,12 @@ step 'I can see that I have signed in' do
   expect(page).to have_content("#{ @user.email }")
 end
 
-step 'I go to the sign in with feide page' do
-  click_link 'Sign in with feide'
+step 'I go to the sign in with saml page' do
+  click_link 'Sign in with saml'
 end
 
-step 'I can see that I have signed in with feide' do
-  expect(page).to have_content('Successfully authenticated from feide account.')
+step 'I can see that I have signed in with saml' do
+  expect(page).to have_content('Successfully authenticated from saml account.')
 end
 
 step 'I go to sign out' do

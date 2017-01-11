@@ -230,13 +230,6 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :saml, {
-    name: Rails.application.secrets.saml_provider_name,
-    issuer: Rails.application.secrets.saml_issuer,
-    idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
-    name_identifier_format: Rails.application.secrets.saml_name_identifier_format,
-    idp_cert: Rails.application.secrets.saml_idp_cert
-  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

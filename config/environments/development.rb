@@ -47,3 +47,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end
+
+Devise.setup do |config|
+  config.omniauth :saml, {
+    name: Rails.application.secrets.saml_provider_name,
+    issuer: Rails.application.secrets.saml_issuer,
+    idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+    name_identifier_format: Rails.application.secrets.saml_name_identifier_format,
+    idp_cert: Rails.application.secrets.saml_idp_cert
+  }
+end
