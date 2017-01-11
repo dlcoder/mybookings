@@ -16,7 +16,7 @@ class BookingsController < BaseController
     if @booking.valid?
       ResourceTypesExtensionsWrapper.call(:after_booking_creation, @booking)
       @booking.save!
-      NotificationsMailer.notify_new_booking(@booking).deliver!
+      NotificationsMailer.notify_new_booking(@booking).deliver_now!
       return redirect_to bookings_path
     else
       load_available_resources_by_type_name_and_name
@@ -26,7 +26,7 @@ class BookingsController < BaseController
 
   def destroy
     if @booking.pending?
-      NotificationsMailer.notify_delete_booking(@booking).deliver!
+      NotificationsMailer.notify_delete_booking(@booking).deliver_now!
       @booking.destroy
     end
     redirect_to bookings_path

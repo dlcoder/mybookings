@@ -15,6 +15,6 @@ class ResourceType < ActiveRecord::Base
   end
 
   def managed_by? user
-    self.users.exists? user
+    self.users.exists? user.id
   end
 end
