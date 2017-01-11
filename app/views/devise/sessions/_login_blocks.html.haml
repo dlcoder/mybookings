@@ -19,12 +19,13 @@
             - if devise_mappings.registerable?
               .text-right= link_to t('.sign_up'), new_registration_path(resource_name)
 
-  .col-xs-12.col-sm-6
-    .panel.panel-default
-      .panel-heading
-        = t('.idps_login_title')
-      .panel-body
-        .lead= t('.idps_login_description')
-        - if devise_mappings.omniauthable?
-          - resource_class.omniauth_providers.each do |provider|
-            = link_to t('.sign_in_with', provider: provider.to_s), omniauth_authorize_path(resource_name, provider), class: 'btn btn-default'
+  - if resource_class.omniauth_providers.any?
+    .col-xs-12.col-sm-6
+      .panel.panel-default
+        .panel-heading
+          = t('.idps_login_title')
+        .panel-body
+          .lead= t('.idps_login_description')
+          - if devise_mappings.omniauthable?
+            - resource_class.omniauth_providers.each do |provider|
+              = link_to t('.sign_in_with', provider: provider.to_s), omniauth_authorize_path(resource_name, provider), class: 'btn btn-default'

@@ -17,17 +17,17 @@ Feature: Users
     And I can see that I have signed in
     And I can see my bookings page
 
-  Scenario: Login with feide as an unexisting user
+  Scenario: Login with saml as an unexisting user
     When I visit the homepage
-    And I go to the sign in with feide page
-    And I can see that I have signed in with feide
+    And I go to the sign in with saml page
+    And I can see that I have signed in with saml
     And I can see my bookings page
 
-  Scenario: Login with feide as an existing user
+  Scenario: Login with saml as an existing user
     Given a registered user
     When I visit the homepage
-    And I go to the sign in with feide page
-    And I can see that I have signed in with feide
+    And I go to the sign in with saml page
+    And I can see that I have signed in with saml
     And I can see my bookings page
 
   Scenario: Logout
