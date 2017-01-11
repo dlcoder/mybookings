@@ -19,9 +19,10 @@ class NotificationsMailer < ApplicationMailer
   end
 
   def notify_new_booking booking
-    users = booking.resource.resource_type_users
+    users = booking.resource_type_users
     return if users.empty?
-    @resource_name = booking.resource_name
+
+    @resource_type_name = booking.resource_type_name
 
     app_name = t('app_name')
     notification_subject = t('notifications_mailer.notify_new_booking.subject')
@@ -32,9 +33,10 @@ class NotificationsMailer < ApplicationMailer
   end
 
   def notify_delete_booking booking
-    users = booking.resource.resource_type_users
+    users = booking.resource_type_users
     return if users.empty?
-    @resource_name = booking.resource_name
+
+    @resource_type_name = booking.resource_type_name
 
     app_name = t('app_name')
     notification_subject = t('notifications_mailer.notify_delete_booking.subject')

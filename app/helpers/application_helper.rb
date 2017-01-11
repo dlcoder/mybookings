@@ -28,18 +28,16 @@ module ApplicationHelper
     content_for :page_title, title
   end
 
-  def table_for collection, *attr_list
+  def table_for collection, attr_list = [], id = nil
     actions = true
 
-    table_id = collection.name.tableize
-    table_klazz = collection.name.constantize
     table_headers = []
 
     attr_list.each do |attr_name|
       if attr_name.class == Hash && !attr_name[:actions].nil?
         actions = attr_name[:actions]
       else
-        table_headers << content_tag(:th, table_klazz.human_attribute_name(attr_name))
+        table_headers << content_tag(:th, t("activerecord.attributes.#{attr_name}"))
       end
     end
 
@@ -50,7 +48,7 @@ module ApplicationHelper
     thead = content_tag :thead, content_tag(:tr, table_headers.join(" ").html_safe)
     tbody = content_tag :tbody, render(collection)
 
-    table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: table_id, class: 'table table-bordered')
+    table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: id, class: 'table table-bordered')
     table.html_safe
   end
 

@@ -3,13 +3,15 @@ en:
     attributes:
       booking:
         comment: Comment
-        end_date: End date
         feedback: Feedback
+        resource_type: Resource type
+      event:
+        end_date: End date
         resource: Resource
         resource_name: Resource name
         resource_type_name: Resource type
-        status: Status
         start_date: Start date
+        status: Status
       resource:
         id: ID
         resource_type: Resource type

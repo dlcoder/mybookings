@@ -1,44 +1,53 @@
 class BookingsController < BaseController
-  before_action :load_booking, only: [:destroy, :edit_feedback, :set_feedback]
+  before_action :load_booking, only: [:destroy]
 
   def index
     load_current_user_bookings
   end
 
-  def new
-    load_available_resources_by_type_name_and_name
-    @booking = Booking.new
+  def new_booking_resource_type_step
+    @resource_types = ResourceType.all
+  end
+
+  def new_booking_events_step
+    resource_type = ResourceType.find(params[:booking_id])
+    load_available_resources_by_resource_type resource_type
+    @booking = Booking.new(resource_type: resource_type)
+    @booking.events.build
   end
 
   def create
     @booking = Booking.new_for_user(current_user, booking_params)
 
     if @booking.valid?
-      ResourceTypesExtensionsWrapper.call(:after_booking_creation, @booking)
+      # If it's a valid booking we have to fire, for all events in a booking,
+      # the creation event in the resource type associated.
+      @booking.events.each do |event|
+        ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
+      end
+
       @booking.save!
+
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
+
       return redirect_to bookings_path
     else
-      load_available_resources_by_type_name_and_name
-      render 'new'
+      load_available_resources_by_resource_type @booking.resource_type
+
+      render 'new_booking_events_step'
     end
   end
 
   def destroy
-    if @booking.pending?
+    if @booking.has_pending_events?
       NotificationsMailer.notify_delete_booking(@booking).deliver_now!
-      @booking.destroy
+      # Only we delete the pending events associated to the booking.
+      # If a booking has events with other statuses we don't delete the booking for archival purposes.
+      @booking.delete_pending_events
+      @booking.destroy unless @booking.has_events?
     end
+
     redirect_to bookings_path
-  end
-
-  def edit_feedback; end
-
-  def set_feedback
-    @booking.feedback = params[:booking][:feedback]
-    @booking.save!
-
-    redirect_to bookings_path, notice: I18n.t('bookings.index.feedback_received')
   end
 
   private
@@ -47,8 +56,8 @@ class BookingsController < BaseController
     params.require(:booking).permit!
   end
 
-  def load_available_resources_by_type_name_and_name
-    @resources = Resource.avalaible_by_type_name_and_name
+  def load_available_resources_by_resource_type resource_type
+    @resources = Resource.available_by_resource_type resource_type
   end
 
   def load_booking
@@ -59,6 +68,11 @@ class BookingsController < BaseController
   end
 
   def load_current_user_bookings
-    @bookings = policy_scope(Booking).by_start_date.decorate
+    # This map is necessary to decorate bookings in the array returned by the model method.
+    # The model method not return a collection.
+    @bookings = policy_scope(Booking).by_start_date_group_by_resource_type.map { |resource_type, bookings| [
+      resource_type,
+      BookingDecorator.decorate_collection(bookings)
+    ] }
   end
 end

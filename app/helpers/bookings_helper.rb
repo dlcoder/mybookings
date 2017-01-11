@@ -5,8 +5,8 @@ module BookingsHelper
     return 'success' if booking_status == 'expired'
   end
 
-  def show_specific_actions_for booking
-    resource_type_extension_actions = ResourceTypesExtensionsWrapper.call(:actions_for, booking)
+  def show_specific_actions_for event
+    resource_type_extension_actions = ResourceTypesExtensionsWrapper.call(:actions_for, event)
     links = ''
 
     unless resource_type_extension_actions.nil?
