@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 step 'I go to the manage page' do
   within '.navbar' do

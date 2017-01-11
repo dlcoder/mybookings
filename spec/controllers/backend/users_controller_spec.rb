@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Backend::UsersController do
 
@@ -6,7 +6,7 @@ describe Backend::UsersController do
     describe 'on GET to index' do
       before { get :index }
 
-      it { expect(page).to redirect_to(new_user_session_path) }
+      it { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 
@@ -20,7 +20,7 @@ describe Backend::UsersController do
         get :index
       end
 
-      it { expect(page).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(root_path) }
     end
   end
 
@@ -39,7 +39,7 @@ describe Backend::UsersController do
       end
 
       it { expect(assigns[:users]).to eq(user_list) }
-      it { expect(page).to render_template(:index) }
+      it { expect(response).to render_template(:index) }
     end
   end
 

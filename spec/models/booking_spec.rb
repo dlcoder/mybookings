@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Booking do
   let(:resource) { Resource.new(name: 'Resource', resource_type: ResourceType.new ) }
@@ -11,7 +11,7 @@ describe Booking do
   it 'validates that a resource can not be reserved more than one time in the same time slot' do
     booking.save!
 
-    expect(booking_overlapped.valid?).to be_false
+    expect(booking_overlapped.valid?).to be false
     expect(booking_overlapped).to have(1).errors
   end
 

@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BookingsController do
 
   context 'when the user is not logged in' do
     describe 'on GET to index' do
       before { get :index }
-      it { expect(page).to redirect_to(new_user_session_path) }
+      it { expect(response).to redirect_to(new_user_session_path) }
     end
   end
 
@@ -20,12 +20,13 @@ describe BookingsController do
     describe 'on GET to index' do
       before do
         allow_any_instance_of(BookingPolicy::Scope).to receive(:resolve).and_return(filtered_bookings)
-        allow(bookings).to receive(:decorate).and_return(bookings)
+        allow(filtered_bookings).to receive(:by_start_date).and_return(filtered_bookings)
+        allow(filtered_bookings).to receive(:decorate).and_return(bookings)
 
         get :index
       end
 
-      it { expect(page).to render_template(:index) }
+      it { expect(response).to render_template(:index) }
     end
 
     describe 'on GET to new first step' do
@@ -35,7 +36,7 @@ describe BookingsController do
         get :new_booking_resource_type_step
       end
 
-      it { expect(page).to render_template(:new_booking_resource_type_step) }
+      it { expect(response).to render_template(:new_booking_resource_type_step) }
     end
 
     describe 'on POST to create' do
@@ -60,20 +61,21 @@ describe BookingsController do
           post :create, booking: booking_params
         end
 
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
 
       context 'when the booking params is not valid' do
         let(:resources) { [] }
+        let(:resource_type) { ResourceType.new }
 
         before do
           allow(booking).to receive(:valid?).and_return(false)
-          allow(Resource).to receive(:avalaible_by_resource_type).and_return(resources)
+          allow(Resource).to receive(:available_by_resource_type).with(resource_type).and_return(resources)
 
           post :create, booking: booking_params
         end
 
-        it { expect(page).to render_template(:new_booking_events_step) }
+        it { expect(response).to render_template(:new_booking_events_step) }
       end
     end
 
@@ -95,7 +97,7 @@ describe BookingsController do
           delete :destroy, id: booking_id
         end
 
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
 
       context 'when the booking has events not started' do
@@ -108,7 +110,7 @@ describe BookingsController do
           delete :destroy, id: booking_id
         end
 
-        it { expect(page).to redirect_to(bookings_path) }
+        it { expect(response).to redirect_to(bookings_path) }
       end
     end
   end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 step 'I go to the bookings page' do
   visit '/bookings'
