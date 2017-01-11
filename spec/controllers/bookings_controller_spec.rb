@@ -14,14 +14,15 @@ describe BookingsController do
     let(:resources) { [] }
     let(:bookings) { [] }
     let(:filtered_bookings) { double(by_start_date_group_by_resource_type: bookings) }
+    let(:bookings_grouped_by_resource_type) { [] }
 
     before { sign_in(user) }
 
     describe 'on GET to index' do
       before do
         allow_any_instance_of(BookingPolicy::Scope).to receive(:resolve).and_return(filtered_bookings)
-        allow(filtered_bookings).to receive(:by_start_date).and_return(filtered_bookings)
-        allow(filtered_bookings).to receive(:decorate).and_return(bookings)
+        allow(BookingDecorator).to receive(:decorate_collection).with(bookings).and_return(bookings)
+        allow(filtered_bookings).to receive(:map).with({}).and_return(bookings_grouped_by_resource_type)
 
         get :index
       end
@@ -29,9 +30,11 @@ describe BookingsController do
       it { expect(response).to render_template(:index) }
     end
 
-    describe 'on GET to new first step' do
+    describe 'on GET to new_booking_resource_type_step' do
+      let(:resource_types) { [] }
 
       before do
+        allow(ResourceType).to receive(:all).and_return(resource_types)
 
         get :new_booking_resource_type_step
       end
@@ -39,24 +42,49 @@ describe BookingsController do
       it { expect(response).to render_template(:new_booking_resource_type_step) }
     end
 
+
+    describe 'on GET to new_booking_events_step' do
+      let(:booking_id) { '1' }
+      let(:resource_type) { ResourceType.new }
+      let(:resources) { [] }
+      let(:booking) { Booking.new }
+      let(:events) { double(:build) }
+
+      before do
+        allow(ResourceType).to receive(:find).with(booking_id).and_return(resource_type)
+        allow(Resource).to receive(:available_by_resource_type).and_return(resources)
+        allow(Booking).to receive(:new).with(resource_type: resource_type).and_return(booking)
+        allow(booking).to receive(:events).and_return(events)
+        allow(events).to receive(:build)
+
+        get :new_booking_events_step, booking_id: booking_id
+      end
+
+      it { expect(response).to render_template(:new_booking_events_step) }
+    end
+
     describe 'on POST to create' do
-      let(:resource_type) { resource_types(:pcv) }
       let(:booking_params) { { "resource_type_id" => "#{resource_type.id}", "events" => {"resource_id" => "1", "start_date" => ''} } }
-      let(:event) { events(:event1) }
+      let(:resource_type) { ResourceType.new }
+      let(:event) { Event.new }
       let(:booking) { Booking.new(user: user, events: [event], resource_type: resource_type) }
 
       before do
         allow(Booking).to receive(:new_for_user).with(user, booking_params).and_return(booking)
       end
 
-      context 'when the booking params is valid' do
-        let(:resource_type_extension) { '' }
+      context 'when the booking params are valid' do
+        let(:events) { [] }
+        let(:event) { Event.new }
+        let(:mail) { double(:deliver_now!) }
 
         before do
           allow(booking).to receive(:valid?).and_return(true)
-          allow(booking).to receive(:resource_type_extension).and_return(resource_type_extension)
-          allow(ResourceTypesExtensionsWrapper).to receive(:call).with(:after_booking_creation, booking.events.first)
+          allow(booking).to receive(:events).and_return(events)
+          allow(ResourceTypesExtensionsWrapper).to receive(:call).with(:after_booking_creation, event)
           allow(booking).to receive(:save!).and_return(true)
+          allow(NotificationsMailer).to receive(:notify_new_booking).with(booking).and_return(mail)
+          allow(mail).to receive(:deliver_now!)
 
           post :create, booking: booking_params
         end
@@ -64,7 +92,7 @@ describe BookingsController do
         it { expect(response).to redirect_to(bookings_path) }
       end
 
-      context 'when the booking params is not valid' do
+      context 'when the booking params are not valid' do
         let(:resources) { [] }
         let(:resource_type) { ResourceType.new }
 
@@ -80,19 +108,17 @@ describe BookingsController do
     end
 
     describe 'on DELETE to destroy' do
-      let(:event) { events(:event1) }
-      let(:resource_type) { resource_types(:pcv) }
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new(user: user, events: [event], resource_type: resource_type) }
+      let(:booking) { Booking.new }
 
       before do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
+        allow_any_instance_of(BookingPolicy).to receive(:manage?).and_return(true)
       end
 
       context 'when the booking has events started' do
         before do
-          allow(event).to receive(:pending?).and_return(false)
-          expect(booking).to_not receive(:destroy)
+          allow(booking).to receive(:has_pending_events?).and_return(false)
 
           delete :destroy, id: booking_id
         end
@@ -100,17 +126,39 @@ describe BookingsController do
         it { expect(response).to redirect_to(bookings_path) }
       end
 
-      context 'when the booking has events not started' do
-        before do
-          allow(event).to receive(:pending?).and_return(true)
-          allow(booking).to receive(:has_pending_events?).and_return(true)
-          allow(booking).to receive(:has_events?).and_return(false)
-          expect(booking).to receive(:destroy)
+      context 'when the booking has pending events' do
+        let(:mail) { double(:deliver_now!) }
 
-          delete :destroy, id: booking_id
+        before do
+          allow(booking).to receive(:has_pending_events?).and_return(true)
+
+          allow(NotificationsMailer).to receive(:notify_delete_booking).with(booking).and_return(mail)
+          allow(mail).to receive(:deliver_now!)
+          allow(booking).to receive(:delete_pending_events).and_return(booking)
         end
 
-        it { expect(response).to redirect_to(bookings_path) }
+        context 'when the booking has any event yet' do
+          before do
+            allow(booking).to receive(:has_events?).and_return(true)
+            expect(booking).not_to receive(:destroy)
+
+            delete :destroy, id: booking_id
+          end
+
+          it { expect(response).to redirect_to(bookings_path) }
+        end
+
+        context 'when the booking has no events' do
+          before do
+            allow(booking).to receive(:has_events?).and_return(false)
+            expect(booking).to receive(:destroy)
+
+            delete :destroy, id: booking_id
+          end
+
+          it { expect(response).to redirect_to(bookings_path) }
+        end
+
       end
     end
   end
