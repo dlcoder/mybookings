@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927135045) do
+ActiveRecord::Schema.define(version: 20160922144800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookings", force: true do |t|
+  create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,26 +26,26 @@ ActiveRecord::Schema.define(version: 20160927135045) do
 
   add_index "bookings", ["resource_type_id"], name: "index_bookings_on_resource_type_id", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "status",      default: 0, null: false
+    t.text     "feedback"
     t.integer  "booking_id"
     t.integer  "resource_id"
-    t.integer  "status",      default: 0
-    t.text     "feedback"
   end
 
   add_index "events", ["booking_id"], name: "index_events_on_booking_id", using: :btree
   add_index "events", ["resource_id"], name: "index_events_on_resource_id", using: :btree
 
-  create_table "resource_types", force: true do |t|
+  create_table "resource_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "extension",  default: "DefaultExtension"
   end
 
-  create_table "resources", force: true do |t|
+  create_table "resources", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(version: 20160927135045) do
 
   add_index "resources", ["name"], name: "index_resources_on_name", using: :btree
 
-  create_table "user_managed_resource_types", force: true do |t|
+  create_table "user_managed_resource_types", force: :cascade do |t|
     t.integer "user_id"
     t.integer "resource_type_id"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
