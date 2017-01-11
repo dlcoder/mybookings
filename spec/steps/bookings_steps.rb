@@ -21,7 +21,7 @@ step 'I can book an available resource' do
   fill_in 'booking_events_attributes_0_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
-  click_button 'Create Booking'
+  click_button 'Create booking'
 end
 
 step 'I can see that the booking has been created' do

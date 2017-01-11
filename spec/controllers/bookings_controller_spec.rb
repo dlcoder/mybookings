@@ -13,7 +13,7 @@ describe BookingsController do
     let(:user) { users(:user) }
     let(:resources) { [] }
     let(:bookings) { [] }
-    let(:filtered_bookings) { double(by_start_date: bookings) }
+    let(:filtered_bookings) { double(by_start_date_group_by_resource_type: bookings) }
 
     before { sign_in(user) }
 
@@ -32,16 +32,17 @@ describe BookingsController do
 
       before do
 
-        get :new_first_step
+        get :new_booking_resource_type_step
       end
 
-      it { expect(page).to render_template(:new_first_step) }
+      it { expect(page).to render_template(:new_booking_resource_type_step) }
     end
 
     describe 'on POST to create' do
       let(:resource_type) { resource_types(:pcv) }
       let(:booking_params) { { "resource_type_id" => "#{resource_type.id}", "events" => {"resource_id" => "1", "start_date" => ''} } }
-      let(:booking) { Booking.new }
+      let(:event) { events(:event1) }
+      let(:booking) { Booking.new(user: user, events: [event], resource_type: resource_type) }
 
       before do
         allow(Booking).to receive(:new_for_user).with(user, booking_params).and_return(booking)
@@ -72,14 +73,15 @@ describe BookingsController do
           post :create, booking: booking_params
         end
 
-        it { expect(page).to render_template(:new_second_step) }
+        it { expect(page).to render_template(:new_booking_events_step) }
       end
     end
 
     describe 'on DELETE to destroy' do
-      let(:event) { Event.new }
+      let(:event) { events(:event1) }
+      let(:resource_type) { resource_types(:pcv) }
       let(:booking_id) { '1' }
-      let(:booking) { Booking.new(user: user, events: [event]) }
+      let(:booking) { Booking.new(user: user, events: [event], resource_type: resource_type) }
 
       before do
         allow(BookingDecorator).to receive(:find).with(booking_id).and_return(booking)
