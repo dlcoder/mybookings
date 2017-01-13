@@ -17,3 +17,4 @@ Feature: Manager
     And I cannot see a disabled resource to reallocate a booking
     And I can reallocate a booking
     And I can cancel a booking
+    And the booking owner should receive an email with the cancel reason

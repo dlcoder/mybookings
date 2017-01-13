@@ -130,3 +130,13 @@ step 'I can cancel a booking' do
 
   expect(page).to have_content('The booking has been canceled.')
 end
+
+step 'the booking owner should receive an email with the cancel reason' do
+  user = users(:user)
+
+  expect(unread_emails_for(user.email).size).to eq(1)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.body).to include('There is an issue with this booking')
+end
