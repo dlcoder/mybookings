@@ -43,7 +43,10 @@ step 'I can see that the booking does not exists' do
 end
 
 step 'I click button to submit some feedback about an expired booking' do
-  find('tr', text: 'ACMR2').click_link 'Send Feedback'
+  event = events(:event2)
+  within "#event-#{event.id}" do
+    click_link 'Send Feedback'
+  end
 end
 
 step 'I can send a feedback message' do

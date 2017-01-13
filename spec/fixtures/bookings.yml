@@ -5,3 +5,7 @@ expired_booking:
 expired_booking_with_feedback:
   user: user
   resource_type: acmr
+
+pending_booking:
+  user: user
+  resource_type: acmr

@@ -13,6 +13,7 @@ Feature: Admin
     And I can add a new resource
     And I can see that the resource has been added
     And I can see a bookings of a resource and all the info of them
+    And I can cancel or reallocate a booking
 
   Scenario: Manage resource types as administrator
     Given a signed in administrator

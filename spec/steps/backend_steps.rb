@@ -103,3 +103,10 @@ step 'I can see a bookings of a resource and all the info of them' do
   expect(page).to have_content('January 02, 2000 14:00')
   expect(page).to have_content('The resource have a lot of problems.')
 end
+
+step 'I can cancel or reallocate a booking' do
+  event = events(:event3)
+  within "#event-#{event.id}" do
+    click_link 'Cancel or reallocate'
+  end
+end
