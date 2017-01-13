@@ -6,6 +6,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def manage?
-    @record.booking.user == @user
+    return true if @user.has_role? :admin
+    return @record.resource.resource_type_managed_by? @user
   end
 end
