@@ -1,12 +1,12 @@
 class NotificationsMailer < ApplicationMailer
-  def cancel_booking booking, reason
-    @booking = booking
+  def cancel_event event, reason
+    @event = event
     @reason = reason
 
     app_name = t('app_name')
-    notification_subject = t('notifications_mailer.cancel_booking.subject')
+    notification_subject = t('notifications_mailer.cancel_event.subject')
 
-    mail(to: booking.user_email, subject: "[#{app_name}] #{notification_subject}")
+    mail(to: event.booking.user_email, subject: "[#{app_name}] #{notification_subject}")
   end
 
   def notify_upcoming_booking booking

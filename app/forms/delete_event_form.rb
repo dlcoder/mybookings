@@ -1,4 +1,4 @@
-class DeleteBookingForm
+class DeleteEventForm
   include ActiveModel::Validations
 
   attr_accessor :reason

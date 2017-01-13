@@ -22,6 +22,29 @@ class Event < ActiveRecord::Base
     Event.occurring.where('? >= end_date', Time.now)
   end
 
+  def self.overlapped_at start_date, end_date
+    # Dates extended to trigger frequency
+    start_date = start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+    end_date = end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+
+    where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
+  end
+
+  def alternative_resources
+    resource_type_id = self.resource.resource_type.id
+
+    # Enabled resources of the same type that overlaps with self booking
+    resources_with_overlapped_events = Event.overlapped_at(self.start_date, self.end_date)
+      .joins(:resource)
+      .where(resources: { resource_type_id: resource_type_id, disabled: false })
+      .pluck('resources.id')
+
+    # Add self event resource to exclude it
+    resources_with_overlapped_events.push(self.resource.id)
+
+    Resource.where(resource_type_id: resource_type_id).where.not(id: resources_with_overlapped_events)
+  end
+
   private
 
   def dates_in_the_future
