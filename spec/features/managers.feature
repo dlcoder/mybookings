@@ -14,3 +14,6 @@ Feature: Manager
     And I can see that the resource has been added
     And I can see a bookings of a resource and all the info of them
     And I can cancel or reallocate a booking
+    And I cannot see a disabled resource to reallocate a booking
+    And I can reallocate a booking
+    And I can cancel a booking

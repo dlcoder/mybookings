@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
     # Add self event resource to exclude it
     resources_with_overlapped_events.push(self.resource.id)
 
-    Resource.where(resource_type_id: resource_type_id).where.not(id: resources_with_overlapped_events)
+    Resource.where(resource_type_id: resource_type_id, disabled: false).where.not(id: resources_with_overlapped_events)
   end
 
   private

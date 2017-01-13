@@ -110,3 +110,23 @@ step 'I can cancel or reallocate a booking' do
     click_link 'Cancel or reallocate'
   end
 end
+
+step 'I cannot see a disabled resource to reallocate a booking' do
+  expect(page).to_not have_content('Adobe Connect Meeting Rooms: Disabled resource')
+end
+
+step 'I can reallocate a booking' do
+  select 'Adobe Connect Meeting Rooms: ACMR1', from: 'Resource'
+  click_button 'Reallocate to another resource'
+
+  expect(page).to have_content('The booking has been reasigned.')
+end
+
+step 'I can cancel a booking' do
+  find('tr', text: 'ACMR1').click_link 'Show bookings'
+  step 'I can cancel or reallocate a booking'
+  fill_in 'Reason', with: 'There is an issue with this booking'
+  click_button 'Cancel booking'
+
+  expect(page).to have_content('The booking has been canceled.')
+end

@@ -3,7 +3,7 @@ class Backend::EventsController < Backend::BaseController
   include Backend::Manageable
   include Backend::Authorizable
 
-  before_action :load_resource, only: [:index, :delete_confirmation, :destroy]
+  before_action :load_resource, only: [:index, :delete_confirmation, :destroy, :update]
   before_action :load_event, only: [:delete_confirmation, :destroy, :update]
 
   def index
@@ -26,14 +26,14 @@ class Backend::EventsController < Backend::BaseController
     logger.info "The event #{@event.id} of the booking #{@event.booking.id} in the resource #{@resource.name} has been deleted. The reason is: #{@event_form.reason}"
     @event.destroy!
     NotificationsMailer.cancel_event(@event, @event_form.reason).deliver_now!
-    redirect_to backend_resource_bookings_path, notice: I18n.t('backend.bookings.destroy.cancel_notice')
+    redirect_to backend_resource_events_path, notice: I18n.t('backend.events.destroy.cancel_notice')
   end
 
   def update
     return render 'delete_confirmation' unless @event.valid?
 
     @event.update(event_params)
-    redirect_to backend_resources_path, notice: I18n.t('backend.bookings.update.reallocated_notice')
+    redirect_to backend_resources_path, notice: I18n.t('backend.events.update.reallocated_notice')
   end
 
   private
@@ -50,7 +50,7 @@ class Backend::EventsController < Backend::BaseController
   end
 
   def load_resource
-    resource_id = params[:id] || params[:resource_id]
+    resource_id = params[:resource_id] || params[:id]
 
     @resource = Resource.find(resource_id)
     authorize @resource
