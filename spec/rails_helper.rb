@@ -9,6 +9,8 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'turnip/capybara'
+require 'email_spec'
+require 'email_spec/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -69,4 +71,8 @@ RSpec.configure do |config|
 
   # Include url_helpers
   config.include Rails.application.routes.url_helpers
+
+  #Include email_spec helpers and matchers
+  config.include EmailSpec::Helpers, type: :feature
+  config.include EmailSpec::Matchers, type: :feature
 end
