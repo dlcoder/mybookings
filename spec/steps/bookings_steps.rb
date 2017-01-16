@@ -8,12 +8,15 @@ step 'I go to the new booking page' do
   click_link 'Book a resource'
 end
 
+step 'I can see the available resource types' do
+  click_link 'Virtual PC'
+end
+
 step 'I can not see a disabled resource for booking' do
   expect(page).not_to have_content('Disabled resource')
 end
 
 step 'I can book an available resource' do
-  click_link 'Virtual PC'
   select 'PCV1', from: 'Resource'
 
   now = Time.now
