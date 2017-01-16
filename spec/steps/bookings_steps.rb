@@ -33,6 +33,16 @@ step 'I can see that the booking has been created' do
   end
 end
 
+step 'the manager should receive an email to notify the creation' do
+  user = users(:manager)
+
+  expect(unread_emails_for(user.email).size).to eq(1)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.subject).to include('A new booking has been created')
+end
+
 step 'I can see my bookings summary' do
   expect(page).to have_selector('table#resource-type-virtual-pc')
 end

@@ -11,6 +11,7 @@ Feature: Bookings management
     And I can not see a disabled resource for booking
     And I can book an available resource
     And I can see that the booking has been created
+    And the manager should receive an email to notify the creation
 
   Scenario: Check my bookings
     Given a signed in user
