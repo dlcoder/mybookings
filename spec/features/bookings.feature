@@ -25,6 +25,7 @@ Feature: Bookings management
     When I go to the bookings page
     And I cancel the booking
     Then I can see that the booking does not exists
+    And the manager should receive an email to notify the cancelation
 
   Scenario: Send feedback about a expired booking
     Given a signed in user

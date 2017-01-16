@@ -55,6 +55,16 @@ step 'I can see that the booking does not exists' do
   expect(page).to_not have_content('PCV1')
 end
 
+step 'the manager should receive an email to notify the cancelation' do
+  user = users(:manager)
+
+  expect(unread_emails_for(user.email).size).to eq(2)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.subject).to include('A booking has been canceled')
+end
+
 step 'I click button to submit some feedback about an expired booking' do
   event = events(:event2)
   within "#event-#{event.id}" do
