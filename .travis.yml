@@ -7,7 +7,6 @@ addons:
 
 os:
   - linux
-  - osx
 
 rvm:
   - 2.3.3
