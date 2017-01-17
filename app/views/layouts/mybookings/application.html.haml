@@ -1,0 +1,21 @@
+!!!
+%html
+  = render 'head'
+  %body{ class: (yield(:body_classes) if content_for :body_classes) }
+    = render 'navbar'
+
+    - if content_for :jumbotron
+      .jumbotron
+        .container
+          = yield :jumbotron
+
+    .container
+
+      = render_flash_messages
+
+      - if content_for :content
+        = yield :content
+      - else
+        = render 'page_title'
+        = render 'actions'
+        = yield

@@ -1,0 +1,13 @@
+= title
+
+%p.lead= t('.email', user_email: @user.email)
+
+= simple_form_for @user, url: backend_user_path do |f|
+  = f.input :roles, collection: @valid_roles
+  .panel.panel-default
+    .panel-heading
+      = f.label :resource_types, label: t('.managed_resource_types')
+    .panel-body
+      = f.association :resource_types, as: :check_boxes, hint: t('.resource_types_hint'), label: false
+
+  = f.button icon_with_text('ok', t('.save_user')), class: 'btn btn-primary'

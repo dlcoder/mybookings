@@ -1,0 +1,4 @@
+= render_model_base_errors f.object
+
+= f.input :name
+= f.input :extension, as: :select, collection: available_resource_types_extensions, include_blank: false, default: 'DefaultExtension'

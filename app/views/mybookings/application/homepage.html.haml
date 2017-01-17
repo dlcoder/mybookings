@@ -1,0 +1,8 @@
+= title_for_html
+
+= content_for :body_classes, 'homepage'
+
+= content_for :jumbotron do
+  %h1= t('.promo_message')
+
+= render partial: 'devise/sessions/login_blocks'

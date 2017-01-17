@@ -1,0 +1,14 @@
+%tr{ class: resource_tr_class(resource) }
+  %td= resource.id
+  %td= resource.name
+  %td= resource.resource_type_name
+  %td= bookings_counters_for(resource)
+  %td
+    = link_to icon_with_text('th-list', t('.show_bookings')), backend_resource_events_path(resource.id), class: 'btn btn-default btn-xs'
+
+    - if resource.disabled?
+      - enable_or_disable_text_link = icon_with_text('ok', t('.enable'))
+    - else
+      - enable_or_disable_text_link = icon_with_text('remove', t('.disable'))
+
+    = link_to enable_or_disable_text_link, backend_resource_switch_availability_path(resource.id), { class: 'btn btn-default btn-xs', method: :put }

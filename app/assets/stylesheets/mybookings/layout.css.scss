@@ -1,0 +1,11 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 100px;
+  &.homepage {
+    padding-top: 50px;
+  }
+}
+
+#backend-menu {
+  margin-top: 20px;
+}

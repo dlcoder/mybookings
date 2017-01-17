@@ -1,0 +1,5 @@
+= title
+
+= simple_form_for @event, url: event_set_feedback_path, method: :put do |f|
+  = f.input :feedback, as: :text
+  = f.button icon_with_text('ok', t('.send_feedback')), class: 'btn btn-primary'
