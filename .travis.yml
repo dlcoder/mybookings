@@ -1,0 +1,22 @@
+sudo: false
+
+addons:
+  apt:
+    packages:
+    - libgmp-dev
+
+os:
+  - linux
+  - osx
+
+rvm:
+  - ruby-head
+
+language: ruby
+
+cache: bundler
+
+before_install:
+  - gem install bundler
+
+script: bin/bundle exec rspec
