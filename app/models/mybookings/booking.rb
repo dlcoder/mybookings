@@ -36,5 +36,14 @@ module Mybookings
       events.any?
     end
 
+    def add_event event
+      events << event
+    end
+
+    def add_events new_events
+      new_events.each do |event|
+        events << event
+      end
+    end
   end
 end

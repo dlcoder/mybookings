@@ -20,8 +20,8 @@ step 'I can book an available resource' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'booking_events_attributes_0_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
-  fill_in 'booking_events_attributes_0_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
   click_button 'Create booking'
@@ -81,4 +81,17 @@ end
 step 'I can see that the feedback have been submitted' do
   expect(page).to have_content('Thanks. We have received your feedback.')
   expect(find('tr', text: 'ACMR1')).to_not have_content('Send feedback')
+end
+
+step 'I can book an available resource with weekly periodicity' do
+  select 'PCV1', from: 'Resource'
+
+  now = Time.now
+  fill_in 'bookings_form_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
+  check 'bookings_form_weekly'
+  fill_in 'bookings_form_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
+  fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
+
+  click_button 'Create booking'
 end

@@ -31,4 +31,12 @@ en:
     #     age: 'Select your age'
     labels:
       delete_booking_form:
-        reason: The reason you are canceling the booking
+        reason: 'The reason you are canceling the booking'
+      bookings_form:
+        resource: 'Resource'
+        start_date: 'Start date'
+        end_date: 'End date'
+        comment: 'Comment'
+        weekly: 'Weekly'
+        monthly: 'Monthly'
+        until_date: 'Until date'

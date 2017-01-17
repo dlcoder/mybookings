@@ -108,6 +108,7 @@ en:
         comment_hint: 'You can write some indication to notify the resource responsible.'
         create_booking: 'Create booking'
         title: 'New booking'
+        dates_interval_message_error: 'Not is allowed to create recurring events with more than %{days_permitted} days range'
 
     events:
       event:

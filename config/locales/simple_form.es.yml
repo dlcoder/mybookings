@@ -25,5 +25,13 @@ es:
     #     password: 'No special characters, please.'
     labels:
       delete_booking_form:
-        reason: La razón por la que cancelas la reserva
+        reason: 'La razón por la que cancelas la reserva'
+      bookings_form:
+        resource: 'Recurso'
+        start_date: 'Fecha de inicio'
+        end_date: 'Fecha de fin'
+        comment: 'Comentario'
+        weekly: 'Semanalmente'
+        monthly: 'Mensualmente'
+        until_date: 'Hasta la fecha'
 

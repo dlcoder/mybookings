@@ -13,30 +13,36 @@ module Mybookings
     def new_booking_events_step
       resource_type = ResourceType.find(params[:booking_id])
       load_available_resources_by_resource_type resource_type
-      @booking = Booking.new(resource_type: resource_type)
-      @booking.events.build
+      @booking_form = BookingsForm.new
+      @booking_form.resource_type_id = resource_type.id
     end
 
     def create
-      @booking = Booking.new_for_user(current_user, booking_params)
+      @booking_form = BookingsForm.new(params[:bookings_form])
 
-      if @booking.valid?
-        # If it's a valid booking we have to fire, for all events in a booking,
-        # the creation event in the resource type associated.
-        @booking.events.each do |event|
-          ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
-        end
-
-        @booking.save!
-
-        NotificationsMailer.notify_new_booking(@booking).deliver_now!
-
-        return redirect_to bookings_path
-      else
-        load_available_resources_by_resource_type @booking.resource_type
-
-        render 'new_booking_events_step'
+      if @booking_form.invalid?
+        load_available_resources_by_resource_type @booking_form.resource_type
+        return render 'new_booking_events_step'
       end
+
+      @booking = "Mybookings::Creates#{@booking_form.type}Booking".constantize.from_form(current_user, @booking_form)
+
+      if @booking.invalid?
+        load_available_resources_by_resource_type @booking.resource_type
+        return render 'new_booking_events_step'
+      end
+
+      # If it's a valid booking we have to fire, for all events in a booking,
+      # the creation event in the resource type associated.
+      @booking.events.each do |event|
+        ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
+      end
+
+      @booking.save!
+
+      NotificationsMailer.notify_new_booking(@booking).deliver_now!
+
+      return redirect_to bookings_path
     end
 
     def destroy

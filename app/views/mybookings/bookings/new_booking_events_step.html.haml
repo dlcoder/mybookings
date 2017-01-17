@@ -1,16 +1,23 @@
 = title
 
-= simple_form_for @booking do |f|
+= simple_form_for @booking_form, url: bookings_path, method: :post do |f|
   = render_model_base_errors f.object
 
   .row
     = f.input :resource_type_id, as: :hidden
-    = f.simple_fields_for :events do |event_form|
-      .col-xs-12.col-sm-4
-        = event_form.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
-      .col-xs-12.col-sm-4
-        = event_form.input :start_date, as: :datetimepicker
-      .col-xs-12.col-sm-4
-        = event_form.input :end_date, as: :datetimepicker
-  = f.input :comment, input_html: { rows: 5 }, hint: t('.comment_hint')
-  = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
+    .col-xs-12.col-sm-4
+      = f.input :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
+    .col-xs-12.col-sm-4
+      = f.input :start_date, as: :datetimepicker
+    .col-xs-12.col-sm-4
+      = f.input :end_date, as: :datetimepicker
+    .col-xs12.col-sm-2
+      = f.input :weekly, as: :boolean
+    .col-xs12.col-sm-2
+      = f.input :monthly, as: :boolean
+    .col-xs12.col-sm-4
+      = f.input :until_date, as: :datetimepicker
+    .col-xs-12.col-sm-12
+      = f.input :comment, input_html: { rows: 5 }, hint: t('.comment_hint')
+    .col-xs-12.col-sm-12
+      = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
