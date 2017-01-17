@@ -12,7 +12,7 @@ cache: bundler
 
 before_install:
   - gem install bundler
+  - cp config/database.sample.yml config/database.yml
 
 script:
-  - cp config/database.sample.yml config/database.yml
   - bin/bundle exec rspec
