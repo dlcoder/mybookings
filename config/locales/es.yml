@@ -1,0 +1,136 @@
+es:
+  actions: 'Acciones'
+  app_name: 'MyBookings'
+  delete_confirmation: '¿Estás seguro?'
+  not_authorized: 'Parece que no estás autorizado para estar aquí.'
+  saving: 'Guardando...'
+
+  application:
+    homepage:
+      promo_message: 'Bienvenido al Sistema MyBookings'
+      title: 'Página de inicio'
+    navbar:
+      manage: 'Gestionar'
+      sign_out: 'Cerrar sesión'
+      toggle_navigation: 'Abrir menú'
+      you_are_logged_in_as: '%{email}'
+
+  backend:
+    backend_menu:
+      manage: 'Gestionar'
+      resources: 'Recursos'
+      resource_types: 'Tipos de recurso'
+      users: 'Usuarios'
+    bookings:
+      booking:
+        booking_date: 'Fecha de la reserva'
+    events:
+      event:
+        cancel_event: 'Cancelar o reasignar'
+        comment: 'Observaciones'
+        feedback: 'Comentario'
+        start_date: 'Fecha de inicio'
+        end_date: 'Fecha de fin'
+        user_email: 'Email del usuario'
+      delete_confirmation:
+        booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
+        cancel_booking_header: 'Cancelar reserva'
+        cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje que se enviará al ususario.'
+        no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
+        reallocate_booking_header: 'Reasignar reserva'
+        reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'
+        return_to: 'Volver al recurso %{resource_name}'
+        title: 'Confirmación de la cancelación de la reserva'
+        update: 'Reasignar a otro recurso'
+        cancel: 'Cancelar reserva'
+      destroy:
+        cancel_notice: 'La reserva ha sido cancelada.'
+      index:
+        no_events: 'Este recurso aún no ha sido reservado.'
+        resource: 'Recurso:'
+        title: 'Reservas del recurso'
+      update:
+        reallocated_notice: 'La reserva ha sido reasignada.'
+    manager_menu:
+      manage: 'Gestionar'
+      resources: 'Recursos'
+    resources:
+      index:
+        new_resource: 'Nuevo recurso'
+        no_resources: 'Aún no se han creado recursos.'
+        title: 'Recursos'
+      new:
+        create_resource: 'Crear recurso'
+        title: 'Nuevo recurso'
+      resource:
+        enable: 'Activar'
+        disable: 'Desactivar'
+        expired: '%{expired_bookings} terminadas'
+        pending: '%{pending_bookings} pendientes'
+        occurring: '%{occurring_bookings} en proceso'
+        show_bookings: 'Ver reservas'
+    resource_types:
+      edit:
+        title: 'Editando tipo de recurso'
+        update_resource_type: 'Actualizar tipo de recurso'
+      index:
+        new_resource_type: 'Nuevo tipo de recurso'
+        no_resource_types: 'Aún no se han creado tipos de recurso.'
+        title: 'Tipos de recurso'
+      new:
+        create_resource_type: 'Crear tipo de recurso'
+        title: 'Nuevo tipo de recurso'
+      resource_type:
+        edit: 'Editar'
+    users:
+      edit:
+        email: 'Email: %{user_email}'
+        managed_resource_types: 'Tipos de recurso gestionados'
+        resource_types_hint: 'Esta opción solo tiene efecto si el usuario tiene el rol de "manager".'
+        save_user: 'Guardar usuario'
+        title: 'Editando usuario'
+      index:
+        title: 'Usuarios'
+      user:
+        edit: 'Editar'
+
+  bookings:
+    booking:
+      cancel_booking: 'Cancelar'
+    index:
+      new_booking: 'Reservar un recurso'
+      no_bookings: 'Aún no has realizado ninguna reserva.'
+      title: 'Mis reservas'
+    new_booking_resource_type_step:
+      title: 'Nueva reserva'
+    new_booking_events_step:
+      comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
+      create_booking: 'Crear reserva'
+      title: 'Nueva reserva'
+
+  events:
+    event:
+      send_feedback: 'Enviar comentarios'
+    edit_feedback:
+      send_feedback: 'Enviar comentarios'
+      title: 'Enviar comentarios'
+    index:
+      feedback_received: 'Gracias. Hemos recibido tus comentarios.'
+    statuses:
+      pending: 'Pendiente'
+      expired: 'Terminada'
+      occurring: 'En proceso'
+
+  notifications_mailer:
+    cancel_event:
+      subject: 'Tu reserva en MyBookings has sido cancelada.'
+      body_html: 'Tu reserva %{name} prevista para el %{start_date} ha sido cancelada por un administrador por la siguiente razón: %{reason}.'
+    notify_upcoming_booking:
+      subject: 'Recuerda que tienes un reserva próxima a celebrarse'
+      body_html: 'Este mensaje es para recordale que tienes una reserva programada para comenzar el %{start_date}.'
+    notify_new_booking:
+      subject: 'Una nueva reserva ha sido creada'
+      body_html: 'Queremos notificarle que una nueva reserva ha sido creada para el tipo de recurso <strong>%{resource_type_name}</strong>'
+    notify_delete_booking:
+      subject: 'Una reserva ha sido cancelada'
+      body_html: 'Queremos notificarle que una reserva del tipo de recurso <strong>%{resource_type_name}</strong> ha sido cancelada.'
