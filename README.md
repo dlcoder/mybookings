@@ -1,5 +1,7 @@
 # MyBookings
 
+[![Build Status](https://travis-ci.org/dlcoder/mybookings.svg?branch=master)](https://travis-ci.org/dlcoder/mybookings)
+
 MyBookings is a web based system for resource booking in companies or institutions that manages different kinds of resources to lend it to a community of users.
 
 MyBookings is built with the Ruby on Rails framework, and therefore can be executed in any typical Ruby web server.
