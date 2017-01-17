@@ -1,11 +1,11 @@
 = title
 
 %p
-  = link_to backend_resource_bookings_path(@resource) do
-    = icon_with_text 'chevron-left', t('.return_to', resource_name: @booking.resource.name)
+  = link_to backend_resource_events_path(@resource) do
+    = icon_with_text 'chevron-left', t('.return_to', resource_name: @resource.name)
 
 %p
-  %strong= t('.booking_info_html', resource: @booking.resource.name_prefixed_with_resource_type, user: @booking.user.email, start_date: l(@booking.start_date, format: :long), end_date: l(@booking.end_date, format: :long))
+  %strong= t('.booking_info_html', resource: @resource.name_prefixed_with_resource_type, user: @event.booking.user.email, start_date: l(@event.start_date, format: :long), end_date: l(@event.end_date, format: :long))
 
 .panel.panel-info
   .panel-heading
@@ -14,7 +14,7 @@
     - if @resources.any?
       %p= t('.reallocate_booking_message')
 
-      = simple_form_for @booking, url: backend_resource_booking_path(@resource.id, @booking.id) do |f|
+      = simple_form_for @event, url: backend_resource_event_path(@resource.id, @event.id) do |f|
         = render_model_base_errors f.object
 
         .row
@@ -30,7 +30,7 @@
   .panel-body
     %p= t('.cancel_booking_message')
 
-    = simple_form_for @booking_form, url: backend_resource_booking_path(@resource.id, @booking.id), method: :delete do |f|
+    = simple_form_for @delete_form, url: backend_resource_event_path(@resource.id, @event.id), method: :delete do |f|
       = f.input :reason, as: :text, input_html: { rows: 5 }
       = f.button icon_with_text('remove', t('.cancel')), class: 'btn btn-danger'
 

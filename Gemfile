@@ -40,6 +40,7 @@ group :test do
   gem 'turnip'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'email_spec'
 end
 
 group :production do

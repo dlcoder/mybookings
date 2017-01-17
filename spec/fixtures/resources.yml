@@ -10,6 +10,10 @@ acmr2:
   name: ACMR2
   resource_type: acmr
 
+acmr3:
+  name: ACMR3
+  resource_type: acmr
+
 disabled_resource:
   name: Disabled resource
   disabled: true

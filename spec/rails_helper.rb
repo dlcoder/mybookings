@@ -9,6 +9,8 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'turnip/capybara'
+require 'email_spec'
+require 'email_spec/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

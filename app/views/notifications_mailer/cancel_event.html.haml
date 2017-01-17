@@ -1,0 +1,2 @@
+= content_for :email_body do
+  %p= t('.body_html', name: @event.resource_name, start_date: l(@event.start_date, format: :long), reason: @reason)

@@ -8,12 +8,15 @@ step 'I go to the new booking page' do
   click_link 'Book a resource'
 end
 
+step 'I can see the available resource types' do
+  click_link 'Virtual PC'
+end
+
 step 'I can not see a disabled resource for booking' do
   expect(page).not_to have_content('Disabled resource')
 end
 
 step 'I can book an available resource' do
-  click_link 'Virtual PC'
   select 'PCV1', from: 'Resource'
 
   now = Time.now
@@ -30,6 +33,16 @@ step 'I can see that the booking has been created' do
   end
 end
 
+step 'the manager should receive an email to notify the creation' do
+  user = users(:manager)
+
+  expect(unread_emails_for(user.email).size).to eq(1)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.subject).to include('A new booking has been created')
+end
+
 step 'I can see my bookings summary' do
   expect(page).to have_selector('table#resource-type-virtual-pc')
 end
@@ -42,8 +55,21 @@ step 'I can see that the booking does not exists' do
   expect(page).to_not have_content('PCV1')
 end
 
+step 'the manager should receive an email to notify the cancelation' do
+  user = users(:manager)
+
+  expect(unread_emails_for(user.email).size).to eq(1)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.subject).to include('A booking has been canceled')
+end
+
 step 'I click button to submit some feedback about an expired booking' do
-  find('tr', text: 'ACMR2').click_link 'Send Feedback'
+  event = events(:event2)
+  within "#event-#{event.id}" do
+    click_link 'Send Feedback'
+  end
 end
 
 step 'I can send a feedback message' do

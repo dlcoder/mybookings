@@ -24,16 +24,14 @@ es:
     bookings:
       booking:
         booking_date: 'Fecha de la reserva'
-        cancel_booking: 'Cancelar o reasignar'
+    events:
+      event:
+        cancel_event: 'Cancelar o reasignar'
         comment: 'Observaciones'
         feedback: 'Comentario'
         start_date: 'Fecha de inicio'
         end_date: 'Fecha de fin'
         user_email: 'Email del usuario'
-      index:
-        no_bookings: 'Este recurso aún no ha sido reservado.'
-        resource: 'Recurso:'
-        title: 'Reservas del recurso'
       delete_confirmation:
         booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
         cancel_booking_header: 'Cancelar reserva'
@@ -47,6 +45,10 @@ es:
         cancel: 'Cancelar reserva'
       destroy:
         cancel_notice: 'La reserva ha sido cancelada.'
+      index:
+        no_events: 'Este recurso aún no ha sido reservado.'
+        resource: 'Recurso:'
+        title: 'Reservas del recurso'
       update:
         reallocated_notice: 'La reserva ha sido reasignada.'
     manager_menu:
@@ -120,7 +122,7 @@ es:
       occurring: 'En proceso'
 
   notifications_mailer:
-    cancel_booking:
+    cancel_event:
       subject: 'Tu reserva en MyBookings has sido cancelada.'
       body_html: 'Tu reserva %{name} prevista para el %{start_date} ha sido cancelada por un administrador por la siguiente razón: %{reason}.'
     notify_upcoming_booking:

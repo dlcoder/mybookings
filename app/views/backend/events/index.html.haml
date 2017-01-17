@@ -1,9 +1,9 @@
 = title
 .lead= "#{t('.resource')} #{@resource.resource_type_name} - #{@resource.name}"
 
-- if @bookings.any?
-  = render @bookings
+- if @events.any?
+  = render @events
 
 - else
   .lead
-    %p= t('.no_bookings')
+    %p= t('.no_events')

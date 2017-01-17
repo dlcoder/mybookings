@@ -12,7 +12,13 @@ Feature: Admin
     And I can enable a resource
     And I can add a new resource
     And I can see that the resource has been added
-    And I can see a bookings of a resource and all the info of them
+    And I can see the events of a resource and all the info of them
+    And I can cancel or reallocate an event
+    And I cannot reallocate the event to a disabled resource
+    And I cannot reallocate the event to a resource with an overlapped booking
+    And I can reallocate an event
+    And I can cancel an event
+    And the booking owner should receive an email with the cancellation reason
 
   Scenario: Manage resource types as administrator
     Given a signed in administrator

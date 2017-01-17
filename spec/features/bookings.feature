@@ -7,9 +7,11 @@ Feature: Bookings management
     Given a signed in user
     When I go to the bookings page
     And I go to the new booking page
+    And I can see the available resource types
     And I can not see a disabled resource for booking
     And I can book an available resource
     And I can see that the booking has been created
+    And the manager should receive an email to notify the creation
 
   Scenario: Check my bookings
     Given a signed in user
@@ -23,6 +25,7 @@ Feature: Bookings management
     When I go to the bookings page
     And I cancel the booking
     Then I can see that the booking does not exists
+    And the manager should receive an email to notify the cancelation
 
   Scenario: Send feedback about a expired booking
     Given a signed in user

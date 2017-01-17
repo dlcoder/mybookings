@@ -1,0 +1,33 @@
+%dl.panel{ class: "panel-#{bootstrap_class_for(event.status)}", id: "event-#{event.id}"}
+  .panel-heading
+    .row
+      .col-xs-9
+        = icon_with_text('envelope', event.booking.user_email)
+      .col-xs-3.text-right
+        %span.label{ class: "label-#{bootstrap_class_for(event.status)}" }= t("bookings.statuses.#{event.status}")
+  .panel-body
+    .row
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('bookings.booking.booking_date'))
+        %dd= l event.booking.created_at, format: :long
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('.start_date'))
+        %dd= l event.start_date, format: :long
+      .col-xs-12.col-md-4
+        %dt= icon_with_text('time', t('.end_date'))
+        %dd= l event.end_date, format: :long
+    - unless event.booking.comment.blank?
+      %hr
+      .row
+        .col-xs-12
+          %dt= icon_with_text('comment', t('.comment'))
+          %dd= event.booking.comment
+    - unless event.feedback.blank?
+      %hr
+      .row
+        .col-xs-12
+          %dt= icon_with_text('pencil', t('.feedback'))
+          %dd= event.feedback
+    - if event.pending?
+      %hr
+        = link_to t('.cancel_event'), backend_resource_event_delete_confirmation_path(resource.id, event.id)

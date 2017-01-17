@@ -24,16 +24,14 @@ en:
     bookings:
       booking:
         booking_date: 'Booking date'
-        cancel_booking: 'Cancel or reallocate'
+    events:
+      event:
+        cancel_event: 'Cancel or reallocate'
         comment: 'Comment'
         feedback: 'Feedback'
         start_date: 'Start date'
         end_date: 'End date'
         user_email: 'User email'
-      index:
-        no_bookings: 'This resource has no bookings yet.'
-        resource: 'Resource:'
-        title: 'Resource bookings'
       delete_confirmation:
         booking_info_html: 'Booking of resource <em>%{resource}</em> for user <em>%{user}</em> from <em>%{start_date}</em> to <em>%{end_date}</em>.'
         cancel_booking_header: 'Cancel booking'
@@ -47,6 +45,10 @@ en:
         cancel: 'Cancel booking'
       destroy:
         cancel_notice: 'The booking has been canceled.'
+      index:
+        no_events: 'This resource has no bookings yet.'
+        resource: 'Resource:'
+        title: 'Resource bookings'
       update:
         reallocated_notice: 'The booking has been reasigned.'
     manager_menu:
@@ -120,7 +122,7 @@ en:
       occurring: 'Occurring'
 
   notifications_mailer:
-    cancel_booking:
+    cancel_event:
       subject: 'Your booking in MyBookings has been canceled.'
       body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
     notify_upcoming_booking:
