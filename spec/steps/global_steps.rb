@@ -29,4 +29,5 @@ step 'an existing booking' do
   step 'I go to the new booking page'
   step 'I can see the available resource types'
   step 'I can book an available resource'
+  step 'the manager should receive an email to notify the creation'
 end

@@ -58,7 +58,7 @@ end
 step 'the manager should receive an email to notify the cancelation' do
   user = users(:manager)
 
-  expect(unread_emails_for(user.email).size).to eq(2)
+  expect(unread_emails_for(user.email).size).to eq(1)
 
   open_last_email_for(user.email)
 
