@@ -1,10 +1,5 @@
 sudo: false
 
-addons:
-  apt:
-    packages:
-    - libgmp-dev
-
 os:
   - linux
 
@@ -18,4 +13,6 @@ cache: bundler
 before_install:
   - gem install bundler
 
-script: bin/bundle exec rspec
+script:
+  - cp config/database.sample.yml config/database.yml
+  - bin/bundle exec rspec
