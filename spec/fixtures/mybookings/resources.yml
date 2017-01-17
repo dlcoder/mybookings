@@ -1,0 +1,20 @@
+PCV1:
+  name: PCV1
+  resource_type: pcv
+
+acmr1:
+  name: ACMR1
+  resource_type: acmr
+
+acmr2:
+  name: ACMR2
+  resource_type: acmr
+
+acmr3:
+  name: ACMR3
+  resource_type: acmr
+
+disabled_resource:
+  name: Disabled resource
+  disabled: true
+  resource_type: acmr

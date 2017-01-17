@@ -1,0 +1,28 @@
+event1:
+  start_date: '2000-01-01 12:00:00 UTC'
+  end_date: '2000-01-01 13:00:00 UTC'
+  booking: expired_booking
+  resource: acmr1
+  status: 2
+
+event2:
+  start_date: '2000-01-02 12:00:00 UTC'
+  end_date: '2000-01-02 13:00:00 UTC'
+  booking: expired_booking_with_feedback
+  feedback: 'The resource have a lot of problems.'
+  resource: acmr2
+  status: 2
+
+pending_event:
+  start_date: '2020-01-02 12:00:00 UTC'
+  end_date: 2020-01-02 13:00:00 UTC'
+  booking: pending_booking
+  resource: acmr2
+  status: 0
+
+pending_event_overlapped:
+  start_date: '2020-01-02 12:30:00 UTC'
+  end_date: 2020-01-02 13:30:00 UTC'
+  booking: pending_booking
+  resource: acmr3
+  status: 0
