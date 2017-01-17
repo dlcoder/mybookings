@@ -5,3 +5,5 @@ todo.md
 /tmp
 /config/database.yml
 /config/secrets.yml
+/db/*.sqlite3
+/db/*.sqlite3-journal

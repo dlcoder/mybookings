@@ -1,21 +1,12 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   pool: 5
   timeout: 5000
 
-development:
+development: &development
   <<: *default
-  database: mybookings_development
-  username: mybookings
-  password:
-  host: localhost
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: mybookings_test
-  username: mybookings
-  password:
-  host: localhost
-
-production:
-  <<: *development
+  database: db/test.sqlite3
