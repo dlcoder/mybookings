@@ -1,15 +1,33 @@
 source 'https://rubygems.org'
 
-# Declare your gem's dependencies in mybookings.gemspec.
-# Bundler will treat runtime dependencies like base dependencies, and
-# development dependencies will be added by default to the :development group.
 gemspec
 
-# Declare any dependencies that are still in development here instead of in
-# your gemspec. These might include edge Rails or gems from your path or
-# Git. Remember to move these dependencies to your gemspec before releasing
-# your gem to rubygems.org.
+group :development, :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'rspec', '~> 3.0'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-rails'
+  gem 'sqlite3'
+end
 
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'mailcatcher'
+  gem 'web-console', '~> 2.0'
+end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'minitest' # included to solve a problem executing rspec
+  gem 'poltergeist'
+  gem 'shoulda-matchers'
+  gem 'turnip'
+end
+
+group :production do
+  gem 'pg'
+  gem 'whenever', require: false
+end
