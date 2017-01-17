@@ -71,8 +71,4 @@ RSpec.configure do |config|
 
   # Include url_helpers
   config.include Rails.application.routes.url_helpers
-
-  # Include email_spec helpers and matchers
-  config.include EmailSpec::Helpers, type: :feature
-  config.include EmailSpec::Matchers, type: :feature
 end
