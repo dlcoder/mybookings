@@ -95,7 +95,7 @@ step 'I can save the user' do
   click_button 'Save user'
 end
 
-step 'I can see a bookings of a resource and all the info of them' do
+step 'I can see the events of a resource and all the info of them' do
   find('tr', text: 'ACMR2').click_link 'Show bookings'
 
   expect(page).to have_content('user@mybookings.com')
@@ -104,34 +104,34 @@ step 'I can see a bookings of a resource and all the info of them' do
   expect(page).to have_content('The resource have a lot of problems.')
 end
 
-step 'I can cancel or reallocate a booking' do
-  event = events(:event3)
+step 'I can cancel or reallocate an event' do
+  event = events(:pending_event)
   within "#event-#{event.id}" do
     click_link 'Cancel or reallocate'
   end
 end
 
-step 'I cannot see a disabled resource to reallocate a booking' do
+step 'I cannot reallocate the event to a disabled resource' do
   expect(page).to_not have_content('Adobe Connect Meeting Rooms: Disabled resource')
 end
 
-step 'I can reallocate a booking' do
+step 'I can reallocate an event' do
   select 'Adobe Connect Meeting Rooms: ACMR1', from: 'Resource'
   click_button 'Reallocate to another resource'
 
   expect(page).to have_content('The booking has been reasigned.')
 end
 
-step 'I can cancel a booking' do
+step 'I can cancel an event' do
   find('tr', text: 'ACMR1').click_link 'Show bookings'
-  step 'I can cancel or reallocate a booking'
+  step 'I can cancel or reallocate an event'
   fill_in 'Reason', with: 'There is an issue with this booking'
   click_button 'Cancel booking'
 
   expect(page).to have_content('The booking has been canceled.')
 end
 
-step 'the booking owner should receive an email with the cancel reason' do
+step 'the booking owner should receive an email with the cancellation reason' do
   user = users(:user)
 
   expect(unread_emails_for(user.email).size).to eq(1)

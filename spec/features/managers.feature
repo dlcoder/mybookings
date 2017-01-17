@@ -12,9 +12,9 @@ Feature: Manager
     And I can enable a resource
     And I can add a new resource
     And I can see that the resource has been added
-    And I can see a bookings of a resource and all the info of them
-    And I can cancel or reallocate a booking
-    And I cannot see a disabled resource to reallocate a booking
-    And I can reallocate a booking
-    And I can cancel a booking
-    And the booking owner should receive an email with the cancel reason
+    And I can see the events of a resource and all the info of them
+    And I can cancel or reallocate an event
+    And I cannot reallocate the event to a disabled resource
+    And I can reallocate an event
+    And I can cancel an event
+    And the booking owner should receive an email with the cancellation reason

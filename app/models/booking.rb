@@ -24,7 +24,7 @@ class Booking < ActiveRecord::Base
   end
 
   def delete_pending_events
-    events.where(status: 0).delete_all
+    events.where(status: 0).destroy_all
   end
 
   def has_pending_events?
