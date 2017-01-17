@@ -28,13 +28,13 @@ step 'I can add a new resource' do
   click_link 'New resource'
 
   select 'Adobe Connect Meeting Room', from: 'Resource type'
-  fill_in 'Resource name', with: 'PCV5'
+  fill_in 'Resource name', with: 'ACMR5'
 
   click_button 'Create resource'
 end
 
 step 'I can see that the resource has been added' do
-  expect(page).to have_content('PCV5')
+  expect(page).to have_content('ACMR5')
 end
 
 step 'I click on Resource types menu item' do
@@ -113,6 +113,10 @@ end
 
 step 'I cannot reallocate the event to a disabled resource' do
   expect(page).to_not have_content('Adobe Connect Meeting Rooms: Disabled resource')
+end
+
+step 'I cannot reallocate the event to a resource with an overlapped booking' do
+  expect(page).to_not have_content('Adobe Connect Meeting Rooms: ACMR3')
 end
 
 step 'I can reallocate an event' do

@@ -15,6 +15,7 @@ Feature: Manager
     And I can see the events of a resource and all the info of them
     And I can cancel or reallocate an event
     And I cannot reallocate the event to a disabled resource
+    And I cannot reallocate the event to a resource with an overlapped booking
     And I can reallocate an event
     And I can cancel an event
     And the booking owner should receive an email with the cancellation reason
