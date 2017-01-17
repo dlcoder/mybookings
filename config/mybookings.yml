@@ -1,0 +1,3 @@
+extensions_trigger_frequency: 1
+bookings_notifications_interval: 180
+notifications_mail: no-reply@mybookings.com
