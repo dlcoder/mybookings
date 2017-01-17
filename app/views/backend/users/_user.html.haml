@@ -1,7 +1,0 @@
-%tr
-  %td= user.id
-  %td= link_to user.email, edit_backend_user_path(user)
-  %td= l user.created_at, format: :long
-  %td= roles_for user
-  %td
-    = link_to icon_with_text('pencil', t('.edit')), edit_backend_user_path(user), class: 'btn btn-default btn-xs'
