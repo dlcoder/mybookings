@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails",                           ">= 4.2.7.1", "< 5"
   s.add_dependency "bootstrap-sass",                  "~> 3.3.6"
   s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.43"
-  s.add_dependency "coffee-rails",                    "~> 4.0.0"
+  s.add_dependency "coffee-rails",                    "~> 4.1.0"
   s.add_dependency "devise",                          "~> 4.2.0"
   s.add_dependency "draper",                          "~> 1.3"
   s.add_dependency "haml-rails",                      "~> 0.5.3"
@@ -32,6 +32,6 @@ Gem::Specification.new do |s|
   s.add_dependency "role_model",                      "~> 0.8.2"
   s.add_dependency "sass-rails",                      ">= 3.2"
   s.add_dependency "simple_form",                     "~> 3.4.0"
-  s.add_dependency "turbolinks",                      "~> 2.5.3"
+  s.add_dependency "turbolinks",                      "~> 5.0"
   s.add_dependency "uglifier",                        ">= 1.3.0"
 end
