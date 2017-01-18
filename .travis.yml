@@ -14,4 +14,4 @@ before_install:
   - gem install bundler
 
 script:
-  - bin/bundle exec rspec
+  - bundle exec rspec
