@@ -22,14 +22,14 @@ module Mybookings
     end
 
     def title_for_html title=t('.title')
-      content_for :html_title, "#{ title } - #{ t('app_name') }"
+      content_for :html_title, "#{ title } - #{ t('mybookings.app_name') }"
     end
 
     def title_for_page title=t('.title')
       content_for :page_title, title
     end
 
-    def table_for collection, attr_list = [], id = nil
+    def table_for collection, partial, attr_list = [], id = nil
       actions = true
 
       table_headers = []
@@ -47,7 +47,11 @@ module Mybookings
       end
 
       thead = content_tag :thead, content_tag(:tr, table_headers.join(" ").html_safe)
-      tbody = content_tag :tbody, render(collection)
+      if partial
+        tbody = content_tag :tbody, render(collection: collection, partial: partial)
+      else
+        tbody = content_tag :tbody, render(collection)
+      end
 
       table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: id, class: 'table table-bordered')
       table.html_safe

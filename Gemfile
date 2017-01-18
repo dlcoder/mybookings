@@ -21,7 +21,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'minitest' # included to solve a problem executing rspec
+  gem 'minitest' # included to solve a problem running rspec
   gem 'poltergeist'
   gem 'shoulda-matchers'
   gem 'turnip'

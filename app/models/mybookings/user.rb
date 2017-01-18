@@ -1,5 +1,6 @@
 module Mybookings
   class User < ActiveRecord::Base
+    include ::RoleModel
     include Loggable
 
     devise :database_authenticatable,
@@ -12,8 +13,6 @@ module Mybookings
 
     has_many :bookings
     has_and_belongs_to_many :resource_types, join_table: 'user_managed_resource_types'
-
-    include RoleModel
 
     roles :admin, :manager
 

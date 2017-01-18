@@ -14,7 +14,7 @@ module Mybookings
     delegate :users, to: :resource_type, prefix: true
 
     def self.by_start_date_group_by_resource_type
-      includes(:events, :resource_type).order('resource_types.name ASC').group_by(&:resource_type)
+      includes(:events, :resource_type).order('mybookings_resource_types.name ASC').group_by(&:resource_type)
     end
 
     def self.new_for_user user, params

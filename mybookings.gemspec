@@ -26,11 +26,13 @@ Gem::Specification.new do |s|
   s.add_dependency "draper", "~> 1.3"
   s.add_dependency "haml-rails"
   s.add_dependency "jquery-rails"
+  s.add_dependency "jquery-turbolinks"
   s.add_dependency "momentjs-rails", ">= 2.9.0"
   s.add_dependency "omniauth-saml"
   s.add_dependency "pundit"
   s.add_dependency "role_model"
   s.add_dependency "sass-rails", "~> 4.0.2"
   s.add_dependency "simple_form"
+  s.add_dependency "turbolinks", "~> 2.5.3"
   s.add_dependency "uglifier", ">= 1.3.0"
 end

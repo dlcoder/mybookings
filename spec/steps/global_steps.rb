@@ -10,17 +10,17 @@ step 'login a user' do
 end
 
 step 'a signed in user' do
-  @user = users(:user)
+  @user = mybookings_users(:user)
   step 'login a user'
 end
 
 step 'a signed in administrator' do
-  @user = users(:admin)
+  @user = mybookings_users(:admin)
   step 'login a user'
 end
 
 step 'a signed in manager' do
-  @user = users(:manager)
+  @user = mybookings_users(:manager)
   step 'login a user'
 end
 

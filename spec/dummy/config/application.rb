@@ -10,6 +10,20 @@ module Dummy
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    Devise.setup do |config|
+      # Devise generics
+      config.omniauth_path_prefix = '/users/auth'
+      config.parent_controller = 'Mybookings::ApplicationController'
+
+      # Omniauth
+      config.omniauth :saml, {
+        name: Rails.application.secrets.saml_provider_name,
+        issuer: Rails.application.secrets.saml_issuer,
+        idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+        name_identifier_format: Rails.application.secrets.saml_name_identifier_format,
+        idp_cert: Rails.application.secrets.saml_idp_cert
+      }
+    end
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -23,4 +37,3 @@ module Dummy
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
-

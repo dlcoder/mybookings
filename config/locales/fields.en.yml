@@ -1,28 +1,28 @@
 en:
   activerecord:
     attributes:
-      booking:
+      mybookings/booking:
         comment: Comment
         feedback: Feedback
         resource_type: Resource type
-      event:
+      mybookings/event:
         end_date: End date
         resource: Resource
         resource_name: Resource name
         resource_type_name: Resource type
         start_date: Start date
         status: Status
-      resource:
+      mybookings/resource:
         id: ID
         resource_type: Resource type
         name: Resource name
         bookings: Bookings
-      resource_type:
+      mybookings/resource_type:
         id: ID
         name: Resource type name
         extension: Resource type extension
         resources_number: Number of resources
-      user:
+      mybookings/user:
         id: ID
         email: Email
         created_at: Creation date

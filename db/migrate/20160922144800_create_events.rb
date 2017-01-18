@@ -1,6 +1,6 @@
 class CreateEvents < ActiveRecord::Migration
   def change
-    create_table :events do |t|
+    create_table :mybookings_events do |t|
       t.datetime    :start_date
       t.datetime    :end_date
       t.integer     :status,    null: false, default: 0
@@ -9,11 +9,11 @@ class CreateEvents < ActiveRecord::Migration
       t.belongs_to  :resource,  index: true
     end
 
-    remove_column     :bookings, :start_date,     :datetime
-    remove_column     :bookings, :end_date,       :datetime
-    remove_column     :bookings, :status,         :integer
-    remove_column     :bookings, :feedback,       :text
-    remove_reference  :bookings, :resource,       index: true
-    add_reference     :bookings, :resource_type,  index: true
+    remove_column     :mybookings_bookings, :start_date,     :datetime
+    remove_column     :mybookings_bookings, :end_date,       :datetime
+    remove_column     :mybookings_bookings, :status,         :integer
+    remove_column     :mybookings_bookings, :feedback,       :text
+    remove_reference  :mybookings_bookings, :resource,       index: true
+    add_reference     :mybookings_bookings, :resource_type,  index: true
   end
 end

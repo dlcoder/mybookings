@@ -1,5 +1,5 @@
 module Mybookings
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ActionController::Base
     # TODO: That makes login with SAML crashes
     # protect_from_forgery with: :exception
 

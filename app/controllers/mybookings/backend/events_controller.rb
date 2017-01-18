@@ -27,14 +27,14 @@ module Mybookings
       logger.info "The event #{@event.id} of the booking #{@event.booking.id} in the resource #{@resource.name} has been deleted. The reason is: #{@event_form.reason}"
       @event.destroy!
       NotificationsMailer.cancel_event(@event, @event_form.reason).deliver_now!
-      redirect_to backend_resource_events_path, notice: I18n.t('backend.events.destroy.cancel_notice')
+      redirect_to backend_resource_events_path, notice: I18n.t('mybookings.backend.events.destroy.cancel_notice')
     end
 
     def update
       return render 'delete_confirmation' unless @event.valid?
 
       @event.update(event_params)
-      redirect_to backend_resources_path, notice: I18n.t('backend.events.update.reallocated_notice')
+      redirect_to backend_resources_path, notice: I18n.t('mybookings.backend.events.update.reallocated_notice')
     end
 
     private

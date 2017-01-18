@@ -6,7 +6,7 @@
   = f.input :roles, collection: @valid_roles
   .panel.panel-default
     .panel-heading
-      = f.label :resource_types, label: t('.managed_resource_types')
+      = f.label :mybookings_resource_types, label: t('.managed_resource_types')
     .panel-body
       = f.association :resource_types, as: :check_boxes, hint: t('.resource_types_hint'), label: false
 

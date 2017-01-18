@@ -15,7 +15,7 @@ module Mybookings
       @event.feedback = params[:event][:feedback]
       @event.save!
 
-      redirect_to bookings_path, notice: I18n.t('events.index.feedback_received')
+      redirect_to bookings_path, notice: I18n.t('mybookings.events.index.feedback_received')
     end
 
     private

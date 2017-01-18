@@ -146,7 +146,7 @@ end
 
 SimpleForm::FormBuilder.class_eval do
   def button_with_override(field, options = {})
-    data_disable_with = { disable_with: I18n.t('saving') }
+    data_disable_with = { disable_with: I18n.t('mybookings.saving') }
     options[:data] = data_disable_with.merge(options[:data] || {})
     button_without_override('button', field, options)
   end

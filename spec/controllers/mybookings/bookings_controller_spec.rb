@@ -2,6 +2,7 @@ require 'rails_helper'
 
 module Mybookings
   describe BookingsController do
+    routes { Mybookings::Engine.routes }
 
     context 'when the user is not logged in' do
       describe 'on GET to index' do
@@ -11,7 +12,7 @@ module Mybookings
     end
 
     context 'when the user is logged in' do
-      let(:user) { users(:user) }
+      let(:user) { mybookings_users(:user) }
       let(:resources) { [] }
       let(:bookings) { [] }
       let(:filtered_bookings) { double(by_start_date_group_by_resource_type: bookings) }

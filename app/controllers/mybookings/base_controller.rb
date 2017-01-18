@@ -1,5 +1,5 @@
 module Mybookings
-  class ::BaseController < ApplicationController
+  class BaseController < ApplicationController
     include Pundit
 
     before_action :authenticate_user!

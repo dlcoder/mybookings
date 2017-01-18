@@ -37,8 +37,8 @@ module Mybookings
       # Enabled resources of the same type that overlaps with self booking
       resources_with_overlapped_events = Event.overlapped_at(self.start_date, self.end_date)
         .joins(:resource)
-        .where(resources: { resource_type_id: resource_type_id, disabled: false })
-        .pluck('resources.id')
+        .where(mybookings_resources: { resource_type_id: resource_type_id, disabled: false })
+        .pluck('mybookings_resources.id')
 
       # Add self event resource to exclude it
       resources_with_overlapped_events.push(self.resource.id)
@@ -72,7 +72,7 @@ module Mybookings
         start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
         end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
 
-        overlapped_events = resource.events.where('(? >= events.start_date AND ? <= events.end_date) OR (? >= events.start_date AND ? <= events.end_date)', start_date, start_date, end_date, end_date)
+        overlapped_events = resource.events.where('(? >= mybookings_events.start_date AND ? <= mybookings_events.end_date) OR (? >= mybookings_events.start_date AND ? <= mybookings_events.end_date)', start_date, start_date, end_date, end_date)
         errors.add(:base, I18n.t('errors.messages.event.overlap')) if overlapped_events.any?
       end
     end

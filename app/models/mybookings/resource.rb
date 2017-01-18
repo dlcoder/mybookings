@@ -13,7 +13,7 @@ module Mybookings
     delegate :users, to: :resource_type, prefix: true
 
     def self.available_by_resource_type resource_type
-      includes(:resource_type).order('resources.name asc, resources.name asc').where(disabled: false, resource_type: resource_type)
+      includes(:resource_type).order('mybookings_resources.name asc, mybookings_resources.name asc').where(disabled: false, resource_type: resource_type)
     end
 
     def self.by_id
@@ -29,15 +29,15 @@ module Mybookings
     end
 
     def pending_bookings_count
-      Booking.joins(:events).where(events: { status: Event::statuses[:pending], resource: self }).count
+      Booking.joins(:events).where(mybookings_events: { status: Event::statuses[:pending], resource_id: self }).count
     end
 
     def occurring_bookings_count
-      Booking.joins(:events).where(events: { status: Event::statuses[:occurring], resource: self }).count
+      Booking.joins(:events).where(mybookings_events: { status: Event::statuses[:occurring], resource_id: self }).count
     end
 
     def expired_bookings_count
-      Booking.joins(:events).where(events: { status: Event::statuses[:expired], resource: self }).count
+      Booking.joins(:events).where(mybookings_events: { status: Event::statuses[:expired], resource_id: self }).count
     end
 
     def name_prefixed_with_resource_type

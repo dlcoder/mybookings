@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-
-  mount Mybookings::Engine => "/mybookings"
+  mount Mybookings::Engine => "/"
 end

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160922144800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookings", force: :cascade do |t|
+  create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20160922144800) do
     t.integer  "resource_type_id"
   end
 
-  add_index "bookings", ["resource_type_id"], name: "index_bookings_on_resource_type_id", using: :btree
+  add_index "mybookings_bookings", ["resource_type_id"], name: "index_bookings_on_resource_type_id", using: :btree
 
-  create_table "events", force: :cascade do |t|
+  create_table "mybookings_events", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "status",      default: 0, null: false
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(version: 20160922144800) do
     t.integer  "resource_id"
   end
 
-  add_index "events", ["booking_id"], name: "index_events_on_booking_id", using: :btree
-  add_index "events", ["resource_id"], name: "index_events_on_resource_id", using: :btree
+  add_index "mybookings_events", ["booking_id"], name: "index_events_on_booking_id", using: :btree
+  add_index "mybookings_events", ["resource_id"], name: "index_events_on_resource_id", using: :btree
 
-  create_table "resource_types", force: :cascade do |t|
+  create_table "mybookings_resource_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "extension",  default: "DefaultExtension"
   end
 
-  create_table "resources", force: :cascade do |t|
+  create_table "mybookings_resources", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 20160922144800) do
     t.integer  "resource_type_id"
   end
 
-  add_index "resources", ["name"], name: "index_resources_on_name", using: :btree
+  add_index "mybookings_resources", ["name"], name: "index_resources_on_name", using: :btree
 
-  create_table "user_managed_resource_types", force: :cascade do |t|
+  create_table "mybookings_user_managed_resource_types", force: :cascade do |t|
     t.integer "user_id"
     t.integer "resource_type_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "mybookings_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20160922144800) do
     t.integer  "roles_mask"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "mybookings_users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "mybookings_users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

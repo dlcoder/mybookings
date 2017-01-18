@@ -1,2 +1,4 @@
-class ResourceTypesExtensions::DefaultExtension::Extension < ResourceTypesExtensions::BaseExtension
+module Mybookings
+  class ResourceTypesExtensions::DefaultExtension::Extension < ResourceTypesExtensions::BaseExtension
+  end
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 module Mybookings
   describe Backend::UsersController do
+    routes { Mybookings::Engine.routes }
 
     context 'when the user is not logged in' do
       describe 'on GET to index' do
@@ -13,7 +14,7 @@ module Mybookings
 
     context 'when the logged in user is not an admin' do
       describe 'on GET to index' do
-        let(:user) { users(:user) }
+        let(:user) { mybookings_users(:user) }
 
         before do
           sign_in(user)
@@ -26,7 +27,7 @@ module Mybookings
     end
 
     context 'when the logged in user is an admin' do
-      let(:admin) { users(:admin) }
+      let(:admin) { mybookings_users(:admin) }
 
       before { sign_in(admin) }
 

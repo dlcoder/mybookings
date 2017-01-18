@@ -5,7 +5,7 @@ module Mybookings
     before_action :authenticate_user!
     before_action :load_current_user
 
-    layout 'backend'
+    layout 'layouts/mybookings/backend'
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
