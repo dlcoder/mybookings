@@ -12,7 +12,7 @@ module Mybookings
            :omniauthable
 
     has_many :bookings
-    has_and_belongs_to_many :resource_types, join_table: 'user_managed_resource_types'
+    has_and_belongs_to_many :resource_types, join_table: 'mybookings_user_managed_resource_types'
 
     roles :admin, :manager
 
