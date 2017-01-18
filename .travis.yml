@@ -14,4 +14,6 @@ before_install:
   - gem install bundler
 
 script:
+  - rake db:create RAILS_ENV=test
+  - rake db:migrate RAILS_ENV=test
   - bundle exec rspec
