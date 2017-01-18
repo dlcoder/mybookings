@@ -1,8 +1,0 @@
-= title
-
-- if @users.any?
-  = table_for @users, ['user.id', 'user.email', 'user.created_at', 'user.roles'], 'table-users'
-
-- else
-  .lead
-    %p= t('.no_users')

@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 step 'I visit the homepage' do
-  visit root_path
+  # TODO: workaround to solve the following error running tests:
+  #   undefined local variable or method `root_path'
+  #
+  # visit root_path
+  visit '/'
 end
 
 step 'I go to the sign up page' do
@@ -25,7 +29,7 @@ step 'I can see my bookings page' do
 end
 
 step 'a registered user' do
-  @user = users(:user)
+  @user = mybookings_users(:user)
 end
 
 step 'I can sign in' do

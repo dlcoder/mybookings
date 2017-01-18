@@ -1,0 +1,10 @@
+= content_for :content do
+  .row
+    #backend-menu.col-xs-12.col-md-2
+      = render 'mybookings/backend/backend_menu'
+    .col-xs-12.col-md-9.col-md-offset-1
+      = render 'page_title'
+      = render 'actions'
+      = yield
+
+= render template: 'layouts/mybookings/application'

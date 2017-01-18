@@ -1,9 +1,0 @@
-= title
-.lead= "#{t('.resource')} #{@resource.resource_type_name} - #{@resource.name}"
-
-- if @events.any?
-  = render @events
-
-- else
-  .lead
-    %p= t('.no_events')

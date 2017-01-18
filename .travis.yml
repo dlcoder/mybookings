@@ -1,14 +1,19 @@
 language: ruby
+
 cache: bundler
+
 rvm:
   - 2.3.3
+
 sudo: false
+
 os:
   - linux
+
 before_install:
   - gem install bundler
-before_script:
-  - /bin/cp $TRAVIS_BUILD_DIR/config/database.sample.yml $TRAVIS_BUILD_DIR/config/database.yml
-  - /bin/cp $TRAVIS_BUILD_DIR/config/secrets.sample.yml $TRAVIS_BUILD_DIR/config/secrets.yml
+
 script:
-  - bin/bundle exec rspec
+  - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rspec

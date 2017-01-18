@@ -34,7 +34,7 @@ step 'I can see that the booking has been created' do
 end
 
 step 'the manager should receive an email to notify the creation' do
-  user = users(:manager)
+  user = mybookings_users(:manager)
 
   expect(unread_emails_for(user.email).size).to eq(1)
 
@@ -56,7 +56,7 @@ step 'I can see that the booking does not exists' do
 end
 
 step 'the manager should receive an email to notify the cancelation' do
-  user = users(:manager)
+  user = mybookings_users(:manager)
 
   expect(unread_emails_for(user.email).size).to eq(1)
 
@@ -66,7 +66,7 @@ step 'the manager should receive an email to notify the cancelation' do
 end
 
 step 'I click button to submit some feedback about an expired booking' do
-  event = events(:event2)
+  event = mybookings_events(:event2)
   within "#event-#{event.id}" do
     click_link 'Send Feedback'
   end

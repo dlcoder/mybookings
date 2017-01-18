@@ -1,0 +1,9 @@
+= title
+.lead= "#{t('.resource')} #{@resource.resource_type_name} - #{@resource.name}"
+
+- if @events.any?
+  = render collection: @events, partial: 'mybookings/backend/events/event'
+
+- else
+  .lead
+    %p= t('.no_events')

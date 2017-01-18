@@ -99,13 +99,13 @@ step 'I can see the events of a resource and all the info of them' do
   find('tr', text: 'ACMR2').click_link 'Show bookings'
 
   expect(page).to have_content('user@mybookings.com')
+  expect(page).to have_content('January 02, 2000 12:00')
   expect(page).to have_content('January 02, 2000 13:00')
-  expect(page).to have_content('January 02, 2000 14:00')
   expect(page).to have_content('The resource have a lot of problems.')
 end
 
 step 'I can cancel or reallocate an event' do
-  event = events(:pending_event)
+  event = mybookings_events(:pending_event)
   within "#event-#{event.id}" do
     click_link 'Cancel or reallocate'
   end
@@ -136,7 +136,7 @@ step 'I can cancel an event' do
 end
 
 step 'the booking owner should receive an email with the cancellation reason' do
-  user = users(:user)
+  user = mybookings_users(:user)
 
   expect(unread_emails_for(user.email).size).to eq(1)
 

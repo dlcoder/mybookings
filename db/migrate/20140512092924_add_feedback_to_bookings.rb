@@ -1,5 +1,5 @@
 class AddFeedbackToBookings < ActiveRecord::Migration
   def change
-    add_column :bookings, :feedback, :text
+    add_column :mybookings_bookings, :feedback, :text
   end
 end
