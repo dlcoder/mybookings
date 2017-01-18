@@ -28,6 +28,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'whenever', require: false
 end
