@@ -10,5 +10,8 @@ sudo: false
 os:
   - linux
 
+before_install:
+  - gem install bundler
+
 script:
   - bin/bundle exec rspec
