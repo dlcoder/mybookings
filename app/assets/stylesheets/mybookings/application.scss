@@ -1,10 +1,8 @@
 /*
  *= require_tree .
  *= require_self
+ *= require bootstrap-datetimepicker
  */
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
-// TODO: Not working.
-// See https://github.com/TrevorS/bootstrap3-datetimepicker-rails/issues/48
-// @import 'bootstrap-datetimepicker';
