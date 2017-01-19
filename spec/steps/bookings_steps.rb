@@ -31,10 +31,7 @@ step 'I can see that the booking has been created' do
   expect(page).to have_content('Virtual PC')
 
   within '.resource-type-virtual-pc' do
-    time = Time.now
-    time -= 1.hour
-
-    expect(page).to have_content("Booking created at #{time.strftime("%B %d, %Y %H:%M")}")
+    expect(page).to have_content("Booking created at")
   end
 end
 
