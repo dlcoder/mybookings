@@ -33,7 +33,7 @@ module Mybookings
 
       dates = Array.new
 
-      while start_date <= until_date
+      while start_date.end_of_day <= until_date.end_of_day
         dates << start_date
         start_date += increment
       end

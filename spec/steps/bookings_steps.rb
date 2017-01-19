@@ -94,11 +94,50 @@ step 'I can book an available resource with weekly periodicity' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  @start_weekly_time = (now + 1.hour)
+  fill_in 'bookings_form_start_date', with: @start_weekly_time.strftime("%d-%m-%Y %H:%M")
   fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
   choose 'Weekly'
   fill_in 'bookings_form_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
 
   click_button 'Create booking'
+end
+
+step 'I can see that the booking with weekly periodicity has been created' do
+  expect(page).to have_content('Virtual PC')
+  expect(page).to have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+end
+
+step 'I can see that the booking with periodicity does not exists' do
+  expect(page).to_not have_content('Virtual PC')
+  expect(page).to_not have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
+  expect(page).to_not have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
+  expect(page).to_not have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
+  expect(page).to_not have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+end
+
+step 'I can book an available resource with monthly periodicity' do
+  select 'PCV1', from: 'Resource'
+
+  now = Time.now
+  @start_monthly_time = (now + 1.hour)
+  fill_in 'bookings_form_start_date', with: @start_monthly_time.strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
+  choose 'Monthly'
+  fill_in 'bookings_form_until_date', with: (now + 3.months).strftime("%d-%m-%Y %H:%M")
+  fill_in 'Comment', with: 'I have to create this monthly booking for my practices.'
+
+  click_button 'Create booking'
+end
+
+step 'I can see that the booking with monthly periodicity has been created' do
+  expect(page).to have_content('Virtual PC')
+  expect(page).to have_content(@start_monthly_time.strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_monthly_time + 1.month).strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_monthly_time + 2.months).strftime("%B %d, %Y %H:%M"))
+  expect(page).to have_content((@start_monthly_time + 3.months).strftime("%B %d, %Y %H:%M"))
 end

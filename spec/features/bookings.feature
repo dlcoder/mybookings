@@ -19,6 +19,13 @@ Feature: Bookings management
     And I go to the new booking page
     And I can see the available resource types
     And I can book an available resource with weekly periodicity
+    And I can see that the booking with weekly periodicity has been created
+    And I cancel the booking
+    And I can see that the booking with periodicity does not exists
+    And I go to the new booking page
+    And I can see the available resource types
+    And I can book an available resource with monthly periodicity
+    And I can see that the booking with monthly periodicity has been created
 
   Scenario: Check my bookings
     Given a signed in user
