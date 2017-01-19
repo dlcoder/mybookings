@@ -109,6 +109,9 @@ es:
         create_booking: 'Crear reserva'
         title: 'Nueva reserva'
         dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días'
+        types:
+          weekly: 'Semanalmente'
+          monthly: 'Mensualmente'
 
     events:
       event:

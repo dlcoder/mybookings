@@ -23,8 +23,6 @@ require_relative 'mybookings/resource_types_extensions/default_extension'
 require_relative 'mybookings/resource_types_extensions/default_extension/extension'
 require_relative 'mybookings/resource_types_extensions_wrapper'
 require_relative 'mybookings/creates_booking'
-require_relative 'mybookings/creates_monthly_booking'
-require_relative 'mybookings/creates_weekly_booking'
 
 
 module Mybookings

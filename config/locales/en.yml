@@ -109,6 +109,9 @@ en:
         create_booking: 'Create booking'
         title: 'New booking'
         dates_interval_message_error: 'Not is allowed to create recurring events with more than %{days_permitted} days range'
+        types:
+          weekly: 'Weekly'
+          monthly: 'Monthly'
 
     events:
       event:

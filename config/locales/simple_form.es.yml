@@ -31,7 +31,6 @@ es:
         start_date: 'Fecha de inicio'
         end_date: 'Fecha de fin'
         comment: 'Comentario'
-        weekly: 'Semanalmente'
-        monthly: 'Mensualmente'
-        until_date: 'Hasta la fecha'
+        type: 'Repetir...'
+        until_date: 'Repertir hasta la fecha'
 

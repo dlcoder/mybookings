@@ -25,10 +25,11 @@ module Mybookings
         return render 'new_booking_events_step'
       end
 
-      @booking = "Mybookings::Creates#{@booking_form.type}Booking".constantize.from_form(current_user, @booking_form)
+      @booking = CreatesBooking.from_form(current_user, @booking_form)
 
       if @booking.invalid?
         load_available_resources_by_resource_type @booking.resource_type
+        flash[:error] = @booking.errors.full_messages
         return render 'new_booking_events_step'
       end
 

@@ -37,6 +37,5 @@ en:
         start_date: 'Start date'
         end_date: 'End date'
         comment: 'Comment'
-        weekly: 'Weekly'
-        monthly: 'Monthly'
-        until_date: 'Until date'
+        type: 'Repeat...'
+        until_date: 'Repeat until date'

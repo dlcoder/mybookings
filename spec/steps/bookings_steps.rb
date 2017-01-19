@@ -87,9 +87,9 @@ step 'I can book an available resource with weekly periodicity' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'bookings_form_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
-  check 'bookings_form_weekly'
+  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
+  choose 'Weekly'
   fill_in 'bookings_form_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
 

@@ -11,10 +11,8 @@
       = f.input :start_date, as: :datetimepicker
     .col-xs-12.col-sm-4
       = f.input :end_date, as: :datetimepicker
-    .col-xs12.col-sm-2
-      = f.input :weekly, as: :boolean
-    .col-xs12.col-sm-2
-      = f.input :monthly, as: :boolean
+    .col-xs12.col-sm-4
+      = f.input :type, collection: types_list, as: :radio_buttons
     .col-xs12.col-sm-4
       = f.input :until_date, as: :datetimepicker
     .col-xs-12.col-sm-12

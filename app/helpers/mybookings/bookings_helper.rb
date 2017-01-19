@@ -22,5 +22,11 @@ module Mybookings
 
       links.html_safe
     end
+
+    def types_list
+      BookingsForm::TYPES.collect do |type|
+        [ I18n.t("mybookings.bookings.new_booking_events_step.types.#{type}"), type ]
+      end
+    end
   end
 end
