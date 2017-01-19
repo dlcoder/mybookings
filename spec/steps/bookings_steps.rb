@@ -28,8 +28,13 @@ step 'I can book an available resource' do
 end
 
 step 'I can see that the booking has been created' do
-  within 'table#resource-type-virtual-pc' do
-    expect(page).to have_content('PCV1')
+  expect(page).to have_content('Virtual PC')
+
+  within '.resource-type-virtual-pc' do
+    time = Time.now
+    time -= 1.hour
+
+    expect(page).to have_content("Booking created at #{time.strftime("%B %d, %Y %H:%M")}")
   end
 end
 
@@ -44,15 +49,17 @@ step 'the manager should receive an email to notify the creation' do
 end
 
 step 'I can see my bookings summary' do
-  expect(page).to have_selector('table#resource-type-virtual-pc')
+  expect(page).to have_selector('.resource-type-virtual-pc')
 end
 
 step 'I cancel the booking' do
-  find('tr', text: 'PCV1').click_link 'Cancel'
+  within '.resource-type-virtual-pc' do
+    click_link 'Cancel booking'
+  end
 end
 
 step 'I can see that the booking does not exists' do
-  expect(page).to_not have_content('PCV1')
+  expect(page).to_not have_content('Virtual PC')
 end
 
 step 'the manager should receive an email to notify the cancelation' do
@@ -66,9 +73,9 @@ step 'the manager should receive an email to notify the cancelation' do
 end
 
 step 'I click button to submit some feedback about an expired booking' do
-  event = mybookings_events(:event2)
-  within "#event-#{event.id}" do
-    click_link 'Send Feedback'
+  @event = mybookings_events(:event1)
+  within "#event-#{@event.id}" do
+    click_link 'Send feedback'
   end
 end
 
@@ -80,7 +87,7 @@ end
 
 step 'I can see that the feedback have been submitted' do
   expect(page).to have_content('Thanks. We have received your feedback.')
-  expect(find('tr', text: 'ACMR1')).to_not have_content('Send feedback')
+  expect(find("#event-#{@event.id}")).to_not have_content('Send feedback')
 end
 
 step 'I can book an available resource with weekly periodicity' do

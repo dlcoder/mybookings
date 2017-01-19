@@ -97,7 +97,8 @@ en:
 
     bookings:
       booking:
-        cancel_booking: 'Cancel'
+        cancel_booking: 'Cancel booking'
+        title: 'Booking created at %{created_at}'
       index:
         new_booking: 'Book a resource'
         no_bookings: 'You does not have any booking yet.'
@@ -115,6 +116,7 @@ en:
 
     events:
       event:
+        cancel_event: 'Cancel'
         send_feedback: 'Send feedback'
       edit_feedback:
         send_feedback: 'Send feedback'

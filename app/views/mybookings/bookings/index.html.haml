@@ -4,7 +4,7 @@
   - @bookings.each do |resource_type, bookings|
     - if bookings.any?
       %h3= resource_type.name
-      = table_for bookings, nil, ['resource_type.name', 'event.status', 'event.start_date', 'event.end_date'], "resource-type-#{resource_type.name.parameterize}"
+      = render bookings
 
   = content_for :actions do
     = link_to icon_with_text('plus', t('.new_booking')), new_booking_resource_type_step_bookings_path, class: 'btn btn-primary'

@@ -1,12 +1,11 @@
-- booking.events.each do |event|
-  %tr{ class: bootstrap_class_for(event.status), id: "event-#{event.id}" }
-    %td= event.resource_name
-    %td= t("bookings.statuses.#{event.status}")
-    %td= l event.start_date, format: :long
-    %td= l event.end_date, format: :long
-    %td
-      = show_specific_actions_for event
-      - if event.pending?
+%dl.panel{ class: "panel-default resource-type-#{booking.resource_type.name.parameterize}" }
+  .panel-heading
+    .row
+      .col-xs-9
+        = icon_with_text('envelope', t('.title', created_at: l(booking.created_at, format: :long)))
+      .col-xs-3.text-right
         = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
-      - if event.expired? && !event.feedback.blank?
-        = link_to t('.send_feedback'), event_edit_feedback_path(event.id), class: 'btn btn-default btn-xs'
+  .panel-body
+    .row
+      = render booking.last_events
+
