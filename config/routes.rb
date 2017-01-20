@@ -10,6 +10,7 @@ Mybookings::Engine.routes.draw do
   resources :bookings, only: [:create, :index, :show, :destroy] do
     get :new_booking_resource_type_step, on: :collection
     get :new_booking_events_step
+    get :see_more
   end
 
   resources :events do

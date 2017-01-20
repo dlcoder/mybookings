@@ -1,4 +1,4 @@
-%dl.panel{ class: "panel-default resource-type-#{booking.resource_type.name.parameterize}" }
+%dl.panel{ class: "panel-default resource-type-#{booking.resource_type.name.parameterize}", id: "booking-#{booking.id}" }
   .panel-heading
     .row
       .col-xs-9
@@ -7,5 +7,9 @@
         = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
   .panel-body
     .row
-      = render booking.last_events
+      .events
+        = render booking.last_events
+      - if booking.has_more_than_four_events?
+        .more-link.col-xs-12
+          = link_to t('.see_more'), booking_see_more_path(booking.id), remote: true
 

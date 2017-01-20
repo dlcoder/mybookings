@@ -1,6 +1,6 @@
 module Mybookings
   class BookingsController < BaseController
-    before_action :load_booking, only: [:destroy]
+    before_action :load_booking, only: [:destroy, :see_more]
 
     def index
       load_current_user_bookings
@@ -56,6 +56,10 @@ module Mybookings
       end
 
       redirect_to bookings_path
+    end
+
+    def see_more
+      @events = @booking.events
     end
 
     private
