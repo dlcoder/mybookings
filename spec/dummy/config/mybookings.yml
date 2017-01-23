@@ -2,3 +2,4 @@ extensions_trigger_frequency: 1
 bookings_notifications_interval: 180
 notifications_mail: no-reply@mybookings.com
 maximum_permitted_days_for_recurring_events: 365
+maximum_duration_in_hours_for_an_event: 4

@@ -110,7 +110,8 @@ es:
         comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
         create_booking: 'Crear reserva'
         title: 'Nueva reserva'
-        dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días'
+        dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
+        event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
         types:
           weekly: 'Semanalmente'
           monthly: 'Mensualmente'
