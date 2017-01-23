@@ -8,7 +8,7 @@
   .panel-body
     .row
       .events
-        = render booking.last_events
+        = render booking.limit_recent_events_to 4
       - if booking.has_more_than? 4
         .more-link.col-xs-12
           = link_to t('.load_more_events'), booking_events_path(booking.id), remote: true

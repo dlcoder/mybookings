@@ -4,7 +4,7 @@ module Mybookings
     before_action :load_booking, only: [:index]
 
     def index
-      @events = @booking.events
+      @events = @booking.events.recents
     end
 
     def destroy

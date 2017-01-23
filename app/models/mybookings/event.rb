@@ -46,6 +46,10 @@ module Mybookings
       Resource.where(resource_type_id: resource_type_id, disabled: false).where.not(id: resources_with_overlapped_events)
     end
 
+    def self.recents
+      where(status: 2).last(2) | where.not(status: 2)
+    end
+
     private
 
     def dates_in_the_future
