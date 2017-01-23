@@ -81,8 +81,17 @@ step 'the manager should receive an email to notify the cancelation' do
   expect(current_email.subject).to include('A booking has been canceled')
 end
 
-step 'I click button to submit some feedback about an expired booking' do
+step 'I cannot see the feedback button in an old expired event' do
   @event = mybookings_events(:event1)
+  expect(find("#event-#{@event.id}")).to_not have_content('Send feedback')
+end
+
+step 'I click button to submit some feedback about a recently expired booking' do
+
+  @event.end_date = (Time.now - 3.days).strftime("%d-%m-%Y %H:%M")
+  @event.save!
+  visit current_path
+
   within "#event-#{@event.id}" do
     click_link 'Send feedback'
   end

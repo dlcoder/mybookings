@@ -4,7 +4,7 @@ module Mybookings
     before_action :load_booking, only: [:index]
 
     def index
-      @events = @booking.events.recents
+      @events = EventDecorator.decorate_collection(@booking.events.recents)
     end
 
     def destroy

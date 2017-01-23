@@ -45,6 +45,7 @@ Feature: Bookings management
   Scenario: Send feedback about a expired booking
     Given a signed in user
     When I go to the bookings page
-    And I click button to submit some feedback about an expired booking
+    And I cannot see the feedback button in an old expired event
+    And I click button to submit some feedback about a recently expired booking
     Then I can send a feedback message
     And I can see that the feedback have been submitted

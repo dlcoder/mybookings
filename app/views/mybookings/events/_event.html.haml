@@ -18,7 +18,7 @@
             %hr
             = link_to_delete t('.cancel_event'), booking_events_path(event.booking.id, event.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
 
-          - if event.expired? && event.feedback.blank?
+          - if event.can_receive_feedback?
             %hr
             = link_to t('.send_feedback'), booking_event_edit_feedback_path(event.booking.id, event.id), class: 'btn btn-default btn-xs'
 
