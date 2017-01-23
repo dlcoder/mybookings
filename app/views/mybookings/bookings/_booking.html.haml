@@ -9,7 +9,7 @@
     .row
       .events
         = render booking.last_events
-      - if booking.has_more_than_four_events?
+      - if booking.has_more_than? 4
         .more-link.col-xs-12
-          = link_to t('.see_more'), booking_see_more_path(booking.id), remote: true
+          = link_to t('.load_more_events'), booking_events_path(booking.id), remote: true
 

@@ -6,8 +6,8 @@ module Mybookings
       events.limit(number)
     end
 
-    def has_more_than_four_events?
-      events.size > 4
+    def has_more_than? number=4
+      events.size > number
     end
   end
 end

@@ -99,7 +99,7 @@ en:
       booking:
         cancel_booking: 'Cancel booking'
         title: 'Booking created at %{created_at}'
-        see_more: 'See more...'
+        load_more_events: 'Load more...'
       index:
         new_booking: 'Book a resource'
         no_bookings: 'You does not have any booking yet.'
