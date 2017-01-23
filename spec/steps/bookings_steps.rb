@@ -12,16 +12,28 @@ step 'I can see the available resource types' do
   click_link 'Virtual PC'
 end
 
-step 'I can not see a disabled resource for booking' do
+step 'I cannot see a disabled resource for booking' do
   expect(page).not_to have_content('Disabled resource')
+end
+
+step 'I cannot book an available resource for more than 4 hours' do
+  select 'PCV1', from: 'Resource'
+
+  now = Time.now
+  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 5.hours + 1.minute).strftime("%d-%m-%Y %H:%M")
+
+  click_button 'Create booking'
+
+  expect(page).to have_content("It is not allowed to create bookings whose duration exceeds 4 hours.")
 end
 
 step 'I can book an available resource' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'bookings_form_start_date', with: (now + 1.day).strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 2.day).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
   click_button 'Create booking'

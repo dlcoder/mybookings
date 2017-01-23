@@ -8,7 +8,8 @@ Feature: Bookings management
     When I go to the bookings page
     And I go to the new booking page
     And I can see the available resource types
-    And I can not see a disabled resource for booking
+    And I cannot see a disabled resource for booking
+    And I cannot book an available resource for more than 4 hours
     And I can book an available resource
     And I can see that the booking has been created
     And the manager should receive an email to notify the creation
