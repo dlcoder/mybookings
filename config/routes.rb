@@ -7,6 +7,8 @@ Mybookings::Engine.routes.draw do
 
   root 'application#index'
 
+  get '/events', to: 'ajax#events'
+
   resources :bookings, only: [:create, :index, :show, :destroy] do
     get :new_booking_resource_type_step, on: :collection
     get :new_booking_events_step
