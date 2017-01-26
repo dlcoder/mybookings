@@ -50,6 +50,10 @@ module Mybookings
       where(status: 2).last(2) | where.not(status: 2)
     end
 
+    def self.active_by_resource_between resource, start_day, end_day
+      where(resource: resource, start_date: start_day..end_day).where.not(status: 2)
+    end
+
     private
 
     def dates_in_the_future

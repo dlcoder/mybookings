@@ -109,9 +109,10 @@ es:
       new_booking_events_step:
         comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
         create_booking: 'Crear reserva'
-        title: 'Nueva reserva'
+        title: 'Nueva reserva %{type_name}'
         dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
         event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
+        recurring_hint: 'Seleccionando una de estas opciones, puedes crear un evento recurrente. No olvides rellenar el campo "hasta la fecha" con la última fecha de la reserva.'
         types:
           weekly: 'Semanalmente'
           monthly: 'Mensualmente'
@@ -129,6 +130,10 @@ es:
         pending: 'Pendiente'
         expired: 'Terminada'
         occurring: 'En proceso'
+
+    resources:
+      events:
+        status: 'Ocupado'
 
     notifications_mailer:
       cancel_event:

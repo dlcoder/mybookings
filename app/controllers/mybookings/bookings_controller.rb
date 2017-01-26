@@ -12,10 +12,10 @@ module Mybookings
     end
 
     def new_booking_events_step
-      resource_type = ResourceType.find(params[:booking_id])
-      load_available_resources_by_resource_type resource_type
+      @resource_type = ResourceType.find(params[:booking_id])
+      load_available_resources_by_resource_type @resource_type
       @booking_form = BookingsForm.new
-      @booking_form.resource_type_id = resource_type.id
+      @booking_form.resource_type_id = @resource_type.id
     end
 
     def create
