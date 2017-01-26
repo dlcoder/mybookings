@@ -22,7 +22,8 @@ module Mybookings
       @booking_form = BookingsForm.new(params[:bookings_form])
 
       if @booking_form.invalid?
-        load_available_resources_by_resource_type @booking_form.resource_type
+        @resource_type = @booking_form.resource_type
+        load_available_resources_by_resource_type @resource_type
         return render 'new_booking_events_step'
       end
 
