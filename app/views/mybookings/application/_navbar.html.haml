@@ -6,7 +6,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to t('mybookings.app_name'), mybookings.root_path, { class: 'navbar-brand' }
+      .navbar-brand
+        - if asset_exist? 'mybookings/logo.png'
+          .header-logo
+            = image_tag 'mybookings/logo.png'
+        = link_to t('mybookings.app_name'), mybookings.root_path
 
     - if user_signed_in?
       .collapse.navbar-collapse

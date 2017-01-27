@@ -27,5 +27,7 @@
         .panel-body
           .lead= t('.idps_login_description')
           - if devise_mappings.omniauthable?
-            - resource_class.omniauth_providers.each do |provider|
-              = link_to t('.sign_in_with', provider: provider.to_s), omniauth_authorize_path(resource_name, provider), class: 'btn btn-default'
+            - if resource_class.omniauth_providers.any?
+              %ul.list-inline
+                - resource_class.omniauth_providers.each do |provider|
+                  %li= link_to t('.sign_in_with', provider: provider.to_s), omniauth_authorize_path(resource_name, provider), class: "provider-#{provider.to_s}-link"
