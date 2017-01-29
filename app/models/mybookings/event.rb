@@ -54,6 +54,12 @@ module Mybookings
       where(resource: resource, start_date: start_day..end_day).where.not(status: statuses[:expired])
     end
 
+    def cancel!; end
+
+    def start!; end
+
+    def end!; end
+
     private
 
     def dates_in_the_future
@@ -90,6 +96,5 @@ module Mybookings
         errors.add(:resource, I18n.t('errors.messages.event.resource_is_not_available')) if resource.disabled?
       end
     end
-
   end
 end

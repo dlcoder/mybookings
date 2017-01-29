@@ -1,4 +1,6 @@
 module Mybookings
-  class ResourceTypesExtensions::DefaultExtension
+  module ResourceTypesExtensions
+    class DefaultExtension
+    end
   end
 end

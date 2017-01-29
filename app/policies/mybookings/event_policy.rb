@@ -8,7 +8,8 @@ module Mybookings
 
     def manage?
       return true if @user.has_role? :admin
-      return @record.resource.resource_type_managed_by? @user
+      return true if (@user.has_role?(:manager) && @record.resource.resource_type_managed_by?(@user))
+      return @record.booking.user == @user
     end
   end
 end

@@ -7,9 +7,7 @@ Mybookings::Engine.routes.draw do
 
   root 'application#index'
 
-  resources :bookings, only: [:create, :index, :show, :destroy] do
-    get :new_booking_resource_type_step, on: :collection
-    get :new_booking_events_step
+  resources :bookings, only: [:new, :create, :index, :destroy] do
     resources :events do
       get :edit_feedback
       put :set_feedback
