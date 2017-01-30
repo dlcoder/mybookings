@@ -20,11 +20,9 @@ class @Calendar
       ],
 
     $(idSelect).on 'change', ->
-      resourceId = $(this).val() ;
+      resourceId = $(this).val();
       events =
         url: "/resources/#{resourceId}/events.json"
 
-      $(idCalendar).fullCalendar( 'removeEventSource', events);
-      $(idCalendar).fullCalendar( 'addEventSource', events);
-
-
+      $(idCalendar).fullCalendar('removeEventSource', events);
+      $(idCalendar).fullCalendar('addEventSource', events);
