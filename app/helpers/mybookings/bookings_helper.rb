@@ -23,9 +23,9 @@ module Mybookings
       links.html_safe
     end
 
-    def types_list
-      BookingsForm::TYPES.collect do |type|
-        [ I18n.t("mybookings.bookings.new_booking_events_step.types.#{type}"), type ]
+    def recurrent_types_list
+      Mybookings::Booking::recurrent_types.collect do |type, value|
+        [ I18n.t("mybookings.bookings.recurrent_types.#{type}"), type ]
       end
     end
   end

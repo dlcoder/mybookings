@@ -20,8 +20,8 @@ step 'I cannot book an available resource for more than 4 hours' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 5.hours + 1.minute).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_end_date', with: (now + 5.hours + 1.minute).strftime("%d-%m-%Y %H:%M")
 
   click_button 'Create booking'
 
@@ -32,8 +32,8 @@ step 'I can book an available resource' do
   select 'PCV1', from: 'Resource'
 
   now = Time.now
-  fill_in 'bookings_form_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_start_date', with: (now + 1.hour).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I need that resource just in time.'
 
   click_button 'Create booking'
@@ -113,10 +113,10 @@ step 'I can book an available resource with weekly periodicity' do
 
   now = Time.now
   @start_weekly_time = (now + 1.hour)
-  fill_in 'bookings_form_start_date', with: @start_weekly_time.strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_start_date', with: @start_weekly_time.strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
   choose 'Weekly'
-  fill_in 'bookings_form_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
 
   click_button 'Create booking'
@@ -143,10 +143,10 @@ step 'I can book an available resource with monthly periodicity' do
 
   now = Time.now
   @start_monthly_time = (now + 1.hour)
-  fill_in 'bookings_form_start_date', with: @start_monthly_time.strftime("%d-%m-%Y %H:%M")
-  fill_in 'bookings_form_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_start_date', with: @start_monthly_time.strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
   choose 'Monthly'
-  fill_in 'bookings_form_until_date', with: (now + 3.months).strftime("%d-%m-%Y %H:%M")
+  fill_in 'booking_until_date', with: (now + 3.months).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this monthly booking for my practices.'
 
   click_button 'Create booking'

@@ -3,8 +3,13 @@ es:
     attributes:
       mybookings/booking:
         comment: Observaciones
+        end_date: Fecha de fin
         feedback: Comentarios
+        resource: Recurso
+        recurrent_type: Tipo de Recurrencia
         resource_type: Tipo de Recurso
+        start_date: Fecha de inicio
+        until_date: Hasta la fecha
       mybookings/event:
         end_date: Fecha de fin
         resource: Recurso

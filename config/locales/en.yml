@@ -113,9 +113,10 @@ en:
         dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
         event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
         recurring_hint: 'Selecting one of this option, you can create a recurring event. You don''t forget to fill in the field "until date" with the last booking date.'
-        types:
-          weekly: 'Weekly'
-          monthly: 'Monthly'
+      recurrent_types:
+        daily: 'Daily'
+        weekly: 'Weekly'
+        monthly: 'Monthly'
 
     events:
       event:

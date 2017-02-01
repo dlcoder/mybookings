@@ -32,10 +32,3 @@ en:
     labels:
       delete_booking_form:
         reason: 'The reason you are canceling the booking'
-      bookings_form:
-        resource: 'Resource'
-        start_date: 'Start date'
-        end_date: 'End date'
-        comment: 'Comment'
-        type: 'Repeat...'
-        until_date: 'Repeat until date'

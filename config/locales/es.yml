@@ -113,9 +113,10 @@ es:
         dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
         event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
         recurring_hint: 'Seleccionando una de estas opciones, puedes crear un evento recurrente. No olvides rellenar el campo "hasta la fecha" con la última fecha de la reserva.'
-        types:
-          weekly: 'Semanalmente'
-          monthly: 'Mensualmente'
+      recurrent_types:
+        daily: 'Diariamente'
+        weekly: 'Semanalmente'
+        monthly: 'Mensualmente'
 
     events:
       event:

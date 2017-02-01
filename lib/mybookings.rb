@@ -9,6 +9,7 @@ require 'draper'
 require 'fullcalendar-rails'
 require 'haml'
 require 'haml-rails'
+require 'ice_cube'
 require 'jbuilder'
 require 'jquery-rails'
 require 'jquery-turbolinks'
@@ -24,7 +25,6 @@ require_relative 'mybookings/resource_types_extensions/base_extension'
 require_relative 'mybookings/resource_types_extensions/default_extension'
 require_relative 'mybookings/resource_types_extensions/default_extension/extension'
 require_relative 'mybookings/resource_types_extensions_wrapper'
-require_relative 'mybookings/creates_booking'
 
 
 module Mybookings

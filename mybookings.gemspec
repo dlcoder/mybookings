@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "draper",                          "~> 1.3"
   s.add_dependency "fullcalendar-rails",              "~> 3.1"
   s.add_dependency "haml-rails",                      "~> 0.5.3"
+  s.add_dependency "ice_cube",                        "~> 0.15"
   s.add_dependency "jbuilder",                        "~> 2.6.1"
   s.add_dependency "jquery-rails",                    "~> 4.2.2"
   s.add_dependency "jquery-turbolinks",               "~> 2.1.0"

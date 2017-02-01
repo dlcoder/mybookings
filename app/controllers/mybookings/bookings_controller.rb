@@ -14,24 +14,15 @@ module Mybookings
     def new_booking_events_step
       @resource_type = ResourceType.find(params[:booking_id])
       load_available_resources_by_resource_type @resource_type
-      @booking_form = BookingsForm.new
-      @booking_form.resource_type_id = @resource_type.id
+      @booking = Booking.new(resource_type: @resource_type)
     end
 
     def create
-      @booking_form = BookingsForm.new(params[:bookings_form])
-
-      if @booking_form.invalid?
-        @resource_type = @booking_form.resource_type
-        load_available_resources_by_resource_type @resource_type
-        return render 'new_booking_events_step'
-      end
-
-      @booking = CreatesBooking.from_form(current_user, @booking_form)
+      @booking = Booking.new_for_user(current_user, booking_params)
 
       if @booking.invalid?
-        load_available_resources_by_resource_type @booking.resource_type
-        flash[:error] = @booking.errors.full_messages
+        @resource_type = @booking.resource_type
+        load_available_resources_by_resource_type @resource_type
         return render 'new_booking_events_step'
       end
 
@@ -49,7 +40,7 @@ module Mybookings
     end
 
     def destroy
-      if @booking.has_pending_events?
+      if @booking.has_pending_events? || !@booking.has_events?
         NotificationsMailer.notify_delete_booking(@booking).deliver_now!
         # Only we delete the pending events associated to the booking.
         # If a booking has events with other statuses we don't delete the booking for archival purposes.

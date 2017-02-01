@@ -26,11 +26,4 @@ es:
     labels:
       delete_booking_form:
         reason: 'La razón por la que cancelas la reserva'
-      bookings_form:
-        resource: 'Recurso'
-        start_date: 'Fecha de inicio'
-        end_date: 'Fecha de fin'
-        comment: 'Comentario'
-        type: 'Repetir...'
-        until_date: 'Repertir hasta la fecha'
 
