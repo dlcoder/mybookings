@@ -48,7 +48,6 @@ module Mybookings
       events.any?
     end
 
-
     def generate_events
       dates = generate_dates
 
