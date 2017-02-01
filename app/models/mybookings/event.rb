@@ -47,11 +47,11 @@ module Mybookings
     end
 
     def self.recents
-      where(status: 2).last(2) | where.not(status: 2)
+      where(status: statuses[:expired]).last(statuses[:expired]) | where.not(status: statuses[:expired])
     end
 
     def self.active_by_resource_between resource, start_day, end_day
-      where(resource: resource, start_date: start_day..end_day).where.not(status: 2)
+      where(resource: resource, start_date: start_day..end_day).where.not(status: statuses[:expired])
     end
 
     private

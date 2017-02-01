@@ -36,7 +36,7 @@ es:
         delete_confirmation:
           booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
           cancel_booking_header: 'Cancelar reserva'
-          cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje que se enviará al ususario.'
+          cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje justificando el motivo de la cancelación, que será enviado al solicitante de la reserva.'
           no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
           reallocate_booking_header: 'Reasignar reserva'
           reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'

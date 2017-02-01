@@ -82,17 +82,19 @@ step 'the manager should receive an email to notify the cancelation' do
 end
 
 step 'I cannot see the feedback button in an old expired event' do
-  @event = mybookings_events(:event1)
-  expect(find("#event-#{@event.id}")).to_not have_content('Send feedback')
+  event = mybookings_events(:event1)
+
+  expect(find("#event-#{event.id}")).to_not have_content('Send feedback')
 end
 
 step 'I click button to submit some feedback about a recently expired booking' do
+  event = mybookings_events(:event1)
 
-  @event.end_date = (Time.now - 3.days).strftime("%d-%m-%Y %H:%M")
-  @event.save!
+  event.end_date = (Time.now - 3.days).strftime("%d-%m-%Y %H:%M")
+  event.save!
   visit current_path
 
-  within "#event-#{@event.id}" do
+  within "#event-#{event.id}" do
     click_link 'Send feedback'
   end
 end
@@ -104,8 +106,10 @@ step 'I can send a feedback message' do
 end
 
 step 'I can see that the feedback have been submitted' do
+  event = mybookings_events(:event1)
+
   expect(page).to have_content('Thanks. We have received your feedback.')
-  expect(find("#event-#{@event.id}")).to_not have_content('Send feedback')
+  expect(find("#event-#{event.id}")).to_not have_content('Send feedback')
 end
 
 step 'I can book an available resource with weekly periodicity' do

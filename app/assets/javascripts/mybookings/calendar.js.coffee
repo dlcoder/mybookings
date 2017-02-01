@@ -7,8 +7,6 @@ class @Calendar
     $(idCalendar).fullCalendar
       locale: locale
       editable: false,
-      minTime: "08:00:00",
-      maxTime: "23:00:00",
       defaultView: 'agendaWeek',
       allDaySlot: false,
       height: 700,
@@ -24,5 +22,6 @@ class @Calendar
       events =
         url: "/resources/#{resourceId}/events.json"
 
+      $(idCalendar).fullCalendar('removeEvents')
       $(idCalendar).fullCalendar('removeEventSource', events);
       $(idCalendar).fullCalendar('addEventSource', events);

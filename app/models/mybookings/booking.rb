@@ -31,7 +31,7 @@ module Mybookings
     def self.new_for_user user, params
       booking = Booking.new(params)
       booking.user = user
-      booking.generate_events
+      booking.generate_events if booking.valid?
 
       booking
     end
@@ -57,7 +57,7 @@ module Mybookings
 
       dates.each do |date|
         new_events << { start_date: string_format(date),
-                        end_date: string_format(date + event_duration),
+                        end_date: string_format(date + event_duration.seconds),
                         resource: resource }
       end
 
@@ -71,9 +71,8 @@ module Mybookings
 
       dates = Array.new
 
-      schedule = IceCube::Schedule.new start = start_date
+      schedule = IceCube::Schedule.new(start_date)
       schedule.add_recurrence_rule self.send("increment_#{recurrent_type}_until", until_date)
-
 
       schedule.each_occurrence do |occurrence|
         dates << occurrence.to_datetime
@@ -83,10 +82,11 @@ module Mybookings
     end
 
     def is_a_recurring_booking?
-      true if recurrent_type != 'daily' || (recurrent_type == 'daily' && !until_date.nil?)
+      (!daily? || (daily? && !until_date.nil?))
     end
 
     def the_booking_period_is_valid
+      return false if until_date.nil?
       booking_interval = until_date.to_datetime - start_date.to_datetime
       range_permitted = MYBOOKINGS_CONFIG['maximum_permitted_days_for_recurring_events']
       if  range_permitted.days - booking_interval.days < 0
