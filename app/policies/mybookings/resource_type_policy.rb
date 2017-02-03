@@ -3,7 +3,7 @@ module Mybookings
     class Scope < Struct.new(:user, :scope)
       def resolve
         return scope.all if user.has_role? :admin
-        scope.where(roles_mask: user.get_all_posibles_masks_for_roles)
+        scope.where(roles_mask: [0] + user.get_all_posibles_masks_for_roles)
       end
 
       def resolve_for_managers

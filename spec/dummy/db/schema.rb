@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209165550) do
+ActiveRecord::Schema.define(version: 20170209195328) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170209165550) do
     t.datetime "end_date"
     t.datetime "until_date"
     t.integer  "recurrent_type",   default: 0
+    t.boolean  "prepared",         default: false
   end
 
   add_index "mybookings_bookings", ["resource_type_id"], name: "index_mybookings_bookings_on_resource_type_id"
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170209165550) do
     t.text     "feedback"
     t.integer  "booking_id"
     t.integer  "resource_id"
+    t.string   "event_type"
   end
 
   add_index "mybookings_events", ["booking_id"], name: "index_mybookings_events_on_booking_id"

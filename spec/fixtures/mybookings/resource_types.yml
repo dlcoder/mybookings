@@ -5,3 +5,7 @@ pcv:
 acmr:
   name: Adobe Connect Meeting Rooms
   roles_mask: 31
+
+resource_type_for_all_users:
+  name: Resource type for all users
+  roles_mask: 0

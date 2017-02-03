@@ -4,6 +4,11 @@ step 'I go to the bookings page' do
   visit '/bookings'
 end
 
+step 'I can book resources without role restrictions' do
+  expect(page).to have_content('Resource type for all users')
+  expect(page).not_to have_content('Virtual PC')
+end
+
 step 'I can start to create a booking' do
   within '.btn-group' do
     click_link 'Virtual PC'
