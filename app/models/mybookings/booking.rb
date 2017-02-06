@@ -33,7 +33,11 @@ module Mybookings
     end
 
     def delete_pending_events
-      events.where(status: 0).destroy_all
+      events_to_delete = events.where(status: 0)
+      events_to_delete.each do |event|
+        event.cancel!
+      end
+      events_to_delete.destroy_all
     end
 
     def has_pending_events?
@@ -59,6 +63,10 @@ module Mybookings
 
       events.build(new_events)
     end
+
+    def confirm!; end
+
+    def cancel!; end
 
     private
 
@@ -90,7 +98,7 @@ module Mybookings
       booking_interval = until_date.to_datetime - start_date.to_datetime
       range_permitted = MYBOOKINGS_CONFIG['maximum_permitted_days_for_recurring_events']
       if  range_permitted.days - booking_interval.days < 0
-        errors.add(:until_date, I18n.t('.mybookings.bookings.new_booking_events_step.dates_interval_message_error', days_permitted: range_permitted))
+        errors.add(:until_date, I18n.t('.mybookings.bookings.booking_creation.dates_interval_message_error', days_permitted: range_permitted))
       end
     end
 
@@ -99,7 +107,7 @@ module Mybookings
       event_duration_in_seconds = end_date.to_time - start_date.to_time
       permitted_event_duration_in_seconds = MYBOOKINGS_CONFIG['maximum_duration_in_hours_for_an_event'] * 3600
       if event_duration_in_seconds > permitted_event_duration_in_seconds
-        errors.add(:end_date, I18n.t('.mybookings.bookings.new_booking_events_step.event_duration_message_error', event_duration: MYBOOKINGS_CONFIG['maximum_duration_in_hours_for_an_event']))
+        errors.add(:end_date, I18n.t('.mybookings.bookings.booking_creation.event_duration_message_error', event_duration: MYBOOKINGS_CONFIG['maximum_duration_in_hours_for_an_event']))
       end
     end
 

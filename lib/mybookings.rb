@@ -20,11 +20,7 @@ require 'role_model'
 require 'simple_form'
 require 'turbolinks'
 
-require_relative 'mybookings/resource_types_extensions'
-require_relative 'mybookings/resource_types_extensions/base_extension'
 require_relative 'mybookings/resource_types_extensions/default_extension'
-require_relative 'mybookings/resource_types_extensions/default_extension/extension'
-require_relative 'mybookings/resource_types_extensions_wrapper'
 
 module Mybookings
 end

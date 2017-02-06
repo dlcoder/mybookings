@@ -1,51 +1,49 @@
 module Mybookings
   class BookingsController < BaseController
-
     before_action :load_booking, only: [:destroy]
 
     def index
       load_current_user_bookings
     end
 
-    def new_booking_resource_type_step
-      @resource_types = ResourceType.all
-    end
-
-    def new_booking_events_step
-      @resource_type = ResourceType.find(params[:booking_id])
-      load_available_resources_by_resource_type @resource_type
-      @booking = Booking.new(resource_type: @resource_type)
+    def new
+      if params[:resource_type_id].nil?
+        @resource_types = ResourceType.all
+      else
+        load_resource_type
+        load_available_resources_by_resource_type @resource_type
+        @booking = booking_class.new(resource_type: @resource_type)
+      end
     end
 
     def create
-      @booking = Booking.new_for_user(current_user, booking_params)
+      @booking = booking_class.new_for_user(current_user, booking_params)
 
       if @booking.invalid?
         @resource_type = @booking.resource_type
         load_available_resources_by_resource_type @resource_type
-        return render 'new_booking_events_step'
-      end
-
-      # If it's a valid booking we have to fire, for all events in a booking,
-      # the creation event in the resource type associated.
-      @booking.events.each do |event|
-        ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
+        return render 'new'
       end
 
       @booking.save!
+      @booking.confirm!
 
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
 
-      return redirect_to bookings_path
+      redirect_to bookings_path
     end
 
     def destroy
-      if @booking.has_pending_events? || !@booking.has_events?
-        NotificationsMailer.notify_delete_booking(@booking).deliver_now!
-        # Only we delete the pending events associated to the booking.
-        # If a booking has events with other statuses we don't delete the booking for archival purposes.
+      # Only we delete the pending events associated to the booking.
+      # If a booking has events with other statuses we don't delete the booking.
+      if @booking.has_pending_events?
         @booking.delete_pending_events
-        @booking.destroy unless @booking.has_events?
+      end
+
+      unless @booking.has_events?
+        @booking.cancel!
+        @booking.destroy!
+        NotificationsMailer.notify_delete_booking(@booking).deliver_now!
       end
 
       redirect_to bookings_path
@@ -57,15 +55,34 @@ module Mybookings
       params.require(:booking).permit!
     end
 
+    def booking_class
+      booking_class = params[:booking_class]
+
+      return default_booking_class_constant if booking_class.nil?
+      return default_booking_class_constant unless booking_class.ends_with?('Booking')
+
+      booking_class_constant = "#{booking_class}".constantize
+
+      return default_booking_class_constant unless defined?(booking_class_constant)
+
+      return booking_class_constant
+    end
+
+    def default_booking_class_constant
+      Mybookings::Booking
+    end
+
     def load_available_resources_by_resource_type resource_type
       @resources = Resource.available_by_resource_type resource_type
     end
 
     def load_booking
-      booking_id = params[:id] || params[:booking_id]
-
-      @booking = BookingDecorator.find(booking_id)
+      @booking = BookingDecorator.find(params[:id])
       authorize @booking
+    end
+
+    def load_resource_type
+      @resource_type = ResourceType.find(params[:resource_type_id])
     end
 
     def load_current_user_bookings

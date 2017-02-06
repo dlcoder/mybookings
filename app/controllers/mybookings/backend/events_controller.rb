@@ -17,16 +17,21 @@ module Mybookings
     end
 
     def destroy
-      @event_form = DeleteEventForm.new(params[:delete_event_form])
+      event_form = DeleteEventForm.new(params[:delete_event_form])
 
-      unless @event_form.valid?
-        @resources = @event.alternative_resources
+      unless event_form.valid?
+        resources = @event.alternative_resources
         return render 'delete_confirmation'
       end
 
-      logger.info "The event #{@event.id} of the booking #{@event.booking.id} in the resource #{@resource.name} has been deleted. The reason is: #{@event_form.reason}"
+      booking = @event.booking
+
       @event.destroy!
-      NotificationsMailer.cancel_event(@event, @event_form.reason).deliver_now!
+      booking.destroy! unless booking.has_events?
+
+      NotificationsMailer.cancel_event(@event, event_form.reason).deliver_now!
+      logger.info "The event #{@event.id} of the booking #{@event.booking.id} in the resource #{@resource.name} has been deleted. The reason is: #{event_form.reason}"
+
       redirect_to backend_resource_events_path, notice: I18n.t('mybookings.backend.events.destroy.cancel_notice')
     end
 

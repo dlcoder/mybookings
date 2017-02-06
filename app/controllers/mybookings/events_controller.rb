@@ -9,8 +9,17 @@ module Mybookings
 
     def destroy
       booking = @event.booking
-      @event.destroy! if @event.pending?
-      booking.destroy unless booking.has_events?
+
+      if @event.pending?
+        @event.cancel!
+        @event.destroy!
+      end
+
+      unless booking.has_events?
+        booking.cancel!
+        booking.destroy!
+      end
+
       redirect_to bookings_path
     end
 
@@ -35,6 +44,7 @@ module Mybookings
       booking_id = params[:booking_id] || params[:id]
 
       @booking = BookingDecorator.find(booking_id)
+      authorize @booking
     end
   end
 end

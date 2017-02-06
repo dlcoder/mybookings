@@ -1,0 +1,9 @@
+- if @resource_type.nil?
+  = title
+- else
+  = title t('.title_with_resource_type_name', resource_type_name: @resource_type.name)
+
+- unless @resource_types.nil?
+  = render partial: 'resource_type_selection'
+- else
+  = render partial: 'booking_creation'

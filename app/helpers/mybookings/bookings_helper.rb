@@ -6,23 +6,6 @@ module Mybookings
       return 'success' if booking_status == 'expired'
     end
 
-    def show_specific_actions_for event
-      resource_type_extension_actions = ResourceTypesExtensionsWrapper.call(:actions_for, event)
-      links = ''
-
-      unless resource_type_extension_actions.nil?
-        resource_type_extension_actions.each do |action|
-          action[:target] ||= '_self'
-
-          link = link_to icon_with_text(action[:icon], action[:text]), action[:path], target: action[:target], class: 'btn btn-default btn-xs'
-
-          links << link
-        end
-      end
-
-      links.html_safe
-    end
-
     def recurrent_types_list
       Mybookings::Booking::recurrent_types.collect do |type, value|
         [ I18n.t("mybookings.bookings.recurrent_types.#{type}"), type ]
