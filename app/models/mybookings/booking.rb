@@ -20,10 +20,6 @@ module Mybookings
 
     enum recurrent_type: %w(daily weekly monthly)
 
-    def resource
-      Mybookings::Resource.find(resource_id)
-    end
-
     def self.by_start_date_group_by_resource_type
       includes(:events, :resource_type).order('mybookings_resource_types.name ASC').group_by(&:resource_type)
     end
@@ -65,6 +61,10 @@ module Mybookings
     end
 
     private
+
+    def resource
+      Mybookings::Resource.find(resource_id)
+    end
 
     def generate_dates
       until_date = self.until_date.nil? ? start_date : self.until_date
