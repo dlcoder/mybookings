@@ -97,7 +97,9 @@ en:
 
     bookings:
       booking:
-        cancel_booking: 'Cancel'
+        cancel_booking: 'Cancel booking'
+        title: 'Booking created at %{created_at}'
+        load_more_events: 'Load more...'
       index:
         new_booking: 'Book a resource'
         no_bookings: 'You does not have any booking yet.'
@@ -107,10 +109,18 @@ en:
       new_booking_events_step:
         comment_hint: 'You can write some indication to notify the resource responsible.'
         create_booking: 'Create booking'
-        title: 'New booking'
+        title: 'New booking %{type_name}'
+        dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
+        event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
+        recurring_hint: 'Selecting one of this option, you can create a recurring event. You don''t forget to fill in the field "until date" with the last booking date.'
+      recurrent_types:
+        daily: 'Daily'
+        weekly: 'Weekly'
+        monthly: 'Monthly'
 
     events:
       event:
+        cancel_event: 'Cancel'
         send_feedback: 'Send feedback'
       edit_feedback:
         send_feedback: 'Send feedback'
@@ -121,6 +131,10 @@ en:
         pending: 'Pending'
         expired: 'Expired'
         occurring: 'Occurring'
+
+    resources:
+      events:
+        status: 'Busy'
 
     notifications_mailer:
       cancel_event:

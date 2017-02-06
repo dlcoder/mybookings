@@ -31,4 +31,4 @@ en:
     #     age: 'Select your age'
     labels:
       delete_booking_form:
-        reason: The reason you are canceling the booking
+        reason: 'The reason you are canceling the booking'

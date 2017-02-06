@@ -1,0 +1,24 @@
+.col-xs-12.col-sm-6.col-md-3
+  %dl.panel{ class: "panel-#{bootstrap_class_for(event.status)} panel-event", id: "event-#{event.id}" }
+    .panel-body
+      .row
+        .col-xs-12
+          %p
+            %span.label{ class: "label-#{bootstrap_class_for(event.status)}" }= t("mybookings.events.statuses.#{event.status}")
+
+          %p
+            %dt= icon_with_text('time', t('.start_date'))
+            %dd= l event.start_date, format: :long
+
+          %p
+            %dt= icon_with_text('time', t('.end_date'))
+            %dd= l event.end_date, format: :long
+
+          - if event.pending?
+            %hr
+            = link_to_delete t('.cancel_event'), booking_events_path(event.booking.id, event.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
+
+          - if event.can_receive_feedback?
+            %hr
+            = link_to t('.send_feedback'), booking_event_edit_feedback_path(event.booking.id, event.id), class: 'btn btn-default btn-xs'
+

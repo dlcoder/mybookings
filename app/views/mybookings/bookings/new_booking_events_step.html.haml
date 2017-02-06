@@ -1,16 +1,23 @@
-= title
+= title t('.title', type_name: @resource_type.name)
 
-= simple_form_for @booking do |f|
-  = render_model_base_errors f.object
+.row
+  .col-xs-12.col-sm-4
+    = simple_form_for @booking, url: bookings_path, method: :post do |f|
+      = render_model_base_errors f.object
 
-  .row
-    = f.input :resource_type_id, as: :hidden
-    = f.simple_fields_for :events do |event_form|
-      .col-xs-12.col-sm-4
-        = event_form.association :resource, collection: @resources, label_method: :name_prefixed_with_resource_type
-      .col-xs-12.col-sm-4
-        = event_form.input :start_date, as: :datetimepicker
-      .col-xs-12.col-sm-4
-        = event_form.input :end_date, as: :datetimepicker
-  = f.input :comment, input_html: { rows: 5 }, hint: t('.comment_hint')
-  = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
+      = f.input :resource_type_id, as: :hidden
+      = f.input :resource_id, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type
+      = f.input :start_date, as: :datetimepicker
+      = f.input :end_date, as: :datetimepicker
+      = f.input :recurrent_type, collection: recurrent_types_list, as: :radio_buttons, hint: t('.recurring_hint')
+      = f.input :until_date, as: :datetimepicker
+      = f.input :comment, as: :text, input_html: { rows: 5 }, hint: t('.comment_hint')
+      = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
+
+  .col-xs-12.col-sm-8
+    #calendar
+
+:javascript
+  $(document).ready(function() {
+    var calendar = new Calendar('#calendar', '#booking_resource_id', '#{I18n.locale.to_s}')
+  });

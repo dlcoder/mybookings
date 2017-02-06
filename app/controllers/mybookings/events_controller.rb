@@ -1,6 +1,11 @@
 module Mybookings
   class EventsController < BaseController
-    before_action :load_event , only: [:destroy, :edit_feedback, :set_feedback]
+    before_action :load_event, only: [:destroy, :edit_feedback, :set_feedback]
+    before_action :load_booking, only: [:index]
+
+    def index
+      @events = EventDecorator.decorate_collection(@booking.events.recents)
+    end
 
     def destroy
       booking = @event.booking
@@ -21,9 +26,15 @@ module Mybookings
     private
 
     def load_event
-      event_id = params[:id] || params[:event_id]
+      event_id = params[:event_id] || params[:id]
 
-      @event = Event.find(event_id)
+      @event = EventDecorator.find(event_id)
+    end
+
+    def load_booking
+      booking_id = params[:booking_id] || params[:id]
+
+      @booking = BookingDecorator.find(booking_id)
     end
   end
 end

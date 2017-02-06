@@ -3,8 +3,13 @@ en:
     attributes:
       mybookings/booking:
         comment: Comment
+        end_date: End date
         feedback: Feedback
+        resource: Resource
+        recurrent_type: Recurrent type
         resource_type: Resource type
+        start_date: Start date
+        until_date: Until date
       mybookings/event:
         end_date: End date
         resource: Resource

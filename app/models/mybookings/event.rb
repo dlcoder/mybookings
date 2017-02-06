@@ -46,23 +46,31 @@ module Mybookings
       Resource.where(resource_type_id: resource_type_id, disabled: false).where.not(id: resources_with_overlapped_events)
     end
 
+    def self.recents
+      where(status: statuses[:expired]).last(statuses[:expired]) | where.not(status: statuses[:expired])
+    end
+
+    def self.active_by_resource_between resource, start_day, end_day
+      where(resource: resource, start_date: start_day..end_day).where.not(status: statuses[:expired])
+    end
+
     private
 
     def dates_in_the_future
       unless start_date.nil?
-        errors.add(:start_date, I18n.t('errors.messages.event.start_date_in_the_past')) if start_date.past?
+        booking.errors.add(:start_date, I18n.t('errors.messages.event.start_date_in_the_past')) if start_date.past?
       end
 
       unless end_date.nil?
-        errors.add(:end_date, I18n.t('errors.messages.event.end_date_in_the_past')) if end_date.past?
+        booking.errors.add(:end_date, I18n.t('errors.messages.event.end_date_in_the_past')) if end_date.past?
       end
     end
 
     def dates_range
       unless start_date.nil? or end_date.nil?
         if end_date <= start_date
-          errors.add(:start_date, I18n.t('errors.messages.event.start_date_greater_than_end_date'))
-          errors.add(:end_date, I18n.t('errors.messages.event.end_date_smaller_than_start_date'))
+          booking.errors.add(:start_date, I18n.t('errors.messages.event.start_date_greater_than_end_date'))
+          booking.errors.add(:end_date, I18n.t('errors.messages.event.end_date_smaller_than_start_date'))
         end
       end
     end
@@ -73,7 +81,7 @@ module Mybookings
         end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
 
         overlapped_events = resource.events.where('(? >= mybookings_events.start_date AND ? <= mybookings_events.end_date) OR (? >= mybookings_events.start_date AND ? <= mybookings_events.end_date)', start_date, start_date, end_date, end_date)
-        errors.add(:base, I18n.t('errors.messages.event.overlap')) if overlapped_events.any?
+        booking.errors.add(:base, I18n.t('errors.messages.event.overlap')) if overlapped_events.any?
       end
     end
 

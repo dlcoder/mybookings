@@ -3,6 +3,9 @@
 //= require jquery_ujs
 //= require bootstrap/collapse
 //= require moment
+//= require fullcalendar
+//= require fullcalendar/locale-all
 //= require bootstrap-datetimepicker
+//= require mybookings/calendar
 //= require mybookings/datetimepicker
 //= require turbolinks

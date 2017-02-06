@@ -36,7 +36,7 @@ es:
         delete_confirmation:
           booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
           cancel_booking_header: 'Cancelar reserva'
-          cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje que se enviará al ususario.'
+          cancel_booking_message: '¿Estás seguro que quieres cancelar esta reserva? Deberás escribir un mensaje justificando el motivo de la cancelación, que será enviado al solicitante de la reserva.'
           no_resources_availables_message: 'En este momento, no hay ningún recurso para reasignar esta reserva.'
           reallocate_booking_header: 'Reasignar reserva'
           reallocate_booking_message: 'Hay recursos disponibles para el mismo intervalo de tiempo. ¿Quieres asignar esta reserva a un nuevo recurso del mismo tipo?'
@@ -97,7 +97,9 @@ es:
 
     bookings:
       booking:
-        cancel_booking: 'Cancelar'
+        cancel_booking: 'Cancelar reserva'
+        title: 'Reserva creada el %{created_at}'
+        load_more_events: "Cargar más..."
       index:
         new_booking: 'Reservar un recurso'
         no_bookings: 'Aún no has realizado ninguna reserva.'
@@ -107,10 +109,18 @@ es:
       new_booking_events_step:
         comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
         create_booking: 'Crear reserva'
-        title: 'Nueva reserva'
+        title: 'Nueva reserva %{type_name}'
+        dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
+        event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
+        recurring_hint: 'Seleccionando una de estas opciones, puedes crear un evento recurrente. No olvides rellenar el campo "hasta la fecha" con la última fecha de la reserva.'
+      recurrent_types:
+        daily: 'Diariamente'
+        weekly: 'Semanalmente'
+        monthly: 'Mensualmente'
 
     events:
       event:
+        cancel_event: 'Cancelar'
         send_feedback: 'Enviar comentarios'
       edit_feedback:
         send_feedback: 'Enviar comentarios'
@@ -121,6 +131,10 @@ es:
         pending: 'Pendiente'
         expired: 'Terminada'
         occurring: 'En proceso'
+
+    resources:
+      events:
+        status: 'Ocupado'
 
     notifications_mailer:
       cancel_event:

@@ -1,12 +1,15 @@
-- booking.events.each do |event|
-  %tr{ class: bootstrap_class_for(event.status), id: "event-#{event.id}" }
-    %td= event.resource_name
-    %td= t("bookings.statuses.#{event.status}")
-    %td= l event.start_date, format: :long
-    %td= l event.end_date, format: :long
-    %td
-      = show_specific_actions_for event
-      - if event.pending?
-        = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('delete_confirmation'), class: 'btn btn-default btn-xs'
-      - if event.expired? && !event.feedback.blank?
-        = link_to t('.send_feedback'), event_edit_feedback_path(event.id), class: 'btn btn-default btn-xs'
+%dl.panel{ class: "panel-default resource-type-#{booking.resource_type.name.parameterize}", id: "booking-#{booking.id}" }
+  .panel-heading
+    .row
+      .col-xs-7
+        = icon_with_text('envelope', t('.title', created_at: l(booking.created_at, format: :long)))
+      .col-xs-5.text-right
+        = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
+  .panel-body
+    .row
+      .events
+        = render booking.limit_recent_events_to 4
+      - if booking.has_more_than? 4
+        .more-link.col-xs-12
+          = link_to t('.load_more_events'), booking_events_path(booking.id), remote: true
+

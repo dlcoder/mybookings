@@ -22,5 +22,11 @@ module Mybookings
 
       links.html_safe
     end
+
+    def recurrent_types_list
+      Mybookings::Booking::recurrent_types.collect do |type, value|
+        [ I18n.t("mybookings.bookings.recurrent_types.#{type}"), type ]
+      end
+    end
   end
 end

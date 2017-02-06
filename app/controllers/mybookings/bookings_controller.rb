@@ -1,5 +1,6 @@
 module Mybookings
   class BookingsController < BaseController
+
     before_action :load_booking, only: [:destroy]
 
     def index
@@ -11,36 +12,35 @@ module Mybookings
     end
 
     def new_booking_events_step
-      resource_type = ResourceType.find(params[:booking_id])
-      load_available_resources_by_resource_type resource_type
-      @booking = Booking.new(resource_type: resource_type)
-      @booking.events.build
+      @resource_type = ResourceType.find(params[:booking_id])
+      load_available_resources_by_resource_type @resource_type
+      @booking = Booking.new(resource_type: @resource_type)
     end
 
     def create
       @booking = Booking.new_for_user(current_user, booking_params)
 
-      if @booking.valid?
-        # If it's a valid booking we have to fire, for all events in a booking,
-        # the creation event in the resource type associated.
-        @booking.events.each do |event|
-          ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
-        end
-
-        @booking.save!
-
-        NotificationsMailer.notify_new_booking(@booking).deliver_now!
-
-        return redirect_to bookings_path
-      else
-        load_available_resources_by_resource_type @booking.resource_type
-
-        render 'new_booking_events_step'
+      if @booking.invalid?
+        @resource_type = @booking.resource_type
+        load_available_resources_by_resource_type @resource_type
+        return render 'new_booking_events_step'
       end
+
+      # If it's a valid booking we have to fire, for all events in a booking,
+      # the creation event in the resource type associated.
+      @booking.events.each do |event|
+        ResourceTypesExtensionsWrapper.call(:after_booking_creation, event)
+      end
+
+      @booking.save!
+
+      NotificationsMailer.notify_new_booking(@booking).deliver_now!
+
+      return redirect_to bookings_path
     end
 
     def destroy
-      if @booking.has_pending_events?
+      if @booking.has_pending_events? || !@booking.has_events?
         NotificationsMailer.notify_delete_booking(@booking).deliver_now!
         # Only we delete the pending events associated to the booking.
         # If a booking has events with other statuses we don't delete the booking for archival purposes.
