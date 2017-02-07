@@ -17,17 +17,23 @@ module Mybookings
     roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']
 
     def self.find_saml_user_or_create(auth)
-      where(email: auth['info']['email']).first_or_create do |user|
+      user = where(email: auth['info']['email']).first_or_create do |user|
         user.provider = auth['provider']
         user.uid = auth['uid']
         user.email = auth['info']['email']
         user.password = Devise.friendly_token[0,20]
       end
+
+      user.assign_roles auth
+
+      user
     end
 
     def self.by_id
       order(id: :asc)
     end
+
+    def assign_roles auth; end
 
     def get_all_posibles_masks_for_roles
       masks = Array.new
