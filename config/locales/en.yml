@@ -91,8 +91,12 @@ en:
           resource_types_hint: 'This option only has effect if the user has the "manager" role assigned.'
           save_user: 'Save user'
           title: 'Editing user'
+          roles: 'Roles'
         index:
           title: 'Users'
+        new:
+          title: 'New user'
+          create_user: 'Create user'
         user:
           edit: 'Edit'
 
