@@ -16,12 +16,21 @@ module Dummy
       config.parent_controller = 'Mybookings::ApplicationController'
 
       # Omniauth
+      idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+      idp_settings = idp_metadata_parser.parse_remote('http://idp.deliriumcoder.es/simplesaml/saml2/idp/metadata.php')
+
       config.omniauth :saml, {
-        name: Rails.application.secrets.saml_provider_name,
-        issuer: Rails.application.secrets.saml_issuer,
-        idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
-        name_identifier_format: Rails.application.secrets.saml_name_identifier_format,
-        idp_cert: Rails.application.secrets.saml_idp_cert
+        issuer: 'reservas',
+        idp_sso_target_url: idp_settings.idp_sso_target_url,
+        idp_cert_fingerprint: idp_settings.idp_cert_fingerprint,
+        idp_cert_fingerprint_algorithm: idp_settings.idp_cert_fingerprint_algorithm,
+        idp_attribute_names: idp_settings.idp_attribute_names,
+        idp_slo_target_url: idp_settings.idp_slo_target_url,
+        idp_entity_id: idp_settings.idp_entity_id,
+        name_identifier_format: idp_settings.name_identifier_format,
+        idp_cert: idp_settings.idp_cert,
+        # certificate: Rails.application.secrets.saml_certificate,
+        # private_key: Rails.application.secrets.saml_private_key
       }
     end
 
