@@ -84,7 +84,7 @@ step 'I can edit an user' do
 end
 
 step 'I can set the user as resource manager' do
-  select 'manager', from: 'Role'
+  check 'manager'
 end
 
 step 'I can assign the list of resource types that the user can manage' do
