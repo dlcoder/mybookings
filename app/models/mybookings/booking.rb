@@ -69,6 +69,10 @@ module Mybookings
 
     def cancel!; end
 
+    def prepare!
+      update_attribute(:prepared, true)
+    end
+
     private
 
     def resource

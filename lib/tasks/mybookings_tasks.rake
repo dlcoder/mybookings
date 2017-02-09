@@ -1,5 +1,14 @@
 namespace :mybookings do
 
+  desc "Process unprepared bookings"
+  task process_unprepared_bookings: :environment do
+    unprepared_bookings = Booking.where(unprepared: true)
+
+    unprepared_bookings.each do |booking|
+      booking.prepare!
+    end
+  end
+
   desc "Process about to begin events"
   task process_about_to_begin_events: :environment do
     about_to_begin_events = Event.about_to_begin
