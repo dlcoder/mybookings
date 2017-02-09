@@ -4,12 +4,10 @@ step 'I go to the bookings page' do
   visit '/bookings'
 end
 
-step 'I go to the new booking page' do
-  click_link 'Book a resource'
-end
-
-step 'I can see the available resource types' do
-  click_link 'Virtual PC'
+step 'I can start to create a booking' do
+  within '.btn-group' do
+    click_link 'Virtual PC'
+  end
 end
 
 step 'I cannot see a disabled resource for booking' do
@@ -68,7 +66,9 @@ step 'I cancel the booking' do
 end
 
 step 'I can see that the booking does not exists' do
-  expect(page).to_not have_content('Virtual PC')
+  within '.bookings-list' do
+    expect(page).to_not have_content('Virtual PC')
+  end
 end
 
 step 'the manager should receive an email to notify the cancelation' do
@@ -119,7 +119,7 @@ step 'I can book an available resource with weekly periodicity' do
   @start_weekly_time = (now + 1.hour)
   fill_in 'booking_start_date', with: @start_weekly_time.strftime("%d-%m-%Y %H:%M")
   fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
-  choose 'Weekly'
+  select 'Weekly', from: 'Recurrent type'
   fill_in 'booking_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
 
@@ -127,19 +127,23 @@ step 'I can book an available resource with weekly periodicity' do
 end
 
 step 'I can see that the booking with weekly periodicity has been created' do
-  expect(page).to have_content('Virtual PC')
-  expect(page).to have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
-  expect(page).to have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
-  expect(page).to have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
-  expect(page).to have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+  within '.bookings-list' do
+    expect(page).to have_content('Virtual PC')
+    expect(page).to have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
+    expect(page).to have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
+    expect(page).to have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
+    expect(page).to have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+  end
 end
 
 step 'I can see that the booking with periodicity does not exists' do
-  expect(page).to_not have_content('Virtual PC')
-  expect(page).to_not have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
-  expect(page).to_not have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
-  expect(page).to_not have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
-  expect(page).to_not have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+  within '.bookings-list' do
+    expect(page).to_not have_content('Virtual PC')
+    expect(page).to_not have_content(@start_weekly_time.strftime("%B %d, %Y %H:%M"))
+    expect(page).to_not have_content((@start_weekly_time + 1.week).strftime("%B %d, %Y %H:%M"))
+    expect(page).to_not have_content((@start_weekly_time + 2.weeks).strftime("%B %d, %Y %H:%M"))
+    expect(page).to_not have_content((@start_weekly_time + 3.weeks).strftime("%B %d, %Y %H:%M"))
+  end
 end
 
 step 'I can book an available resource with monthly periodicity' do
@@ -149,7 +153,7 @@ step 'I can book an available resource with monthly periodicity' do
   @start_monthly_time = (now + 1.hour)
   fill_in 'booking_start_date', with: @start_monthly_time.strftime("%d-%m-%Y %H:%M")
   fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
-  choose 'Monthly'
+  select 'Monthly', from: 'Recurrent type'
   fill_in 'booking_until_date', with: (now + 3.months).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this monthly booking for my practices.'
 

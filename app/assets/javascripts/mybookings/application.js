@@ -2,6 +2,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap/collapse
+//= require bootstrap/dropdown
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/locale-all

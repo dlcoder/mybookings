@@ -73,6 +73,8 @@ en:
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
+      booking:
+        until_date_in_the_past: "Until date must be in the future."
       event:
         end_date_in_the_past: "End date must be in the future."
         end_date_smaller_than_start_date: "End date must be greater than start date"

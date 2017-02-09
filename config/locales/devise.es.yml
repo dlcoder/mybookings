@@ -73,6 +73,8 @@ es:
   errors:
     messages:
       already_confirmed: "ya fue confirmada. Intenta ingresar."
+      booking:
+        until_date_in_the_past: "La fecha límite de repetición no puede haber pasado."
       event:
         end_date_in_the_past: "La fecha de fin no debe haber pasado."
         end_date_smaller_than_start_date: "La fecha de fin debe ser posterior a la fecha de inicio"

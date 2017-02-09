@@ -6,9 +6,8 @@ Feature: Bookings management
   Scenario: Book a resource
     Given a signed in user
     When I go to the bookings page
-    And I go to the new booking page
-    And I can see the available resource types
     And I cannot see a disabled resource for booking
+    And I can start to create a booking
     And I cannot book an available resource for more than 4 hours
     And I can book an available resource
     And I can see that the booking has been created
@@ -17,14 +16,12 @@ Feature: Bookings management
   Scenario: Book a recurring resource
     Given a signed in user
     When I go to the bookings page
-    And I go to the new booking page
-    And I can see the available resource types
+    And I can start to create a booking
     And I can book an available resource with weekly periodicity
     And I can see that the booking with weekly periodicity has been created
     And I cancel the booking
     And I can see that the booking with periodicity does not exists
-    And I go to the new booking page
-    And I can see the available resource types
+    And I can start to create a booking
     And I can book an available resource with monthly periodicity
     And I can see that the booking with monthly periodicity has been created
 

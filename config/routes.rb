@@ -7,11 +7,16 @@ Mybookings::Engine.routes.draw do
 
   root 'application#index'
 
-  resources :bookings, only: [:new, :create, :index, :destroy] do
+  resources :bookings, only: [:index, :destroy] do
     resources :events do
       get :edit_feedback
       put :set_feedback
     end
+  end
+
+  resources :resource_types do
+    get 'bookings/new', to: 'bookings#new'
+    post 'bookings', to: 'bookings#create'
   end
 
   resources :resources do

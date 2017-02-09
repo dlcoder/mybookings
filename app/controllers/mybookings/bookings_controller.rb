@@ -1,23 +1,20 @@
 module Mybookings
   class BookingsController < BaseController
     before_action :load_booking, only: [:destroy]
+    before_action :load_resource_type, only: [:new, :create]
 
     def index
+      @resource_types = ResourceType.all
       load_current_user_bookings
     end
 
     def new
-      if params[:resource_type_id].nil?
-        @resource_types = ResourceType.all
-      else
-        load_resource_type
-        load_available_resources_by_resource_type @resource_type
-        @booking = booking_class.new(resource_type: @resource_type)
-      end
+      load_available_resources_by_resource_type @resource_type
+      @booking = booking_type.new(resource_type: @resource_type)
     end
 
     def create
-      @booking = booking_class.new_for_user(current_user, booking_params)
+      @booking = booking_type.new_for_user(current_user, booking_params)
 
       if @booking.invalid?
         @resource_type = @booking.resource_type
@@ -55,21 +52,10 @@ module Mybookings
       params.require(:booking).permit!
     end
 
-    def booking_class
-      booking_class = params[:booking_class]
-
-      return default_booking_class_constant if booking_class.nil?
-      return default_booking_class_constant unless booking_class.ends_with?('Booking')
-
-      booking_class_constant = "#{booking_class}".constantize
-
-      return default_booking_class_constant unless defined?(booking_class_constant)
-
-      return booking_class_constant
-    end
-
-    def default_booking_class_constant
-      Mybookings::Booking
+    def booking_type
+      resource_type_extension = "Mybookings::ResourceTypesExtensions::#{@resource_type.extension}".constantize
+      resource_type_extension_namespace = resource_type_extension::namespace
+      @booking_type = "#{resource_type_extension_namespace}::Booking".constantize
     end
 
     def load_available_resources_by_resource_type resource_type

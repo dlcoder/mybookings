@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170131101544) do
     t.datetime "updated_at"
     t.text     "comment"
     t.integer  "resource_type_id"
+    t.string   "booking_type"
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "until_date"

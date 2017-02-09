@@ -4,6 +4,7 @@ en:
   mybookings:
     actions: 'Actions'
     app_name: 'MyBookings'
+    delete_confirmation: 'Are you sure?'
     saving: 'Saving...'
 
     application:
@@ -100,21 +101,18 @@ en:
         cancel_booking: 'Cancel booking'
         title: 'Booking created at %{created_at}'
         load_more_events: 'Load more...'
-      booking_creation:
-        comment_hint: 'You can write some indication to notify the resource responsible.'
-        create_booking: 'Create booking'
-        dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
-        event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
-        recurring_hint: 'Selecting one of this option, you can create a recurring event. You don''t forget to fill in the field "until date" with the last booking date.'
       index:
         new_booking: 'Book a resource'
         no_bookings: 'You does not have any booking yet.'
         title: 'My bookings'
       new:
+        comment_hint: 'You can write some indication to notify the resource responsible.'
+        create_booking: 'Create booking'
+        dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
+        event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
+        recurring_hint: 'Selecting one of this option, you can create a recurring event. You don''t forget to fill in the field "until date" with the last booking date.'
         title: 'New booking'
         title_with_resource_type_name: 'New booking %{resource_type_name}'
-      resource_type_selection:
-        no_resource_types: There is no resource types yet.
       recurrent_types:
         daily: 'Daily'
         weekly: 'Weekly'

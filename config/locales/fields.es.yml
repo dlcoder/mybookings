@@ -5,7 +5,7 @@ es:
         comment: Observaciones
         end_date: Fecha de fin
         feedback: Comentarios
-        resource: Recurso
+        resource_id: Recurso
         recurrent_type: Tipo de Recurrencia
         resource_type: Tipo de Recurso
         start_date: Fecha de inicio
@@ -34,3 +34,11 @@ es:
         roles: Rol
         password: Contraseña
         password_confirmation: Contraseña (confirmación)
+    errors:
+      models:
+        mybookings/booking:
+          attributes:
+            start_date:
+              blank: No puede estar vacío.
+            end_date:
+              blank: No puede estar vacío.

@@ -5,7 +5,7 @@ en:
         comment: Comment
         end_date: End date
         feedback: Feedback
-        resource: Resource
+        resource_id: Resource
         recurrent_type: Recurrent type
         resource_type: Resource type
         start_date: Start date
@@ -34,3 +34,11 @@ en:
         roles: Role
         password: Password
         password_confirmation: Password confirmation
+    errors:
+      models:
+        mybookings/booking:
+          attributes:
+            start_date:
+              blank: Can't be blank.
+            end_date:
+              blank: Can't be blank.

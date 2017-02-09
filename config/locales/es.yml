@@ -4,6 +4,7 @@ es:
   mybookings:
     actions: 'Acciones'
     app_name: 'MyBookings'
+    delete_confirmation: '¿Estás seguro?'
     saving: 'Guardando...'
 
     application:
@@ -100,21 +101,18 @@ es:
         cancel_booking: 'Cancelar reserva'
         title: 'Reserva creada el %{created_at}'
         load_more_events: "Cargar más..."
-      booking_creation:
-        comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
-        create_booking: 'Crear reserva'
-        dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
-        event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
-        recurring_hint: 'Seleccionando una de estas opciones, puedes crear un evento recurrente. No olvides rellenar el campo "hasta la fecha" con la última fecha de la reserva.'
       index:
         new_booking: 'Reservar un recurso'
         no_bookings: 'Aún no has realizado ninguna reserva.'
         title: 'Mis reservas'
       new:
+        comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
+        create_booking: 'Crear reserva'
+        dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
+        event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
+        recurring_hint: 'Seleccionando una de estas opciones, puedes crear un evento recurrente. No olvides rellenar el campo "hasta la fecha" con la última fecha de la reserva.'
         title: 'Nueva reserva'
         title_with_resource_type_name: 'Nueva reserva %{resource_type_name}'
-      resource_type_selection:
-        no_resource_types: Aún no se han creado tipos de recurso.
       recurrent_types:
         daily: 'Diariamente'
         weekly: 'Semanalmente'

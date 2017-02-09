@@ -9,7 +9,7 @@ class @Calendar
       editable: false,
       defaultView: 'agendaWeek',
       allDaySlot: false,
-      height: 700,
+      height: 500,
       slotMinutes: 30,
       eventSources: [
         {
