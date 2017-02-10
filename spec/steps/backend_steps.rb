@@ -84,7 +84,7 @@ step 'I can edit an user' do
 end
 
 step 'I can set the user as resource manager' do
-  select 'manager', from: 'Role'
+  check 'manager'
 end
 
 step 'I can assign the list of resource types that the user can manage' do
@@ -93,6 +93,23 @@ end
 
 step 'I can save the user' do
   click_button 'Save user'
+end
+
+step 'I can create a new user' do
+  click_link 'New User'
+
+  fill_in 'Email', with: 'example@example.com'
+  check 'manager'
+  check 'Virtual PC'
+
+  click_button 'Create user'
+end
+
+step 'I can see that the user has been created' do
+  within '#table-users > tbody > tr:last-child' do
+    expect(page).to have_content('example@example.com')
+    expect(page).to have_content('manager')
+  end
 end
 
 step 'I can see the events of a resource and all the info of them' do

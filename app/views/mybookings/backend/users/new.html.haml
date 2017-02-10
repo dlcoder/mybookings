@@ -1,0 +1,17 @@
+= title
+
+= simple_form_for @user, url: backend_users_path do |f|
+  = f.input :email
+
+  .panel.panel-default
+    .panel-heading
+      = f.label :roles, label: t('mybookings.backend.users.edit.roles')
+    .panel-body
+      = f.input :roles, as: :check_boxes, collection: @valid_roles, label: false
+  .panel.panel-default
+    .panel-heading
+      = f.label :mybookings_resource_types, label: t('mybookings.backend.users.edit.managed_resource_types')
+    .panel-body
+      = f.association :resource_types, as: :check_boxes, hint: t('mybookings.backend.users.edit.resource_types_hint'), label: false
+
+  = f.button icon_with_text('ok', t('.create_user')), class: 'btn btn-primary'

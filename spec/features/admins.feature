@@ -39,3 +39,5 @@ Feature: Admin
     And I can set the user as resource manager
     And I can assign the list of resource types that the user can manage
     And I can save the user
+    And I can create a new user
+    And I can see that the user has been created

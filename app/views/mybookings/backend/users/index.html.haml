@@ -1,5 +1,8 @@
 = title
 
+= content_for :actions do
+  = link_to icon_with_text('plus', t('.new_user')), new_backend_user_path, class: 'btn btn-primary'
+
 - if @users.any?
   = table_for @users, 'mybookings/backend/users/user', ['user.id', 'user.email', 'user.created_at', 'user.roles'], 'table-users'
 
