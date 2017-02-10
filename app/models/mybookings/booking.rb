@@ -16,6 +16,7 @@ module Mybookings
     validate :the_booking_period_is_valid, if: :is_a_recurring_booking?
     validate :the_event_duration_is_valid
     validate :until_date_in_the_future, on: :create
+    validate :events_are_valid
 
     attr_accessor :resource_id
 
@@ -119,6 +120,15 @@ module Mybookings
     def until_date_in_the_future
       unless until_date.nil?
         errors.add(:until_date, I18n.t('errors.messages.booking.until_date_in_the_past')) if until_date.past?
+      end
+    end
+
+    def events_are_valid
+      events.each do |event|
+        next if event.valid?
+        event.errors.full_messages.each do |msg|
+          errors.add(:base, "#{I18n.t('errors.messages.booking.event_not_valid')} #{msg}")
+        end
       end
     end
 

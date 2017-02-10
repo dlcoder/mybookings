@@ -64,30 +64,42 @@ module Mybookings
 
     def dates_in_the_future
       unless start_date.nil?
-        booking.errors.add(:start_date, I18n.t('errors.messages.event.start_date_in_the_past')) if start_date.past?
+        errors.add(:start_date, I18n.t('errors.messages.event.start_date_in_the_past')) if start_date.past?
       end
 
       unless end_date.nil?
-        booking.errors.add(:end_date, I18n.t('errors.messages.event.end_date_in_the_past')) if end_date.past?
+        errors.add(:end_date, I18n.t('errors.messages.event.end_date_in_the_past')) if end_date.past?
       end
     end
 
     def dates_range
       unless start_date.nil? or end_date.nil?
         if end_date <= start_date
-          booking.errors.add(:start_date, I18n.t('errors.messages.event.start_date_greater_than_end_date'))
-          booking.errors.add(:end_date, I18n.t('errors.messages.event.end_date_smaller_than_start_date'))
+          errors.add(:start_date, I18n.t('errors.messages.event.start_date_greater_than_end_date'))
+          errors.add(:end_date, I18n.t('errors.messages.event.end_date_smaller_than_start_date'))
         end
       end
     end
 
     def dates_ovelap
-      unless start_date.nil? or end_date.nil? or resource.nil?
-        start_date = self.start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-        end_date = self.end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+      return if start_date.nil? or end_date.nil? or resource.nil?
 
-        overlapped_events = resource.events.where('(? >= mybookings_events.start_date AND ? <= mybookings_events.end_date) OR (? >= mybookings_events.start_date AND ? <= mybookings_events.end_date)', start_date, start_date, end_date, end_date)
-        booking.errors.add(:base, I18n.t('errors.messages.event.overlap')) if overlapped_events.any?
+      start_date_modified = start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+      end_date_modified = end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+
+      overlapped_events = resource.events.where(
+        '(mybookings_events.start_date >= ? AND mybookings_events.start_date <= ?) OR
+        (mybookings_events.end_date >= ? AND mybookings_events.end_date <= ?) OR
+        (mybookings_events.start_date >= ? AND mybookings_events.end_date <= ?) OR
+        (mybookings_events.start_date <= ? AND mybookings_events.end_date >= ?)',
+        start_date_modified, end_date_modified,
+        start_date_modified, end_date_modified,
+        start_date_modified, end_date_modified,
+        start_date_modified, end_date_modified
+      )
+
+      if overlapped_events.any?
+        errors.add(:base, I18n.t('errors.messages.event.overlap', start_date: I18n.l(start_date, format: :very_long)))
       end
     end
 

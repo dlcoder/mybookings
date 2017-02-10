@@ -1,0 +1,5 @@
+en:
+  time:
+    formats:
+      long: '%B %d, %Y %H:%M'
+      very_long: 'on %d/%m/%Y at %H:%M'

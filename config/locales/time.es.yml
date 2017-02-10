@@ -2,3 +2,4 @@ es:
   time:
     formats:
       long: '%d/%m/%Y %H:%M'
+      very_long: 'el %d/%m/%Y a las %H:%M'
