@@ -4,7 +4,7 @@ module Mybookings
     before_action :load_resource_type, only: [:new, :create]
 
     def index
-      @resource_types = ResourceType.all
+      @resource_types = policy_scope(ResourceType.all)
       load_current_user_bookings
     end
 

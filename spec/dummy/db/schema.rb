@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131101544) do
+ActiveRecord::Schema.define(version: 20170209165550) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170131101544) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "extension",  default: "DefaultExtension"
+    t.integer  "roles_mask"
   end
 
   create_table "mybookings_resources", force: :cascade do |t|

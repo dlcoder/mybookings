@@ -44,7 +44,7 @@ module Mybookings
     end
 
     def load_current_user_managed_resource_types
-      @managed_resource_types = policy_scope(ResourceType)
+      @managed_resource_types = ResourceTypePolicy::Scope.new(current_user, ResourceType).resolve_for_managers
     end
   end
 end

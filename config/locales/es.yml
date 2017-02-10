@@ -75,6 +75,8 @@ es:
         edit:
           title: 'Editando tipo de recurso'
           update_resource_type: 'Actualizar tipo de recurso'
+        form_fields:
+          roles: 'Usuarios que pueden reservar este tipo de recurso.'
         index:
           new_resource_type: 'Nuevo tipo de recurso'
           no_resource_types: 'Aún no se han creado tipos de recurso.'

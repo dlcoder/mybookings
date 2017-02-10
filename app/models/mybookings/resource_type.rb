@@ -1,5 +1,6 @@
 module Mybookings
   class ResourceType < ActiveRecord::Base
+    include ::RoleModel
     include Loggable
 
     has_one :booking
@@ -7,6 +8,8 @@ module Mybookings
     has_and_belongs_to_many :users, join_table: 'mybookings_user_managed_resource_types'
 
     validates :name, :extension, presence: true
+
+    roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']
 
     def self.by_name
       order(name: :asc)
