@@ -75,6 +75,8 @@ en:
         edit:
           title: 'Editing resource type'
           update_resource_type: 'Update resource type'
+        form_fields:
+          roles: 'Users who can book this resource type.'
         index:
           new_resource_type: 'New resource type'
           no_resource_types: 'There is no resource types yet.'

@@ -4,6 +4,7 @@ module Mybookings
     include Backend::Authorizable
 
     before_action :load_resource_type, only: [:edit, :update]
+    before_action :load_valid_roles, only: [:new, :edit, :create, :update]
 
     def index
       @resource_types = ResourceType.all
@@ -37,6 +38,10 @@ module Mybookings
       resource_type_id = params[:id] || params[:resource_type_id]
 
       @resource_type = ResourceType.find(resource_type_id)
+    end
+
+    def load_valid_roles
+      @valid_roles = ResourceType.valid_roles
     end
   end
 end

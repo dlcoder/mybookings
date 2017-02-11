@@ -1,5 +1,7 @@
 pcv:
   name: Virtual PC
+  roles_mask: 31
 
 acmr:
   name: Adobe Connect Meeting Rooms
+  roles_mask: 31
