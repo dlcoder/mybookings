@@ -22,6 +22,7 @@ Feature: Users
     And I go to the sign in with saml page
     And I can see that I have signed in with saml
     And I can see my bookings page
+    And I can book resources without role restrictions
 
   Scenario: Login with saml as an existing user
     Given a registered user
