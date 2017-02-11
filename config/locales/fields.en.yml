@@ -6,7 +6,7 @@ en:
         end_date: End date
         feedback: Feedback
         resource_id: Resource
-        recurrent_type: Recurrent type
+        recurrent_type: Repeat event
         resource_type: Resource type
         start_date: Start date
         until_date: Until date

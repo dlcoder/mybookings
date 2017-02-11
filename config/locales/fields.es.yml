@@ -6,8 +6,8 @@ es:
         end_date: Fecha de fin
         feedback: Comentarios
         resource_id: Recurso
-        recurrent_type: Tipo de Recurrencia
-        resource_type: Tipo de Recurso
+        recurrent_type: Repetir el evento
+        resource_type: Tipo de recurso
         start_date: Fecha de inicio
         until_date: Hasta la fecha
       mybookings/event:

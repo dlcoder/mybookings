@@ -119,7 +119,7 @@ step 'I can book an available resource with weekly periodicity' do
   @start_weekly_time = (now + 1.hour)
   fill_in 'booking_start_date', with: @start_weekly_time.strftime("%d-%m-%Y %H:%M")
   fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
-  select 'Weekly', from: 'Recurrent type'
+  select 'Weekly', from: 'Repeat event'
   fill_in 'booking_until_date', with: (now + 3.weeks).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this weekly booking for my practices.'
 
@@ -153,7 +153,7 @@ step 'I can book an available resource with monthly periodicity' do
   @start_monthly_time = (now + 1.hour)
   fill_in 'booking_start_date', with: @start_monthly_time.strftime("%d-%m-%Y %H:%M")
   fill_in 'booking_end_date', with: (now + 3.hours).strftime("%d-%m-%Y %H:%M")
-  select 'Monthly', from: 'Recurrent type'
+  select 'Monthly', from: 'Repeat event'
   fill_in 'booking_until_date', with: (now + 3.months).strftime("%d-%m-%Y %H:%M")
   fill_in 'Comment', with: 'I have to create this monthly booking for my practices.'
 

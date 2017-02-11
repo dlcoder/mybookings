@@ -4,7 +4,7 @@
   = title t('.title_with_resource_type_name', resource_type_name: @resource_type.name)
 
 .row
-  .col-xs-12.col-sm-5
+  .col-xs-12.col-sm-6
     = simple_form_for [@resource_type, @booking], method: :post do |f|
       = render_model_base_errors f.object
 
@@ -20,8 +20,12 @@
             .col-xs-12.col-sm-6
               = f.input :end_date, as: :datetimepicker
 
-          = f.input :recurrent_type, collection: recurrent_types_list, as: :select, include_blank: false, hint: t('.recurring_hint')
-          = f.input :until_date, as: :datetimepicker
+          .row
+            .col-xs-12.col-sm-6
+              = f.input :recurrent_type, collection: recurrent_types_list, as: :select, include_blank: false, hint: t('.recurring_hint')
+            .col-xs-12.col-sm-6
+              = f.input :until_date, as: :datetimepicker, hint: t('.until_date_hint')
+
           = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('.comment_hint')
 
       = render partial: "resource_type_extension_#{@booking.resource_type_extension.downcase}", locals: { form: f }
@@ -29,9 +33,12 @@
       = f.input :booking_type, as: :hidden, input_html: { value: @booking_type }
       = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
 
-  .col-xs-12.col-sm-7
+  .col-xs-12.col-sm-6
     .panel.panel-default
       .panel-body
+        %h4= t('.calendar_title')
+        %p= t('.calendar_description')
+        %hr
         #calendar
 
 :coffeescript

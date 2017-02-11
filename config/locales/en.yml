@@ -110,13 +110,16 @@ en:
         no_bookings: 'You does not have any booking yet.'
         title: 'My bookings'
       new:
+        calendar_description: "Use the calendar to check the resource's availability. If you choose another resource the calendar updates automatically."
+        calendar_title: Availability calendar
         comment_hint: 'You can write some indication to notify the resource responsible.'
         create_booking: 'Create booking'
         dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
         event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
-        recurring_hint: 'Selecting one of this option, you can create a recurring event. You don''t forget to fill in the field "until date" with the last booking date.'
+        recurring_hint: 'Select the repeating frequency of the booking.'
         title: 'New booking'
         title_with_resource_type_name: 'New booking %{resource_type_name}'
+        until_date_hint: 'For recurring bookings you must select a limit date.'
       recurrent_types:
         daily: 'Daily'
         weekly: 'Weekly'
