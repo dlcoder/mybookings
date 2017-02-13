@@ -38,7 +38,7 @@ module Mybookings
         if attr_name.class == Hash && !attr_name[:actions].nil?
           actions = attr_name[:actions]
         else
-          table_headers << content_tag(:th, t("activerecord.attributes.#{attr_name}"))
+          table_headers << content_tag(:th, t("activerecord.attributes.mybookings/#{attr_name}"))
         end
       end
 
@@ -54,7 +54,9 @@ module Mybookings
       end
 
       table = content_tag(:table, "#{thead} #{tbody}".html_safe, id: id, class: 'table table-bordered')
-      table.html_safe
+      table_responsive = content_tag(:div, table.html_safe, class: 'table-responsive')
+
+      table_responsive.html_safe
     end
 
     def link_to_delete text, path, title, options={}
