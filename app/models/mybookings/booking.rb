@@ -34,6 +34,10 @@ module Mybookings
       booking
     end
 
+    def self.unprepared
+      where(prepared: false)
+    end
+
     def delete_pending_events
       events_to_delete = events.where(status: 0)
       events_to_delete.each do |event|

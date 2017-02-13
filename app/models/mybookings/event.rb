@@ -15,11 +15,11 @@ module Mybookings
 
     enum status: %w(pending occurring expired)
 
-    def self.about_to_begin
+    def self.upcoming
       Event.pending.where('? >= start_date', Time.now + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes)
     end
 
-    def self.recently_finished
+    def self.finished
       Event.occurring.where('? >= end_date', Time.now)
     end
 
@@ -56,9 +56,14 @@ module Mybookings
 
     def cancel!; end
 
-    def start!; end
+    def start!
+      occurring!
+      Mybookings::NotificationsMailer.notify_upcoming_booking(booking).deliver!
+    end
 
-    def end!; end
+    def end!
+      expired!
+    end
 
     private
 
