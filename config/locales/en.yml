@@ -96,6 +96,7 @@ en:
           roles: 'Roles'
         index:
           title: 'Users'
+          new_user: 'New user'
         new:
           title: 'New user'
           create_user: 'Create user'
