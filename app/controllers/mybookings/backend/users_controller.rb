@@ -8,7 +8,7 @@ module Mybookings
     before_action :load_resource_types, only: [:new, :edit]
 
     def index
-      @users = User.by_id
+      @users = User.by_id.page(params[:page])
     end
 
     def new
