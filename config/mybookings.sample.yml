@@ -4,6 +4,7 @@ notifications_mail: no-reply@mybookings.com
 maximum_permitted_days_for_recurring_events: 365
 maximum_duration_in_hours_for_an_event: 4
 deadline_for_feedback_in_days: 7
+devise_registerable: true
 extra_roles:
   - role1
   - role2

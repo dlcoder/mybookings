@@ -3,13 +3,8 @@ module Mybookings
     include ::RoleModel
     include Loggable
 
-    devise :database_authenticatable,
-           :registerable,
-           :recoverable,
-           :rememberable,
-           :trackable,
-           :validatable,
-           :omniauthable
+    devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+    devise :registerable if MYBOOKINGS_CONFIG['devise_registerable']
 
     has_many :bookings
     has_and_belongs_to_many :resource_types, join_table: 'mybookings_user_managed_resource_types'
