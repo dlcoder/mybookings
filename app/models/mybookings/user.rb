@@ -6,7 +6,7 @@ module Mybookings
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
     devise :registerable if MYBOOKINGS_CONFIG['devise_registerable']
 
-    has_many :bookings
+    has_many :bookings, dependent: :destroy
     has_and_belongs_to_many :resource_types, join_table: 'mybookings_user_managed_resource_types'
 
     roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']

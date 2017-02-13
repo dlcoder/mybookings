@@ -102,6 +102,7 @@ es:
           title: 'Nuevo usuario'
           create_user: 'Crear usuario'
         user:
+          cancel: 'Cancelar'
           edit: 'Editar'
 
     bookings:
