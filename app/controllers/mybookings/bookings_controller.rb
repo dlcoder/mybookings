@@ -49,13 +49,11 @@ module Mybookings
     private
 
     def booking_params
-      params.require(:booking).permit!
+      params.require(booking_type.model_name.param_key).permit!
     end
 
     def booking_type
-      resource_type_extension = "Mybookings::ResourceTypesExtensions::#{@resource_type.extension}".constantize
-      resource_type_extension_namespace = resource_type_extension::namespace
-      @booking_type = "#{resource_type_extension_namespace}::Booking".constantize
+      Booking
     end
 
     def load_available_resources_by_resource_type resource_type

@@ -5,7 +5,7 @@
 
 .row
   .col-xs-12.col-sm-6
-    = simple_form_for [@resource_type, @booking], method: :post do |f|
+    = simple_form_for [@resource_type, @booking], url: resource_type_bookings_path(@resource_type, @booking) do |f|
       = render_model_base_errors f.object
 
       .panel.panel-default
@@ -30,7 +30,6 @@
 
       = render partial: "resource_type_extension_#{@booking.resource_type_extension.downcase}", locals: { form: f }
 
-      = f.input :booking_type, as: :hidden, input_html: { value: @booking_type }
       = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
 
   .col-xs-12.col-sm-6

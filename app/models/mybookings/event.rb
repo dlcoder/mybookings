@@ -15,6 +15,8 @@ module Mybookings
 
     enum status: %w(pending occurring expired)
 
+    self.inheritance_column = :event_type
+
     def self.upcoming
       Event.pending.where('? >= start_date', Time.now + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes)
     end

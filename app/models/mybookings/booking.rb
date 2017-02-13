@@ -22,6 +22,8 @@ module Mybookings
 
     enum recurrent_type: %w(daily weekly monthly)
 
+    self.inheritance_column = :booking_type
+
     def self.by_start_date_group_by_resource_type
       includes(:events, :resource_type).order('mybookings_resource_types.name ASC').group_by(&:resource_type)
     end
