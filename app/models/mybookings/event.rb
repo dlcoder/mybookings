@@ -58,7 +58,6 @@ module Mybookings
 
     def start!
       occurring!
-      Mybookings::NotificationsMailer.notify_upcoming_booking(booking).deliver!
     end
 
     def end!
