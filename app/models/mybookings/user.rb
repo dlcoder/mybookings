@@ -45,10 +45,10 @@ module Mybookings
     def get_masks_from_role(role)
       role_index = self.class.valid_roles.index(role)
       masks = Array.new
+      bit_position = 2**role_index
 
       i = 0
       while i < 2**self.class.valid_roles.length
-        bit_position = 2**role_index
         smallest_range_value = i + bit_position
         largest_range_value = (i + (bit_position * 2)) - 1
         masks.concat((smallest_range_value..largest_range_value).to_a)
