@@ -96,7 +96,7 @@ step 'I can save the user' do
 end
 
 step 'I can create a new user' do
-  click_link 'New User'
+  click_link 'New user'
 
   fill_in 'Email', with: 'example@example.com'
   check 'manager'
