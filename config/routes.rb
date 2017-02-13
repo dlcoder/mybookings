@@ -2,7 +2,7 @@ Mybookings::Engine.routes.draw do
 
   devise_for :users,
     class_name: 'Mybookings::User',
-    controllers: { omniauth_callbacks: 'mybookings/omniauth_callbacks' },
+    controllers: { sessions: 'mybookings/sessions', omniauth_callbacks: 'mybookings/omniauth_callbacks' },
     module: :devise
 
   root 'application#index'
