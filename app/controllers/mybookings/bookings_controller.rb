@@ -1,6 +1,6 @@
 module Mybookings
   class BookingsController < BaseController
-    before_action :load_booking, only: [:destroy]
+    before_action :load_booking, only: [:edit, :update, :destroy]
     before_action :load_resource_type, only: [:new, :create]
 
     def index
@@ -12,6 +12,8 @@ module Mybookings
       load_available_resources_by_resource_type @resource_type
       @booking = booking_type.new(resource_type: @resource_type)
     end
+
+    def edit; end
 
     def create
       @booking = booking_type.new_for_user(current_user, booking_params)
@@ -28,6 +30,20 @@ module Mybookings
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
 
       redirect_to bookings_path
+    end
+
+    def update
+      unless @booking.has_pending_events?
+        flash.now[:alert] = 'Can\'t update a booking without pending events.'
+        return render 'edit'
+      end
+
+      if @booking.update_attributes(booking_params_for_update)
+        @booking.update_attribute(:prepared, false)
+        return redirect_to bookings_path
+      end
+
+      return render 'edit'
     end
 
     def destroy
@@ -52,6 +68,10 @@ module Mybookings
       params.require(booking_type.model_name.param_key).permit!
     end
 
+    def booking_params_for_update
+      {}
+    end
+
     def booking_type
       Booking
     end
@@ -61,7 +81,7 @@ module Mybookings
     end
 
     def load_booking
-      @booking = BookingDecorator.find(params[:id])
+      @booking = BookingDecorator.find(params[:id] || params[:booking_id])
       authorize @booking
     end
 

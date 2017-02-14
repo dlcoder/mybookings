@@ -4,7 +4,14 @@
       .col-xs-7
         = icon_with_text('envelope', t('.title', created_at: l(booking.created_at, format: :long)))
       .col-xs-5.text-right
-        = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
+        - action_buttons_button_classes = 'btn btn-default btn-xs'
+        - unless booking.has_pending_events?
+          - action_buttons_button_classes = "#{action_buttons_button_classes} disabled"
+
+        - if booking.editable?
+          = link_to t('.edit_booking'), edit_booking_path(booking.id), class: action_buttons_button_classes
+
+        = link_to_delete t('.cancel_booking'), booking_path(booking.id), t('mybookings.delete_confirmation'), class: action_buttons_button_classes
   .panel-body
     .row
       .events

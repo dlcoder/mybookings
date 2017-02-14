@@ -8,6 +8,7 @@ module Mybookings
     belongs_to :proposed_resource, class_name: 'Resource'
 
     delegate :email, to: :user, prefix: true
+    delegate :count, to: :events, prefix: true
     delegate :name, to: :resource_type, prefix: true
     delegate :extension, to: :resource_type, prefix: true
     delegate :users, to: :resource_type, prefix: true
@@ -77,6 +78,10 @@ module Mybookings
 
     def prepare!
       update_attribute(:prepared, true)
+    end
+
+    def editable?
+      false
     end
 
     private

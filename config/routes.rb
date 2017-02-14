@@ -7,7 +7,7 @@ Mybookings::Engine.routes.draw do
 
   root 'application#index'
 
-  resources :bookings, only: [:index, :destroy] do
+  resources :bookings, only: [:index, :edit, :create, :update, :destroy] do
     resources :events do
       get :edit_feedback
       put :set_feedback
