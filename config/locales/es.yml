@@ -65,6 +65,7 @@ es:
           create_resource: 'Crear recurso'
           title: 'Nuevo recurso'
         resource:
+          cancel: 'Cancelar'
           enable: 'Activar'
           disable: 'Desactivar'
           expired: '%{expired_bookings} terminadas'

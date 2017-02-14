@@ -3,7 +3,7 @@ module Mybookings
     include Loggable
 
     belongs_to :resource_type
-    has_many :events
+    has_many :events, dependent: :destroy
 
     validates :name, :resource_type, presence: true
 

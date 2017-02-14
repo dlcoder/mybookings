@@ -2,7 +2,7 @@ module Mybookings
   class Event < ActiveRecord::Base
     include Loggable
 
-    belongs_to :booking
+    belongs_to :booking, dependent: :destroy
     belongs_to :resource
 
     validates :start_date, :end_date, :resource, presence: true
