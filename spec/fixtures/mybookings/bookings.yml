@@ -21,3 +21,9 @@ pending_booking:
   resource_type: acmr
   start_date: <%= (DateTime.now).to_s(:db) %>
   end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
+
+cancel_resource_booking:
+  user: user
+  resource_type: acmr
+  start_date: <%= (DateTime.now).to_s(:db) %
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>

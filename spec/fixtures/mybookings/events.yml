@@ -33,3 +33,18 @@ pending_event_overlapped:
   booking: pending_booking
   resource: acmr3
   status: 0
+
+cancel_resource_event1:
+  start_date: '2019-01-02 12:30:00 UTC'
+  end_date: 2019-01-02 13:30:00 UTC'
+  booking: cancel_resource_booking
+  resource: acmr3
+  status: 0
+
+cancel_resource_event2:
+  start_date: '2019-01-04 12:30:00 UTC'
+  end_date: 2019-01-04 13:30:00 UTC'
+  booking: cancel_resource_booking
+  resource: cancel_resource
+  status: 0
+

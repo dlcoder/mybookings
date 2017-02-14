@@ -21,6 +21,7 @@ Feature: Admin
     And the booking owner should receive an email with the cancellation reason
     And I can cancel a resource
     And I can see that the resource has been canceled
+    And I can see that bookings with events associated with the cancelled resource has not been cancelled because they have events associated with another resource
 
   Scenario: Manage resource types as administrator
     Given a signed in administrator
@@ -33,6 +34,7 @@ Feature: Admin
     And I can update the resource type
     And I can cancel the resource type
     And I can see that the resource type has been cancelled
+    And I can see that the resources associated with the resource type has been canceled
 
   Scenario: Manage users as administrator
     Given a signed in administrator

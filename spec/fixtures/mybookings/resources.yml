@@ -14,6 +14,10 @@ acmr3:
   name: ACMR3
   resource_type: acmr
 
+cancel_resource:
+  name: acmr_cancel
+  resource_type: acmr
+
 disabled_resource:
   name: Disabled resource
   disabled: true
