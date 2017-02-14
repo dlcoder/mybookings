@@ -80,6 +80,11 @@ module Mybookings
       update_attribute(:prepared, true)
     end
 
+    def destroy
+      return false if has_events?
+      super
+    end
+
     private
 
     def generate_dates
