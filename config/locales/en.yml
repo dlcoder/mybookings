@@ -86,6 +86,7 @@ en:
           create_resource_type: 'Create resource type'
           title: 'New resource type'
         resource_type:
+          cancel: 'Cancel'
           edit: 'Edit'
       users:
         edit:

@@ -4,7 +4,7 @@ module Mybookings
     include Loggable
 
     has_one :booking
-    has_many :resources
+    has_many :resources, dependent: :destroy
     has_and_belongs_to_many :users, join_table: 'mybookings_user_managed_resource_types'
 
     validates :name, :extension, presence: true
