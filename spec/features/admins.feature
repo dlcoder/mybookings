@@ -41,3 +41,5 @@ Feature: Admin
     And I can save the user
     And I can create a new user
     And I can see that the user has been created
+    And I can search for an user
+    And I can see the results of the search

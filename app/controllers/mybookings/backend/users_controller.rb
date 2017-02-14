@@ -8,12 +8,10 @@ module Mybookings
     before_action :load_resource_types, only: [:new, :edit]
 
     def index
-      @users = User.where(nil)
-
       if params[:search].nil?
         @users = User.by_id.page(params[:page])
       else
-        @users = User.email_search(params[:search]).by_id.page(params[:page])
+        @users = User.search(params[:search]).by_id.page(params[:page])
       end
     end
 

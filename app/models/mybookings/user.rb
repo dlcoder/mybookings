@@ -28,7 +28,7 @@ module Mybookings
       order(id: :asc)
     end
 
-    def self.email_search search_string
+    def self.search search_string
       where("email like ?", "%#{search_string}%")
     end
 

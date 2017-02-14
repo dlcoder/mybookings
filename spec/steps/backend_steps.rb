@@ -112,6 +112,15 @@ step 'I can see that the user has been created' do
   end
 end
 
+step 'I can search for an user' do
+  fill_in 'search', with: 'use'
+  click_button 'Search'
+end
+
+step 'I can see the results of the search' do
+  expect(page).to have_content('user@mybookings.com')
+end
+
 step 'I can see the events of a resource and all the info of them' do
   event = mybookings_events(:event1)
 
