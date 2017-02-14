@@ -104,7 +104,6 @@ en:
           title: 'New user'
           create_user: 'Create user'
         user:
-          cancel: 'Cancel'
           edit: 'Edit'
 
     bookings:

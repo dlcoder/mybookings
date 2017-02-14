@@ -3,7 +3,7 @@ module Mybookings
     include Backend::Administerable
     include Backend::Authorizable
 
-    before_action :load_user, only: [:edit, :update, :destroy]
+    before_action :load_user, only: [:edit, :update]
     before_action :load_valid_roles, only: [:new, :edit]
     before_action :load_resource_types, only: [:new, :edit]
 
@@ -40,11 +40,6 @@ module Mybookings
       load_valid_roles
       load_resource_types
       render 'edit'
-    end
-
-    def destroy
-      @user.destroy!
-      redirect_to backend_users_path
     end
 
     private
