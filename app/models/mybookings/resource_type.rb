@@ -24,5 +24,17 @@ module Mybookings
     def managed_by? user
       self.users.exists? user.id
     end
+
+    def can_create? user
+      return true if roles_mask == 0
+
+      possible_masks = user.get_all_posibles_masks_for_roles
+
+      possible_masks.each do |e|
+        return true if e == roles_mask
+      end
+
+      return false
+    end
   end
 end

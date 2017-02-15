@@ -59,7 +59,7 @@ module Mybookings
       resource_id = params[:resource_id] || params[:id]
 
       @resource = Resource.find(resource_id)
-      authorize @resource
+      authorize @resource, :manage_by_manager?
     end
 
   end

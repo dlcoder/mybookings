@@ -13,6 +13,7 @@ module Mybookings
 
     def load_resource
       @resource = Resource.find(params[:resource_id])
+      authorize @resource
     end
 
     def load_start_end

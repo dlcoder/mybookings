@@ -13,6 +13,7 @@ module Mybookings
     delegate :extension, to: :resource_type, prefix: true
     delegate :managed_by?, to: :resource_type, prefix: true
     delegate :users, to: :resource_type, prefix: true
+    delegate :can_create?, to: :resource_type, prefix: true
 
     def self.available_by_resource_type resource_type
       includes(:resource_type).order('mybookings_resources.name asc, mybookings_resources.name asc').where(disabled: false, resource_type: resource_type)
