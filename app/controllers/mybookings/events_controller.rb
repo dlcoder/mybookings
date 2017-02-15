@@ -1,10 +1,16 @@
 module Mybookings
   class EventsController < BaseController
     before_action :load_event, only: [:destroy, :edit_feedback, :set_feedback]
-    before_action :load_booking, only: [:index]
 
     def index
-      @events = EventDecorator.decorate_collection(@booking.events.recents)
+      if (params[:booking_id])
+        load_booking
+        @events = EventDecorator.decorate_collection(@booking.events)
+        return render 'index'
+      end
+
+      @events = Event.for_user(current_user)
+      @events = @events.between(Time.parse(params[:start]), Time.parse(params[:end])) if (params[:start] && params[:end])
     end
 
     def destroy

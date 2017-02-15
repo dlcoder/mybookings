@@ -1,24 +1,36 @@
-.col-xs-12.col-sm-6.col-md-3
+.col-xs-12.col-sm-3
   %dl.panel{ class: "panel-#{bootstrap_class_for(event.status)} panel-event", id: "event-#{event.id}" }
     .panel-body
       .row
-        .col-xs-12
+        .col-xs-6
           %p
-            %span.label{ class: "label-#{bootstrap_class_for(event.status)}" }= t("mybookings.events.statuses.#{event.status}")
+            %dt= icon_with_text('pushpin', t('.status'))
+            %dd
+              %span.label{ class: "label-#{bootstrap_class_for(event.status)}" }= t("mybookings.events.statuses.#{event.status}")
 
+        .col-xs-6
+          %p
+            %dt= icon_with_text('briefcase', t('.resource'))
+            %dd
+              %small= event.resource_name
+
+      .row
+        .col-xs-6
           %p
             %dt= icon_with_text('time', t('.start_date'))
-            %dd= l event.start_date, format: :long
+            %dd
+              %small= l event.start_date, format: :long
 
+        .col-xs-6
           %p
             %dt= icon_with_text('time', t('.end_date'))
-            %dd= l event.end_date, format: :long
+            %dd
+              %small= l event.end_date, format: :long
 
-          - if event.pending?
-            %hr
-            = link_to_delete t('.cancel_event'), booking_events_path(event.booking.id, event.id), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
+      %hr
 
-          - if event.can_receive_feedback?
-            %hr
-            = link_to t('.send_feedback'), booking_event_edit_feedback_path(event.booking.id, event.id), class: 'btn btn-default btn-xs'
+      - if event.pending?
+        = link_to_delete t('.cancel_event'), booking_event_path(event.booking, event), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
 
+      - if event.can_receive_feedback?
+        = link_to icon_with_text('comment', t('.send_feedback')), booking_event_edit_feedback_path(event.booking.id, event.id), class: 'btn btn-default btn-xs'

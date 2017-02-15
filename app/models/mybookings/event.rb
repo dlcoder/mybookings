@@ -33,6 +33,26 @@ module Mybookings
       where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
     end
 
+    def self.recents
+      where(status: statuses[:expired]).last(statuses[:expired]) | where.not(status: statuses[:expired])
+    end
+
+    def self.not_pending
+      where.not(status: statuses[:expired])
+    end
+
+    def self.by_resource resource
+      where(resource: resource)
+    end
+
+    def self.for_user user
+      joins(:booking).where('mybookings_bookings.user_id = ?', user.id)
+    end
+
+    def self.between start_date, end_date
+      where(start_date: start_date..end_date)
+    end
+
     def alternative_resources
       resource_type_id = self.resource.resource_type.id
 
@@ -46,14 +66,6 @@ module Mybookings
       resources_with_overlapped_events.push(self.resource.id)
 
       Resource.where(resource_type_id: resource_type_id, disabled: false).where.not(id: resources_with_overlapped_events)
-    end
-
-    def self.recents
-      where(status: statuses[:expired]).last(statuses[:expired]) | where.not(status: statuses[:expired])
-    end
-
-    def self.active_by_resource_between resource, start_day, end_day
-      where(resource: resource, start_date: start_day..end_day).where.not(status: statuses[:expired])
     end
 
     def cancel!; end

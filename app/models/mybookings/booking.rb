@@ -80,10 +80,6 @@ module Mybookings
       update_attribute(:prepared, true)
     end
 
-    def editable?
-      false
-    end
-
     private
 
     def generate_dates

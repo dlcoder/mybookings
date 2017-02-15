@@ -12,7 +12,7 @@
         .panel-body
 
           = f.input :resource_type_id, as: :hidden
-          = f.association :proposed_resource, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type
+          = f.association :proposed_resource, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type, input_html: { class: 'js-booking-resource-id' }
 
           .row
             .col-xs-12.col-sm-6
@@ -41,5 +41,4 @@
         #calendar
 
 :coffeescript
-  $ ->
-    new Calendar('#calendar', '#booking_proposed_resource_id', '#{I18n.locale.to_s}')
+  Mybookings.AvailabilityCalendar.render('#calendar', '.js-booking-resource-id', "#{I18n.locale.to_s}")

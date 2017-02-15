@@ -103,28 +103,12 @@ es:
           edit: 'Editar'
 
     bookings:
-      booking:
-        cancel_booking: 'Cancelar reserva'
-        edit_booking: 'Editar reserva'
-        title: 'Reserva creada el %{created_at}'
-        load_more_events: "Cargar más..."
-      edit:
-        resource_type: Tipo de recurso
-        resource_name: 'Recurso: %{resource_name}'
-        start_date: 'Inicio: %{start_date}'
-        end_date: 'Fin: %{end_date}'
-        events:
-          one: 'Un evento asociado'
-          other: '%{count} eventos asociados'
-        title: Editar reserva
-        update_booking: Actualizar reserva
       hints:
         comment_hint: 'Puedes escribir alguna indicación para que se le notifique al responsable del recurso.'
         recurring_hint: 'Selecciona cada cuanto tiempo se repetirá la reserva.'
         until_date_hint: 'Para reservas recurrentes debes elegir la fecha tope de repetición.'
       index:
         new_booking: 'Reservar un recurso'
-        no_bookings: 'Aún no has realizado ninguna reserva.'
         title: 'Mis reservas'
       new:
         calendar_description: "Utiliza el calendario para comprobar la disponibilidad del recurso. Si eliges otro recurso el calendario se actualiza automáticamente."
@@ -138,14 +122,29 @@ es:
         daily: 'Diariamente'
         weekly: 'Semanalmente'
         monthly: 'Mensualmente'
+      show:
+        cancel_booking: Cancelar reserva
+        cancel_booking_description: Se borrarán todos los eventos pendientes. Si todos los eventos de la reserva están pendientes se eliminará la reserva completa.
+        comment: Comentario
+        no_comments: No se indicó ningún comentario al solicitar la reserva.
+        creation_date: Fecha de solicitud
+        events: Eventos asociados a la reserva
+        load_all_events: Mostrar todos los eventos de la reserva
+        resource_type: Tipo de recurso
+        title: "Datos de la reserva #%{booking_id}"
+        update_booking: Actualizar reserva
 
     events:
       event:
-        cancel_event: 'Cancelar'
-        send_feedback: 'Enviar comentarios'
+        cancel_event: Cancelar
+        end_date: Fin
+        resource: Recurso
+        send_feedback: Enviar comentarios
+        start_date: Inicio
+        status: Estado
       edit_feedback:
-        send_feedback: 'Enviar comentarios'
-        title: 'Enviar comentarios'
+        send_feedback: Enviar comentarios
+        title: Enviar comentarios
       index:
         feedback_received: 'Gracias. Hemos recibido tus comentarios.'
       statuses:

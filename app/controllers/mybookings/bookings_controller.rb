@@ -1,6 +1,6 @@
 module Mybookings
   class BookingsController < BaseController
-    before_action :load_booking, only: [:edit, :update, :destroy]
+    before_action :load_booking, only: [:show, :update, :destroy]
     before_action :load_resource_type, only: [:new, :create]
 
     def index
@@ -13,7 +13,7 @@ module Mybookings
       @booking = booking_type.new(resource_type: @resource_type)
     end
 
-    def edit; end
+    def show; end
 
     def create
       @booking = booking_type.new_for_user(current_user, booking_params)
@@ -35,15 +35,15 @@ module Mybookings
     def update
       unless @booking.has_pending_events?
         flash.now[:alert] = 'Can\'t update a booking without pending events.'
-        return render 'edit'
+        return render 'show'
       end
 
-      if @booking.update_attributes(booking_params_for_update)
-        @booking.update_attribute(:prepared, false)
+      params = booking_params_for_update.merge({ prepared: false })
+      if @booking.update_attributes(params)
         return redirect_to bookings_path
       end
 
-      return render 'edit'
+      return render 'show'
     end
 
     def destroy
@@ -76,12 +76,16 @@ module Mybookings
       Booking
     end
 
+    def booking_decorator_type
+      BookingDecorator
+    end
+
     def load_available_resources_by_resource_type resource_type
       @resources = Resource.available_by_resource_type resource_type
     end
 
     def load_booking
-      @booking = BookingDecorator.find(params[:id] || params[:booking_id])
+      @booking = booking_decorator_type.find(params[:id] || params[:booking_id]).decorate
       authorize @booking
     end
 
@@ -94,7 +98,7 @@ module Mybookings
       # The model method not return a collection.
       @bookings = policy_scope(Booking).by_start_date_group_by_resource_type.map { |resource_type, bookings| [
         resource_type,
-        BookingDecorator.decorate_collection(bookings)
+        booking_decorator_type.decorate_collection(bookings)
       ] }
     end
   end

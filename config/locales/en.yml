@@ -103,28 +103,12 @@ en:
           edit: 'Edit'
 
     bookings:
-      booking:
-        cancel_booking: 'Cancel booking'
-        edit_booking: 'Edit booking'
-        title: 'Booking created at %{created_at}'
-        load_more_events: 'Load more...'
-      edit:
-        resource_type: Resource type
-        resource_name: 'Resource: %{resource_name}'
-        start_date: 'Start: %{start_date}'
-        end_date: 'End: %{end_date}'
-        events:
-          one: 'One event for the booking'
-          other: '%{count} events for the booking'
-        title: Edit booking
-        update_booking: Update booking
       hints:
         comment_hint: 'You can write some indication to notify the resource responsible.'
         recurring_hint: 'Select the repeating frequency of the booking.'
         until_date_hint: 'For recurring bookings you must select a limit date.'
       index:
         new_booking: 'Book a resource'
-        no_bookings: 'You does not have any booking yet.'
         title: 'My bookings'
       new:
         calendar_description: "Use the calendar to check the resource's availability. If you choose another resource the calendar updates automatically."
@@ -138,14 +122,29 @@ en:
         daily: 'Daily'
         weekly: 'Weekly'
         monthly: 'Monthly'
+      show:
+        cancel_booking: Cancel booking
+        cancel_booking_description: All the pending events will be deleted. If all the events in the booking are pending, the booking will be deleted completly.
+        comment: Comment
+        no_comments: No comments when the booking was submitted.
+        creation_date: Booking date
+        events: Events for the booking
+        load_all_events: Show all events for the booking
+        resource_type: Resource type
+        title: "Data for booking #%{booking_id}"
+        update_booking: Update booking
 
     events:
       event:
-        cancel_event: 'Cancel'
-        send_feedback: 'Send feedback'
+        cancel_event: Cancel
+        end_date: End
+        resource: Resource
+        send_feedback: Send comments
+        start_date: Start
+        status: Status
       edit_feedback:
-        send_feedback: 'Send feedback'
-        title: 'Send feedback'
+        send_feedback: Send feedback
+        title: Send feedback
       index:
         feedback_received: 'Thanks. We have received your feedback.'
       statuses:
