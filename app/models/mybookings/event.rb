@@ -2,6 +2,8 @@ module Mybookings
   class Event < ActiveRecord::Base
     include Loggable
 
+    acts_as_paranoid
+
     belongs_to :booking, dependent: :destroy
     belongs_to :resource
 

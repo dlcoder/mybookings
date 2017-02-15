@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari",                        "~> 0.17"
   s.add_dependency "momentjs-rails",                  ">= 2.9.0"
   s.add_dependency "omniauth-saml",                   "~> 1.7.0"
+  s.add_dependency "paranoia",                        "~> 2.2"
   s.add_dependency "pundit",                          "~> 1.1.0"
   s.add_dependency "role_model",                      "~> 0.8.2"
   s.add_dependency "sass-rails",                      ">= 3.2"

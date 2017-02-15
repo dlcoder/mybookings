@@ -3,6 +3,8 @@ module Mybookings
     include ::RoleModel
     include Loggable
 
+    acts_as_paranoid
+
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
     devise :registerable if MYBOOKINGS_CONFIG['devise_registerable']
 

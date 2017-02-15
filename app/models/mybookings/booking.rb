@@ -2,6 +2,8 @@ module Mybookings
   class Booking < ActiveRecord::Base
     include Loggable
 
+    acts_as_paranoid
+
     belongs_to :user
     belongs_to :resource_type
     has_many :events , inverse_of: :booking

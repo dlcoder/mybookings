@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.datetime "until_date"
     t.integer  "recurrent_type",       default: 0
     t.boolean  "prepared",             default: false
+    t.datetime "deleted_at"
     t.integer  "proposed_resource_id"
   end
 
+  add_index "mybookings_bookings", ["deleted_at"], name: "index_mybookings_bookings_on_deleted_at"
   add_index "mybookings_bookings", ["proposed_resource_id"], name: "index_mybookings_bookings_on_proposed_resource_id"
   add_index "mybookings_bookings", ["resource_type_id"], name: "index_mybookings_bookings_on_resource_type_id"
   add_index "mybookings_bookings", ["user_id"], name: "index_mybookings_bookings_on_user_id_and_resource_id"
@@ -40,9 +42,11 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.integer  "booking_id"
     t.integer  "resource_id"
     t.string   "event_type"
+    t.datetime "deleted_at"
   end
 
   add_index "mybookings_events", ["booking_id"], name: "index_mybookings_events_on_booking_id"
+  add_index "mybookings_events", ["deleted_at"], name: "index_mybookings_events_on_deleted_at"
   add_index "mybookings_events", ["resource_id"], name: "index_mybookings_events_on_resource_id"
 
   create_table "mybookings_resource_types", force: :cascade do |t|
@@ -51,7 +55,10 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.datetime "updated_at"
     t.string   "extension",  default: "DefaultExtension"
     t.integer  "roles_mask"
+    t.datetime "deleted_at"
   end
+
+  add_index "mybookings_resource_types", ["deleted_at"], name: "index_mybookings_resource_types_on_deleted_at"
 
   create_table "mybookings_resources", force: :cascade do |t|
     t.string   "name"
@@ -59,8 +66,10 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.datetime "updated_at"
     t.boolean  "disabled",         default: false
     t.integer  "resource_type_id"
+    t.datetime "deleted_at"
   end
 
+  add_index "mybookings_resources", ["deleted_at"], name: "index_mybookings_resources_on_deleted_at"
   add_index "mybookings_resources", ["name"], name: "index_mybookings_resources_on_name"
 
   create_table "mybookings_user_managed_resource_types", force: :cascade do |t|
@@ -84,8 +93,10 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "roles_mask"
+    t.datetime "deleted_at"
   end
 
+  add_index "mybookings_users", ["deleted_at"], name: "index_mybookings_users_on_deleted_at"
   add_index "mybookings_users", ["email"], name: "index_mybookings_users_on_email", unique: true
   add_index "mybookings_users", ["reset_password_token"], name: "index_mybookings_users_on_reset_password_token", unique: true
 
