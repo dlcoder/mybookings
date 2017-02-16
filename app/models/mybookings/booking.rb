@@ -5,20 +5,19 @@ module Mybookings
     belongs_to :user
     belongs_to :resource_type
     has_many :events , inverse_of: :booking
+    belongs_to :proposed_resource, class_name: 'Resource'
 
     delegate :email, to: :user, prefix: true
     delegate :name, to: :resource_type, prefix: true
     delegate :extension, to: :resource_type, prefix: true
     delegate :users, to: :resource_type, prefix: true
 
-    validates :start_date, :end_date, :resource_id, :recurrent_type, presence: true
+    validates :start_date, :end_date, :proposed_resource, :recurrent_type, presence: true
     validates :until_date, presence: true, if: :is_a_recurring_booking?
     validate :the_booking_period_is_valid, if: :is_a_recurring_booking?
     validate :the_event_duration_is_valid
     validate :until_date_in_the_future, on: :create
     validate :events_are_valid
-
-    attr_accessor :resource_id
 
     enum recurrent_type: %w(daily weekly monthly)
 
@@ -66,7 +65,7 @@ module Mybookings
       dates.each do |date|
         new_events << { start_date: string_format(date),
                         end_date: string_format(date + event_duration.seconds),
-                        resource: resource }
+                        resource: proposed_resource }
       end
 
       events.build(new_events)
@@ -81,10 +80,6 @@ module Mybookings
     end
 
     private
-
-    def resource
-      Mybookings::Resource.find(resource_id)
-    end
 
     def generate_dates
       until_date = self.until_date.nil? ? start_date : self.until_date

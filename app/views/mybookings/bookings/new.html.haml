@@ -12,7 +12,7 @@
         .panel-body
 
           = f.input :resource_type_id, as: :hidden
-          = f.input :resource_id, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type
+          = f.input :proposed_resource_id, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type
 
           .row
             .col-xs-12.col-sm-6

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209195328) do
+ActiveRecord::Schema.define(version: 20170216093955) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20170209195328) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "until_date"
-    t.integer  "recurrent_type",   default: 0
-    t.boolean  "prepared",         default: false
+    t.integer  "recurrent_type",       default: 0
+    t.boolean  "prepared",             default: false
+    t.integer  "proposed_resource_id"
   end
 
+  add_index "mybookings_bookings", ["proposed_resource_id"], name: "index_mybookings_bookings_on_proposed_resource_id"
   add_index "mybookings_bookings", ["resource_type_id"], name: "index_mybookings_bookings_on_resource_type_id"
   add_index "mybookings_bookings", ["user_id"], name: "index_mybookings_bookings_on_user_id_and_resource_id"
 
