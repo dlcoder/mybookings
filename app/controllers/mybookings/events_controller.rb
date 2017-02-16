@@ -26,6 +26,7 @@ module Mybookings
         booking.destroy!
       end
 
+      return redirect_to booking_path(booking) if booking.has_events?
       redirect_to bookings_path
     end
 

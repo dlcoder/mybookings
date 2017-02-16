@@ -4,4 +4,4 @@
   %td= resource_type.resources_number
   %td
     = link_to icon_with_text('pencil', t('.edit')), edit_backend_resource_type_path(resource_type), class: 'btn btn-default btn-xs'
-    = link_to_delete t('.cancel'), backend_resource_type_path(resource_type), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'
+    = link_to_delete t('.delete'), backend_resource_type_path(resource_type), t('mybookings.delete_confirmation'), class: 'btn btn-default btn-xs'

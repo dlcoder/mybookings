@@ -65,7 +65,7 @@ es:
           create_resource: 'Crear recurso'
           title: 'Nuevo recurso'
         resource:
-          cancel: 'Cancelar'
+          delete: 'Eliminar'
           enable: 'Activar'
           disable: 'Desactivar'
           expired: '%{expired_bookings} terminadas'
@@ -86,7 +86,7 @@ es:
           create_resource_type: 'Crear tipo de recurso'
           title: 'Nuevo tipo de recurso'
         resource_type:
-          cancel: 'Cancelar'
+          delete: 'Eliminar'
           edit: 'Editar'
       users:
         edit:
