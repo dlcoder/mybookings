@@ -34,7 +34,7 @@ module Mybookings
 
     def update
       unless @booking.has_pending_events?
-        flash.now[:alert] = 'Can\'t update a booking without pending events.'
+        flash.now[:alert] = I18n.t('mybookings.bookings.update.pending_events_required')
         return render 'show'
       end
 

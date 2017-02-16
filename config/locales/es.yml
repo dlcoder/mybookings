@@ -133,7 +133,8 @@ es:
         resource_type: Tipo de recurso
         title: "Datos de la reserva #%{booking_id}"
         update_booking: Actualizar reserva
-
+      update:
+        pending_events_required: No se puede actualizar una reserva que no tenga eventos pendientes.
     events:
       event:
         cancel_event: Cancelar

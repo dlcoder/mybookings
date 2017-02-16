@@ -133,7 +133,8 @@ en:
         resource_type: Resource type
         title: "Data for booking #%{booking_id}"
         update_booking: Update booking
-
+      update:
+        pending_events_required: "Can't update a booking without pending events."
     events:
       event:
         cancel_event: Cancel
