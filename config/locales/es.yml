@@ -98,6 +98,7 @@ es:
           roles: 'Roles'
         index:
           new_user: 'Nuevo usuario'
+          search: Buscar
           search_placeholder: 'Correo electrónico'
           title: 'Usuarios'
         new:

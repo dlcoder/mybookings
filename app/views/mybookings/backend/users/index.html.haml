@@ -10,7 +10,7 @@
           .input-group
             = text_field_tag :search, params[:search], placeholder: t('.search_placeholder'), class: 'form-control'
             .input-group-btn
-              = button_tag 'Search', class: 'btn btn-default', type: :submit
+              = button_tag t('.search'), class: 'btn btn-default', type: :submit
 
 = table_for @users, 'mybookings/backend/users/user', ['user.id', 'user.email', 'user.created_at', 'user.roles'], 'table-users'
 
