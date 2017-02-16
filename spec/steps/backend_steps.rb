@@ -96,7 +96,7 @@ step 'I can save the user' do
 end
 
 step 'I can create a new user' do
-  click_link 'New User'
+  click_link 'New user'
 
   fill_in 'Email', with: 'example@example.com'
   check 'manager'
@@ -110,6 +110,15 @@ step 'I can see that the user has been created' do
     expect(page).to have_content('example@example.com')
     expect(page).to have_content('manager')
   end
+end
+
+step 'I can search for an user' do
+  fill_in 'search', with: 'use'
+  click_button 'Search'
+end
+
+step 'I can see the results of the search' do
+  expect(page).to have_content('user@mybookings.com')
 end
 
 step 'I can see the events of a resource and all the info of them' do

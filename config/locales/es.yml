@@ -95,6 +95,8 @@ es:
           title: 'Editando usuario'
           roles: 'Roles'
         index:
+          new_user: 'Nuevo usuario'
+          search_placeholder: 'Correo electrónico'
           title: 'Usuarios'
         new:
           title: 'Nuevo usuario'

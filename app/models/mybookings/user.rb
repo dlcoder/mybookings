@@ -28,6 +28,10 @@ module Mybookings
       order(id: :asc)
     end
 
+    def self.search search_string
+      where("email like ?", "%#{search_string}%")
+    end
+
     def assign_roles auth; end
 
     def get_all_posibles_masks_for_roles
