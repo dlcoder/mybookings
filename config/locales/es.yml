@@ -66,6 +66,7 @@ es:
           title: 'Nuevo recurso'
         resource:
           delete: 'Eliminar'
+          delete_confirmation: '¿Estás seguro? Si eliminas este recurso borrarás todos las reservas asociadas a él.'
           enable: 'Activar'
           disable: 'Desactivar'
           expired: '%{expired_bookings} terminadas'
@@ -87,6 +88,7 @@ es:
           title: 'Nuevo tipo de recurso'
         resource_type:
           delete: 'Eliminar'
+          delete_confirmation: '¿Estás seguro? Si eliminas este tipo de recurso borrarás todos los recursos y las reservas asociadas a él.'
           edit: 'Editar'
       users:
         edit:

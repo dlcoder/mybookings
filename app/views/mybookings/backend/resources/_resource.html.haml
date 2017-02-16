@@ -12,4 +12,4 @@
       - enable_or_disable_text_link = icon_with_text('remove', t('.disable'))
 
     = link_to enable_or_disable_text_link, backend_resource_switch_availability_path(resource.id), { class: 'btn btn-default btn-xs', method: :put }
-    = link_to_delete t('.delete'), backend_resource_path(resource), t('mybookings.delete_confirmation'),  class: 'btn btn-default btn-xs'
+    = link_to_delete t('.delete'), backend_resource_path(resource), t('.delete_confirmation'),  class: 'btn btn-default btn-xs'

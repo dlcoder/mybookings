@@ -66,6 +66,7 @@ en:
           title: 'New resource'
         resource:
           delete: 'Delete'
+          delete_confirmation: 'Are you sure? If you delete this resource you will delete all bookings associated with it.'
           enable: 'Enable'
           disable: 'Disable for new bookings'
           expired: '%{expired_bookings} expired'
@@ -87,6 +88,7 @@ en:
           title: 'New resource type'
         resource_type:
           delete: 'Delete'
+          delete_confirmation: 'Are you sure? If you delete this resource type you will delete all resources and bookings associated with it.'
           edit: 'Edit'
       users:
         edit:
