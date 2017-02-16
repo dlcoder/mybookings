@@ -9,9 +9,9 @@ module Mybookings
 
     def index
       if params[:search].nil?
-        @users = User.by_id.page(params[:page])
+        @users = policy_scope(User).by_id.page(params[:page])
       else
-        @users = User.search(params[:search]).by_id.page(params[:page])
+        @users = policy_scope(User).search(params[:search]).by_id.page(params[:page])
       end
     end
 
@@ -48,6 +48,7 @@ module Mybookings
       user_id = params[:id] || params[:user_id]
 
       @user = User.find(user_id)
+      authorize @user
     end
 
     def load_valid_roles
@@ -55,7 +56,7 @@ module Mybookings
     end
 
     def load_resource_types
-      @resource_types = ResourceType.by_name
+      @resource_types = ResourceTypePolicy::Scope.new(current_user, ResourceType).resolve_for_managers.by_name
     end
 
     def user_params

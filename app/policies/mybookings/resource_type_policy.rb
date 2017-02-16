@@ -13,6 +13,7 @@ module Mybookings
     end
 
     def manage?
+      return true if @user.has_role? :admin
       return false
     end
   end

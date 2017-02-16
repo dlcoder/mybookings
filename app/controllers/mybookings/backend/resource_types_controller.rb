@@ -43,6 +43,7 @@ module Mybookings
       resource_type_id = params[:id] || params[:resource_type_id]
 
       @resource_type = ResourceType.find(resource_type_id)
+      authorize @resource_type
     end
 
     def load_valid_roles

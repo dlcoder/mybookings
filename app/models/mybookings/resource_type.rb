@@ -24,5 +24,9 @@ module Mybookings
     def managed_by? user
       self.users.exists? user.id
     end
+
+    def has_roles?
+      roles_mask != 0
+    end
   end
 end

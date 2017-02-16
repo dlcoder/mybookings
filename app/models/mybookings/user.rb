@@ -46,6 +46,18 @@ module Mybookings
       masks.uniq.sort
     end
 
+    def can_booking_resource_type? resource_type
+      return true if !resource_type.has_roles?
+
+      possible_masks = get_all_posibles_masks_for_roles
+
+      possible_masks.each do |e|
+        return true if e == resource_type.roles_mask
+      end
+
+      return false
+    end
+
     private
 
     def get_masks_from_role(role)

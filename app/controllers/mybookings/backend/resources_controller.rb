@@ -22,7 +22,7 @@ module Mybookings
 
     def create
       @resource = Resource.new(resource_params)
-      authorize @resource
+      authorize @resource, :manage_by_manager?
 
       return redirect_to backend_resources_path if @resource.save
 
@@ -45,7 +45,7 @@ module Mybookings
       resource_id = params[:id] || params[:resource_id]
 
       @resource = Resource.find(resource_id)
-      authorize @resource
+      authorize @resource, :manage_by_manager?
     end
 
     def load_current_user_managed_resource_types
