@@ -1,28 +1,35 @@
 event1:
-  start_date: '2000-01-01 12:00:00 UTC'
-  end_date: '2000-01-01 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
   booking: expired_booking
   resource: acmr1
   status: 2
 
 event2:
-  start_date: '2000-01-02 12:00:00 UTC'
-  end_date: '2000-01-02 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
   booking: expired_booking_with_feedback
   feedback: 'The resource have a lot of problems.'
   resource: acmr2
   status: 2
 
+event3:
+  start_date: <%= (DateTime.now - 2.weeks).to_s(:db) %>
+  end_date: <%= (DateTime.now - 2.weeks + 2.hours).to_s(:db) %>
+  booking: old_expired_booking
+  resource: acmr3
+  status: 2
+
 pending_event:
-  start_date: '2020-01-02 12:00:00 UTC'
-  end_date: 2020-01-02 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
   booking: pending_booking
   resource: acmr2
   status: 0
 
 pending_event_overlapped:
-  start_date: '2020-01-02 12:30:00 UTC'
-  end_date: 2020-01-02 13:30:00 UTC'
+  start_date: <%= (DateTime.now + 30.minutes).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours + 30.minutes).to_s(:db) %>
   booking: pending_booking
   resource: acmr3
   status: 0

@@ -1,6 +1,6 @@
 module Mybookings
   class BookingsController < BaseController
-    before_action :load_booking, only: [:destroy]
+    before_action :load_booking, only: [:show, :update, :destroy]
     before_action :load_resource_type, only: [:new, :create]
 
     def index
@@ -12,6 +12,8 @@ module Mybookings
       load_available_resources_by_resource_type @resource_type
       @booking = booking_type.new(resource_type: @resource_type)
     end
+
+    def show; end
 
     def create
       @booking = booking_type.new_for_user(current_user, booking_params)
@@ -28,6 +30,20 @@ module Mybookings
       NotificationsMailer.notify_new_booking(@booking).deliver_now!
 
       redirect_to bookings_path
+    end
+
+    def update
+      unless @booking.has_pending_events?
+        flash.now[:alert] = I18n.t('mybookings.bookings.update.pending_events_required')
+        return render 'show'
+      end
+
+      params = booking_params_for_update.merge({ prepared: false })
+      if @booking.update_attributes(params)
+        return redirect_to bookings_path
+      end
+
+      return render 'show'
     end
 
     def destroy
@@ -52,8 +68,16 @@ module Mybookings
       params.require(booking_type.model_name.param_key).permit!
     end
 
+    def booking_params_for_update
+      {}
+    end
+
     def booking_type
       Booking
+    end
+
+    def booking_decorator_type
+      BookingDecorator
     end
 
     def load_available_resources_by_resource_type resource_type
@@ -61,7 +85,7 @@ module Mybookings
     end
 
     def load_booking
-      @booking = BookingDecorator.find(params[:id])
+      @booking = booking_decorator_type.find(params[:id] || params[:booking_id]).decorate
       authorize @booking
     end
 
@@ -74,7 +98,7 @@ module Mybookings
       # The model method not return a collection.
       @bookings = policy_scope(Booking).by_start_date_group_by_resource_type.map { |resource_type, bookings| [
         resource_type,
-        BookingDecorator.decorate_collection(bookings)
+        booking_decorator_type.decorate_collection(bookings)
       ] }
     end
   end

@@ -9,12 +9,7 @@
       - @resource_types.each do |resource_type|
         %li= link_to resource_type.name, resource_type_bookings_new_path(resource_type)
 
-.bookings-list
-  - if @bookings.any?
-    - @bookings.each do |resource_type, bookings|
-      - if bookings.any?
-        %h3= resource_type.name
-        = render bookings
+#bookings-calendar
 
-  - else
-    %p.lead= t('.no_bookings')
+:coffeescript
+  Mybookings.BookingsCalendar.render('#bookings-calendar', "#{events_path}", "#{I18n.locale}")

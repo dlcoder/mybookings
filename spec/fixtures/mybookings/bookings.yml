@@ -1,17 +1,23 @@
 expired_booking:
   user: user
   resource_type: acmr
-  start_date: '2000-01-01 12:00:00 UTC'
-  end_date: '2000-01-01 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
 
 expired_booking_with_feedback:
   user: user
   resource_type: acmr
-  start_date: '2000-01-02 12:00:00 UTC'
-  end_date: '2000-01-02 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
+
+old_expired_booking:
+  user: user
+  resource_type: acmr
+  start_date: <%= (DateTime.now - 2.weeks).to_s(:db) %>
+  end_date: <%= (DateTime.now - 2.weeks + 2.hours).to_s(:db) %>
 
 pending_booking:
   user: user
   resource_type: acmr
-  start_date: '2020-01-02 12:00:00 UTC'
-  end_date: 2020-01-02 13:00:00 UTC'
+  start_date: <%= (DateTime.now).to_s(:db) %>
+  end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>

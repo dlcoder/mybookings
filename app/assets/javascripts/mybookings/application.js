@@ -7,7 +7,8 @@
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require bootstrap-datetimepicker
-//= require mybookings/calendar
+//= require mybookings/availability_calendar
+//= require mybookings/bookings_calendar
 //= require mybookings/datetimepicker
 //= require select2
 //= require select2_i18n_en

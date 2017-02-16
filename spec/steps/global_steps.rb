@@ -1,5 +1,10 @@
 require 'rails_helper'
 
+step 'a signed in user' do
+  @user = mybookings_users(:user)
+  step 'login a user'
+end
+
 step 'login a user' do
   visit '/users/sign_in'
 
@@ -7,11 +12,6 @@ step 'login a user' do
   fill_in 'Password', with: '12345678'
 
   click_button 'Sign in'
-end
-
-step 'a signed in user' do
-  @user = mybookings_users(:user)
-  step 'login a user'
 end
 
 step 'a signed in administrator' do

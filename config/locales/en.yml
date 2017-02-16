@@ -103,37 +103,49 @@ en:
           edit: 'Edit'
 
     bookings:
-      booking:
-        cancel_booking: 'Cancel booking'
-        title: 'Booking created at %{created_at}'
-        load_more_events: 'Load more...'
+      hints:
+        comment_hint: 'You can write some indication to notify the resource responsible.'
+        recurring_hint: 'Select the repeating frequency of the booking.'
+        until_date_hint: 'For recurring bookings you must select a limit date.'
       index:
         new_booking: 'Book a resource'
-        no_bookings: 'You does not have any booking yet.'
         title: 'My bookings'
       new:
         calendar_description: "Use the calendar to check the resource's availability. If you choose another resource the calendar updates automatically."
         calendar_title: Availability calendar
-        comment_hint: 'You can write some indication to notify the resource responsible.'
         create_booking: 'Create booking'
         dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
         event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
-        recurring_hint: 'Select the repeating frequency of the booking.'
         title: 'New booking'
         title_with_resource_type_name: 'New booking %{resource_type_name}'
-        until_date_hint: 'For recurring bookings you must select a limit date.'
       recurrent_types:
         daily: 'Daily'
         weekly: 'Weekly'
         monthly: 'Monthly'
-
+      show:
+        cancel_booking: Cancel booking
+        cancel_booking_description: All the pending events will be deleted. If all the events in the booking are pending, the booking will be deleted completly.
+        comment: Comment
+        no_comments: No comments when the booking was submitted.
+        creation_date: Booking date
+        events: Events for the booking
+        load_all_events: Show all events for the booking
+        resource_type: Resource type
+        title: "Data for booking #%{booking_id}"
+        update_booking: Update booking
+      update:
+        pending_events_required: "Can't update a booking without pending events."
     events:
       event:
-        cancel_event: 'Cancel'
-        send_feedback: 'Send feedback'
+        cancel_event: Cancel
+        end_date: End
+        resource: Resource
+        send_feedback: Send comments
+        start_date: Start
+        status: Status
       edit_feedback:
-        send_feedback: 'Send feedback'
-        title: 'Send feedback'
+        send_feedback: Send feedback
+        title: Send feedback
       index:
         feedback_received: 'Thanks. We have received your feedback.'
       statuses:

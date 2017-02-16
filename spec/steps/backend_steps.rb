@@ -113,11 +113,13 @@ step 'I can see that the user has been created' do
 end
 
 step 'I can see the events of a resource and all the info of them' do
+  event = mybookings_events(:event1)
+
   find('tr', text: 'ACMR2').click_link 'Show bookings'
 
   expect(page).to have_content('user@mybookings.com')
-  expect(page).to have_content('January 02, 2000 12:00')
-  expect(page).to have_content('January 02, 2000 13:00')
+  expect(page).to have_content(event.start_date.strftime('%B %d, %Y %H:%M'))
+  expect(page).to have_content(event.start_date.strftime('%B %d, %Y %H:%M'))
   expect(page).to have_content('The resource have a lot of problems.')
 end
 

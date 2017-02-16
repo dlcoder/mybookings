@@ -12,7 +12,7 @@
         .panel-body
 
           = f.input :resource_type_id, as: :hidden
-          = f.association :proposed_resource, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type
+          = f.association :proposed_resource, collection: @resources, include_blank: false, label_method: :name_prefixed_with_resource_type, input_html: { class: 'js-booking-resource-id' }
 
           .row
             .col-xs-12.col-sm-6
@@ -22,13 +22,13 @@
 
           .row
             .col-xs-12.col-sm-6
-              = f.input :recurrent_type, collection: recurrent_types_list, as: :select, include_blank: false, hint: t('.recurring_hint')
+              = f.input :recurrent_type, collection: recurrent_types_list, as: :select, include_blank: false, hint: t('mybookings.bookings.hints.recurring_hint')
             .col-xs-12.col-sm-6
-              = f.input :until_date, as: :datetimepicker, hint: t('.until_date_hint')
+              = f.input :until_date, as: :datetimepicker, hint: t('mybookings.bookings.hints.until_date_hint')
 
-          = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('.comment_hint')
+          = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('mybookings.bookings.hints.comment_hint')
 
-      = render partial: "resource_type_extension_#{@booking.resource_type_extension.downcase}", locals: { form: f }
+      = render partial: "resource_type_extension_#{@booking.resource_type_extension.downcase}_new", locals: { form: f }
 
       = f.button icon_with_text('ok', t('.create_booking')), class: 'btn btn-primary'
 
@@ -41,5 +41,4 @@
         #calendar
 
 :coffeescript
-  $ ->
-    new Calendar('#calendar', '#booking_proposed_resource_id', '#{I18n.locale.to_s}')
+  Mybookings.AvailabilityCalendar.render('#calendar', '.js-booking-resource-id', "#{I18n.locale.to_s}")
