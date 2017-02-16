@@ -39,7 +39,7 @@ end
 
 step 'I can cancel a resource' do
   step 'I click on Resources menu item'
-  find('tr', text: 'acmr_cancel').click_link ('Cancel')
+  find('tr', text: 'acmr_cancel').click_link('Delete')
 end
 
 step 'I can see that the resource has been canceled' do
@@ -87,7 +87,7 @@ step 'I can update the resource type' do
 end
 
 step 'I can cancel the resource type' do
-  find('tr', text: 'Adobe Rooms').click_link ('Cancel')
+  find('tr', text: 'Adobe Rooms').click_link('Delete')
 end
 
 step 'I can see that the resource type has been cancelled' do
