@@ -17,7 +17,7 @@ module Mybookings
 
     def manage?
       return true if @user.has_role? :admin
-      return @record.resource_type_can_create? @user
+      return @user.can_booking_resource_type? @record.resource_type
     end
   end
 end
