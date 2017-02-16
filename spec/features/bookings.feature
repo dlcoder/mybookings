@@ -22,7 +22,7 @@ Feature: Bookings management
     And the manager should receive an email to notify the creation
     And I can see that the booking with weekly periodicity has been created
     And I go to the bookings page
-    And I can see the booking details
+    And I can see the weekly booking details
     And I can cancel the booking
     And the manager should receive an email to notify the cancelation
     And I can see that the booking with periodicity does not exists
@@ -31,15 +31,13 @@ Feature: Bookings management
     And the manager should receive an email to notify the creation
     And I can see that the booking with monthly periodicity has been created
 
-  @wip
   @javascript
   Scenario: Send feedback about a expired booking
     Given a signed in user
     When I go to the bookings page
-    And an existing booking
+    And I visit the booking details for a old expired event
+    And I cannot submit feedback
     And I go to the bookings page
-    And I can see the booking details
-    And I cannot see the feedback button in an old expired event
-    And I click button to submit some feedback about a recently expired booking
-    Then I can send a feedback message
-    And I can see that the feedback have been submitted
+    And I visit the booking details for a recently expired event
+    And I can submit feedback
+    And I can see that the feedback has been submitted

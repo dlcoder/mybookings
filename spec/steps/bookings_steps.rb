@@ -56,10 +56,39 @@ step 'the manager should receive an email to notify the creation' do
   expect(current_email.subject).to include('A new booking has been created')
 end
 
-step 'I can see the booking details' do
+step 'I visit the booking details for a old expired event' do
   within '#bookings-calendar' do
-    sleep 1
-    first('.fc-list-item').click_link('Virtual PC - PCV1')
+    find('.fc-prev-button').click
+    find('.fc-prev-button').click
+
+    click_link 'Adobe Connect Meeting Rooms - ACMR3'
+  end
+end
+
+step 'I visit the booking details for a recently expired event' do
+  within '#bookings-calendar' do
+    click_link 'Adobe Connect Meeting Rooms - ACMR1'
+  end
+end
+
+step 'I cannot submit feedback' do
+  sleep 1
+  expect(page).to_not have_content('Send comments')
+end
+
+step 'I can submit feedback' do
+  click_link 'Send comments'
+  fill_in 'Feedback', with: 'The system was very slow.'
+  click_button 'Send feedback'
+end
+
+step 'I can see that the feedback has been submitted' do
+  expect(page).to have_content('Thanks. We have received your feedback.')
+end
+
+step 'I can see the weekly booking details' do
+  within '#bookings-calendar' do
+    click_link('Virtual PC - PCV1')
   end
 
   expect(page).to have_content('Data for booking #')
@@ -87,37 +116,6 @@ step 'the manager should receive an email to notify the cancelation' do
   open_last_email_for(user.email)
 
   expect(current_email.subject).to include('A booking has been canceled')
-end
-
-step 'I cannot see the feedback button in an old expired event' do
-  event = mybookings_events(:event1)
-
-  expect(find("#event-#{event.id}")).to_not have_content('Send feedback')
-end
-
-step 'I click button to submit some feedback about a recently expired booking' do
-  event = mybookings_events(:event1)
-
-  event.end_date = (Time.now - 3.days).strftime("%d-%m-%Y %H:%M")
-  event.save!
-  visit current_path
-
-  within "#event-#{event.id}" do
-    click_link 'Send feedback'
-  end
-end
-
-step 'I can send a feedback message' do
-  fill_in 'Feedback', with: 'The system was very slow.'
-
-  click_button 'Send feedback'
-end
-
-step 'I can see that the feedback have been submitted' do
-  event = mybookings_events(:event1)
-
-  expect(page).to have_content('Thanks. We have received your feedback.')
-  expect(find("#event-#{event.id}")).to_not have_content('Send feedback')
 end
 
 step 'I can book an available resource with weekly periodicity' do
