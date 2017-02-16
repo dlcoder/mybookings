@@ -2,7 +2,9 @@ module Mybookings
   class Event < ActiveRecord::Base
     include Loggable
 
-    belongs_to :booking
+    acts_as_paranoid
+
+    belongs_to :booking, dependent: :destroy
     belongs_to :resource
 
     validates :start_date, :end_date, :resource, presence: true

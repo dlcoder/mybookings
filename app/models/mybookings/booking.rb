@@ -2,6 +2,8 @@ module Mybookings
   class Booking < ActiveRecord::Base
     include Loggable
 
+    acts_as_paranoid
+
     belongs_to :user
     belongs_to :resource_type
     has_many :events , inverse_of: :booking
@@ -78,6 +80,11 @@ module Mybookings
 
     def prepare!
       update_attribute(:prepared, true)
+    end
+
+    def destroy
+      return false if has_events?
+      super
     end
 
     private

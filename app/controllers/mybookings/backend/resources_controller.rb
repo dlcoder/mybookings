@@ -4,7 +4,7 @@ module Mybookings
     include Backend::Manageable
     include Backend::Authorizable
 
-    before_action :load_resource, only: [:switch_availability]
+    before_action :load_resource, only: [:switch_availability, :destroy]
 
     def index
       @resources = policy_scope(Resource).by_id
@@ -28,6 +28,11 @@ module Mybookings
 
       load_current_user_managed_resource_types
       render 'new'
+    end
+
+    def destroy
+      @resource.destroy!
+      redirect_to backend_resources_path
     end
 
     private

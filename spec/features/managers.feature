@@ -19,3 +19,6 @@ Feature: Manager
     And I can reallocate an event
     And I can cancel an event
     And the booking owner should receive an email with the cancellation reason
+    And I can cancel a resource
+    And I can see that the resource has been canceled
+    And I can see that bookings with events associated with the cancelled resource has not been cancelled because they have events associated with another resource

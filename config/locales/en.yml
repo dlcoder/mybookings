@@ -65,6 +65,7 @@ en:
           create_resource: 'Create resource'
           title: 'New resource'
         resource:
+          cancel: 'Cancel'
           enable: 'Enable'
           disable: 'Disable for new bookings'
           expired: '%{expired_bookings} expired'
@@ -85,6 +86,7 @@ en:
           create_resource_type: 'Create resource type'
           title: 'New resource type'
         resource_type:
+          cancel: 'Cancel'
           edit: 'Edit'
       users:
         edit:

@@ -37,6 +37,24 @@ step 'I can see that the resource has been added' do
   expect(page).to have_content('ACMR5')
 end
 
+step 'I can cancel a resource' do
+  step 'I click on Resources menu item'
+  find('tr', text: 'acmr_cancel').click_link ('Cancel')
+end
+
+step 'I can see that the resource has been canceled' do
+  expect(page).to_not have_content('acmr_cancel')
+end
+
+step 'I can see that bookings with events associated with the cancelled resource has not been cancelled because they have events associated with another resource' do
+  event = mybookings_events(:cancel_resource_event1)
+
+  find('tr', text: 'ACMR3').click_link('Show bookings')
+  within "#event-#{event.id}" do
+    expect(page).to have_content('Pending')
+  end
+end
+
 step 'I click on Resource types menu item' do
   within '#backend-menu' do
     click_link 'Resource types'
@@ -61,11 +79,29 @@ step 'I can edit a resource type' do
 end
 
 step 'I can change the name of the resource type' do
-  fill_in 'Resource type name', with: 'Virtual'
+  fill_in 'Resource type name', with: 'Adobe Rooms'
 end
 
 step 'I can update the resource type' do
   click_button 'Update resource type'
+end
+
+step 'I can cancel the resource type' do
+  find('tr', text: 'Adobe Rooms').click_link ('Cancel')
+end
+
+step 'I can see that the resource type has been cancelled' do
+  expect(page).to_not have_content('Adobe Rooms')
+end
+
+step 'I can see that the resources associated with the resource type has been canceled' do
+  step 'I click on Resources menu item'
+  expect(page).to_not have_content('ACMR1')
+  expect(page).to_not have_content('ACMR2')
+  expect(page).to_not have_content('ACMR3')
+  expect(page).to_not have_content('acmr_cancel')
+  expect(page).to_not have_content('Disabled resource')
+  expect(page).to_not have_content('ACMR5')
 end
 
 step 'I click on Users menu item' do

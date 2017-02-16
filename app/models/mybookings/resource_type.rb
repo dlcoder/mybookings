@@ -3,8 +3,10 @@ module Mybookings
     include ::RoleModel
     include Loggable
 
+    acts_as_paranoid
+
     has_one :booking
-    has_many :resources
+    has_many :resources, dependent: :destroy
     has_and_belongs_to_many :users, join_table: 'mybookings_user_managed_resource_types'
 
     validates :name, :extension, presence: true
