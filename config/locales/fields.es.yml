@@ -5,7 +5,7 @@ es:
         comment: Observaciones
         end_date: Fecha de fin
         feedback: Comentarios
-        resource_id: Recurso
+        proposed_resource: Recurso
         recurrent_type: Repetir el evento
         resource_type: Tipo de recurso
         start_date: Fecha de inicio

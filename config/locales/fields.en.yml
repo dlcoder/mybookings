@@ -5,7 +5,7 @@ en:
         comment: Comment
         end_date: End date
         feedback: Feedback
-        resource_id: Resource
+        proposed_resource: Resource
         recurrent_type: Repeat event
         resource_type: Resource type
         start_date: Start date
