@@ -30,10 +30,10 @@ module Mybookings
       includes(:events, :resource_type).order('mybookings_resource_types.name ASC').group_by(&:resource_type)
     end
 
-    def self.new_for_user user, params
+    def self.new_for_user user, params, event_type
       booking = self.new(params)
       booking.user = user
-      booking.generate_events if booking.valid?
+      booking.generate_events(event_type) if booking.valid?
 
       booking
     end
@@ -58,7 +58,7 @@ module Mybookings
       events.any?
     end
 
-    def generate_events
+    def generate_events event_type
       dates = generate_dates
 
       event_duration = end_date - start_date
@@ -68,7 +68,8 @@ module Mybookings
       dates.each do |date|
         new_events << { start_date: string_format(date),
                         end_date: string_format(date + event_duration.seconds),
-                        resource: proposed_resource }
+                        resource: proposed_resource,
+                        event_type: event_type }
       end
 
       events.build(new_events)

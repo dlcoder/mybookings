@@ -16,7 +16,7 @@ module Mybookings
     def show; end
 
     def create
-      @booking = booking_type.new_for_user(current_user, booking_params)
+      @booking = booking_type.new_for_user(current_user, booking_params, event_type.to_s)
 
       if @booking.invalid?
         @resource_type = @booking.resource_type
@@ -74,6 +74,10 @@ module Mybookings
 
     def booking_type
       Booking
+    end
+
+    def event_type
+      Event
     end
 
     def booking_decorator_type
