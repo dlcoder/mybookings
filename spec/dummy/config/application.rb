@@ -29,6 +29,8 @@ module Dummy
         idp_slo_target_url: idp_settings.idp_slo_target_url,
         idp_entity_id: idp_settings.idp_entity_id,
         name_identifier_format: idp_settings.name_identifier_format,
+        private_key: Rails.application.secrets.saml_private_key,
+        certificate: Rails.application.secrets.saml_certificate
       }
     end
 
