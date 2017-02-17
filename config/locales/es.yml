@@ -177,3 +177,14 @@ es:
       notify_delete_booking:
         subject: 'Una reserva ha sido cancelada'
         body_html: 'Queremos notificarle que una reserva del tipo de recurso <strong>%{resource_type_name}</strong> ha sido cancelada.'
+  devise:
+    mailer:
+      confirmation_instructions:
+        body_html: '<p>Bienvenido %{email}!</p><p>Puedes confirmar tu cuenta de correo a través del siguiente enlace:</p><p>%{link}</p>'
+        confirm_link_text: 'Confirmar mi cuenta'
+      reset_password_instructions:
+        body_html: "<p>Hola %{email}!</p><p>Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace.</p><p>%{link}</p><p> Si no lo solicitaste, por favor ignora este mensaje.</p><p>Tu contraseña no cambiará hasta que accedas al enlace anterior y crees una nueva.</p>"
+        change_link_text: 'Cambiar mi contraseña'
+      unlock_instructions:
+        body_html: <p>Hola %{email}!</p><p>Su cuenta ha sido bloqueada debido a un numero excesivo de intentos fallidos de inicio de sesión.</p><p>Haga click en el siguiente enlace para desbloquear su cuenta:</p><p>%{link}</p>
+        unlock_link_text: 'Desbloquear mi cuenta'
