@@ -54,9 +54,9 @@ es:
         title: "Registro"
     sessions:
       login_blocks:
-        basic_login_title: 'Accede con tu cuenta de MyBookings'
+        basic_login_title: 'Accede con tu cuenta de usuario'
         forgot_your_password: 'Olvidé mi contraseña'
-        idps_login_description: 'Puedes acceder a MyBookings con alguno de los siguientes proveedores de identidad externos:'
+        idps_login_description: 'Puedes acceder con alguno de los siguientes proveedores de identidad:'
         idps_login_title: 'Acceder con un proveedor de identidad externo'
         sign_in: 'Acceder'
         sign_in_with: 'Acceder con %{provider}'

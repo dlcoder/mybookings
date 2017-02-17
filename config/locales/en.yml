@@ -9,7 +9,6 @@ en:
 
     application:
       homepage:
-        promo_message: 'Welcome to MyBookings system'
         title: 'Homepage'
       navbar:
         manage: 'Manage'
@@ -166,7 +165,7 @@ en:
 
     notifications_mailer:
       cancel_event:
-        subject: 'Your booking in MyBookings has been canceled.'
+        subject: 'Your booking has been canceled.'
         body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
       notify_upcoming_booking:
         subject: 'Remember that you have an upcoming booking to be held'
