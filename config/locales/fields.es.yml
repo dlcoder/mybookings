@@ -34,6 +34,7 @@ es:
         roles: Rol
         password: Contraseña
         password_confirmation: Contraseña (confirmación)
+        remember_me: Recuérdame
     errors:
       models:
         mybookings/booking:
