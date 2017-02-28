@@ -12,6 +12,7 @@ module Mybookings
     validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
 
     delegate :name, to: :resource, prefix: true
+    delegate :user_email, to: :booking, prefix: true
     delegate :resource_type_name, to: :resource, prefix: true
     delegate :resource_type_extension, to: :resource, prefix: true
 
