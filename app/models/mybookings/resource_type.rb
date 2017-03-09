@@ -30,7 +30,7 @@ module Mybookings
     end
 
     def use_by_resource
-      sum_string = "(strftime('%s', mybookings_events.end_date) - strftime('%s', mybookings_events.start_date))/3600"
+      sum_string = "strftime('%H', mybookings_events.end_date) - strftime('%H', mybookings_events.start_date)"
 
       ResourceType.joins(resources: [:events]).select(resources: [:name]).where(id: self).group('mybookings_resources.name').sum(sum_string)
     end
