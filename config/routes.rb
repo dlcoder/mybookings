@@ -34,9 +34,15 @@ Mybookings::Engine.routes.draw do
       end
     end
 
-    resources :resource_types
+    resources :resource_types do
+      get :use_by_resource, on: :member
+    end
 
     resources :users
+
+    resources :statistics, only: [:index]
+
+    get 'statistics/by_resource', to: 'statistics#by_resource'
 
   end
 

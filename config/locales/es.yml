@@ -22,6 +22,7 @@ es:
         resources: 'Recursos'
         resource_types: 'Tipos de recurso'
         users: 'Usuarios'
+        statistics: 'Estadísticas'
       bookings:
         booking:
           booking_date: 'Fecha de la reserva'
@@ -89,6 +90,12 @@ es:
           delete: 'Eliminar'
           delete_confirmation: '¿Estás seguro? Si eliminas este tipo de recurso borrarás todos los recursos y las reservas asociadas a él.'
           edit: 'Editar'
+      statistics:
+        index:
+          title: 'Estadísticas'
+          use_by_resource: 'Uso por recurso'
+        by_resource:
+          title: 'Uso por recurso'
       users:
         edit:
           email: 'Email: %{user_email}'

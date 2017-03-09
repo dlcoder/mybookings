@@ -11,6 +11,32 @@ body {
   min-height: 215px;
 }
 
+.panel-statistics {
+  min-height: 100px;
+  h4 {
+    padding-top: 10px;
+  }
+}
+
+.ct-chart {
+  margin-top: 1rem;
+
+  .ct-bar {
+    stroke-width: 4rem;
+  }
+
+  .ct-label {
+    font-size: 1.2rem;
+  }
+
+  & > svg {
+    top: 2rem;
+    overflow: visible;
+  }
+}
+
+
+
 .fc h2 {
   font-size: 20px;
 }

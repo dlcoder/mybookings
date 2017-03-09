@@ -28,5 +28,11 @@ module Mybookings
     def has_roles?
       roles_mask != 0
     end
+
+    def use_by_resource
+      sum_string = "(strftime('%s', mybookings_events.end_date) - strftime('%s', mybookings_events.start_date))/3600"
+
+      ResourceType.joins(resources: [:events]).select(resources: [:name]).where(id: self).group('mybookings_resources.name').sum(sum_string)
+    end
   end
 end

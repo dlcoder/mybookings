@@ -22,6 +22,7 @@ en:
         resources: 'Resources'
         resource_types: 'Resource types'
         users: 'Users'
+        statistics: 'Statistics'
       bookings:
         booking:
           booking_date: 'Booking date'
@@ -89,6 +90,12 @@ en:
           delete: 'Delete'
           delete_confirmation: 'Are you sure? If you delete this resource type you will delete all resources and bookings associated with it.'
           edit: 'Edit'
+      statistics:
+        index:
+          title: 'Statistics'
+          use_by_resource: 'Use by resource'
+        by_resource:
+          title: 'Use by resource'
       users:
         edit:
           email: 'Email: %{user_email}'
