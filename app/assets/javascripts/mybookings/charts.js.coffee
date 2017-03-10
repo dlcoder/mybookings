@@ -52,7 +52,7 @@ class Mybookings.Charts
     $.getJSON(url)
       .done((data) -> callBack(data))
 
-  registerChangeHandler =->
+  registerChangeHandler = ->
     $(Charts.resourceTypeInputSelector).on 'change', ->
       getData((dataset) -> $(Charts.selector).get(0).__chartist__.update(dataset))
 
