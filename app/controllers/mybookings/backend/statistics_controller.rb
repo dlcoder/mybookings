@@ -8,12 +8,12 @@ module Mybookings
 
     def by_resource
       @resource_types = ResourceType.all
-      @statistics_form = ResourceStatisticsForm.new({ resource_type_id: @resource_types.first.id })
+      @statistics_form = StatisticsForm.new({ resource_type_id: @resource_types.first.id })
     end
 
     def by_hour
       @resource_types = ResourceType.all
-      @statistics_form = ResourceStatisticsForm.new({ resource_type_id: @resource_types.first.id })
+      @statistics_form = StatisticsForm.new({ resource_type_id: @resource_types.first.id })
     end
   end
 end

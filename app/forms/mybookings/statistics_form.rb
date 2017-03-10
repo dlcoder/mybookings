@@ -1,5 +1,5 @@
 module Mybookings
-  class ResourceStatisticsForm
+  class StatisticsForm
     include ActiveModel::Validations
 
     attr_accessor :resource_type_id
