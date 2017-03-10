@@ -34,5 +34,11 @@ module Mybookings
 
       ResourceType.joins(resources: [:events]).select(resources: [:name]).where(id: self).group('mybookings_resources.name').sum(sum_string)
     end
+
+    def use_by_hour
+      query_string = "strftime('%H', mybookings_events.start_date)"
+
+      ResourceType.joins(resources: [:events]).select(query_string).where(id: self).group(query_string).count
+    end
   end
 end

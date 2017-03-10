@@ -94,8 +94,11 @@ en:
         index:
           title: 'Statistics'
           use_by_resource: 'Use by resource'
+          use_by_hour: 'Use by hour'
         by_resource:
           title: 'Use by resource'
+        by_hour:
+          title: 'Use by hour'
       users:
         edit:
           email: 'Email: %{user_email}'

@@ -3,7 +3,7 @@ module Mybookings
     include Backend::Administerable
     include Backend::Authorizable
 
-    before_action :load_resource_type, only: [:edit, :update, :destroy, :use_by_resource]
+    before_action :load_resource_type, only: [:edit, :update, :destroy, :use_by_resource, :use_by_hour]
     before_action :load_valid_roles, only: [:new, :edit, :create, :update]
 
     def index
@@ -35,6 +35,15 @@ module Mybookings
 
     def use_by_resource
       @use = @resource_type.use_by_resource
+    end
+
+    def use_by_hour
+      counts = @resource_type.use_by_hour
+
+      @labels = Array.new(24) { |hour| "#{hour}h" }
+      @series = Array.new(1) { Array.new(24) { 0 } }
+
+      counts.each { |count| @series.first[count[0].to_i] = count[1] }
     end
 
     private

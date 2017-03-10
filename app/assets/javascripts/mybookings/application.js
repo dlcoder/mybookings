@@ -12,6 +12,7 @@
 //= require mybookings/bookings_calendar
 //= require mybookings/datetimepicker
 //= require mybookings/use_by_resource_chart
+//= require mybookings/use_by_hour_chart
 //= require select2
 //= require select2_i18n_en
 //= require select2_i18n_es

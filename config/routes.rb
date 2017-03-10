@@ -36,6 +36,7 @@ Mybookings::Engine.routes.draw do
 
     resources :resource_types do
       get :use_by_resource, on: :member
+      get :use_by_hour, on: :member
     end
 
     resources :users
@@ -43,6 +44,7 @@ Mybookings::Engine.routes.draw do
     resources :statistics, only: [:index]
 
     get 'statistics/by_resource', to: 'statistics#by_resource'
+    get 'statistics/by_hour', to: 'statistics#by_hour'
 
   end
 

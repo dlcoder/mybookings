@@ -1,0 +1,15 @@
+=title
+
+= simple_form_for @statistics_form, url: backend_statistics_by_hour_path do |f|
+  = render_model_base_errors f.object
+
+  .row
+    .col-xs-12.col-sm-4
+      = f.input :resource_type_id, collection: @resource_types, include_blank: false
+
+.row
+  .col-xs-12
+    .ct-chart.ct-minor-seventh
+
+:coffeescript
+  Mybookings.UseByHour.render('.ct-chart', '#resource_statistics_form_resource_type_id')
