@@ -7,10 +7,9 @@
     .col-xs-12.col-sm-4
       = f.input :resource_type_id, collection: @resource_types, include_blank: false
 
-
 .row
   .col-xs-12
     .ct-chart.ct-minor-seventh
 
 :coffeescript
-  Mybookings.UseByResource.render('.ct-chart', '#statistics_form_resource_type_id')
+  Mybookings.Charts.render('bar', '.ct-chart', '#statistics_form_resource_type_id')
