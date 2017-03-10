@@ -49,3 +49,12 @@ Feature: Admin
     And I can see that the user has been created
     And I can search for an user
     And I can see the results of the search
+
+  @javascript
+  Scenario: See statistics as administrator
+    Given a signed in administrator
+    Then I go to the manage page
+    And I click on Statistics menu item
+    And I can view the available statistics
+    And I can view the resource statistics
+    And I can see the statistics for all available resources
