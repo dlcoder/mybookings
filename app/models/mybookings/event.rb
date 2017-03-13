@@ -7,37 +7,34 @@ module Mybookings
     belongs_to :booking, dependent: :destroy
     belongs_to :resource
 
-    before_save :adjust_start_and_end_date
+    before_save :precalculate_advanced_and_delayed_dates
 
     validates :start_date, :end_date, :resource, presence: true
     validate :dates_range
     validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
 
     delegate :name, to: :resource, prefix: true
-    delegate :user_email, to: :booking, prefix: true
     delegate :resource_type_name, to: :resource, prefix: true
     delegate :resource_type_extension, to: :resource, prefix: true
-    delegate :resource_type_notifications_email_from, to: :booking, prefix: true
-    delegate :resource_type_limit_days_for_feedback, to: :booking, prefix: true
+    delegate :user_email, :resource_type_notifications_email_from, :resource_type_limit_days_for_feedback, to: :booking, prefix: true
 
     enum status: %w(pending occurring expired)
 
     self.inheritance_column = :event_type
 
     def self.upcoming
-      Event.pending.where('? >= start_date', Time.now)
+      Event.pending.where('? >= start_date_advanced', Time.now)
     end
 
     def self.finished
-      Event.occurring.where('? >= end_date', Time.now)
+      Event.occurring.where('? >= end_date_delayed', Time.now)
     end
 
-    def self.overlapped_at start_date, end_date
-      # Dates extended to trigger frequency
-      start_date = start_date - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
-      end_date = end_date + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+    def self.overlapped_with event
+      start_date = event.start_date_advanced - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      end_date = event.end_date_delayed + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
 
-      where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
+      where('(? >= start_date_advanced AND ? <= end_date_delayed) OR (? >= start_date_advanced AND ? <= end_date_delayed)', start_date, start_date, end_date, end_date)
     end
 
     def self.recents
@@ -64,7 +61,7 @@ module Mybookings
       resource_type_id = self.resource.resource_type.id
 
       # Enabled resources of the same type that overlaps with self booking
-      resources_with_overlapped_events = Event.overlapped_at(self.start_date, self.end_date)
+      resources_with_overlapped_events = Event.overlapped_with(self)
         .joins(:resource)
         .where(mybookings_resources: { resource_type_id: resource_type_id, disabled: false })
         .pluck('mybookings_resources.id')
@@ -87,11 +84,11 @@ module Mybookings
 
     private
 
-    def adjust_start_and_end_date
+    def precalculate_advanced_and_delayed_dates
       return if booking.nil?
 
-      start_date = booking.start_date - booking.resource_type_minutes_in_advance.minutes
-      end_date = booking.end_date + booking.resource_type_minutes_of_grace.minutes
+      start_date_advanced = start_date - booking.resource_type_minutes_in_advance.minutes
+      end_date_delayed = end_date + booking.resource_type_minutes_of_grace.minutes
     end
 
     def dates_in_the_future

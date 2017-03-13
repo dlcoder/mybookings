@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310164750) do
+ActiveRecord::Schema.define(version: 20170313152407) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,12 +37,14 @@ ActiveRecord::Schema.define(version: 20170310164750) do
   create_table "mybookings_events", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "status",      default: 0, null: false
+    t.integer  "status",              default: 0, null: false
     t.text     "feedback"
     t.integer  "booking_id"
     t.integer  "resource_id"
     t.string   "event_type"
     t.datetime "deleted_at"
+    t.datetime "start_date_advanced"
+    t.datetime "end_date_delayed"
   end
 
   add_index "mybookings_events", ["booking_id"], name: "index_mybookings_events_on_booking_id"

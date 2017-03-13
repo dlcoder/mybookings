@@ -1,6 +1,8 @@
 event1:
   start_date: <%= (DateTime.now).to_s(:db) %>
   end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
+  start_date_advanced: <%= (DateTime.now - 1.minutes).to_s(:db) %>
+  end_date_delayed: <%= (DateTime.now + 2.hours + 1.minutes).to_s(:db) %>
   booking: expired_booking
   resource: acmr1
   status: 2
@@ -8,6 +10,8 @@ event1:
 event2:
   start_date: <%= (DateTime.now).to_s(:db) %>
   end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
+  start_date_advanced: <%= (DateTime.now - 1.minutes).to_s(:db) %>
+  end_date_delayed: <%= (DateTime.now + 2.hours + 1.minutes).to_s(:db) %>
   booking: expired_booking_with_feedback
   feedback: 'The resource have a lot of problems.'
   resource: acmr2
@@ -16,6 +20,8 @@ event2:
 event3:
   start_date: <%= (DateTime.now - 2.weeks).to_s(:db) %>
   end_date: <%= (DateTime.now - 2.weeks + 2.hours).to_s(:db) %>
+  start_date_advanced: <%= (DateTime.now - 2.weeks - 1.minutes).to_s(:db) %>
+  end_date_delayed: <%= (DateTime.now - 2.weeks + 2.hours + 1.minutes).to_s(:db) %>
   booking: old_expired_booking
   resource: acmr3
   status: 2
@@ -23,6 +29,8 @@ event3:
 pending_event:
   start_date: <%= (DateTime.now).to_s(:db) %>
   end_date: <%= (DateTime.now + 2.hours).to_s(:db) %>
+  start_date_advanced: <%= (DateTime.now - 1.minutes).to_s(:db) %>
+  end_date_delayed: <%= (DateTime.now + 2.hours + 1.minutes).to_s(:db) %>
   booking: pending_booking
   resource: acmr2
   status: 0
@@ -30,6 +38,8 @@ pending_event:
 pending_event_overlapped:
   start_date: <%= (DateTime.now + 30.minutes).to_s(:db) %>
   end_date: <%= (DateTime.now + 2.hours + 30.minutes).to_s(:db) %>
+  start_date_advanced: <%= (DateTime.now + 30.minutes - 1.minutes).to_s(:db) %>
+  end_date_delayed: <%= (DateTime.now + 2.hours + 30.minutes + 1.minutes).to_s(:db) %>
   booking: pending_booking
   resource: acmr3
   status: 0
@@ -47,4 +57,3 @@ cancel_resource_event2:
   booking: cancel_resource_booking
   resource: cancel_resource
   status: 0
-
