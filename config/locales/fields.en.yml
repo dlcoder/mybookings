@@ -23,9 +23,16 @@ en:
         name: Resource name
         bookings: Bookings
       mybookings/resource_type:
-        id: ID
-        name: Resource type name
         extension: Resource type extension
+        id: ID
+        limit_days_for_feedback: Limit days for feedback
+        limit_days_for_recurring_events: Limit days for recurring events
+        limit_hours_duration: Limit hours duration
+        minutes_in_advance: Minutes in advance
+        minutes_of_grace: Minutes of grace
+        name: Resource type name
+        notifications_email_from: Notification email sender
+        notifications_emails: Notifications emails
         resources_number: Number of resources
       mybookings/user:
         id: ID
@@ -37,9 +44,30 @@ en:
         remember_me: Remember me
     errors:
       models:
+        invalid_email: Not a valid email address.
+        invalid_email_list: Not a valid email addresses list.
         mybookings/booking:
           attributes:
             start_date:
               blank: Can't be blank.
             end_date:
               blank: Can't be blank.
+        mybookings/resource_type:
+          attributes:
+            name:
+              blank: Can't be blank.
+            minutes_in_advance:
+              not_a_number: Not a number.
+              greater_than: Must be greater than 0.
+            minutes_of_grace:
+              not_a_number: Not a number.
+              greater_than: Must be greater than 0.
+            limit_hours_duration:
+              not_a_number: Not a number.
+              greater_than: Must be greater than 0.
+            limit_days_for_feedback:
+              not_a_number: Not a number.
+              greater_than: Must be greater than 0.
+            limit_days_for_recurring_events:
+              not_a_number: Not a number.
+              greater_than: Must be greater than 0.

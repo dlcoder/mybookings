@@ -7,6 +7,8 @@ module Mybookings
     belongs_to :booking, dependent: :destroy
     belongs_to :resource
 
+    before_save :adjust_start_and_end_date
+
     validates :start_date, :end_date, :resource, presence: true
     validate :dates_range
     validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
@@ -15,13 +17,15 @@ module Mybookings
     delegate :user_email, to: :booking, prefix: true
     delegate :resource_type_name, to: :resource, prefix: true
     delegate :resource_type_extension, to: :resource, prefix: true
+    delegate :resource_type_notifications_email_from, to: :booking, prefix: true
+    delegate :resource_type_limit_days_for_feedback, to: :booking, prefix: true
 
     enum status: %w(pending occurring expired)
 
     self.inheritance_column = :event_type
 
     def self.upcoming
-      Event.pending.where('? >= start_date', Time.now + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes)
+      Event.pending.where('? >= start_date', Time.now)
     end
 
     def self.finished
@@ -30,8 +34,8 @@ module Mybookings
 
     def self.overlapped_at start_date, end_date
       # Dates extended to trigger frequency
-      start_date = start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-      end_date = end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+      start_date = start_date - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      end_date = end_date + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
 
       where('(? >= start_date AND ? <= end_date) OR (? >= start_date AND ? <= end_date)', start_date, start_date, end_date, end_date)
     end
@@ -83,6 +87,13 @@ module Mybookings
 
     private
 
+    def adjust_start_and_end_date
+      return if booking.nil?
+
+      start_date = booking.start_date - booking.resource_type_minutes_in_advance.minutes
+      end_date = booking.end_date + booking.resource_type_minutes_of_grace.minutes
+    end
+
     def dates_in_the_future
       unless start_date.nil?
         errors.add(:start_date, I18n.t('errors.messages.event.start_date_in_the_past')) if start_date.past?
@@ -105,8 +116,8 @@ module Mybookings
     def dates_ovelap
       return if start_date.nil? or end_date.nil? or resource.nil?
 
-      start_date_modified = start_date - MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
-      end_date_modified = end_date + MYBOOKINGS_CONFIG['extensions_trigger_frequency'].minutes
+      start_date_modified = start_date - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      end_date_modified = end_date + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
 
       overlapped_events = resource.events.where(
         '(mybookings_events.start_date >= ? AND mybookings_events.start_date <= ?) OR

@@ -11,9 +11,7 @@ module Mybookings
 
     delegate :email, to: :user, prefix: true
     delegate :count, to: :events, prefix: true
-    delegate :name, to: :resource_type, prefix: true
-    delegate :extension, to: :resource_type, prefix: true
-    delegate :users, to: :resource_type, prefix: true
+    delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, to: :resource_type, prefix: true
 
     validates :start_date, :end_date, :proposed_resource, :recurrent_type, presence: true
     validates :until_date, presence: true, if: :is_a_recurring_booking?
@@ -111,19 +109,19 @@ module Mybookings
 
     def the_booking_period_is_valid
       return false if until_date.nil? || start_date.nil?
-      booking_interval = until_date.to_datetime - start_date.to_datetime
-      range_permitted = MYBOOKINGS_CONFIG['maximum_permitted_days_for_recurring_events']
-      if  range_permitted.days - booking_interval.days < 0
-        errors.add(:until_date, I18n.t('.mybookings.bookings.new.dates_interval_message_error', days_permitted: range_permitted))
+      booking_interval_in_seconds = until_date.to_datetime - start_date.to_datetime
+      range_permitted_in_seconds = resource_type.limit_days_for_recurring_events.days
+      if range_permitted_in_seconds - booking_interval_in_seconds < 0
+        errors.add(:until_date, I18n.t('.mybookings.bookings.new.dates_interval_message_error', days_permitted: resource_type.limit_days_for_recurring_events))
       end
     end
 
     def the_event_duration_is_valid
       return false if end_date.nil? || start_date.nil?
       event_duration_in_seconds = end_date.to_time - start_date.to_time
-      permitted_event_duration_in_seconds = MYBOOKINGS_CONFIG['maximum_duration_in_hours_for_an_event'] * 3600
+      permitted_event_duration_in_seconds = resource_type.limit_hours_duration.hours
       if event_duration_in_seconds > permitted_event_duration_in_seconds
-        errors.add(:end_date, I18n.t('.mybookings.bookings.new.event_duration_message_error', event_duration: MYBOOKINGS_CONFIG['maximum_duration_in_hours_for_an_event']))
+        errors.add(:end_date, I18n.t('.mybookings.bookings.new.event_duration_message_error', event_duration: resource_type.limit_hours_duration))
       end
     end
 

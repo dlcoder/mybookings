@@ -79,6 +79,17 @@ es:
           update_resource_type: 'Actualizar tipo de recurso'
         form_fields:
           roles: 'Roles que pueden reservar recursos de este tipo'
+        hints:
+          limit_days_for_feedback: El máximo número de días para que los usuarios envíen feedback de un evento.
+          limit_days_for_recurring_events: El máximo número de días entre la fecha de inicio y la fecha de fin de un evento.
+          limit_hours_duration: El máximo número de horas de duración para los eventos.
+          minutes_in_advance: El número de minutos para iniciar un evento antes de su fecha de inicio.
+          minutes_of_grace: El número de minutos para finalizar un evento después de su fecha de fin.
+          notifications_email_from: La dirección de correo electrónico desde la que se enviarán las notificaciones, por ejemplo la dirección de correo del gestor del tipo de recurso.
+          notifications_emails: Lista de direcciones de correo a las que se envían las notificaciones de eventos de recursos de este tipo, por ejemplo cuando un usuario solicita una nueva reserva.
+        placeholders:
+          notifications_email_from: usuario@ejemplo.es
+          notifications_emails: usuario1@ejemplo.es, usuario2@ejemplo.es
         index:
           new_resource_type: 'Nuevo tipo de recurso'
           no_resource_types: 'Aún no se han creado tipos de recurso.'

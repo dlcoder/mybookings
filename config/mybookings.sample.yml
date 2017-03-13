@@ -1,11 +1,7 @@
-extensions_trigger_frequency: 1
-bookings_notifications_interval: 180
-notifications_mail: no-reply@mybookings.com
-maximum_permitted_days_for_recurring_events: 365
-maximum_duration_in_hours_for_an_event: 4
-deadline_for_feedback_in_days: 7
+default_notifications_email: no-reply@mybookings.com
 devise_registerable: true
 extra_roles:
   - role1
   - role2
   - role3
+minutes_between_cron_runs: 1

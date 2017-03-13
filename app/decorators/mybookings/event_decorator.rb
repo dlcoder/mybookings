@@ -7,7 +7,7 @@ module Mybookings
     end
 
     def deadline_for_feedback_has_passed?
-      object.end_date + MYBOOKINGS_CONFIG['deadline_for_feedback_in_days'].days < DateTime.now
+      object.end_date + object.booking_resource_type_limit_days_for_feedback.days < DateTime.now
     end
 
     def can_receive_feedback?

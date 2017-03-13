@@ -23,9 +23,16 @@ es:
         name: Nombre del recurso
         bookings: Reservas
       mybookings/resource_type:
-        id: ID
-        name: Nombre del tipo de recurso
         extension: Extensión del tipo de recurso
+        id: ID
+        limit_days_for_feedback: Límite de días para envío de feedback
+        limit_days_for_recurring_events: Máximo número de días para eventos recurrentes
+        limit_hours_duration: Máximo número de horas de duración de eventos
+        minutes_in_advance: Minutos de adelanto
+        minutes_of_grace: Minutos de gracia
+        name: Nombre del tipo de recurso
+        notifications_email_from: Remitente de las notificaciones de correo
+        notifications_emails: Direcciones a las que se envían las notificaciones de correo
         resources_number: Número de recursos
       mybookings/user:
         id: ID
@@ -37,9 +44,30 @@ es:
         remember_me: Recuérdame
     errors:
       models:
+        invalid_email: No es una dirección de correo electrónico válida.
+        invalid_email_list: No es una lista de direcciones de correo electrónico válida.
         mybookings/booking:
           attributes:
             start_date:
               blank: No puede estar vacío.
             end_date:
               blank: No puede estar vacío.
+        mybookings/resource_type:
+          attributes:
+            name:
+              blank: No puede estar vacío.
+            minutes_in_advance:
+              not_a_number: No es un número.
+              greater_than: Debe ser mayor que 0.
+            minutes_of_grace:
+              not_a_number: No es un número.
+              greater_than: Debe ser mayor que 0.
+            limit_hours_duration:
+              not_a_number: No es un número.
+              greater_than: Debe ser mayor que 0.
+            limit_days_for_feedback:
+              not_a_number: No es un número.
+              greater_than: Debe ser mayor que 0.
+            limit_days_for_recurring_events:
+              not_a_number: No es un número.
+              greater_than: Debe ser mayor que 0.

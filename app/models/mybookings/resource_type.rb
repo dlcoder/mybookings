@@ -9,7 +9,12 @@ module Mybookings
     has_many :resources, dependent: :destroy
     has_and_belongs_to_many :users, join_table: 'mybookings_user_managed_resource_types'
 
+    serialize :notifications_emails, Array
+
     validates :name, :extension, presence: true
+    validates :notifications_email_from, email: true
+    validates :notifications_emails, email_list: true
+    validates :minutes_in_advance, :minutes_of_grace, :limit_hours_duration, :limit_days_for_recurring_events, :limit_days_for_feedback, numericality: { greater_than: 0 }
 
     roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']
 

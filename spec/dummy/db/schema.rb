@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216093955) do
+ActiveRecord::Schema.define(version: 20170310164750) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,9 +53,16 @@ ActiveRecord::Schema.define(version: 20170216093955) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "extension",  default: "DefaultExtension"
+    t.string   "extension",                       default: "DefaultExtension"
     t.integer  "roles_mask"
     t.datetime "deleted_at"
+    t.string   "notifications_email_from"
+    t.text     "notifications_emails"
+    t.integer  "minutes_in_advance",              default: 1
+    t.integer  "minutes_of_grace",                default: 1
+    t.integer  "limit_hours_duration",            default: 24
+    t.integer  "limit_days_for_recurring_events", default: 365
+    t.integer  "limit_days_for_feedback",         default: 7
   end
 
   add_index "mybookings_resource_types", ["deleted_at"], name: "index_mybookings_resource_types_on_deleted_at"
