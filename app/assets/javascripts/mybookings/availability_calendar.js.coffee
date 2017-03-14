@@ -20,11 +20,9 @@ class Mybookings.AvailabilityCalendar
       ]
       selectable: true
       selectHelper: true
-      unselectAuto: false
       select: (start, end) ->
         $(startDateInputSelector).val(start.format('DD-MM-YYYY HH:mm'))
         $(endDateInputSelector).val(end.format('DD-MM-YYYY HH:mm'))
-
 
     $(selector).fullCalendar(options)
 
