@@ -1,7 +1,7 @@
 window.Mybookings ||= {}
 
 class Mybookings.AvailabilityCalendar
-  @render: (selector, resourceInputSelector, locale = "en") ->
+  @render: (selector, resourceInputSelector, startDateInputSelector, endDateInputSelector, locale = "en") ->
     # TODO: review that dirty hack to deal with turbolinks
     return if $(selector).html()
 
@@ -18,6 +18,13 @@ class Mybookings.AvailabilityCalendar
           url: "/resources/#{resourceId}/events.json"
         }
       ]
+      selectable: true
+      selectHelper: true
+      unselectAuto: false
+      select: (start, end) ->
+        $(startDateInputSelector).val(start.format('DD-MM-YYYY HH:mm'))
+        $(endDateInputSelector).val(end.format('DD-MM-YYYY HH:mm'))
+
 
     $(selector).fullCalendar(options)
 

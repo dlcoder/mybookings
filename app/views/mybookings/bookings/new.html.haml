@@ -16,9 +16,9 @@
 
           .row
             .col-xs-12.col-sm-6
-              = f.input :start_date, as: :datetimepicker
+              = f.input :start_date, as: :datetimepicker, input_html: { class: 'js-booking-start-date' }
             .col-xs-12.col-sm-6
-              = f.input :end_date, as: :datetimepicker
+              = f.input :end_date, as: :datetimepicker, input_html: { class: 'js-booking-end-date' }
 
           .row
             .col-xs-12.col-sm-6
@@ -41,4 +41,4 @@
         #calendar
 
 :coffeescript
-  Mybookings.AvailabilityCalendar.render('#calendar', '.js-booking-resource-id', "#{I18n.locale.to_s}")
+  Mybookings.AvailabilityCalendar.render('#calendar', '.js-booking-resource-id', '.js-booking-start-date', '.js-booking-end-date', "#{I18n.locale.to_s}")
