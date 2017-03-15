@@ -12,4 +12,5 @@
     .ct-chart.ct-minor-seventh
 
 :coffeescript
-  Mybookings.Charts.render('bar', '.ct-chart', '#statistics_form_resource_type_id')
+  chart = new Mybookings.UseByResourceChart('.ct-chart', '#statistics_form_resource_type_id')
+  chart.render()

@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require js-routes
 //= require bootstrap/alert
 //= require bootstrap/collapse
 //= require bootstrap/dropdown
@@ -11,7 +12,9 @@
 //= require mybookings/availability_calendar
 //= require mybookings/bookings_calendar
 //= require mybookings/datetimepicker
-//= require mybookings/charts
+//= require mybookings/chart
+//= require mybookings/use_by_resource_chart
+//= require mybookings/use_by_hour_chart
 //= require select2
 //= require select2_i18n_en
 //= require select2_i18n_es

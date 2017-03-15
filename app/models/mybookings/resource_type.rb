@@ -37,7 +37,7 @@ module Mybookings
     end
 
     def use_by_hour
-      query_string = "strftime('%H', mybookings_events.start_date)" if Rails.env == 'development'
+      query_string = "strftime('%H', mybookings_events.start_date)"
       query_string = "HOUR(mybookings_events.start_date)" if ActiveRecord::Base.connection.adapter_name != 'SQLite'
 
       ResourceType.joins(resources: [:events]).select(query_string).where(id: self).group(query_string).count
