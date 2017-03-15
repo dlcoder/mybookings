@@ -78,6 +78,8 @@ en:
           title: 'Editing resource type'
           update_resource_type: 'Update resource type'
         form_fields:
+          basic_information: Basic information
+          options: Options
           roles: 'Roles who can book resources of this type'
         hints:
           limit_days_for_feedback: The maximum number of days allowed for users to submit feedback for an event.

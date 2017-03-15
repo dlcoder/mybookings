@@ -78,6 +78,8 @@ es:
           title: 'Editando tipo de recurso'
           update_resource_type: 'Actualizar tipo de recurso'
         form_fields:
+          basic_information: Información básica
+          options: Opciones
           roles: 'Roles que pueden reservar recursos de este tipo'
         hints:
           limit_days_for_feedback: El máximo número de días para que los usuarios envíen feedback de un evento.
