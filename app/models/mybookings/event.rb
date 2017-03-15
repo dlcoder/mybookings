@@ -7,7 +7,7 @@ module Mybookings
     belongs_to :booking, dependent: :destroy
     belongs_to :resource
 
-    before_save :precalculate_advanced_and_delayed_dates
+    before_validation :precalculate_advanced_and_delayed_dates
 
     validates :start_date, :end_date, :resource, presence: true
     validate :dates_range
@@ -31,10 +31,11 @@ module Mybookings
     end
 
     def self.overlapped_with event
-      start_date = event.start_date_advanced - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
-      end_date = event.end_date_delayed + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      start_date_modified = event.start_date_advanced - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      end_date_modified = event.end_date_delayed + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
 
-      where('(? >= start_date_advanced AND ? <= end_date_delayed) OR (? >= start_date_advanced AND ? <= end_date_delayed)', start_date, start_date, end_date, end_date)
+      where('(? >= start_date_advanced AND ? <= end_date_delayed) OR (? >= start_date_advanced AND ? <= end_date_delayed)',
+        start_date_modified, start_date_modified, end_date_modified, end_date_modified)
     end
 
     def self.recents
@@ -85,10 +86,8 @@ module Mybookings
     private
 
     def precalculate_advanced_and_delayed_dates
-      return if booking.nil?
-
-      start_date_advanced = start_date - booking.resource_type_minutes_in_advance.minutes
-      end_date_delayed = end_date + booking.resource_type_minutes_of_grace.minutes
+      self.start_date_advanced = start_date - booking.resource_type_minutes_in_advance.minutes
+      self.end_date_delayed = end_date + booking.resource_type_minutes_of_grace.minutes
     end
 
     def dates_in_the_future
@@ -113,8 +112,8 @@ module Mybookings
     def dates_ovelap
       return if start_date.nil? or end_date.nil? or resource.nil?
 
-      start_date_modified = start_date - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
-      end_date_modified = end_date + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      start_date_modified = start_date_advanced - MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
+      end_date_modified = end_date_delayed + MYBOOKINGS_CONFIG['minutes_between_cron_runs'].minutes
 
       overlapped_events = resource.events.where(
         '(mybookings_events.start_date >= ? AND mybookings_events.start_date <= ?) OR
