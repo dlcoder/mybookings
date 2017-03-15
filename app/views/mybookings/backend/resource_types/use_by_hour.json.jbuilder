@@ -1,2 +1,2 @@
-json.labels @labels
-json.series @series
+json.labels @chart.labels
+json.series @chart.series

@@ -38,12 +38,7 @@ module Mybookings
     end
 
     def use_by_hour
-      counts = @resource_type.use_by_hour
-
-      @labels = Array.new(24) { |hour| "#{hour}h" }
-      @series = Array.new(1) { Array.new(24) { 0 } }
-
-      counts.each { |count| @series.first[count[0].to_i] = count[1] }
+      @chart = UseByHourPresenter.new(@resource_type.use_by_hour)
     end
 
     private

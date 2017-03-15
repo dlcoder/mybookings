@@ -4,6 +4,9 @@ class Mybookings.UseByHourChart extends Mybookings.Chart
 
   drawChar: (dataset) =>
     options = {
+      chartPadding: {
+        top: 60
+      },
       plugins: [
         ctLineLabels({
           textAnchor: 'middle'

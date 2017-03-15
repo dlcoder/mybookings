@@ -5,6 +5,9 @@ class Mybookings.UseByResourceChart extends Mybookings.Chart
   drawChar: (dataset) =>
     options = {
       distributeSeries: true,
+      chartPadding: {
+        top: 60
+      },
       plugins: [
         ctBarLabels({
           labelClass: 'ct-bar-label',
