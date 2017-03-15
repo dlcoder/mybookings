@@ -22,3 +22,12 @@ Feature: Manager
     And I can cancel a resource
     And I can see that the resource has been canceled
     And I can see that bookings with events associated with the cancelled resource has not been cancelled because they have events associated with another resource
+
+  @javascript
+  Scenario: See statistics as manager
+    Given a signed in manager
+    Then I go to the manage page
+    And I click on Statistics menu item
+    And I can view the available statistics
+    And I can view the resource statistics
+    And I can see the statistics only for the resources I can manage

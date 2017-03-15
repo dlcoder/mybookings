@@ -3,7 +3,7 @@ module Mybookings
     include Backend::Administerable
     include Backend::Authorizable
 
-    before_action :load_resource_type, only: [:edit, :update, :destroy]
+    before_action :load_resource_type, only: [:edit, :update, :destroy, :use_by_resource, :use_by_hour]
     before_action :load_valid_roles, only: [:new, :edit, :create, :update]
 
     def index
@@ -31,6 +31,14 @@ module Mybookings
     def destroy
       @resource_type.destroy!
       redirect_to backend_resource_types_path
+    end
+
+    def use_by_resource
+      @use = @resource_type.use_by_resource
+    end
+
+    def use_by_hour
+      @chart = UseByHourPresenter.new(@resource_type.use_by_hour)
     end
 
     private

@@ -2,8 +2,10 @@
  *= require_self
  *= require bootstrap-datetimepicker
  *= require mybookings/layout
+ *= require mybookings/charts
  *= require fullcalendar
  *= require select2
+ *= require chartist
  */
 
 @import 'bootstrap-sprockets';

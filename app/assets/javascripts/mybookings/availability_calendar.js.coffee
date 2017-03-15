@@ -15,7 +15,7 @@ class Mybookings.AvailabilityCalendar
       slotMinutes: 30
       eventSources: [
         {
-          url: "/resources/#{resourceId}/events.json"
+          url: Routes.mybookings_resource_events_path({resource_id: resourceId})
         }
       ]
       selectable: true
@@ -29,7 +29,7 @@ class Mybookings.AvailabilityCalendar
     $(resourceInputSelector).on 'change', ->
       resourceId = $(this).val()
       events =
-        url: "/resources/#{resourceId}/events.json"
+        url: Routes.mybookings_resource_events_path({resource_id: resourceId})
 
       $(selector).fullCalendar('removeEvents')
       $(selector).fullCalendar('removeEventSource', events)

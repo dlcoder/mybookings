@@ -208,3 +208,37 @@ step 'the booking owner should receive an email with the cancellation reason' do
 
   expect(current_email.body).to include('There is an issue with this booking')
 end
+
+step 'I click on Statistics menu item' do
+  within '#backend-menu' do
+    click_link 'Statistics'
+  end
+end
+
+step 'I can view the available statistics' do
+  expect(page).to have_content('Use by resource')
+  expect(page).to have_content('Use by hour')
+end
+
+step 'I can view the resource statistics' do
+  click_link 'Use by resource'
+end
+
+step 'I can see the statistics for all available resources' do
+  expect(page).to have_select('Resource type', selected: 'Adobe Connect Meeting Rooms')
+  expect(page).to have_selector('text', :class => 'ct-bar-label', :text => '4')
+  select 'Virtual PC', from: 'Resource type'
+  expect(page).to have_select('Resource type', selected: 'Virtual PC')
+  expect(page).to_not have_selector('text', :class => 'ct-bar-label')
+  select 'Resource type for all users', from: 'Resource type'
+  expect(page).to have_select('Resource type', selected: 'Resource type for all users')
+end
+
+step 'I can see the statistics only for the resources I can manage' do
+  expect(page).to have_select('Resource type', selected: 'Adobe Connect Meeting Rooms')
+  expect(page).to_not have_selector('text', :class => 'ct-bar-label')
+  select 'Virtual PC', from: 'Resource type'
+  expect(page).to have_select('Resource type', selected: 'Virtual PC')
+  expect(page).to_not have_selector('text', :class => 'ct-bar-label')
+  expect(page).to_not have_select('Resource type', options: ['Resource type for all users'])
+end

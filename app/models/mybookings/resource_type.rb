@@ -28,5 +28,19 @@ module Mybookings
     def has_roles?
       roles_mask != 0
     end
+
+    def use_by_resource
+      event_duration = "strftime('%H', mybookings_events.end_date) - strftime('%H', mybookings_events.start_date)"
+      event_duration = "HOUR(mybookings_events.end_date) - HOUR(mybookings_events.start_date)" if ActiveRecord::Base.connection.adapter_name != 'SQLite'
+
+      ResourceType.joins(resources: [:events]).select(resources: [:name]).where(id: self).group('mybookings_resources.name').sum(event_duration)
+    end
+
+    def use_by_hour
+      query_string = "strftime('%H', mybookings_events.start_date)"
+      query_string = "HOUR(mybookings_events.start_date)" if ActiveRecord::Base.connection.adapter_name != 'SQLite'
+
+      ResourceType.joins(resources: [:events]).select(query_string).where(id: self).group(query_string).count
+    end
   end
 end
