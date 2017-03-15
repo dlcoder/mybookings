@@ -5,6 +5,7 @@ module Mybookings
 
     before_action :load_resource_type, only: [:edit, :update, :destroy, :use_by_resource, :use_by_hour]
     before_action :load_valid_roles, only: [:new, :edit, :create, :update]
+    before_action :preprocess_notifications_emails_list, only: [:create, :update]
 
     def index
       @resource_types = ResourceType.all
@@ -56,6 +57,12 @@ module Mybookings
 
     def load_valid_roles
       @valid_roles = ResourceType.valid_roles
+    end
+
+    def preprocess_notifications_emails_list
+      emails_list = params[:resource_type][:notifications_emails]
+      emails_list = emails_list.split(',').map { |e| e.gsub(/\s+/, '') }
+      params[:resource_type][:notifications_emails] = emails_list
     end
   end
 end

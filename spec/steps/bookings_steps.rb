@@ -48,10 +48,11 @@ end
 
 step 'the manager should receive an email to notify the creation' do
   user = mybookings_users(:manager)
+  resource_type = mybookings_resource_types(:pcv)
 
-  expect(unread_emails_for(user.email).size).to eq(1)
+  expect(unread_emails_for(resource_type.notifications_emails[0]).size).to eq(1)
 
-  open_last_email_for(user.email)
+  open_last_email_for(resource_type.notifications_emails[0])
 
   expect(current_email.subject).to include('A new booking has been created')
 end
@@ -110,10 +111,11 @@ end
 
 step 'the manager should receive an email to notify the cancelation' do
   user = mybookings_users(:manager)
+  resource_type = mybookings_resource_types(:pcv)
 
-  expect(unread_emails_for(user.email).size).to eq(1)
+  expect(unread_emails_for(resource_type.notifications_emails[0]).size).to eq(1)
 
-  open_last_email_for(user.email)
+  open_last_email_for(resource_type.notifications_emails[0])
 
   expect(current_email.subject).to include('A booking has been canceled')
 end

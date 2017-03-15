@@ -1,7 +1,31 @@
 = render_model_base_errors f.object
 
-= f.input :name
-= f.input :extension, as: :select, collection: available_resource_types_extensions, include_blank: false, default: 'DefaultExtension'
+.panel.panel-default
+  .panel-heading
+    = t('.basic_information')
+  .panel-body
+    = f.input :name
+    = f.input :extension, as: :select, collection: available_resource_types_extensions, include_blank: false, default: 'DefaultExtension'
+
+.panel.panel-default
+  .panel-heading
+    = t('.options')
+  .panel-body
+    = f.input :notifications_email_from, hint: t('mybookings.backend.resource_types.hints.notifications_email_from'), placeholder: t('mybookings.backend.resource_types.placeholders.notifications_email_from')
+    = f.input :notifications_emails, hint: t('mybookings.backend.resource_types.hints.notifications_emails'), placeholder: t('mybookings.backend.resource_types.placeholders.notifications_emails'), input_html: { value: @resource_type.notifications_emails.join(', ') }
+    .row
+      .col-xs-12.col-sm-4
+        = f.input :minutes_in_advance, min_max: true, hint: t('mybookings.backend.resource_types.hints.minutes_in_advance')
+      .col-xs-12.col-sm-4
+        = f.input :minutes_of_grace, min_max: true, hint: t('mybookings.backend.resource_types.hints.minutes_of_grace')
+    .row
+      .col-xs-12.col-sm-4
+        = f.input :limit_hours_duration, min_max: true, hint: t('mybookings.backend.resource_types.hints.limit_hours_duration')
+      .col-xs-12.col-sm-4
+        = f.input :limit_days_for_recurring_events, min_max: true, hint: t('mybookings.backend.resource_types.hints.limit_days_for_recurring_events')
+      .col-xs-12.col-sm-4
+        = f.input :limit_days_for_feedback, min_max: true, hint: t('mybookings.backend.resource_types.hints.limit_days_for_feedback')
+
 .panel.panel-default
   .panel-heading
     = f.label :roles, label: t('.roles')

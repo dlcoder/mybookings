@@ -79,6 +79,17 @@ en:
           update_resource_type: 'Update resource type'
         form_fields:
           roles: 'Roles who can book resources of this type'
+        hints:
+          limit_days_for_feedback: The maximum number of days allowed for users to submit feedback for an event.
+          limit_days_for_recurring_events: The maximum number of days between the start date and the end date of an event.
+          limit_hours_duration: The maximum number of hours allowed for events.
+          minutes_in_advance: The number of minutes to start an event before it start date.
+          minutes_of_grace: The number of minutes to finish an event after it end date.
+          notifications_email_from: The email address from which the notifications are sent, for example the address of the resource type manager.
+          notifications_emails: List of email addresses to send notifications for events in resources of this type, for example when an user requests a new booking.
+        placeholders:
+          notifications_email_from: user@example.com
+          notifications_emails: user1@example.com, user2@example.com
         index:
           new_resource_type: 'New resource type'
           no_resource_types: 'There is no resource types yet.'
