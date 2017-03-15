@@ -28,6 +28,6 @@
 
 .panel.panel-default
   .panel-heading
-    = f.label :roles, label: t('.roles')
+    = t('.roles')
   .panel-body
     = f.input :roles, as: :check_boxes, collection: @valid_roles, checked: @resource_type.roles, label: false
