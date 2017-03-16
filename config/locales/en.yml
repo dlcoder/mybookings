@@ -181,25 +181,29 @@ en:
         pending: 'Pending'
         expired: 'Expired'
         occurring: 'Occurring'
-
     resources:
       events:
         status: 'Busy'
-
     notifications_mailer:
       cancel_event:
         subject: 'Your booking has been canceled.'
-        body_html: 'Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.'
-      notify_upcoming_booking:
-        subject: 'Remember that you have an upcoming booking to be held'
-        body_html: 'This message is to remember you that you have an upcoming scheluded booking to begin the %{start_date}.'
-      notify_new_booking:
-        subject: 'A new booking has been created'
-        body_html: 'We want to notify you that a new booking has been created for the resource type <strong>%{resource_type_name}</strong>.'
+        body_html: '<p>Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.</p>'
       notify_delete_booking:
         subject: 'A booking has been canceled'
-        body_html: 'We want to notify you that a booking of resource type <strong>%{resource_type_name}</strong> has been canceled.'
-
+        body_html: '<p>We want to notify you that a booking of resource type <strong>%{resource_type_name}</strong> has been canceled.</p>'
+      notify_new_booking:
+        label_booking_date: 'Booking creation date'
+        label_comment: 'Comment'
+        label_end_date: 'End date'
+        label_events: 'Events'
+        label_resource_name: 'Resource'
+        label_resource_type_name: 'Resource type'
+        label_start_date: 'Start date'
+        label_user_email: 'User email'
+        subject: 'New booking of %{resource_type_name} for the user %{user_email}'
+      notify_upcoming_booking:
+        subject: 'Remember that you have an upcoming booking to be held'
+        body_html: '<p>This message is to remember you that you have an upcoming scheluded booking to begin the %{start_date}.</p>'
   devise:
     mailer:
       confirmation_instructions:

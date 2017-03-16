@@ -1,2 +1,33 @@
 = content_for :email_body do
-  %p= t('.body_html', resource_type_name: @resource_type_name)
+  %strong= "#{t('.label_user_email')}: "
+  %span= @params[:user_email]
+  %br
+
+  %strong= "#{t('.label_resource_type_name')}: "
+  %span= @params[:resource_type_name]
+  %br
+
+  %strong= "#{t('.label_booking_date')}: "
+  %span= @params[:booking_date]
+  %br
+
+  %strong= "#{t('.label_comment')}: "
+  %span= @params[:comment]
+  %br
+
+  %strong= "#{t('.label_events')}:"
+  %ul
+    - @params[:events].each do |event|
+      %li
+        %strong= "#{t('.label_resource_name')}: "
+        %span= event[:resource_name]
+        %br
+
+        %strong= "#{t('.label_start_date')}: "
+        %span= event[:start_date]
+        %br
+
+        %strong= "#{t('.label_end_date')}: "
+        %span= event[:end_date]
+        %br
+        %br
