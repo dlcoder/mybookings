@@ -64,7 +64,8 @@ module Mybookings
       new_events = Array.new
 
       dates.each do |date|
-        new_events << { start_date: string_format(date),
+        new_events << { booking: self,
+                        start_date: string_format(date),
                         end_date: string_format(date + event_duration.seconds),
                         resource: proposed_resource,
                         event_type: event_type }
