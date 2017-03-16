@@ -9,21 +9,21 @@ module Mybookings
       mail(from: from_email_for(event), to: event.booking_user_email, subject: "[#{app_name}] #{notification_subject}")
     end
 
-    def notify_upcoming_booking booking
+    def upcoming_booking booking
       @booking = booking
 
-      notification_subject = t('mybookings.notifications_mailer.notify_upcoming_booking.subject')
+      notification_subject = t('mybookings.notifications_mailer.upcoming_booking.subject')
 
       mail(from: from_email_for(booking), to: booking.user_email, subject: "[#{app_name}] #{notification_subject}")
     end
 
-    def notify_new_booking booking
+    def new_booking booking
       destination_emails = booking.resource_type_notifications_emails
       return if destination_emails.empty?
 
       @params = params_for_new_booking_notification(booking)
 
-      subject = "[#{app_name}] #{t('mybookings.notifications_mailer.notify_new_booking.subject',
+      subject = "[#{app_name}] #{t('mybookings.notifications_mailer.new_booking.subject',
         resource_type_name: @params[:resource_type_name],
         user_email: @params[:user_email]
       )}"
@@ -33,13 +33,13 @@ module Mybookings
       end
     end
 
-    def notify_delete_booking booking
+    def delete_booking booking
       emails = booking.resource_type_notifications_emails
       return if emails.empty?
 
       @resource_type_name = booking.resource_type_name
 
-      notification_subject = t('mybookings.notifications_mailer.notify_delete_booking.subject')
+      notification_subject = t('mybookings.notifications_mailer.delete_booking.subject')
 
       emails.each do |email|
         mail(from: from_email_for(booking), to: email, subject: "[#{app_name}] #{notification_subject}")

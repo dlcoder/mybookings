@@ -27,7 +27,7 @@ module Mybookings
       @booking.save!
       @booking.confirm!
 
-      NotificationsMailer.notify_new_booking(@booking).deliver_now!
+      NotificationsMailer.new_booking(@booking).deliver_now!
 
       redirect_to bookings_path
     end
@@ -56,7 +56,7 @@ module Mybookings
       unless @booking.has_events?
         @booking.cancel!
         @booking.destroy!
-        NotificationsMailer.notify_delete_booking(@booking).deliver_now!
+        NotificationsMailer.delete_booking(@booking).deliver_now!
       end
 
       redirect_to bookings_path
