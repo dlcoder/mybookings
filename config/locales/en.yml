@@ -186,8 +186,13 @@ en:
         status: 'Busy'
     notifications_mailer:
       cancel_event:
+        body_html: '<p>A booking has been canceled. If you have any question you can contact with the resource manager.</p>'
+        label_cancelation_reason: 'Cancelation reason'
+        label_end_date: 'End date'
+        label_resource_name: 'Resource'
+        label_resource_type_name: 'Resource type'
+        label_start_date: 'Start date'
         subject: 'Your booking has been canceled.'
-        body_html: '<p>Your booking %{name} scheduled to %{start_date} has been canceled by an administrator for the folowing reason: %{reason}.</p>'
       delete_booking:
         subject: 'A booking has been canceled'
         body_html: '<p>We want to notify you that a booking of resource type <strong>%{resource_type_name}</strong> has been canceled.</p>'

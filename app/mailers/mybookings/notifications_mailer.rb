@@ -1,12 +1,11 @@
 module Mybookings
   class NotificationsMailer < ApplicationMailer
     def cancel_event event, reason
-      @event = event
-      @reason = reason
+      @params = params_for_cancel_event_notification(event, reason)
 
-      notification_subject = t('mybookings.notifications_mailer.cancel_event.subject')
+      subject = "[#{app_name}] #{t('mybookings.notifications_mailer.cancel_event.subject')}"
 
-      mail(from: from_email_for(event), to: event.booking_user_email, subject: "[#{app_name}] #{notification_subject}")
+      mail(from: from_email_for(event), to: event.booking_user_email, subject: subject)
     end
 
     def upcoming_booking booking
@@ -58,6 +57,16 @@ module Mybookings
 
     def app_name
       t('mybookings.app_name')
+    end
+
+    def params_for_cancel_event_notification event, reason
+      params = {
+        resource_type_name: event.resource_resource_type_name,
+        resource_name: event.resource_name,
+        start_date: event.start_date,
+        end_date: event.end_date,
+        cancelation_reason: reason
+      }
     end
 
     def params_for_new_booking_notification booking
