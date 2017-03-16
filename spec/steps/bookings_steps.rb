@@ -54,7 +54,7 @@ step 'the manager should receive an email to notify the creation' do
 
   open_last_email_for(resource_type.notifications_emails[0])
 
-  expect(current_email.subject).to include('A new booking has been created')
+  expect(current_email.subject).to include('New booking of')
 end
 
 step 'I visit the booking details for a old expired event' do
