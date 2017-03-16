@@ -4,7 +4,6 @@ module Mybookings
       @event = event
       @reason = reason
 
-      app_name = t('mybookings.app_name')
       notification_subject = t('mybookings.notifications_mailer.cancel_event.subject')
 
       mail(from: notifications_email_from(event), to: event.booking_user_email, subject: "[#{app_name}] #{notification_subject}")
@@ -13,7 +12,6 @@ module Mybookings
     def notify_upcoming_booking booking
       @booking = booking
 
-      app_name = t('mybookings.app_name')
       notification_subject = t('mybookings.notifications_mailer.notify_upcoming_booking.subject')
 
       mail(from: notifications_email_from(booking), to: booking.user_email, subject: "[#{app_name}] #{notification_subject}")
@@ -25,7 +23,6 @@ module Mybookings
 
       @resource_type_name = booking.resource_type_name
 
-      app_name = t('mybookings.app_name')
       notification_subject = t('mybookings.notifications_mailer.notify_new_booking.subject')
 
       emails.each do |email|
@@ -39,7 +36,6 @@ module Mybookings
 
       @resource_type_name = booking.resource_type_name
 
-      app_name = t('mybookings.app_name')
       notification_subject = t('mybookings.notifications_mailer.notify_delete_booking.subject')
 
       emails.each do |email|
@@ -55,6 +51,10 @@ module Mybookings
 
       return email unless email.nil?
       return MYBOOKINGS_CONFIG['default_notifications_email']
+    end
+
+    def app_name
+      t('mybookings.app_name')
     end
   end
 end
