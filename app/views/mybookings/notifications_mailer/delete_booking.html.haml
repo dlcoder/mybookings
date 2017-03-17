@@ -1,0 +1,12 @@
+= content_for :email_body do
+  %strong= "#{t('.label_user_email')}: "
+  %span= @params[:user_email]
+  %br
+
+  %strong= "#{t('.label_booking_id')}: "
+  %span= @params[:booking_id]
+  %br
+
+  %strong= "#{t('.label_resource_type_name')}: "
+  %span= @params[:resource_type_name]
+  %br
