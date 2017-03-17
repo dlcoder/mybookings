@@ -117,7 +117,7 @@ step 'the manager should receive an email to notify the cancelation' do
 
   open_last_email_for(resource_type.notifications_emails[0])
 
-  expect(current_email.subject).to include('A booking has been canceled')
+  expect(current_email.subject).to include("Booking of #{resource_type.name} canceled by the user")
 end
 
 step 'I can book an available resource with weekly periodicity' do

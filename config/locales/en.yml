@@ -189,26 +189,35 @@ en:
         body_html: '<p>A booking has been canceled. If you have any question you can contact with the resource manager.</p>'
         label_cancelation_reason: 'Cancelation reason'
         label_end_date: 'End date'
+        label_event_id: 'Event Id'
         label_resource_name: 'Resource'
         label_resource_type_name: 'Resource type'
         label_start_date: 'Start date'
         subject: 'Your booking has been canceled.'
       delete_booking:
-        subject: 'A booking has been canceled'
-        body_html: '<p>We want to notify you that a booking of resource type <strong>%{resource_type_name}</strong> has been canceled.</p>'
+        label_booking_id: 'Booking Id'
+        label_resource_type_name: 'Resource type'
+        label_user_email: 'User email'
+        subject: 'Booking of %{resource_type_name} canceled by the user %{user_email}'
       new_booking:
         label_booking_date: 'Booking creation date'
+        label_booking_id: 'Booking Id'
         label_comment: 'Comment'
         label_end_date: 'End date'
+        label_event_id: 'Event Id'
         label_events: 'Events'
         label_resource_name: 'Resource'
         label_resource_type_name: 'Resource type'
         label_start_date: 'Start date'
         label_user_email: 'User email'
         subject: 'New booking of %{resource_type_name} for the user %{user_email}'
-      upcoming_booking:
-        subject: 'Remember that you have an upcoming booking to be held'
-        body_html: '<p>This message is to remember you that you have an upcoming scheluded booking to begin the %{start_date}.</p>'
+      upcoming_event:
+        label_end_date: 'End date'
+        label_event_id: 'Event Id'
+        label_resource_name: 'Resource'
+        label_resource_type_name: 'Resource type'
+        label_start_date: 'Start date'
+        subject: 'Your booking is about to begin'
   devise:
     mailer:
       confirmation_instructions:

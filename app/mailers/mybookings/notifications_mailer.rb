@@ -8,12 +8,20 @@ module Mybookings
       mail(from: from_email_for(event), to: event.booking_user_email, subject: subject)
     end
 
-    def upcoming_booking booking
-      @booking = booking
+    def delete_booking booking
+      destination_emails = booking.resource_type_notifications_emails
+      return if destination_emails.empty?
 
-      notification_subject = t('mybookings.notifications_mailer.upcoming_booking.subject')
+      @params = params_for_delete_booking_notification(booking)
 
-      mail(from: from_email_for(booking), to: booking.user_email, subject: "[#{app_name}] #{notification_subject}")
+      subject = "[#{app_name}] #{t('mybookings.notifications_mailer.delete_booking.subject',
+        resource_type_name: @params[:resource_type_name],
+        user_email: @params[:user_email]
+      )}"
+
+      destination_emails.each do |email|
+        mail(from: from_email_for(booking), to: email, subject: subject)
+      end
     end
 
     def new_booking booking
@@ -32,17 +40,12 @@ module Mybookings
       end
     end
 
-    def delete_booking booking
-      emails = booking.resource_type_notifications_emails
-      return if emails.empty?
+    def upcoming_event event
+      @params = params_for_upcoming_event(event)
 
-      @resource_type_name = booking.resource_type_name
+      subject = "[#{app_name}] #{t('mybookings.notifications_mailer.upcoming_event.subject')}"
 
-      notification_subject = t('mybookings.notifications_mailer.delete_booking.subject')
-
-      emails.each do |email|
-        mail(from: from_email_for(booking), to: email, subject: "[#{app_name}] #{notification_subject}")
-      end
+      mail(from: from_email_for(event), to: event.booking_user_email, subject: subject)
     end
 
     private
@@ -61,11 +64,20 @@ module Mybookings
 
     def params_for_cancel_event_notification event, reason
       params = {
-        resource_type_name: event.resource_resource_type_name,
-        resource_name: event.resource_name,
-        start_date: event.start_date,
+        cancelation_reason: reason,
         end_date: event.end_date,
-        cancelation_reason: reason
+        event_id: event.id,
+        resource_name: event.resource_name,
+        resource_type_name: event.resource_resource_type_name,
+        start_date: event.start_date,
+      }
+    end
+
+    def params_for_delete_booking_notification booking
+      params = {
+        booking_id: booking.id,
+        resource_type_name: booking.resource_type_name,
+        user_email: booking.user_email,
       }
     end
 
@@ -74,21 +86,31 @@ module Mybookings
 
       booking.events.each do |event|
         params_events.push({
+          end_date: event.end_date,
+          event_id: event.id,
           resource_name: event.resource_name,
           start_date: event.start_date,
-          end_date: event.end_date
         })
       end
 
       params = {
-        user_email: booking.user_email,
-        resource_type_name: booking.resource_type_name,
         booking_date: booking.created_at,
+        booking_id: booking.id,
         comment: booking.comment,
-        events: params_events
+        events: params_events,
+        resource_type_name: booking.resource_type_name,
+        user_email: booking.user_email,
       }
+    end
 
-      params
+    def params_for_upcoming_event event
+      params = {
+        end_date: event.end_date,
+        event_id: event.id,
+        resource_name: event.resource_name,
+        resource_type_name: event.resource_resource_type_name,
+        start_date: event.start_date,
+      }
     end
   end
 end

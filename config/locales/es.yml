@@ -189,26 +189,35 @@ es:
         body_html: '<p>Se ha cancelado una reserva programada. Si tienes alguna duda puedes contactar con el gestor del recurso.</p>'
         label_cancelation_reason: 'Motivo de la cancelación'
         label_end_date: 'Fecha de fin'
+        label_event_id: 'Identificador del evento'
         label_resource_name: 'Recurso'
         label_resource_type_name: 'Tipo de recurso'
         label_start_date: 'Fecha de inicio'
         subject: 'Tu reserva ha sido cancelada.'
       delete_booking:
-        subject: 'Una reserva ha sido cancelada'
-        body_html: '<p>Queremos notificarle que una reserva del tipo de recurso <strong>%{resource_type_name}</strong> ha sido cancelada.</p>'
+        label_booking_id: 'Identificador de la reserva'
+        label_resource_type_name: 'Tipo de recurso'
+        label_user_email: 'Email del usuario'
+        subject: 'Reserva cancelada de %{resource_type_name} por el usuario %{user_email}'
       new_booking:
         label_booking_date: 'Fecha de la solicitud'
+        label_booking_id: 'Identificador de la reserva'
         label_comment: 'Comentario'
         label_end_date: 'Fecha de fin'
+        label_event_id: 'Identificador del evento'
         label_events: 'Eventos'
         label_resource_name: 'Recurso'
         label_resource_type_name: 'Tipo de recurso'
         label_start_date: 'Fecha de inicio'
         label_user_email: 'Email del usuario'
-        subject: 'Nueva reserva de %{resource_type_name} para el usuario %{user_email}'
-      upcoming_booking:
-        subject: 'Recuerda que tienes un reserva próxima a celebrarse'
-        body_html: '<p>Este mensaje es para recordale que tienes una reserva programada para comenzar el %{start_date}.</p>'
+        subject: 'Nueva reserva de %{resource_type_name} por el usuario %{user_email}'
+      upcoming_event:
+        label_end_date: 'Fecha de fin'
+        label_event_id: 'Identificador del evento'
+        label_resource_name: 'Recurso'
+        label_resource_type_name: 'Tipo de recurso'
+        label_start_date: 'Fecha de inicio'
+        subject: 'Tu reserva está a punto de comenzar'
   devise:
     mailer:
       confirmation_instructions:
