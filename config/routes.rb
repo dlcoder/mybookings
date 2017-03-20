@@ -41,6 +41,10 @@ Mybookings::Engine.routes.draw do
 
     resources :users
 
+    resources :bookings do
+      resources :events, only: [:index]
+    end
+
     resources :statistics, only: [:index]
 
     get 'statistics/by_resource', to: 'statistics#by_resource'

@@ -3,6 +3,7 @@ Feature: Admin
   As an administrator
   I want to be able to login in MyBookings
 
+  @javascript
   Scenario: Manage resources as administrator
     Given a signed in administrator
     Then I go to the manage page
@@ -12,8 +13,9 @@ Feature: Admin
     And I can enable a resource
     And I can add a new resource
     And I can see that the resource has been added
-    And I can see the events of a resource and all the info of them
-    And I can cancel or reallocate an event
+    And I can see the events of a resource
+    And I can visit the booking details page of an event
+    And I can see that I can cancel or reallocate an event
     And I cannot reallocate the event to a disabled resource
     And I cannot reallocate the event to a resource with an overlapped booking
     And I can reallocate an event

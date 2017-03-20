@@ -4,10 +4,17 @@ module Mybookings
     include Backend::Manageable
     include Backend::Authorizable
 
-    before_action :load_resource, only: [:index, :delete_confirmation, :destroy, :update]
+    before_action :load_resource, only: [:delete_confirmation, :destroy, :update]
     before_action :load_event, only: [:delete_confirmation, :destroy, :update]
 
     def index
+      if (params[:booking_id])
+        load_booking
+        @events = EventDecorator.decorate_collection(@booking.events)
+        return render 'index'
+      end
+
+      load_resource
       @events = @resource.events
     end
 
@@ -46,6 +53,11 @@ module Mybookings
 
     def event_params
       params.require(:event).permit(:resource_id)
+    end
+
+    def load_booking
+      @booking = Booking.find(params[:booking_id])
+      authorize @booking
     end
 
     def load_event

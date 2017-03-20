@@ -11,7 +11,7 @@ module Mybookings
 
     delegate :email, to: :user, prefix: true
     delegate :count, to: :events, prefix: true
-    delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, to: :resource_type, prefix: true
+    delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, :managed_by?, to: :resource_type, prefix: true
 
     validates :start_date, :end_date, :proposed_resource, :recurrent_type, presence: true
     validates :until_date, presence: true, if: :is_a_recurring_booking?

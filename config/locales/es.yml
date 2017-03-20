@@ -26,6 +26,13 @@ es:
       bookings:
         booking:
           booking_date: 'Fecha de la reserva'
+        show:
+          back: '< Atrás'
+          cancel_booking: 'Cancelar reserva'
+          cancel_booking_description: 'Se borrarán todos los eventos pendientes. Si todos los eventos de la reserva están pendientes se eliminará la reserva completa.'
+          events: 'Eventos'
+          load_all_events: 'Mostrar todos los eventos de la reserva'
+          title: "Datos de la reserva #%{booking_id}"
       events:
         event:
           cancel_event: 'Cancelar o reasignar'
