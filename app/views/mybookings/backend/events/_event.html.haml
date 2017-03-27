@@ -12,7 +12,7 @@
           %p
             %dt= icon_with_text('briefcase', t('.resource'))
             %dd
-              %small= link_to event.resource_name, backend_resource_path(event.resource)
+              %small= link_to event.resource_name, backend_resource_events_path(event.resource)
 
       .row
         .col-xs-6
