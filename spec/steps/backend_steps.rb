@@ -43,6 +43,7 @@ step 'I can see the events of a resource' do
   find('tr', text: 'ACMR2').click_link 'Show bookings'
 
   within '#bookings-calendar' do
+    click_button 'list'
     expect(page).to have_content('Adobe Connect Meeting Rooms - ACMR2')
     expect(page).to have_content("#{event.start_date.strftime('%k:%M')} - #{event.end_date.strftime('%k:%M')}")
   end
@@ -76,6 +77,7 @@ end
 
 step 'I can cancel an event' do
   find('tr', text: 'ACMR5').click_link 'Show bookings'
+  click_button 'list'
   click_link 'Adobe Connect Meeting Rooms - ACMR5'
   step 'I can see that I can cancel or reallocate an event'
   fill_in 'Reason', with: 'There is an issue with this booking'
@@ -107,6 +109,7 @@ step 'I can see that bookings with events associated with the cancelled resource
   event = mybookings_events(:cancel_resource_event1)
 
   find('tr', text: 'ACMR3').click_link('Show bookings')
+  click_button 'list'
   find('.fc-list-item:last-child').click_link 'Adobe Connect Meeting Rooms - ACMR3'
 
   within "#event-#{event.id}" do

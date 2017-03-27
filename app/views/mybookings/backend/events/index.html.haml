@@ -1,7 +1,6 @@
 = title
 
-#bookings-calendar{ 'data-turbolinks-permanent': true }
+#bookings-calendar
 
 :coffeescript
-  $(document).on 'turbolinks:load', ->
-    Mybookings.BookingsCalendar.render('#bookings-calendar', "#{backend_resource_events_path(resource_id: @resource.id, format: :json)}", "#{I18n.locale}")
+  Mybookings.BookingsCalendar.render('#bookings-calendar', "#{backend_resource_events_path(resource_id: @resource.id, format: :json)}", "#{I18n.locale}")
