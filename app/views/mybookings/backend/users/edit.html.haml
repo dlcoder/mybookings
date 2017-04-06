@@ -3,6 +3,11 @@
 %p.lead= t('.email', user_email: @user.email)
 
 = simple_form_for @user, url: backend_user_path do |f|
+  .row
+    .col-xs-12.col-sm-6
+      = f.input :first_name
+    .col-xs-12.col-sm-6
+      = f.input :last_name
   .panel.panel-default
     .panel-heading
       = f.label :roles, label: t('.roles')

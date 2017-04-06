@@ -60,7 +60,7 @@ module Mybookings
     end
 
     def user_params
-      params.require(:user).permit(:email, :roles => [], :resource_type_ids => [])
+      params.require(:user).permit(:email, :first_name, :last_name, :roles => [], :resource_type_ids => [])
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313152407) do
+ActiveRecord::Schema.define(version: 20170406084301) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 20170313152407) do
     t.string   "uid"
     t.integer  "roles_mask"
     t.datetime "deleted_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "mybookings_users", ["deleted_at"], name: "index_mybookings_users_on_deleted_at"

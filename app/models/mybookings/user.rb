@@ -11,6 +11,8 @@ module Mybookings
     has_many :bookings
     has_and_belongs_to_many :resource_types, join_table: 'mybookings_user_managed_resource_types'
 
+    validates :first_name, :last_name, length: { maximum: 50 }
+
     roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']
 
     def self.find_saml_user_or_create(auth)
