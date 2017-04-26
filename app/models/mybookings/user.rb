@@ -19,13 +19,16 @@ module Mybookings
       email = self::email_address_from_auth(auth)
 
       user = where(email: email).first_or_create do |user|
-        user.provider = auth['provider']
-        user.uid = auth['uid']
         user.email = email
         user.password = Devise.friendly_token[0,20]
       end
 
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+
       user.hook_post_find_saml_user_or_create(auth)
+
+      user.save!
 
       user
     end
