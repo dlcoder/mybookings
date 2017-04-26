@@ -23,10 +23,12 @@ module Mybookings
         user.password = Devise.friendly_token[0,20]
       end
 
-      user.assign_roles auth
+      user.hook_post_find_saml_user_or_create(auth)
 
       user
     end
+
+    def hook_post_find_saml_user_or_create auth; end
 
     def self.by_id
       order(id: :asc)
@@ -35,8 +37,6 @@ module Mybookings
     def self.search search_string
       where("email like ?", "%#{search_string}%")
     end
-
-    def assign_roles auth; end
 
     def get_all_posibles_masks_for_roles
       masks = Array.new
