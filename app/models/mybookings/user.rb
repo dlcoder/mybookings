@@ -16,10 +16,12 @@ module Mybookings
     roles [:admin, :manager] + MYBOOKINGS_CONFIG['extra_roles']
 
     def self.find_saml_user_or_create(auth)
-      user = where(email: auth['info']['email']).first_or_create do |user|
+      email = self::email_address_from_auth(auth)
+
+      user = where(email: email).first_or_create do |user|
         user.provider = auth['provider']
         user.uid = auth['uid']
-        user.email = auth['info']['email']
+        user.email = email
         user.password = Devise.friendly_token[0,20]
       end
 
@@ -28,7 +30,9 @@ module Mybookings
       user
     end
 
-    def hook_post_find_saml_user_or_create auth; end
+    def self.email_address_from_auth auth
+      auth['info']['email']
+    end
 
     def self.by_id
       order(id: :asc)
@@ -37,6 +41,8 @@ module Mybookings
     def self.search search_string
       where("email like ?", "%#{search_string}%")
     end
+
+    def hook_post_find_saml_user_or_create auth; end
 
     def get_all_posibles_masks_for_roles
       masks = Array.new
