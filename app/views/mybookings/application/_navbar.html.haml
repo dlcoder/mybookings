@@ -7,7 +7,8 @@
         %span.icon-bar
         %span.icon-bar
 
-      = link_to mybookings.root_path, class: 'navbar-brand' do
+      - navbar_brand_link_path = user_signed_in? ? bookings_path : mybookings.root_path
+      = link_to navbar_brand_link_path, class: 'navbar-brand' do
         - if asset_exist? 'mybookings/logo.png'
           = image_tag('mybookings/logo.png', class: 'navbar-logo')
         = t('mybookings.app_name')
