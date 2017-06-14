@@ -1,6 +1,7 @@
 module Mybookings
   class Backend::ResourceTypesController < Backend::BaseController
     include Backend::Administerable
+    include Backend::Manageable
     include Backend::Authorizable
 
     before_action :load_resource_type, only: [:edit, :update, :destroy, :use_by_resource, :use_by_hour]

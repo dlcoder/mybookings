@@ -236,7 +236,7 @@ end
 
 step 'I can see the statistics only for the resources I can manage' do
   expect(page).to have_select('Resource type', selected: 'Adobe Connect Meeting Rooms')
-  expect(page).to_not have_selector('text', :class => 'ct-bar-label')
+  expect(page).to have_selector('text', :class => 'ct-bar-label')
   select 'Virtual PC', from: 'Resource type'
   expect(page).to have_select('Resource type', selected: 'Virtual PC')
   expect(page).to_not have_selector('text', :class => 'ct-bar-label')

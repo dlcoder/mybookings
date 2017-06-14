@@ -14,6 +14,7 @@ module Mybookings
 
     def manage?
       return true if @user.has_role? :admin
+      return true if (@user.has_role?(:manager) && @record.managed_by?(@user))
       return false
     end
   end
