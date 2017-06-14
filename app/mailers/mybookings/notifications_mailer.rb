@@ -1,17 +1,14 @@
 module Mybookings
   class NotificationsMailer < ApplicationMailer
-    def cancel_event event, reason
+    def cancel_event event, reason, email
       @params = params_for_cancel_event_notification(event, reason)
 
       subject = "[#{app_name}] #{t('mybookings.notifications_mailer.cancel_event.subject')}"
 
-      mail(from: from_email_for(event), to: event.booking_user_email, subject: subject)
+      mail(from: from_email_for(event), to: email, subject: subject)
     end
 
-    def delete_booking booking
-      destination_emails = booking.resource_type_notifications_emails
-      return if destination_emails.empty?
-
+    def delete_booking booking, email
       @params = params_for_delete_booking_notification(booking)
 
       subject = "[#{app_name}] #{t('mybookings.notifications_mailer.delete_booking.subject',
@@ -19,15 +16,10 @@ module Mybookings
         user_email: @params[:user_email]
       )}"
 
-      destination_emails.each do |email|
-        mail(from: from_email_for(booking), to: email, subject: subject)
-      end
+      mail(from: from_email_for(booking), to: email, subject: subject)
     end
 
-    def new_booking booking
-      destination_emails = booking.resource_type_notifications_emails
-      return if destination_emails.empty?
-
+    def new_booking booking, email
       @params = params_for_new_booking_notification(booking)
 
       subject = "[#{app_name}] #{t('mybookings.notifications_mailer.new_booking.subject',
@@ -35,17 +27,15 @@ module Mybookings
         user_email: @params[:user_email]
       )}"
 
-      destination_emails.each do |email|
-        mail(from: from_email_for(booking), to: email, subject: subject)
-      end
+      mail(from: from_email_for(booking), to: email, subject: subject)
     end
 
-    def upcoming_event event
+    def upcoming_event event, email
       @params = params_for_upcoming_event(event)
 
       subject = "[#{app_name}] #{t('mybookings.notifications_mailer.upcoming_event.subject')}"
 
-      mail(from: from_email_for(event), to: event.booking_user_email, subject: subject)
+      mail(from: from_email_for(event), to: email, subject: subject)
     end
 
     private

@@ -12,6 +12,7 @@ Feature: Bookings management
     And I can book an available resource
     And I can see that the booking has been created
     And the manager should receive an email to notify the creation
+    And the user should receive an email to notify the creation
 
   @javascript
   Scenario: Book a recurring resource
@@ -19,6 +20,7 @@ Feature: Bookings management
     When I go to the bookings page
     And I can start to create a booking
     And I can book an available resource with weekly periodicity
+    And the user should receive an email to notify the creation
     And the manager should receive an email to notify the creation
     And I can see that the booking with weekly periodicity has been created
     And I go to the bookings page
@@ -29,6 +31,7 @@ Feature: Bookings management
     And I can start to create a booking
     And I can book an available resource with monthly periodicity
     And the manager should receive an email to notify the creation
+    And the user should receive an email to notify the creation
     And I can see that the booking with monthly periodicity has been created
 
   @javascript

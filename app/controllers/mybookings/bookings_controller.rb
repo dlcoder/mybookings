@@ -27,7 +27,10 @@ module Mybookings
       @booking.save!
       @booking.confirm!
 
-      NotificationsMailer.new_booking(@booking).deliver_now!
+      emails = [@booking.user_email] + @booking.resource_type_notifications_emails
+      emails.each do |email|
+        NotificationsMailer.new_booking(@booking, email).deliver_now!
+      end
 
       redirect_to bookings_path
     end
@@ -56,7 +59,11 @@ module Mybookings
       unless @booking.has_events?
         @booking.cancel!
         @booking.destroy!
-        NotificationsMailer.delete_booking(@booking).deliver_now!
+
+        emails = [@booking.user_email] + @booking.resource_type_notifications_emails
+        emails.each do |email|
+          NotificationsMailer.delete_booking(@booking, email).deliver_now!
+        end
       end
 
       redirect_to bookings_path

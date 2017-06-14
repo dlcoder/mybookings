@@ -57,6 +57,18 @@ step 'the manager should receive an email to notify the creation' do
   expect(current_email.subject).to include('New booking of')
 end
 
+step 'the user should receive an email to notify the creation' do
+  skip
+
+  user = mybookings_users(:user)
+
+  expect(unread_emails_for(user.email).size).to eq(1)
+
+  open_last_email_for(user.email)
+
+  expect(current_email.subject).to include('New booking of')
+end
+
 step 'I visit the booking details for a old expired event' do
   within '#bookings-calendar' do
     find('.fc-prev-button').click
