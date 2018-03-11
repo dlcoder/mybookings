@@ -146,7 +146,7 @@ en:
         dates_interval_message_error: 'It is not allowed to create recurring events with more than %{days_permitted} days range.'
         event_duration_message_error: 'It is not allowed to create bookings whose duration exceeds %{event_duration} hours.'
         title: 'New booking'
-        title_with_resource_type_name: 'New booking %{resource_type_name}'
+        title_with_resource_type_name: 'New booking of %{resource_type_name}'
       recurrent_types:
         daily: 'Daily'
         weekly: 'Weekly'

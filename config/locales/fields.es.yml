@@ -3,19 +3,19 @@ es:
     attributes:
       mybookings/booking:
         comment: Observaciones
-        end_date: Fecha de fin
+        end_date: Fecha y hora de fin
         feedback: Comentarios
         proposed_resource: Recurso
         recurrent_type: Repetir el evento
         resource_type: Tipo de recurso
-        start_date: Fecha de inicio
+        start_date: Fecha y hora de inicio
         until_date: Hasta la fecha
       mybookings/event:
-        end_date: Fecha de fin
+        end_date: Fecha y hora de fin
         resource: Recurso
         resource_name: Nombre del recurso
         resource_type_name: Tipo de recurso
-        start_date: Fecha de inicio
+        start_date: Fecha y hora de inicio
         status: Estado
       mybookings/resource:
         id: ID

@@ -31,8 +31,8 @@ es:
           cancel_event: 'Cancelar o reasignar'
           comment: 'Observaciones'
           feedback: 'Comentario'
-          start_date: 'Fecha de inicio'
-          end_date: 'Fecha de fin'
+          start_date: 'Fecha y hora de inicio'
+          end_date: 'Fecha y hora de fin'
           user_email: 'Email del usuario'
         delete_confirmation:
           booking_info_html: 'Reserva del recurso <em>%{resource}</em> para el usuario <em>%{user}</em> desde <em>%{start_date}</em> hasta <em>%{end_date}</em>.'
@@ -146,7 +146,7 @@ es:
         dates_interval_message_error: 'No está permitido crear eventos recurrentes con un intervalo de más de %{days_permitted} días.'
         event_duration_message_error: 'No está permitido crear reservas cuya duración exceda de %{event_duration} horas.'
         title: 'Nueva reserva'
-        title_with_resource_type_name: 'Nueva reserva %{resource_type_name}'
+        title_with_resource_type_name: 'Nueva reserva de %{resource_type_name}'
       recurrent_types:
         daily: 'Diariamente'
         weekly: 'Semanalmente'
@@ -188,11 +188,11 @@ es:
       cancel_event:
         body_html: '<p>Se ha cancelado una reserva programada. Si tienes alguna duda puedes contactar con el gestor del recurso.</p>'
         label_cancelation_reason: 'Motivo de la cancelación'
-        label_end_date: 'Fecha de fin'
+        label_end_date: 'Fecha y hora de fin'
         label_event_id: 'Identificador del evento'
         label_resource_name: 'Recurso'
         label_resource_type_name: 'Tipo de recurso'
-        label_start_date: 'Fecha de inicio'
+        label_start_date: 'Fecha y hora de inicio'
         subject: 'Tu reserva ha sido cancelada.'
       delete_booking:
         label_booking_id: 'Identificador de la reserva'
@@ -203,20 +203,20 @@ es:
         label_booking_date: 'Fecha de la solicitud'
         label_booking_id: 'Identificador de la reserva'
         label_comment: 'Comentario'
-        label_end_date: 'Fecha de fin'
+        label_end_date: 'Fecha y hora de fin'
         label_event_id: 'Identificador del evento'
         label_events: 'Eventos'
         label_resource_name: 'Recurso'
         label_resource_type_name: 'Tipo de recurso'
-        label_start_date: 'Fecha de inicio'
+        label_start_date: 'Fecha y hora de inicio'
         label_user_email: 'Email del usuario'
         subject: 'Nueva reserva de %{resource_type_name} por el usuario %{user_email}'
       upcoming_event:
-        label_end_date: 'Fecha de fin'
+        label_end_date: 'Fecha y hora de fin'
         label_event_id: 'Identificador del evento'
         label_resource_name: 'Recurso'
         label_resource_type_name: 'Tipo de recurso'
-        label_start_date: 'Fecha de inicio'
+        label_start_date: 'Fecha y hora de inicio'
         subject: 'Tu reserva está a punto de comenzar'
   devise:
     mailer:
