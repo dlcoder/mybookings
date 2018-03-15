@@ -5,7 +5,10 @@
 
 .row
   .col-xs-12.col-sm-6
-    = simple_form_for [@resource_type, @booking], url: resource_type_bookings_path(@resource_type, @booking) do |f|
+    = simple_form_for [@resource_type, @booking],
+        url: resource_type_bookings_path(@resource_type, @booking),
+        data: { behavior: 'dynamic-form' } do |f|
+
       = render_model_base_errors f.object
 
       .panel.panel-default
@@ -22,9 +25,17 @@
 
           .row
             .col-xs-12.col-sm-6
-              = f.input :recurrent_type, collection: recurrent_types_list, as: :select, include_blank: false, hint: t('mybookings.bookings.hints.recurring_hint')
-            .col-xs-12.col-sm-6
-              = f.input :until_date, as: :datetimepicker, hint: t('mybookings.bookings.hints.until_date_hint')
+              = f.input :recurrent_type,
+                  collection: recurrent_types_list,
+                  as: :select,
+                  include_blank: t('mybookings.bookings.recurrent_types.no_repeat'),
+                  selected: '',
+                  hint: t('mybookings.bookings.hints.recurring_hint')
+            .col-xs-12.col-sm-6.js-dynamic-form-element-to-hide
+              = f.input :until_date,
+                  as: :datetimepicker,
+                  hint: t('mybookings.bookings.hints.until_date_hint'),
+                  input_html: { data: { 'dynamic-form-disables-with': '#booking_recurrent_type=' } }
 
           = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('mybookings.bookings.hints.comment_hint')
 

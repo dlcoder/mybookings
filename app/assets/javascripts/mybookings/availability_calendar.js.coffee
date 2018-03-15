@@ -1,5 +1,3 @@
-window.Mybookings ||= {}
-
 class Mybookings.AvailabilityCalendar
   @render: (selector, resourceInputSelector, startDateInputSelector, endDateInputSelector, locale = "en") ->
     # TODO: review that dirty hack to deal with turbolinks

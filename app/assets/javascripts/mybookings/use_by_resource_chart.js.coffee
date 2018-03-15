@@ -1,5 +1,3 @@
-window.Mybookings ||= {}
-
 class Mybookings.UseByResourceChart extends Mybookings.Chart
 
   drawChar: (dataset) =>

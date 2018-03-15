@@ -16,6 +16,11 @@ step 'I can start to create a booking' do
   end
 end
 
+step 'I cannot see the until date field when is selected the no repeat option' do
+  expect(page).to have_select('Repeat event', selected: 'No repeat')
+  expect(page).to have_css('.js-dynamic-form-element-to-hide', visible: false)
+end
+
 step 'I cannot book an available resource for more than 4 hours' do
   select 'PCV1', from: 'Resource'
 

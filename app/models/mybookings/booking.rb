@@ -13,7 +13,7 @@ module Mybookings
     delegate :count, to: :events, prefix: true
     delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, to: :resource_type, prefix: true
 
-    validates :start_date, :end_date, :proposed_resource, :recurrent_type, presence: true
+    validates :start_date, :end_date, :proposed_resource, presence: true
     validates :until_date, presence: true, if: :is_a_recurring_booking?
     validate :the_booking_period_is_valid, if: :is_a_recurring_booking?
     validate :the_event_duration_is_valid
@@ -31,6 +31,7 @@ module Mybookings
     def self.new_for_user user, params, event_type
       booking = self.new(params)
       booking.user = user
+      booking.recurrent_type = 'daily' if booking.is_a_no_repeat_booking?
       booking.generate_events(event_type) if booking.valid?
 
       booking
@@ -85,6 +86,10 @@ module Mybookings
     def destroy
       return false if has_events?
       super
+    end
+
+    def is_a_no_repeat_booking?
+      until_date.blank? && recurrent_type.blank?
     end
 
     private

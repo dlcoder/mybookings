@@ -148,6 +148,7 @@ en:
         title: 'New booking'
         title_with_resource_type_name: 'New booking of %{resource_type_name}'
       recurrent_types:
+        no_repeat: 'No repeat'
         daily: 'Daily'
         weekly: 'Weekly'
         monthly: 'Monthly'

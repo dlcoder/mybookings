@@ -1,5 +1,3 @@
-window.Mybookings ||= {}
-
 class Mybookings.BookingsCalendar
   @render: (selector, eventsUrl, locale='en') ->
     # TODO: review that dirty hack to deal with turbolinks
