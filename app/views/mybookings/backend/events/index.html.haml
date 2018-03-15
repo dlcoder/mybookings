@@ -1,9 +1,6 @@
 = title
-.lead= "#{t('.resource')} #{@resource.resource_type_name} - #{@resource.name}"
 
-- if @events.any?
-  = render collection: @events, partial: 'mybookings/backend/events/event'
+#bookings-calendar
 
-- else
-  .lead
-    %p= t('.no_events')
+:coffeescript
+  Mybookings.BookingsCalendar.render('#bookings-calendar', "#{backend_resource_events_path(resource_id: @resource.id, format: :json)}", "#{I18n.locale}")

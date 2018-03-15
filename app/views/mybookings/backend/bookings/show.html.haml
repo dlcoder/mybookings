@@ -1,0 +1,41 @@
+= title(t('.title', booking_id: @booking.id))
+
+.row
+  .col-xs-12
+    .well
+      .row
+        .col-xs-12.col-sm-4
+          %h4= t('.resource_type')
+          %p= @booking.resource_type_name
+
+        .col-xs-12.col-sm-4
+          %h4= t('.creation_date')
+          %p= l(@booking.created_at, format: :long)
+
+        .col-xs-12.col-sm-4
+          %h4= t('.comment')
+          - unless @booking.comment.blank?
+            %p= @booking.comment
+          - else
+            %p
+              %em= t('.no_comments')
+
+      %hr
+
+      %h4= t('.events')
+      .row
+        .booking-events
+          = render :partial => 'mybookings/backend/events/event', :collection => @booking.latest_events(3)
+
+        - if @booking.events_count_greater_than?(4)
+          .col-xs-12
+            = link_to t('.load_all_events'), backend_booking_events_path(@booking, format: :js), class: 'link-show-all-events', remote: true
+
+
+
+  - if @booking.has_pending_events?
+    .col-xs-12
+      %hr
+      %h4= t('.cancel_booking')
+      %p= t('.cancel_booking_description')
+      = link_to_delete t('.cancel_booking'), booking_path(@booking), t('mybookings.delete_confirmation'), class: 'btn btn-default'

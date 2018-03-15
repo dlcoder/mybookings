@@ -26,6 +26,13 @@ en:
       bookings:
         booking:
           booking_date: 'Booking date'
+        show:
+          back: '< Back'
+          cancel_booking: Cancel booking
+          cancel_booking_description: All the pending events will be deleted. If all the events in the booking are pending, the booking will be deleted completly.
+          events: 'Events'
+          load_all_events: Show all events for the booking
+          title: "Data for booking #%{booking_id}"
       events:
         event:
           cancel_event: 'Cancel or reallocate'

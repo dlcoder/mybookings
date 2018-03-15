@@ -2,8 +2,8 @@ window.Mybookings ||= {}
 
 class Mybookings.BookingsCalendar
   @render: (selector, eventsUrl, locale='en') ->
-    # TODO: review that dirty hack to deal with turbolinks
-    return if $(selector).html()
+    return if $(selector).data('fullcalendar-loaded')
+    $(selector).data('fullcalendar-loaded', true)
 
     options =
       allDaySlot: false
@@ -17,4 +17,9 @@ class Mybookings.BookingsCalendar
       timeFormat: 'H(:mm)'
 
     $(selector).fullCalendar(options)
+
+    $(document).one 'turbolinks:click', ->
+      $(selector).data('fullcalendar-loaded', false)
+      $(selector).fullCalendar('destroy')
+
     return
