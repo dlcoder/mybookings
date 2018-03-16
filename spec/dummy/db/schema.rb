@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180315163832) do
     t.integer  "limit_hours_duration",            default: 24
     t.integer  "limit_days_for_recurring_events", default: 365
     t.integer  "limit_days_for_feedback",         default: 7
-    t.boolean  "hide_comment_field"
+    t.boolean  "hide_comment_field",              default: false
   end
 
   add_index "mybookings_resource_types", ["deleted_at"], name: "index_mybookings_resource_types_on_deleted_at"

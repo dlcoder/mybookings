@@ -12,13 +12,14 @@
           %h4= t('.creation_date')
           %p= l(@booking.created_at, format: :long)
 
-        .col-xs-12.col-sm-6
-          %h4= t('.comment')
-          - unless @booking.comment.blank?
-            %p= @booking.comment
-          - else
-            %p
-              %em= t('.no_comments')
+        - if @booking.can_display_comment_field?
+          .col-xs-12.col-sm-6
+            %h4= t('.comment')
+            - unless @booking.comment.blank?
+              %p= @booking.comment
+            - else
+              %p
+                %em= t('.no_comments')
 
       %hr
 

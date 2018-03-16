@@ -24,7 +24,7 @@ es:
         bookings: Reservas
       mybookings/resource_type:
         extension: Extensión del tipo de recurso
-        hide_comment_field: Ocular el campo observaciones
+        hide_comment_field: Ocultar el campo observaciones
         id: ID
         limit_days_for_feedback: Límite de días para envío de feedback
         limit_days_for_recurring_events: Máximo número de días para eventos recurrentes

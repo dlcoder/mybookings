@@ -105,6 +105,12 @@ step 'I can see that the resources associated with the resource type has been ca
 end
 
 step 'I can set the option of hiding the comment field of a resource type' do
+  # Ensure the comment field is visible
+  step 'I go to the bookings page'
+  step 'I can start to create a booking'
+  expect(page).to have_content('Comment')
+
+  step 'I go to the manage page'
   step 'I click on Resource types menu item'
   find('tr', text: 'Virtual PC').click_link ('Edit')
   check 'Hide the comment field'
