@@ -57,6 +57,9 @@ es:
         manage: 'Gestionar'
         resources: 'Recursos'
       resources:
+        edit:
+          title: 'Editar recurso'
+          update_resource: 'Actualizar recurso'
         index:
           new_resource: 'Nuevo recurso'
           no_resources: 'Aún no se han creado recursos.'
@@ -67,6 +70,7 @@ es:
         resource:
           delete: 'Eliminar'
           delete_confirmation: '¿Estás seguro? Si eliminas este recurso borrarás todos las reservas asociadas a él.'
+          edit: 'Editar'
           enable: 'Activar'
           disable: 'Desactivar'
           expired: '%{expired_bookings} terminadas'
