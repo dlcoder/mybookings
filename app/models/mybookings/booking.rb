@@ -31,6 +31,8 @@ module Mybookings
     def self.new_for_user user, params, event_type
       booking = self.new(params)
       booking.user = user
+      # It is not a repeat booking, we assign it daily
+      # and leave the until_date field blank.
       booking.recurrent_type = 'daily' if booking.is_a_no_repeat_booking?
       booking.generate_events(event_type) if booking.valid?
 
