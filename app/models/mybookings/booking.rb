@@ -11,7 +11,7 @@ module Mybookings
 
     delegate :email, :first_name, :last_name, to: :user, prefix: true
     delegate :count, to: :events, prefix: true
-    delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, to: :resource_type, prefix: true
+    delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, :hide_comment_field, to: :resource_type, prefix: true
 
     validates :start_date, :end_date, :proposed_resource, :recurrent_type, presence: true
     validates :until_date, presence: true, if: :is_a_recurring_booking?
@@ -85,6 +85,10 @@ module Mybookings
     def destroy
       return false if has_events?
       super
+    end
+
+    def can_display_comment_field?
+      !resource_type_hide_comment_field
     end
 
     private

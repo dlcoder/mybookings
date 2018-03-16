@@ -26,7 +26,8 @@
             .col-xs-12.col-sm-6
               = f.input :until_date, as: :datetimepicker, hint: t('mybookings.bookings.hints.until_date_hint')
 
-          = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('mybookings.bookings.hints.comment_hint')
+          - if @booking.can_display_comment_field?
+            = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('mybookings.bookings.hints.comment_hint')
 
       = render partial: "resource_type_extension_#{@booking.resource_type_extension.downcase}_new", locals: { form: f }
 
