@@ -1,0 +1,7 @@
+= title
+
+= simple_form_for @resource, url: backend_resource_path do |f|
+  = render_model_base_errors f.object
+
+  = f.input :name
+  = f.button icon_with_text('ok', t('.update_resource')), class: 'btn btn-primary'

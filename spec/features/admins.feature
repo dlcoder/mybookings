@@ -12,6 +12,8 @@ Feature: Admin
     And I can enable a resource
     And I can add a new resource
     And I can see that the resource has been added
+    And I can edit a resource
+    And I can see that the resource has been edited
     And I can see the events of a resource and all the info of them
     And I can cancel or reallocate an event
     And I cannot reallocate the event to a disabled resource

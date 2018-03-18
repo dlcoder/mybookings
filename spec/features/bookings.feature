@@ -8,6 +8,7 @@ Feature: Bookings management
     Given a signed in user
     When I go to the bookings page
     And I can start to create a booking
+    And I cannot see the until date field when is selected the no repeat option
     And I cannot book an available resource for more than 4 hours
     And I can book an available resource
     And I can see that the booking has been created

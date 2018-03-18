@@ -37,6 +37,17 @@ step 'I can see that the resource has been added' do
   expect(page).to have_content('ACMR5')
 end
 
+step 'I can edit a resource' do
+  find('tr', text: 'ACMR5').click_link 'Edit'
+  fill_in 'Resource name', with: 'ACMR5 edited'
+
+  click_button 'Update resource'
+end
+
+step 'I can see that the resource has been edited' do
+  expect(page).to have_content('ACMR5 edited')
+end
+
 step 'I can cancel a resource' do
   step 'I click on Resources menu item'
   find('tr', text: 'acmr_cancel').click_link('Delete')

@@ -9,12 +9,14 @@
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require bootstrap-datetimepicker
+//= require mybookings/mybookings
 //= require mybookings/availability_calendar
 //= require mybookings/bookings_calendar
-//= require mybookings/datetimepicker
 //= require mybookings/chart
-//= require mybookings/use_by_resource_chart
+//= require mybookings/dynamic_form
 //= require mybookings/use_by_hour_chart
+//= require mybookings/use_by_resource_chart
+//= require mybookings/datetimepicker
 //= require select2
 //= require select2_i18n_en
 //= require select2_i18n_es

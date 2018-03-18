@@ -57,6 +57,9 @@ en:
         manage: 'Manage'
         resources: 'Resources'
       resources:
+        edit:
+          title: 'Edit resource'
+          update_resource: 'Update resource'
         index:
           new_resource: 'New resource'
           no_resources: 'There is no resources yet.'
@@ -67,6 +70,7 @@ en:
         resource:
           delete: 'Delete'
           delete_confirmation: 'Are you sure? If you delete this resource you will delete all bookings associated with it.'
+          edit: 'Edit'
           enable: 'Enable'
           disable: 'Disable for new bookings'
           expired: '%{expired_bookings} expired'
@@ -149,6 +153,7 @@ en:
         title: 'New booking'
         title_with_resource_type_name: 'New booking of %{resource_type_name}'
       recurrent_types:
+        no_repeat: 'No repeat'
         daily: 'Daily'
         weekly: 'Weekly'
         monthly: 'Monthly'
