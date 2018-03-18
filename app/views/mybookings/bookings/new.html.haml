@@ -30,14 +30,15 @@
                   as: :select,
                   include_blank: t('mybookings.bookings.recurrent_types.no_repeat'),
                   selected: '',
-                  hint: t('mybookings.bookings.hints.recurring_hint')
+                  hint: t('mybookings.bookings.hints.recurring_hint'),
+                  input_html: { class: 'js-booking-recurring-type' }
             .col-xs-12.col-sm-6.js-dynamic-form-element-to-hide
               -# The value '#booking_recurrent_type=""' does not work because it isn't
               -# an empty value. It is a string with two double quotes.
               = f.input :until_date,
                   as: :datetimepicker,
                   hint: t('mybookings.bookings.hints.until_date_hint'),
-                  input_html: { data: { 'dynamic-form-disables-with': '#booking_recurrent_type=' } }
+                  input_html: { data: { 'dynamic-form-disables-with': '.js-booking-recurring-type=' } }
 
           - if @booking.can_display_comment_field?
             = f.input :comment, as: :text, input_html: { rows: 3 }, hint: t('mybookings.bookings.hints.comment_hint')
