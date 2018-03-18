@@ -1,5 +1,3 @@
-window.Mybookings ||= {}
-
 class Mybookings.Chart
   constructor: (@selector, @resourceTypeInputSelector) ->
 

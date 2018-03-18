@@ -152,6 +152,7 @@ es:
         title: 'Nueva reserva'
         title_with_resource_type_name: 'Nueva reserva de %{resource_type_name}'
       recurrent_types:
+        no_repeat: 'No repetir'
         daily: 'Diariamente'
         weekly: 'Semanalmente'
         monthly: 'Mensualmente'
