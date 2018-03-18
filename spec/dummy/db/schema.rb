@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406084301) do
+ActiveRecord::Schema.define(version: 20180315163832) do
 
   create_table "mybookings_bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170406084301) do
     t.integer  "limit_hours_duration",            default: 24
     t.integer  "limit_days_for_recurring_events", default: 365
     t.integer  "limit_days_for_feedback",         default: 7
+    t.boolean  "hide_comment_field",              default: false
   end
 
   add_index "mybookings_resource_types", ["deleted_at"], name: "index_mybookings_resource_types_on_deleted_at"

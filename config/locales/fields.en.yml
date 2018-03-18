@@ -24,6 +24,7 @@ en:
         bookings: Bookings
       mybookings/resource_type:
         extension: Resource type extension
+        hide_comment_field: Hide the comment field
         id: ID
         limit_days_for_feedback: Limit days for feedback
         limit_days_for_recurring_events: Limit days for recurring events

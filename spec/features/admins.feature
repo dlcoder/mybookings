@@ -37,6 +37,8 @@ Feature: Admin
     And I can cancel the resource type
     And I can see that the resource type has been cancelled
     And I can see that the resources associated with the resource type has been canceled
+    And I can set the option of hiding the comment field of a resource type
+    And I can see that the new booking pages of this resource type do not show the comment field
 
   Scenario: Manage users as administrator
     Given a signed in administrator

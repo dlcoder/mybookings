@@ -86,6 +86,7 @@ en:
           options: Options
           roles: 'Roles who can book resources of this type'
         hints:
+          hide_comment_field: Mark the checkbox if you want to hide the comment field on the new booking page.
           limit_days_for_feedback: The maximum number of days allowed for users to submit feedback for an event.
           limit_days_for_recurring_events: The maximum number of days between the start date and the end date of an event.
           limit_hours_duration: The maximum number of hours allowed for events.

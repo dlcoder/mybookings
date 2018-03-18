@@ -86,6 +86,7 @@ es:
           options: Opciones
           roles: 'Roles que pueden reservar recursos de este tipo'
         hints:
+          hide_comment_field: Marque la casilla si desea ocultar el campo de observaciones en la pagina de nueva reserva.
           limit_days_for_feedback: El máximo número de días para que los usuarios envíen feedback de un evento.
           limit_days_for_recurring_events: El máximo número de días entre la fecha de inicio y la fecha de fin de un evento.
           limit_hours_duration: El máximo número de horas de duración para los eventos.

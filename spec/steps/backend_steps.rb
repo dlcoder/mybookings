@@ -79,7 +79,7 @@ end
 step 'I can add a new resource type' do
   click_link 'New resource type'
 
-  fill_in 'Resource type name', with: 'Virtual PC'
+  fill_in 'Resource type name', with: 'Online PC'
   select 'DefaultExtension', from: 'Resource type extension'
 
   click_button 'Create resource type'
@@ -113,6 +113,25 @@ step 'I can see that the resources associated with the resource type has been ca
   expect(page).to_not have_content('acmr_cancel')
   expect(page).to_not have_content('Disabled resource')
   expect(page).to_not have_content('ACMR5')
+end
+
+step 'I can set the option of hiding the comment field of a resource type' do
+  # Ensure the comment field is visible
+  step 'I go to the bookings page'
+  step 'I can start to create a booking'
+  expect(page).to have_content('Comment')
+
+  step 'I go to the manage page'
+  step 'I click on Resource types menu item'
+  find('tr', text: 'Virtual PC').click_link ('Edit')
+  check 'Hide the comment field'
+  click_button 'Update resource type'
+end
+
+step 'I can see that the new booking pages of this resource type do not show the comment field' do
+  step 'I go to the bookings page'
+  step 'I can start to create a booking'
+  expect(page).to_not have_content('Comment')
 end
 
 step 'I click on Users menu item' do

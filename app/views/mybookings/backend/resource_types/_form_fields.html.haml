@@ -25,6 +25,8 @@
         = f.input :limit_days_for_recurring_events, min_max: true, hint: t('mybookings.backend.resource_types.hints.limit_days_for_recurring_events')
       .col-xs-12.col-sm-4
         = f.input :limit_days_for_feedback, min_max: true, hint: t('mybookings.backend.resource_types.hints.limit_days_for_feedback')
+      .col-xs-12
+        = f.input :hide_comment_field, hint: t('mybookings.backend.resource_types.hints.hide_comment_field')
 
 .panel.panel-default
   .panel-heading
