@@ -69,6 +69,10 @@ module Mybookings
       return false
     end
 
+    def full_name
+      "#{first_name} #{last_name}".strip
+    end
+
     private
 
     def get_masks_from_role(role)

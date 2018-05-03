@@ -9,7 +9,7 @@ module Mybookings
     has_many :events , inverse_of: :booking
     belongs_to :proposed_resource, class_name: 'Resource'
 
-    delegate :email, :first_name, :last_name, to: :user, prefix: true
+    delegate :email, :first_name, :last_name, :full_name, to: :user, prefix: true
     delegate :count, to: :events, prefix: true
     delegate :name, :extension, :notifications_emails, :notifications_email_from, :limit_days_for_feedback, :minutes_in_advance, :minutes_of_grace, :hide_comment_field, to: :resource_type, prefix: true
 

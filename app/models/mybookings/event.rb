@@ -14,7 +14,7 @@ module Mybookings
     validate :dates_in_the_future, :dates_ovelap, :resource_is_available, on: :create
 
     delegate :name, :resource_type_name, :resource_type_extension, to: :resource, prefix: true
-    delegate :user_email, :resource_type_notifications_email_from, :resource_type_limit_days_for_feedback, to: :booking, prefix: true
+    delegate :user_email, :resource_type_notifications_email_from, :resource_type_limit_days_for_feedback, :resource_type_minutes_in_advance, to: :booking, prefix: true
 
     enum status: %w(pending occurring expired)
 

@@ -1,0 +1,9 @@
+= content_for :email_body do
+
+  = t('.introduction_html', user_name: @booking.user_full_name, user_email: @booking.user_email, resource_type_name: @booking.resource_type_name)
+
+  %ul= render partial: 'event', collection: @booking.events
+
+  = render partial: "new_booking_to_resource_type_managers_#{@booking.resource_type_extension.downcase}_extra", locals: { booking: @booking }
+
+  = t('mybookings.mailers.footer_html')

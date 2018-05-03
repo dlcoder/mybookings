@@ -29,7 +29,6 @@ module Mybookings
       @event.destroy!
       booking.destroy! unless booking.has_events?
 
-      NotificationsMailer.cancel_event(@event, event_form.reason, @event.booking_user_email).deliver_now!
       logger.info "The event #{@event.id} of the booking #{@event.booking.id} in the resource #{@resource.name} has been deleted. The reason is: #{event_form.reason}"
 
       redirect_to backend_resource_events_path, notice: I18n.t('mybookings.backend.events.destroy.cancel_notice')

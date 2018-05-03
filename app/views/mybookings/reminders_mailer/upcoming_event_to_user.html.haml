@@ -1,0 +1,7 @@
+= content_for :email_body do
+
+  = t('.introduction_html', resource_type_name: @event.resource_resource_type_name, minutes: @event.booking_resource_type_minutes_in_advance)
+
+  = render partial: "upcoming_event_to_user_#{@event.resource_resource_type_extension.downcase}_extra", locals: { event: @event }
+
+  = t('mybookings.mailers.footer_html')

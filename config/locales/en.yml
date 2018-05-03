@@ -190,40 +190,6 @@ en:
     resources:
       events:
         status: 'Busy'
-    notifications_mailer:
-      cancel_event:
-        body_html: '<p>A booking has been canceled. If you have any question you can contact with the resource manager.</p>'
-        label_cancelation_reason: 'Cancelation reason'
-        label_end_date: 'End date'
-        label_event_id: 'Event Id'
-        label_resource_name: 'Resource'
-        label_resource_type_name: 'Resource type'
-        label_start_date: 'Start date'
-        subject: 'Your booking has been canceled.'
-      delete_booking:
-        label_booking_id: 'Booking Id'
-        label_resource_type_name: 'Resource type'
-        label_user_email: 'User email'
-        subject: 'Booking of %{resource_type_name} canceled by the user %{user_email}'
-      new_booking:
-        label_booking_date: 'Booking creation date'
-        label_booking_id: 'Booking Id'
-        label_comment: 'Comment'
-        label_end_date: 'End date'
-        label_event_id: 'Event Id'
-        label_events: 'Events'
-        label_resource_name: 'Resource'
-        label_resource_type_name: 'Resource type'
-        label_start_date: 'Start date'
-        label_user_email: 'User email'
-        subject: 'New booking of %{resource_type_name} for the user %{user_email}'
-      upcoming_event:
-        label_end_date: 'End date'
-        label_event_id: 'Event Id'
-        label_resource_name: 'Resource'
-        label_resource_type_name: 'Resource type'
-        label_start_date: 'Start date'
-        subject: 'Your booking is about to begin'
   devise:
     mailer:
       confirmation_instructions:

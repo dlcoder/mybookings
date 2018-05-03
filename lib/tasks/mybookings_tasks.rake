@@ -7,7 +7,7 @@ namespace :mybookings do
 
     Mybookings::Event.upcoming.each do |event|
       event.start!
-      Mybookings::NotificationsMailer.upcoming_event(event, event.booking_user_email).deliver_now!
+      Mybookings::RemindersMailer.upcoming_event_to_user(event).deliver_now!
     end
 
     Mybookings::Event.finished.each do |event|

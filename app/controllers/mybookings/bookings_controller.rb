@@ -27,9 +27,9 @@ module Mybookings
       @booking.save!
       @booking.confirm!
 
-      emails = [@booking.user_email] + @booking.resource_type_notifications_emails
-      emails.each do |email|
-        NotificationsMailer.new_booking(@booking, email).deliver_now!
+      ConfirmationsMailer.new_booking_to_user(@booking).deliver_now!
+      if @booking.resource_type_notifications_emails.any?
+        ConfirmationsMailer.new_booking_to_resource_type_managers(@booking).deliver_now!
       end
 
       redirect_to bookings_path
@@ -59,11 +59,6 @@ module Mybookings
       unless @booking.has_events?
         @booking.cancel!
         @booking.destroy!
-
-        emails = [@booking.user_email] + @booking.resource_type_notifications_emails
-        emails.each do |email|
-          NotificationsMailer.delete_booking(@booking, email).deliver_now!
-        end
       end
 
       redirect_to bookings_path

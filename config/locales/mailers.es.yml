@@ -1,0 +1,21 @@
+es:
+  mybookings:
+    confirmations_mailer:
+      new_booking_to_user:
+        introduction_html: '<p>Su reserva de <strong>%{resource_type_name}</strong> ha sido programada con los siguientes eventos:</p>'
+        subject: Reserva de %{resource_type_name} confirmada
+
+      new_booking_to_resource_type_managers:
+        introduction_html: '<p>El usuario <strong>%{user_name} (%{user_email})</strong> ha programado una reserva de <strong>%{resource_type_name}</strong> con los siguientes eventos:</p>'
+        subject: Reserva de %{resource_type_name} confirmada
+
+      event:
+        event: El día %{date}, de %{start_time} a %{end_time}
+
+    reminders_mailer:
+      upcoming_event_to_user:
+        introduction_html: '<p>Le recordamos que tiene una reserva de <strong>%{resource_type_name}</strong> para dentro de <strong>%{minutes} minutos</strong>.</p>'
+        subject: Recordatorio de reunión o evento de %{resource_type_name}
+
+    mailers:
+      footer_html: '<p>Por favor, no responda a este mensaje, es un envío automático.</p>'
