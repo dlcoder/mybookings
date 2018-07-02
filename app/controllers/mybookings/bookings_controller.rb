@@ -27,11 +27,6 @@ module Mybookings
       @booking.save!
       @booking.confirm!
 
-      ConfirmationsMailer.new_booking_to_user(@booking).deliver_now!
-      if @booking.resource_type_notifications_emails.any?
-        ConfirmationsMailer.new_booking_to_resource_type_managers(@booking).deliver_now!
-      end
-
       redirect_to bookings_path
     end
 

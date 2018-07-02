@@ -3,6 +3,10 @@ namespace :mybookings do
   task process_bookings_planning: :environment do
     Mybookings::Booking.unprepared.each do |booking|
       booking.prepare!
+      Mybookings::ConfirmationsMailer.new_booking_to_user(booking).deliver_now!
+      if booking.resource_type_notifications_emails.any?
+        Mybookings::ConfirmationsMailer.new_booking_to_resource_type_managers(booking).deliver_now!
+      end
     end
 
     Mybookings::Event.upcoming.each do |event|
