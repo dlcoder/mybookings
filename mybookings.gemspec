@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.43"
   s.add_dependency "coffee-rails",                    "~> 4.1.0"
   s.add_dependency "devise",                          "~> 4.2.0"
-  s.add_dependency "draper",                          "~> 1.3"
+  s.add_dependency "draper",                          "~> 2.0"
   s.add_dependency "fullcalendar-rails",              "~> 3.1"
   s.add_dependency "haml-rails",                      "~> 0.5.3"
   s.add_dependency "ice_cube",                        "~> 0.15"
