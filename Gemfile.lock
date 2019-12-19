@@ -14,7 +14,7 @@ PATH
       jquery-rails (~> 4.3.5)
       js-routes (~> 1.4.9)
       kaminari (~> 1.1.1)
-      momentjs-rails (>= 2.9.0)
+      momentjs-rails (>= 2.20.1)
       omniauth-saml (~> 1.7.0)
       paranoia (~> 2.2)
       pundit (~> 1.1.0)
