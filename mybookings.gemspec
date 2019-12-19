@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "ice_cube",                        "~> 0.15"
   s.add_dependency "jbuilder",                        "~> 2.9.1"
   s.add_dependency "jquery-rails",                    "~> 4.3.5"
-  s.add_dependency "js-routes",                       "~> 1.3.3"
+  s.add_dependency "js-routes",                       "~> 1.4.9"
   s.add_dependency "kaminari",                        "~> 0.17"
   s.add_dependency "momentjs-rails",                  ">= 2.9.0"
   s.add_dependency "omniauth-saml",                   "~> 1.7.0"
