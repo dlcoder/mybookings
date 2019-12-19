@@ -3,7 +3,7 @@ PATH
   specs:
     mybookings (0.0.1)
       bootstrap-sass (~> 3.3.6)
-      bootstrap3-datetimepicker-rails (~> 4.17.43)
+      bootstrap3-datetimepicker-rails (~> 4.17.47)
       coffee-rails (~> 4.2.2)
       devise (~> 4.7.0)
       draper (~> 2.0)

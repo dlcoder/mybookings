@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails",                           ">= 4.2.7.1", "< 5"
   s.add_dependency "bootstrap-sass",                  "~> 3.3.6"
-  s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.43"
+  s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.47"
   s.add_dependency "coffee-rails",                    "~> 4.2.2"
   s.add_dependency "devise",                          "~> 4.7.0"
   s.add_dependency "draper",                          "~> 2.0"
