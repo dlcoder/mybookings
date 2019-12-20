@@ -15,7 +15,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.1.0'
 end
 
 group :test do
