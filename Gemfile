@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'capybara', '~> 2.18.0'
+  gem 'capybara', '~> 3.15'
   gem 'launchy'
   gem 'rspec', '~> 3.0'
   gem 'rspec-collection_matchers'
