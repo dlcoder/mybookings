@@ -7,8 +7,8 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec', '~> 3.0'
   gem 'rspec-collection_matchers'
-  gem 'rspec-rails'
-  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.9.0'
+  gem 'sqlite3', '~> 1.3.0'
 end
 
 group :development do
