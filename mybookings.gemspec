@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "pundit",                          "~> 2.1.0"
   s.add_dependency "role_model",                      "~> 0.8.2"
   s.add_dependency "sass-rails",                      ">= 3.2"
-  s.add_dependency "simple_form",                     "~> 3.4.0"
+  s.add_dependency "simple_form",                     "~> 5.0.0"
   s.add_dependency "turbolinks",                      "~> 5.0"
   s.add_dependency "uglifier",                        ">= 1.3.0"
 end
