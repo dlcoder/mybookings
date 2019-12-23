@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'puma'
+
 group :development, :test do
   gem 'capybara', '~> 3.15'
   gem 'launchy'
@@ -16,6 +18,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'mailcatcher'
   gem 'web-console', '~> 3.1.0'
+  gem 'spring'
 end
 
 group :test do

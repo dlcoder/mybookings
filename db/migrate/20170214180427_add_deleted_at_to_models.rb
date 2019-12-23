@@ -1,4 +1,4 @@
-class AddDeletedAtToModels < ActiveRecord::Migration
+class AddDeletedAtToModels < ActiveRecord::Migration[4.2]
   def change
     add_column :mybookings_bookings,        :deleted_at, :datetime
     add_column :mybookings_events,          :deleted_at, :datetime

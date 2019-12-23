@@ -1,5 +1,5 @@
 module Mybookings
-  class Event < ActiveRecord::Base
+  class Event < ApplicationRecord
     include Loggable
 
     acts_as_paranoid

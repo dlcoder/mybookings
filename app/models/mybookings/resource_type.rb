@@ -1,5 +1,5 @@
 module Mybookings
-  class ResourceType < ActiveRecord::Base
+  class ResourceType < ApplicationRecord
     include ::RoleModel
     include Loggable
 
