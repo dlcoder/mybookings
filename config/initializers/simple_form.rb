@@ -168,11 +168,18 @@ SimpleForm.setup do |config|
   # config.i18n_scope = 'simple_form'
 end
 
+# This code seems to be coming from here.
+# https://stackoverflow.com/questions/11340843/default-disable-with-for-simple-form-submit
+# I changed the deprecated function alias_method_chain to alias_method
+# to resolve a deprecation warning in Rails 5, but the
+# right thing to do would be to replace it using Module::prepend function.
+# TODO: Rewrite this with the Module::Prepend function.
 SimpleForm::FormBuilder.class_eval do
   def button_with_override(field, options = {})
     data_disable_with = { disable_with: I18n.t('mybookings.saving') }
     options[:data] = data_disable_with.merge(options[:data] || {})
     button_without_override('button', field, options)
   end
-  alias_method_chain :button, :override
+  alias_method :button_without_override, :button
+  alias_method :button, :button_with_override
 end

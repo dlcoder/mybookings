@@ -2,20 +2,23 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'puma'
+
 group :development, :test do
-  gem 'capybara', '~> 2.18.0'
+  gem 'capybara', '~> 3.15'
   gem 'launchy'
   gem 'rspec', '~> 3.0'
   gem 'rspec-collection_matchers'
-  gem 'rspec-rails'
-  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.9.0'
+  gem 'sqlite3', '~> 1.3.0'
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.1.0'
+  gem 'spring'
 end
 
 group :test do

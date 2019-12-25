@@ -1,4 +1,4 @@
-class CreateUserManagedResourceTypes < ActiveRecord::Migration
+class CreateUserManagedResourceTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :mybookings_user_managed_resource_types do |t|
       t.belongs_to :user

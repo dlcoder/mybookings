@@ -1,5 +1,4 @@
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require js-routes
 //= require bootstrap/alert

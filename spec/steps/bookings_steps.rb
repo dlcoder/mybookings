@@ -47,7 +47,7 @@ end
 step 'I can see that the booking has been created' do
   within '#bookings-calendar' do
     expect(page).to have_content('Virtual PC - PCV1')
-    expect(page).to have_content("#{(@now + 1.hour).strftime('%k:%M')} - #{(@now + 3.hours).strftime('%k:%M')}")
+    expect(page).to have_content("#{(@now + 1.hour).strftime('%k:%M').strip} - #{(@now + 3.hours).strftime('%k:%M').strip}")
   end
 end
 

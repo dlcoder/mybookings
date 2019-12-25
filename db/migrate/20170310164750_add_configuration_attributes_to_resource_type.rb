@@ -1,4 +1,4 @@
-class AddConfigurationAttributesToResourceType < ActiveRecord::Migration
+class AddConfigurationAttributesToResourceType < ActiveRecord::Migration[4.2]
   def change
     add_column :mybookings_resource_types, :notifications_email_from, :string
     add_column :mybookings_resource_types, :notifications_emails, :text

@@ -1,5 +1,5 @@
 module Mybookings
-  class Resource < ActiveRecord::Base
+  class Resource < ApplicationRecord
     include Loggable
 
     acts_as_paranoid

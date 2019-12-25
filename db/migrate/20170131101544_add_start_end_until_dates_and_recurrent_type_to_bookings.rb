@@ -1,4 +1,4 @@
-class AddStartEndUntilDatesAndRecurrentTypeToBookings < ActiveRecord::Migration
+class AddStartEndUntilDatesAndRecurrentTypeToBookings < ActiveRecord::Migration[4.2]
   def change
     add_column :mybookings_bookings, :start_date,     :datetime
     add_column :mybookings_bookings, :end_date,       :datetime

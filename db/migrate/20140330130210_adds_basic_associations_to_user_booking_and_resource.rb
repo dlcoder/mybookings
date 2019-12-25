@@ -1,4 +1,4 @@
-class AddsBasicAssociationsToUserBookingAndResource < ActiveRecord::Migration
+class AddsBasicAssociationsToUserBookingAndResource < ActiveRecord::Migration[4.2]
   def change
     create_table :mybookings_bookings do |t|
       t.belongs_to :user

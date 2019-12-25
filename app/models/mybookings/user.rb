@@ -1,5 +1,5 @@
 module Mybookings
-  class User < ActiveRecord::Base
+  class User < ApplicationRecord
     include ::RoleModel
     include Loggable
 
