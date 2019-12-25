@@ -1,4 +1,3 @@
-
 Capybara.javascript_driver = :poltergeist
 
 Capybara.register_driver :poltergeist do |app|
