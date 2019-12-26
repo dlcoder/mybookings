@@ -19,6 +19,7 @@ group :development do
   gem 'mailcatcher'
   gem 'web-console', '~> 3.1.0'
   gem 'spring'
+  gem 'listen', '~> 3.0'
 end
 
 group :test do
