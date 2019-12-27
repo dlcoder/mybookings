@@ -4,7 +4,7 @@ module Mybookings
 
     acts_as_paranoid
 
-    belongs_to :booking, dependent: :destroy
+    belongs_to :booking
     belongs_to :resource
 
     before_validation :precalculate_advanced_and_delayed_dates

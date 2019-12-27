@@ -15,7 +15,7 @@ module Mybookings
     delegate :users, to: :resource_type, prefix: true
 
     def self.available_by_resource_type resource_type
-      includes(:resource_type).order('LENGTH(mybookings_resources.name)').order('mybookings_resources.name asc').where(disabled: false, resource_type: resource_type)
+      includes(:resource_type).order(Arel.sql('LENGTH(mybookings_resources.name)')).order('mybookings_resources.name asc').where(disabled: false, resource_type: resource_type)
     end
 
     def self.by_id
