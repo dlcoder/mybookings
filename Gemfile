@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'puma'
+gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'capybara', '~> 3.15'
@@ -11,6 +12,7 @@ group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'rspec-rails', '~> 3.9.0'
   gem 'sqlite3', '~> 1.3.0'
+  gem 'byebug'
 end
 
 group :development do
