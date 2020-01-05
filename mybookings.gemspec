@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files  = Dir["spec/**/*"]
 
   s.add_dependency "rails",                           "~> 5.2.0"
-  s.add_dependency "bootstrap-sass",                  "~> 3.3.6"
+  s.add_dependency "bootstrap-sass",                  ">= 3.3.6", "< 3.5.0"
   s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.47"
   s.add_dependency "coffee-rails",                    "~> 4.2.2"
   s.add_dependency "devise",                          "~> 4.7.0"
