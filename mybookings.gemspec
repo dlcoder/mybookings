@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jbuilder",                        "~> 2.9.1"
   s.add_dependency "jquery-rails",                    "~> 4.3.5"
   s.add_dependency "js-routes",                       "~> 1.4.9"
-  s.add_dependency "kaminari",                        "~> 1.1.1"
+  s.add_dependency "kaminari",                        ">= 1.1.1", "< 1.3.0"
   s.add_dependency "momentjs-rails",                  ">= 2.20.1"
   s.add_dependency "omniauth-saml",                   "~> 1.10.1"
   s.add_dependency "paranoia",                        "~> 2.2"
